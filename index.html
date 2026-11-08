@@ -4,447 +4,1130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#08090d">
-<meta name="description" content="GabriPlay: tutoriales de GTA V, gaming, gameplays y novedades.">
-<title>GabriPlay — Official Gaming Hub</title>
+<meta name="theme-color" content="#09090d">
+<meta name="description" content="GabriPlay: videojuegos, tutoriales, GTA V, Roblox Studio y mucho más.">
+<title>GabriPlay — Más que un canal</title>
 
 <style>
-:root{
-  --bg:#08090d;
-  --panel:#11131b;
-  --panel2:#191c27;
-  --white:#f6f6fa;
-  --muted:#a0a2b2;
-  --line:#292c38;
-  --rainbow:linear-gradient(100deg,#7ce65b,#25d9d5,#547bff,#a45cff,#ed55b8,#ff604e,#ffd34c);
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:#09090d;
+  --panel:#121219;
+  --panel2:#191922;
+  --text:#f5f5f7;
+  --muted:#a1a1ad;
+  --line:#292934;
+  --rainbow:linear-gradient(90deg,#ff4242,#ff9e35,#f6e747,#52d66b,#42b9ff,#a56aff,#f05cba);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-img{display:block;width:100%;object-fit:cover}
-.container{width:min(1180px,91%);margin:auto}
-.gradient{background:var(--rainbow);background-clip:text;color:transparent}
-.topline{height:4px;background:var(--rainbow)}
-header{position:sticky;top:0;z-index:100;background:#090a0eea;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:1000;letter-spacing:1px}
-.logo{width:45px;height:45px;border-radius:12px;background:var(--rainbow);display:grid;place-items:center;color:#08090d;font-size:19px;font-weight:1000;box-shadow:0 0 25px #a45cff30}
-.brand-name{font-size:19px}
-.navlinks{display:flex;align-items:center;gap:22px}
-.navlinks a{font-size:12px;color:#b9bac7;transition:.2s}
-.navlinks a:hover{color:white}
-.nav-button{padding:12px 17px;border-radius:8px;background:var(--rainbow);color:#08090d;font-size:11px;font-weight:950}
-.menu{display:none;padding:10px 13px;border:1px solid var(--line);background:#11131b;color:white;border-radius:8px}
-.hero{min-height:690px;position:relative;display:flex;align-items:center;overflow:hidden;background:#0b0c12}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.25}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#08090d 5%,#08090de8 45%,#08090d55),linear-gradient(0deg,#08090d,transparent 50%)}
-.hero-content{position:relative;z-index:2;padding:100px 0;max-width:760px}
-.eyebrow{font-size:11px;letter-spacing:3px;color:#c2c3d0;text-transform:uppercase}
-.dot{display:inline-block;width:8px;height:8px;background:#7ce65b;border-radius:50%;margin-right:9px;box-shadow:0 0 12px #7ce65b}
-.hero h1{font-size:clamp(58px,10vw,112px);line-height:.92;letter-spacing:-7px;margin:30px 0}
-.hero h1 small{display:block;font-size:23px;letter-spacing:5px;margin-bottom:19px;color:#d2d2dc}
-.hero p{max-width:600px;color:#c0c1ce;line-height:1.9;font-size:16px}
-.actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 21px;border-radius:8px;font-size:12px;font-weight:900;transition:.2s}
-.btn:hover{transform:translateY(-3px)}
-.primary{background:var(--rainbow);color:#08090d}
-.secondary{border:1px solid #ffffff40;background:#ffffff0b}
-.hero-caption{font-size:10px!important;color:#858899!important;letter-spacing:2px;margin-top:25px}
-.stats{border-block:1px solid var(--line);background:#0d0e14}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);padding:25px 0}
-.stat{text-align:center;border-right:1px solid var(--line)}
-.stat:last-child{border:0}
-.stat strong{font-size:21px;display:block}
-.stat span{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
-section{padding:95px 0}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:35px}
-.kicker{font-size:10px;letter-spacing:3px;color:#aaa1ff;font-weight:900}
-h2{font-size:clamp(32px,5vw,48px);letter-spacing:-2px;margin-top:12px}
-.description{max-width:430px;color:var(--muted);font-size:13px;line-height:1.9}
-.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.video-card{background:var(--panel);border:1px solid var(--line);border-radius:15px;overflow:hidden;transition:.25s}
-.video-card:hover{transform:translateY(-5px);border-color:#77758e}
-.thumbnail{position:relative;aspect-ratio:16/9;overflow:hidden;background:#1a1b24}
-.thumbnail img{width:100%;height:100%;transition:.4s}
-.video-card:hover .thumbnail img{transform:scale(1.04)}
-.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:57px;height:57px;border-radius:50%;display:grid;place-items:center;background:#08090ddd;border:1px solid #ffffff66;color:white;font-size:19px}
-.video-info{padding:20px}
-.video-info .tag{font-size:9px;letter-spacing:2px;color:#b5aaff;font-weight:900}
-.video-info h3{font-size:18px;line-height:1.5;margin:10px 0}
-.video-info p{font-size:12px;color:var(--muted);line-height:1.7}
-.video-link{display:inline-block;margin-top:15px;color:#d1c9ff;font-size:11px;font-weight:900}
-.image-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-.image-feature{height:390px;position:relative;overflow:hidden;border-radius:17px;border:1px solid var(--line)}
-.image-feature img{height:100%;transition:.4s}
-.image-feature:hover img{transform:scale(1.04)}
-.image-feature:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#08090df0,transparent 70%)}
-.image-feature div{position:absolute;z-index:2;left:26px;bottom:25px}
-.image-feature h3{font-size:29px;margin:10px 0}
-.image-feature p{color:#c5c5d0;font-size:12px}
-.side-images{display:grid;grid-template-rows:1fr 1fr;gap:18px}
-.side-image{position:relative;min-height:185px;overflow:hidden;border-radius:15px;border:1px solid var(--line)}
-.side-image img{height:100%;position:absolute;inset:0}
-.side-image:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#08090df0,transparent 80%)}
-.side-image div{position:absolute;z-index:2;left:19px;bottom:17px}
-.side-image h3{font-size:20px}
-.side-image span{font-size:9px;letter-spacing:2px;color:#d0c4ff}
-.tutorial-search{margin:25px 0}
-.tutorial-search input{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:16px;color:white;outline:none}
-.tutorial-search input:focus{border-color:#8e83ff}
-.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:24px}
-.filter{border:1px solid var(--line);background:var(--panel);color:#aaa;padding:10px 15px;border-radius:25px;font-size:11px;cursor:pointer}
-.filter.active{background:white;color:#111;font-weight:900}
-.tutorial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.tutorial{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;transition:.2s}
-.tutorial:hover{border-color:#8b82ff;transform:translateY(-3px)}
-.tutorial small{color:#a7a0ff;letter-spacing:2px;font-size:9px}
-.tutorial h3{font-size:17px;margin:13px 0 8px}
-.tutorial p{color:var(--muted);font-size:12px;line-height:1.8}
-.tutorial a{display:inline-block;margin-top:14px;color:#d0c5ff;font-size:10px;font-weight:900}
-.no-results{display:none;color:var(--muted);padding:20px}
-.next-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
-.next-card{padding:29px;min-height:190px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(140deg,#1a1b29,#101119);position:relative;overflow:hidden}
-.next-card:after{content:"";position:absolute;width:160px;height:160px;right:-70px;bottom:-90px;border-radius:50%;background:var(--rainbow);filter:blur(50px);opacity:.2}
-.next-card small{color:#aaa2ff;font-size:10px;letter-spacing:3px}
-.next-card h3{font-size:24px;margin:17px 0 10px}
-.next-card p{font-size:13px;color:var(--muted);line-height:1.8}
-.coming{display:inline-block;margin-top:17px;border:1px solid #9587ff66;background:#9587ff15;color:#c6baff;padding:8px 12px;border-radius:5px;font-size:9px;font-weight:900;letter-spacing:2px}
-.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:45px;align-items:center}
-.about-photo{height:350px;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
-.about-photo img{height:100%}
-.about-text p{color:var(--muted);font-size:14px;line-height:1.9;margin-top:18px}
-.socials{display:flex;flex-wrap:wrap;gap:11px;margin-top:25px}
-.socials a{border:1px solid var(--line);padding:12px 15px;border-radius:8px;font-size:11px;font-weight:900}
-.socials a:hover{background:white;color:#111}
-.cta{padding:70px 25px;text-align:center;border:1px solid #ffffff25;border-radius:20px;background:radial-gradient(ellipse at 50% 0%,#7b4bba44,transparent 65%),#11131b}
-.cta h2{margin:0}
-.cta p{max-width:580px;margin:18px auto;color:var(--muted);font-size:14px;line-height:1.8}
-footer{border-top:1px solid var(--line);padding:38px 0;background:#090a0e}
-.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.footer-brand{font-size:19px;font-weight:1000;letter-spacing:2px}
-footer p{font-size:11px;color:#7f8291;margin-top:10px}
-.footer-links{display:flex;gap:18px;flex-wrap:wrap;font-size:11px;color:#a5a6b3}
-#top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:10px;background:#191b26;border:1px solid var(--line);color:white;display:none;z-index:30;cursor:pointer}
-#top.show{display:block}
-@media(max-width:850px){
- .navlinks{gap:12px}
- .navlinks a{font-size:10px}
- .tutorial-grid{grid-template-columns:repeat(2,1fr)}
+
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+  overflow-x:hidden;
 }
-@media(max-width:650px){
- .nav{height:68px}
- .menu{display:block}
- .nav-button{display:none}
- .navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:#11131b;padding:22px 5%;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
- .navlinks.open{display:flex}
- .navlinks a{font-size:13px}
- .hero{min-height:590px}
- .hero h1{letter-spacing:-4px}
- .hero-content{padding:80px 0}
- .stats-grid{padding:20px 0}
- .stat strong{font-size:16px}
- .stat span{font-size:8px;letter-spacing:1px}
- section{padding:70px 0}
- .section-head{display:block}
- .description{margin-top:15px}
- .video-grid,.tutorial-grid,.next-grid{grid-template-columns:1fr}
- .image-grid,.about{grid-template-columns:1fr}
- .image-feature{height:290px}
- .side-images{grid-template-rows:180px 180px}
- .about-photo{height:250px}
+a {color:inherit;text-decoration:none}
+button {font:inherit;cursor:pointer}
+::selection {background:#a56aff;color:white}
+
+/* BARRA MULTICOLOR */
+.rainbow-line {
+  height:4px;
+  background:var(--rainbow);
+  position:relative;
+  z-index:20;
+}
+
+/* NAVEGACIÓN */
+header {
+  position:sticky;
+  top:0;
+  z-index:15;
+  background:rgba(9,9,13,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.nav {
+  max-width:1200px;
+  margin:auto;
+  padding:15px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:900;
+  letter-spacing:-1px;
+  font-size:21px;
+}
+.brand-mark {
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  border-radius:12px;
+  background:#111116;
+  border:1px solid #41414c;
+  font-family:"Barlow Condensed",sans-serif;
+  font-size:25px;
+  position:relative;
+  overflow:hidden;
+}
+.brand-mark:after {
+  content:"";
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:4px;
+  background:var(--rainbow);
+}
+.brand span:last-child {color:#fff}
+.nav-links {display:flex;gap:25px;align-items:center}
+.nav-links a {
+  color:#c4c4ce;
+  font-size:13px;
+  font-weight:700;
+  transition:.2s;
+}
+.nav-links a:hover {color:white}
+.nav-cta,.button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:12px 19px;
+  border-radius:9px;
+  background:white;
+  color:#09090d;
+  font-size:13px;
+  font-weight:800;
+  border:0;
+  transition:.2s;
+}
+.nav-cta:hover,.button:hover {transform:translateY(-3px);box-shadow:0 8px 28px #ffffff20}
+.button.secondary {
+  color:white;
+  background:#ffffff12;
+  border:1px solid #ffffff24;
+}
+.menu-btn {
+  display:none;
+  background:none;color:white;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:9px 12px;
+}
+
+/* HERO */
+.hero {
+  min-height:620px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,#09090d 0%,rgba(9,9,13,.94) 30%,rgba(9,9,13,.48) 72%,#09090d 100%),
+    linear-gradient(0deg,#09090d 0%,transparent 45%),
+    url("https://i.ytimg.com/vi/j_k2lIj25xc/maxresdefault.jpg") center/cover;
+}
+.hero:after {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  right:-180px;top:70px;
+  width:470px;height:470px;
+  border:1px solid #ffffff0b;
+  border-radius:50%;
+  box-shadow:0 0 0 55px #ffffff05,0 0 0 110px #ffffff03;
+}
+.hero-inner {
+  width:100%;
+  max-width:1200px;
+  padding:100px 24px 115px;
+  margin:auto;
+}
+.eyebrow {
+  color:#c4c4ce;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow:before {
+  content:"";
+  width:28px;height:3px;
+  background:var(--rainbow);
+}
+.hero h1 {
+  font-family:"Barlow Condensed",Impact,sans-serif;
+  text-transform:uppercase;
+  font-size:clamp(65px,11vw,125px);
+  line-height:.85;
+  letter-spacing:-2px;
+  margin:25px 0;
+  max-width:780px;
+}
+.hero h1 span {
+  background:var(--rainbow);
+  color:transparent;
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+.hero p {
+  color:#c1c1ca;
+  line-height:1.8;
+  font-size:15px;
+  max-width:520px;
+}
+.hero-actions {display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero-note {
+  margin-top:55px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#9999a5;
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.live-dot {
+  width:8px;height:8px;
+  background:#55df87;
+  border-radius:50%;
+  box-shadow:0 0 12px #55df87;
+}
+
+/* ESTRUCTURA GENERAL */
+.section {
+  max-width:1200px;
+  margin:auto;
+  padding:85px 24px;
+}
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:32px;
+}
+.kicker {
+  color:#a5a5b1;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.section h2 {
+  font-family:"Barlow Condensed",Impact,sans-serif;
+  font-size:clamp(38px,6vw,60px);
+  line-height:1;
+  text-transform:uppercase;
+}
+.section h2 span {color:#a56aff}
+.section-desc {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+  max-width:440px;
+  margin-top:12px;
+}
+.text-link {
+  color:white;
+  font-size:12px;
+  font-weight:800;
+  border-bottom:1px solid #777;
+  padding-bottom:5px;
+  white-space:nowrap;
+}
+
+/* VÍDEOS */
+.video-tools {
+  display:flex;
+  gap:12px;
+  margin-bottom:22px;
+  flex-wrap:wrap;
+}
+.search-box {
+  flex:1;
+  min-width:190px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:13px 15px;
+  color:white;
+  outline:none;
+}
+.search-box:focus {border-color:#a56aff}
+.filter-btn {
+  padding:11px 16px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:#c5c5cf;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:700;
+}
+.filter-btn.active {
+  color:white;
+  border-color:#a56aff;
+  background:#a56aff20;
+}
+.video-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+}
+.video-card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:13px;
+  overflow:hidden;
+  transition:.25s;
+}
+.video-card:hover {
+  transform:translateY(-5px);
+  border-color:#666;
+  box-shadow:0 15px 35px #0008;
+}
+.thumb {
+  aspect-ratio:16/9;
+  overflow:hidden;
+  position:relative;
+  background:#20202a;
+}
+.thumb img {
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .4s;
+}
+.video-card:hover .thumb img {transform:scale(1.045)}
+.play {
+  position:absolute;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  width:52px;height:52px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:#09090dcc;
+  border:1px solid #ffffff80;
+  font-size:19px;
+}
+.video-info {padding:19px}
+.video-tag {
+  display:inline-block;
+  color:#c7a9ff;
+  background:#a56aff18;
+  padding:6px 9px;
+  border-radius:5px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.video-info h3 {
+  font-size:17px;
+  line-height:1.4;
+  margin:12px 0 8px;
+}
+.video-info p {
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
+}
+.watch {
+  display:inline-block;
+  margin-top:17px;
+  font-size:11px;
+  font-weight:800;
+  color:white;
+}
+.empty-state {
+  display:none;
+  color:var(--muted);
+  padding:30px;
+  text-align:center;
+  border:1px dashed var(--line);
+  border-radius:10px;
+}
+
+/* BANNER GTA */
+.gta-banner {
+  max-width:1152px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.gta-inner {
+  border:1px solid #ffffff20;
+  border-radius:17px;
+  min-height:270px;
+  padding:38px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,#101016 0%,#101016ed 45%,#10101655 100%),
+    url("https://i.ytimg.com/vi/pbcPa3jO1tA/maxresdefault.jpg") center/cover;
+}
+.gta-inner h2 {
+  font-family:"Barlow Condensed",sans-serif;
+  font-size:52px;
+  text-transform:uppercase;
+  line-height:1;
+  margin:15px 0;
+}
+.gta-inner p {
+  color:#c0c0ca;
+  max-width:440px;
+  font-size:13px;
+  line-height:1.7;
+}
+.gta-inner .button {margin-top:20px}
+
+/* LABORATORIO */
+.lab-grid {
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:20px;
+}
+.lab-main,.lab-side {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+}
+.lab-art {
+  min-height:250px;
+  background:
+    radial-gradient(circle at 70% 35%,#a56aff55,transparent 25%),
+    radial-gradient(circle at 30% 70%,#42b9ff33,transparent 28%),
+    linear-gradient(135deg,#171324,#10101a 65%,#1b1326);
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+}
+.lab-art:before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px);
+  background-size:35px 35px;
+  transform:perspective(300px) rotateX(25deg) scale(1.5);
+}
+.code-window {
+  position:relative;
+  z-index:1;
+  width:min(80%,390px);
+  background:#0b0b11eF;
+  border:1px solid #ffffff25;
+  border-radius:10px;
+  padding:17px;
+  box-shadow:0 15px 45px #0009;
+  transform:rotate(-3deg);
+}
+.window-dots {display:flex;gap:5px;margin-bottom:15px}
+.window-dots i {width:7px;height:7px;border-radius:50%;background:#777}
+.code-line {
+  font-family:monospace;
+  font-size:11px;
+  line-height:2;
+  color:#aaa;
+}
+.code-line b {color:#b88aff}
+.code-line em {color:#72dca4;font-style:normal}
+.lab-content {padding:25px}
+.lab-content h3 {font-size:21px;margin:12px 0}
+.lab-content p {font-size:13px;line-height:1.7;color:var(--muted)}
+.status {
+  display:inline-block;
+  margin-top:17px;
+  color:#d9c3ff;
+  background:#a56aff1c;
+  border:1px solid #a56aff44;
+  border-radius:5px;
+  padding:7px 10px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+.lab-side {
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.lab-side-top {
+  padding:25px;
+  min-height:185px;
+  background:radial-gradient(circle at 90% 5%,#42b9ff22,transparent 40%);
+}
+.lab-side h3 {font-size:20px;margin:12px 0}
+.lab-side p {font-size:12px;color:var(--muted);line-height:1.7}
+.lab-side-bottom {
+  padding:20px 25px;
+  border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;
+  font-size:11px;color:#aaa;
+}
+
+/* OTROS JUEGOS */
+.world-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+.world-card {
+  min-height:230px;
+  padding:28px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#171923,#101016);
+}
+.world-card.minecraft {
+  background:
+    radial-gradient(circle at 80% 20%,#62c56a44,transparent 35%),
+    linear-gradient(135deg,#18251b,#11151a);
+}
+.world-card.extra {
+  background:
+    radial-gradient(circle at 80% 20%,#f05cba33,transparent 35%),
+    linear-gradient(135deg,#251725,#111016);
+}
+.world-icon {
+  font-size:35px;
+  margin-bottom:20px;
+  display:block;
+}
+.world-card h3 {
+  font-family:"Barlow Condensed",sans-serif;
+  font-size:34px;
+  text-transform:uppercase;
+}
+.world-card p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+  max-width:330px;
+  margin-top:8px;
+}
+.soon {
+  display:inline-block;
+  margin-top:18px;
+  border:1px solid #ffffff33;
+  border-radius:5px;
+  padding:7px 10px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+/* ZONA INTERACTIVA */
+.fun-section {
+  background:#101016;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.fun-inner {
+  max-width:1200px;
+  margin:auto;
+  padding:85px 24px;
+}
+.fun-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:32px;
+}
+.fun-card {
+  background:#171720;
+  border:1px solid #30303b;
+  border-radius:14px;
+  padding:28px;
+}
+.fun-card h3 {font-size:20px;margin-bottom:10px}
+.fun-card p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+.fun-card .button {margin-top:20px}
+.result-box {
+  display:none;
+  margin-top:18px;
+  padding:15px;
+  border-radius:9px;
+  background:#a56aff18;
+  border:1px solid #a56aff55;
+  font-size:13px;
+  line-height:1.7;
+}
+.quiz-options {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:18px;
+}
+.quiz-options button {
+  border:1px solid #393945;
+  background:#101016;
+  color:#ddd;
+  padding:12px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:700;
+  transition:.2s;
+}
+.quiz-options button:hover {
+  border-color:#a56aff;
+  background:#a56aff18;
+}
+
+/* SOBRE */
+.about {
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:35px;
+  align-items:center;
+}
+.about-logo {
+  min-height:260px;
+  border-radius:14px;
+  background:#121219;
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+}
+.about-logo:before {
+  content:"";
+  position:absolute;
+  width:190px;height:190px;
+  border:1px solid #ffffff18;
+  border-radius:50%;
+  box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff05;
+}
+.big-gp {
+  position:relative;
+  font-family:"Barlow Condensed",sans-serif;
+  font-size:100px;
+  font-weight:900;
+  letter-spacing:-7px;
+  background:var(--rainbow);
+  background-clip:text;
+  color:transparent;
+}
+.about-copy h3 {
+  font-family:"Barlow Condensed",sans-serif;
+  font-size:39px;
+  text-transform:uppercase;
+  margin-bottom:15px;
+}
+.about-copy p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+  margin-bottom:12px;
+}
+
+/* FOOTER */
+footer {
+  border-top:1px solid var(--line);
+  padding:35px 24px;
+}
+.footer-inner {
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.footer-inner p {color:#777783;font-size:11px;line-height:1.7}
+.footer-links {display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a {font-size:11px;color:#bbb;font-weight:700}
+.footer-links a:hover {color:white}
+.footer-rainbow {
+  height:3px;
+  background:var(--rainbow);
+  opacity:.75;
+}
+
+/* NOTIFICACIÓN */
+.toast {
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  background:#f5f5f7;
+  color:#09090d;
+  padding:13px 19px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:800;
+  z-index:30;
+  transition:.3s;
+}
+.toast.show {opacity:1;transform:translate(-50%,0)}
+
+/* ANIMACIONES */
+.reveal {
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .7s,transform .7s;
+}
+.reveal.visible {opacity:1;transform:translateY(0)}
+@keyframes float {
+  0%,100% {transform:translateY(0)}
+  50% {transform:translateY(-7px)}
+}
+.brand-mark {animation:float 4s ease-in-out infinite}
+
+@media(max-width:760px) {
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:72px;left:0;right:0;
+    padding:22px;
+    background:#101016;
+    border-bottom:1px solid var(--line);
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .nav-links.open {display:flex}
+  .menu-btn {display:block}
+  .nav-cta {display:none}
+  .hero {min-height:570px;background-position:58% center}
+  .hero-inner {padding-top:85px;padding-bottom:85px}
+  .section {padding:65px 20px}
+  .section-head {align-items:flex-start;flex-direction:column}
+  .video-grid,.lab-grid,.world-grid,.fun-grid,.about {grid-template-columns:1fr}
+  .gta-banner {padding:0 20px}
+  .gta-inner {padding:28px;min-height:300px}
+  .gta-inner h2 {font-size:43px}
+  .about-logo {min-height:210px}
+  .footer-inner {align-items:flex-start;flex-direction:column}
+}
+@media(max-width:420px) {
+  .hero h1 {font-size:65px}
+  .quiz-options {grid-template-columns:1fr}
+  .video-grid {gap:14px}
 }
 </style>
 </head>
 
 <body>
-<div class="topline"></div>
+<div class="rainbow-line"></div>
 
 <header>
- <div class="container nav">
-  <a class="brand" href="#inicio">
-   <span class="logo">GP</span>
-   <span class="brand-name">GABRIPLAY</span>
-  </a>
-  <nav class="navlinks" id="navlinks">
-   <a href="#inicio">Inicio</a>
-   <a href="#videos">Vídeos</a>
-   <a href="#gaming">Gaming</a>
-   <a href="#tutoriales">Tutoriales</a>
-   <a href="#novedades">Novedades</a>
-   <a href="#sobre">Sobre GabriPlay</a>
+  <nav class="nav">
+    <a href="#inicio" class="brand">
+      <span class="brand-mark">GP</span>
+      <span>GabriPlay</span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#videos">Vídeos</a>
+      <a href="#gta">GTA V</a>
+      <a href="#laboratorio">Roblox Studio</a>
+      <a href="#mundos">Más juegos</a>
+      <a href="#sobre">Sobre mí</a>
+    </div>
+
+    <a class="nav-cta" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">MI CANAL ↗</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
   </nav>
-  <a class="nav-button" href="https://youtube.com/@gabriplay10" target="_blank">VISITAR CANAL ↗</a>
-  <button class="menu" id="menu">☰</button>
- </div>
 </header>
 
 <main>
-<section class="hero" id="inicio">
- <img class="hero-bg" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2000&q=90" alt="Escenario gaming">
- <div class="container hero-content">
-  <div class="eyebrow"><span class="dot"></span> BIENVENIDO AL UNIVERSO GABRIPLAY</div>
-  <h1><small>THIS IS</small><span class="gradient">GABRIPLAY.</span></h1>
-  <p>Tutoriales, videojuegos, gameplays y nuevas experiencias. Descubre el contenido del canal y todo lo que está por llegar.</p>
-  <div class="actions">
-   <a class="btn primary" href="https://youtube.com/@gabriplay10" target="_blank">▶ ENTRAR AL CANAL</a>
-   <a class="btn secondary" href="#videos">EXPLORAR CONTENIDO ↓</a>
-  </div>
-  <p class="hero-caption">GAMING · TUTORIALES · GAMEPLAY · NEW EXPERIENCES</p>
- </div>
-</section>
-
-<div class="stats">
- <div class="container stats-grid">
-  <div class="stat"><strong>GAMING</strong><span>Pasión</span></div>
-  <div class="stat"><strong>GABRIPLAY</strong><span>Identidad</span></div>
-  <div class="stat"><strong>NEW CHAPTER</strong><span>Lo que viene</span></div>
- </div>
-</div>
-
-<section id="videos">
- <div class="container">
-  <div class="section-head">
-   <div><div class="kicker">DIRECTAMENTE DEL CANAL</div><h2>Vídeos destacados<span class="gradient">.</span></h2></div>
-   <p class="description">Una selección de vídeos de GabriPlay. Pulsa cualquier miniatura para abrir el vídeo original.</p>
-  </div>
-
-  <div class="video-grid">
-   <a class="video-card" href="https://youtu.be/p2j1OEbqp9o" target="_blank">
-    <div class="thumbnail">
-     <img src="https://i.ytimg.com/vi/p2j1OEbqp9o/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/p2j1OEbqp9o/hqdefault.jpg'" alt="Tutorial de Menyoo en GTA 5">
-     <span class="play">▶</span>
+  <!-- PORTADA -->
+  <section class="hero" id="inicio">
+    <div class="hero-inner">
+      <div class="eyebrow">Bienvenido a mi mundo</div>
+      <h1>NO ES SOLO<br>UN CANAL.<br><span>ES GABRIPLAY.</span></h1>
+      <p>
+        Tutoriales, videojuegos, proyectos y muchas cosas más.
+        Este es el sitio donde todo lo relacionado con GabriPlay se reúne.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">▶ VISITAR EL CANAL</a>
+        <a class="button secondary" href="#videos">EXPLORAR LA WEB ↓</a>
+      </div>
+      <div class="hero-note"><span class="live-dot"></span> UN UNIVERSO EN CONSTANTE EXPANSIÓN</div>
     </div>
-    <div class="video-info">
-     <span class="tag">GTA V · TUTORIAL</span>
-     <h3>Cómo instalar el mod menú Menyoo en GTA 5</h3>
-     <p>Aprende a instalar Menyoo y descubre sus posibilidades.</p>
-     <span class="video-link">VER VÍDEO ORIGINAL ↗</span>
+  </section>
+
+  <!-- VÍDEOS -->
+  <section class="section reveal" id="videos">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Directamente desde el canal</div>
+        <h2>ÚLTIMOS <span>VÍDEOS</span></h2>
+        <p class="section-desc">Tutoriales y contenido que ya puedes ver. Pulsa cualquier tarjeta para abrir el vídeo original.</p>
+      </div>
+      <a class="text-link" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">VER CANAL COMPLETO ↗</a>
     </div>
-   </a>
 
-   <a class="video-card" href="https://youtu.be/NcGygok41Lk" target="_blank">
-    <div class="thumbnail">
-     <img src="https://i.ytimg.com/vi/NcGygok41Lk/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/NcGygok41Lk/hqdefault.jpg'" alt="Tutorial OpenIV GTA 5">
-     <span class="play">▶</span>
+    <div class="video-tools">
+      <input class="search-box" id="videoSearch" type="search" placeholder="Buscar un tutorial...">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="tutorial">Tutoriales</button>
+      <button class="filter-btn" data-filter="mods">Mods</button>
     </div>
-    <div class="video-info">
-     <span class="tag">GTA V · HERRAMIENTAS</span>
-     <h3>Cómo instalar OpenIV en GTA 5</h3>
-     <p>Una guía rápida para conocer e instalar esta herramienta.</p>
-     <span class="video-link">VER VÍDEO ORIGINAL ↗</span>
+
+    <div class="video-grid" id="videoGrid">
+      <a class="video-card" data-category="tutorial" data-title="Cómo instalar Menyoo en GTA 5" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/p2j1OEbqp9o/maxresdefault.jpg" alt="Tutorial de instalación de Menyoo en GTA 5" onerror="this.src='https://i.ytimg.com/vi/p2j1OEbqp9o/hqdefault.jpg'">
+          <span class="play">▶</span>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">Tutorial GTA V</span>
+          <h3>Cómo instalar Menyoo en GTA 5</h3>
+          <p>Aprende a instalar uno de los menús más conocidos de GTA V.</p>
+          <span class="watch">VER VÍDEO ↗</span>
+        </div>
+      </a>
+
+      <a class="video-card" data-category="tutorial" data-title="Cómo instalar OpenIV en GTA 5" href="https://youtu.be/NcGygok41Lk" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/NcGygok41Lk/maxresdefault.jpg" alt="Tutorial de OpenIV para GTA 5" onerror="this.src='https://i.ytimg.com/vi/NcGygok41Lk/hqdefault.jpg'">
+          <span class="play">▶</span>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">Tutorial GTA V</span>
+          <h3>Cómo instalar OpenIV en GTA 5</h3>
+          <p>Una guía para empezar a trabajar con archivos y mods del juego.</p>
+          <span class="watch">VER VÍDEO ↗</span>
+        </div>
+      </a>
+
+      <a class="video-card" data-category="mods" data-title="Cómo instalar coches Add-On en GTA 5" href="https://youtu.be/pbcPa3jO1tA" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/pbcPa3jO1tA/maxresdefault.jpg" alt="Tutorial de coches Add-On en GTA 5" onerror="this.src='https://i.ytimg.com/vi/pbcPa3jO1tA/hqdefault.jpg'">
+          <span class="play">▶</span>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">Mods GTA V</span>
+          <h3>Cómo instalar coches Add-On en GTA 5</h3>
+          <p>Añade nuevos vehículos a tu partida siguiendo el tutorial.</p>
+          <span class="watch">VER VÍDEO ↗</span>
+        </div>
+      </a>
+
+      <a class="video-card" data-category="mods" data-title="TOP 4 mods esenciales para GTA 5" href="https://youtu.be/j_k2lIj25xc" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/j_k2lIj25xc/maxresdefault.jpg" alt="Vídeo de cuatro mods esenciales para GTA 5" onerror="this.src='https://i.ytimg.com/vi/j_k2lIj25xc/hqdefault.jpg'">
+          <span class="play">▶</span>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">Selección de mods</span>
+          <h3>TOP 4 mods esenciales para GTA 5</h3>
+          <p>Cuatro mods que merece la pena conocer para tu GTA V.</p>
+          <span class="watch">VER VÍDEO ↗</span>
+        </div>
+      </a>
     </div>
-   </a>
+    <div class="empty-state" id="emptyState">No se han encontrado vídeos con esa búsqueda.</div>
+  </section>
 
-   <a class="video-card" href="https://youtu.be/pbcPa3jO1tA" target="_blank">
-    <div class="thumbnail">
-     <img src="https://i.ytimg.com/vi/pbcPa3jO1tA/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/pbcPa3jO1tA/hqdefault.jpg'" alt="Tutorial coches Add-On GTA 5">
-     <span class="play">▶</span>
+  <!-- GTA -->
+  <section class="gta-banner reveal" id="gta">
+    <div class="gta-inner">
+      <div class="eyebrow">La ciudad nunca duerme</div>
+      <h2>GTA V — ZONA<br>DE CONTENIDO</h2>
+      <p>Tutoriales, modificaciones, vehículos y todo lo que rodea a Grand Theft Auto V. Aquí empieza la aventura.</p>
+      <a class="button" href="#videos">EXPLORAR TUTORIALES ↗</a>
     </div>
-    <div class="video-info">
-     <span class="tag">GTA V · MODIFICACIONES</span>
-     <h3>Cómo instalar coches reales en GTA 5</h3>
-     <p>Tutorial de instalación de vehículos Add-On.</p>
-     <span class="video-link">VER VÍDEO ORIGINAL ↗</span>
+  </section>
+
+  <!-- ROBLOX STUDIO -->
+  <section class="section reveal" id="laboratorio">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Creando cosas desde cero</div>
+        <h2>EL <span>LABORATORIO</span></h2>
+        <p class="section-desc">Un espacio para experimentar, construir y compartir proyectos de Roblox Studio.</p>
+      </div>
     </div>
-   </a>
 
-   <a class="video-card" href="https://youtu.be/j_k2lIj25xc" target="_blank">
-    <div class="thumbnail">
-     <img src="https://i.ytimg.com/vi/j_k2lIj25xc/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/j_k2lIj25xc/hqdefault.jpg'" alt="Top cuatro mods GTA 5">
-     <span class="play">▶</span>
+    <div class="lab-grid">
+      <article class="lab-main">
+        <div class="lab-art">
+          <div class="code-window">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <div class="code-line"><b>local</b> GabriPlay = <em>"Roblox Studio"</em></div>
+            <div class="code-line">local ideas = <b>math.huge</b></div>
+            <div class="code-line"></div>
+            <div class="code-line"><b>while</b> true <b>do</b></div>
+            <div class="code-line">&nbsp;&nbsp;crearAlgoNuevo()</div>
+            <div class="code-line"><b>end</b></div>
+          </div>
+        </div>
+        <div class="lab-content">
+          <span class="video-tag">DESARROLLO</span>
+          <h3>Proyectos en construcción</h3>
+          <p>Ideas, experimentos, mecánicas y mundos creados en Roblox Studio. Esta sección irá mostrando los avances cuando haya novedades que enseñar.</p>
+          <span class="status">PRÓXIMAMENTE</span>
+        </div>
+      </article>
+
+      <article class="lab-side">
+        <div class="lab-side-top">
+          <span class="video-tag">DEV LOG</span>
+          <h3>Diario de desarrollo</h3>
+          <p>Capturas, pequeños avances, pruebas y novedades de los proyectos. Un vistazo detrás de las cámaras.</p>
+          <span class="status">EN PREPARACIÓN</span>
+        </div>
+        <div class="lab-side-bottom">
+          <span>GABRIPLAY STUDIO</span>
+          <span>01 / 02</span>
+        </div>
+      </article>
     </div>
-    <div class="video-info">
-     <span class="tag">GTA V · TOP</span>
-     <h3>TOP 4 mods imprescindibles para GTA 5</h3>
-     <p>Una selección de modificaciones para el juego.</p>
-     <span class="video-link">VER VÍDEO ORIGINAL ↗</span>
+  </section>
+
+  <!-- OTROS MUNDOS -->
+  <section class="section reveal" id="mundos">
+    <div class="section-head">
+      <div>
+        <div class="kicker">No todo ocurre en Los Santos</div>
+        <h2>OTROS <span>MUNDOS</span></h2>
+        <p class="section-desc">Más juegos, nuevas aventuras y contenido que puede llegar al canal en el futuro.</p>
+      </div>
     </div>
-   </a>
-  </div>
 
-  <div style="text-align:center;margin-top:30px">
-   <a class="btn primary" href="https://youtube.com/@gabriplay10" target="_blank">VER TODOS LOS VÍDEOS ↗</a>
-  </div>
- </div>
-</section>
-
-<section id="gaming">
- <div class="container">
-  <div class="section-head">
-   <div><div class="kicker">EXPLORA EL UNIVERSO</div><h2>Gaming zone<span class="gradient">.</span></h2></div>
-   <p class="description">Diferentes mundos, juegos y experiencias que tendrán su propio espacio dentro de GabriPlay.</p>
-  </div>
-
-  <div class="image-grid">
-   <a class="image-feature" href="#tutoriales">
-    <img src="https://images.unsplash.com/photo-1603481546238-487240415921?auto=format&fit=crop&w=1200&q=85" alt="Ordenador gaming con iluminación">
-    <div><span class="kicker">01 · MAIN CONTENT</span><h3>GTA V</h3><p>Tutoriales, mods y mucho más.</p></div>
-   </a>
-   <div class="side-images">
-    <div class="side-image">
-     <img src="https://images.unsplash.com/photo-1607513746994-51f730a44832?auto=format&fit=crop&w=900&q=85" alt="Setup gaming">
-     <div><span>02 · NEXT WORLD</span><h3>Minecraft</h3><span class="coming">PRÓXIMAMENTE</span></div>
+    <div class="world-grid">
+      <article class="world-card minecraft">
+        <span class="world-icon">▦</span>
+        <h3>MINECRAFT</h3>
+        <p>Construcciones, supervivencia, aventuras y posibles series. Un mundo lleno de posibilidades.</p>
+        <span class="soon">PRÓXIMAMENTE</span>
+      </article>
+      <article class="world-card extra">
+        <span class="world-icon">✦</span>
+        <h3>OTROS JUEGOS</h3>
+        <p>Nuevos títulos, experiencias y contenido diferente. Nunca se sabe qué puede aparecer por aquí.</p>
+        <span class="soon">EN EXPANSIÓN</span>
+      </article>
     </div>
-    <div class="side-image">
-     <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=900&q=85" alt="Setup de videojuegos">
-     <div><span>03 · MORE TO COME</span><h3>Otros videojuegos</h3><span class="coming">EN CAMINO</span></div>
+  </section>
+
+  <!-- INTERACTIVIDAD -->
+  <section class="fun-section">
+    <div class="fun-inner reveal">
+      <div class="kicker">Ahora te toca a ti</div>
+      <h2 class="section" style="padding:0;font-size:clamp(38px,6vw,60px)">ZONA <span style="color:#a56aff">INTERACTIVA</span></h2>
+      <p class="section-desc">No te limites a mirar. Prueba las pequeñas sorpresas que hay por aquí.</p>
+
+      <div class="fun-grid">
+        <div class="fun-card">
+          <h3>🎮 ¿Qué jugador eres?</h3>
+          <p>Elige tu estilo y descubre qué tipo de jugador te representa.</p>
+          <div class="quiz-options">
+            <button data-result="Eres un explorador: te encanta descubrir cada rincón y probar cosas nuevas.">🗺️ Explorador</button>
+            <button data-result="Eres un creador: te gusta construir, modificar y dar vida a tus ideas.">🛠️ Creador</button>
+            <button data-result="Eres un competitivo: siempre buscas mejorar y superar nuevos retos.">🏆 Competitivo</button>
+            <button data-result="Eres un aventurero: te apuntas a cualquier experiencia que merezca la pena.">🚀 Aventurero</button>
+          </div>
+          <div class="result-box" id="quizResult"></div>
+        </div>
+
+        <div class="fun-card">
+          <h3>🎲 Máquina de vídeos</h3>
+          <p>¿No sabes qué tutorial ver? Deja que GabriPlay elija uno por ti.</p>
+          <button class="button" id="randomVideo">ELEGIR UN VÍDEO ↗</button>
+          <div class="result-box" id="randomResult"></div>
+        </div>
+      </div>
     </div>
-   </div>
-  </div>
- </div>
-</section>
+  </section>
 
-<section id="tutoriales">
- <div class="container">
-  <div class="section-head">
-   <div><div class="kicker">APRENDE ALGO NUEVO</div><h2>Centro de tutoriales<span class="gradient">.</span></h2></div>
-   <p class="description">Encuentra rápidamente los tutoriales disponibles en el canal.</p>
-  </div>
-
-  <div class="tutorial-search"><input id="search" type="search" placeholder="Buscar tutorial..."></div>
-  <div class="filters">
-   <button class="filter active" data-filter="all">Todos</button>
-   <button class="filter" data-filter="gta">GTA V</button>
-   <button class="filter" data-filter="mods">Mods</button>
-   <button class="filter" data-filter="tools">Herramientas</button>
-  </div>
-
-  <div class="tutorial-grid" id="tutorialGrid">
-   <article class="tutorial" data-cat="gta mods">
-    <small>GUÍA 001 · GTA V</small><h3>Instalar Menyoo</h3>
-    <p>Instalación del mod menú Menyoo.</p>
-    <a href="https://youtu.be/p2j1OEbqp9o" target="_blank">VER TUTORIAL ↗</a>
-   </article>
-   <article class="tutorial" data-cat="gta tools">
-    <small>GUÍA 002 · GTA V</small><h3>Instalar OpenIV</h3>
-    <p>Guía de instalación de OpenIV.</p>
-    <a href="https://youtu.be/NcGygok41Lk" target="_blank">VER TUTORIAL ↗</a>
-   </article>
-   <article class="tutorial" data-cat="gta mods">
-    <small>GUÍA 003 · GTA V</small><h3>Instalar coches Add-On</h3>
-    <p>Aprende sobre los vehículos adicionales.</p>
-    <a href="https://youtu.be/pbcPa3jO1tA" target="_blank">VER TUTORIAL ↗</a>
-   </article>
-   <article class="tutorial" data-cat="gta mods">
-    <small>GUÍA 004 · GTA V</small><h3>Los 4 mods imprescindibles</h3>
-    <p>Descubre cuatro modificaciones destacadas.</p>
-    <a href="https://youtu.be/j_k2lIj25xc" target="_blank">VER TUTORIAL ↗</a>
-   </article>
-   <article class="tutorial" data-cat="gta">
-    <small>GUÍA 005 · GTA V</small><h3>Nuevas guías</h3>
-    <p>Más tutoriales se irán incorporando a la biblioteca.</p>
-    <span class="coming">PRÓXIMAMENTE</span>
-   </article>
-   <article class="tutorial" data-cat="tools">
-    <small>GUÍA 006 · PC</small><h3>Herramientas para creadores</h3>
-    <p>Contenido sobre programas y recursos para crear.</p>
-    <span class="coming">PRÓXIMAMENTE</span>
-   </article>
-  </div>
-  <p class="no-results" id="noResults">No se han encontrado resultados.</p>
- </div>
-</section>
-
-<section id="novedades">
- <div class="container">
-  <div class="section-head">
-   <div><div class="kicker">THE NEXT CHAPTER</div><h2>El futuro de GabriPlay<span class="gradient">.</span></h2></div>
-   <p class="description">Esto no termina aquí. Hay nuevas ideas, contenido y proyectos que poco a poco irán llegando.</p>
-  </div>
-
-  <div class="next-grid">
-   <article class="next-card"><small>COMING SOON · 01</small><h3>Nuevos gameplays</h3><p>Más partidas, nuevas aventuras y experiencias gaming.</p><span class="coming">PRÓXIMAMENTE</span></article>
-   <article class="next-card"><small>COMING SOON · 02</small><h3>Series especiales</h3><p>Nuevos formatos y proyectos que tendrán su propio espacio.</p><span class="coming">EN DESARROLLO</span></article>
-   <article class="next-card"><small>COMING SOON · 03</small><h3>Más tutoriales</h3><p>Nuevas guías para aprender y descubrir más posibilidades.</p><span class="coming">PRÓXIMAMENTE</span></article>
-   <article class="next-card"><small>COMING SOON · 04</small><h3>Actualizaciones web</h3><p>La web también irá creciendo con nuevas secciones y funciones.</p><span class="coming">STAY TUNED</span></article>
-  </div>
- </div>
-</section>
-
-<section id="sobre">
- <div class="container about">
-  <div class="about-photo">
-   <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=1000&q=85" alt="Persona jugando a videojuegos">
-  </div>
-  <div class="about-text">
-   <div class="kicker">BEHIND THE CHANNEL</div>
-   <h2>Esto es GabriPlay<span class="gradient">.</span></h2>
-   <p>¡Buenas! Soy el creador de GabriPlay. Este canal es un espacio donde comparto mi pasión por los videojuegos, los tutoriales y la creación de contenido.</p>
-   <p>Desde guías de GTA V hasta nuevos proyectos gaming, la idea es seguir aprendiendo, creando y mejorando con cada vídeo.</p>
-   <p>Y esto es solamente el principio.</p>
-   <div class="socials">
-    <a href="https://youtube.com/@gabriplay10" target="_blank">YOUTUBE ↗</a>
-    <a href="https://www.tiktok.com/" target="_blank">TIKTOK ↗</a>
-    <a href="https://www.instagram.com/" target="_blank">INSTAGRAM ↗</a>
-   </div>
-  </div>
- </div>
-</section>
-
-<section>
- <div class="container">
-  <div class="cta">
-   <div class="kicker">WELCOME TO THE COMMUNITY</div>
-   <h2>This is just the <span class="gradient">beginning.</span></h2>
-   <p>Descubre los vídeos, explora los tutoriales y acompaña a GabriPlay en todo lo que está por venir.</p>
-   <a class="btn primary" href="https://youtube.com/@gabriplay10" target="_blank">VISITAR GABRIPLAY ↗</a>
-  </div>
- </div>
-</section>
+  <!-- SOBRE GABRIPLAY -->
+  <section class="section reveal" id="sobre">
+    <div class="about">
+      <div class="about-logo">
+        <div class="big-gp">GP</div>
+      </div>
+      <div class="about-copy">
+        <div class="kicker">Detrás de la pantalla</div>
+        <h3>Esto es <span style="color:#a56aff">GabriPlay.</span></h3>
+        <p>Un canal creado para compartir contenido de videojuegos, tutoriales y proyectos. Un sitio donde aprender algo nuevo, descubrir juegos y pasar un buen rato.</p>
+        <p>La web también forma parte del proyecto: irá creciendo junto al canal, con nuevas secciones, vídeos y sorpresas.</p>
+        <a class="button" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">CONOCER EL CANAL ↗</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
- <div class="container footer-row">
-  <div>
-   <div class="footer-brand gradient">GABRIPLAY</div>
-   <p>Gaming · Tutorials · Gameplay</p>
-   <p>© <span id="year"></span> GabriPlay. Todos los derechos reservados.</p>
+  <div class="footer-inner">
+    <div>
+      <a href="#inicio" class="brand">
+        <span class="brand-mark">GP</span>
+        <span>GabriPlay</span>
+      </a>
+      <p style="margin-top:12px">Una web. Muchos mundos. Una misma comunidad.<br>© <span id="year"></span> GabriPlay.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">YOUTUBE ↗</a>
+      <a href="#videos">VÍDEOS</a>
+      <a href="#laboratorio">ROBLOX STUDIO</a>
+      <a href="#inicio">VOLVER ARRIBA ↑</a>
+    </div>
   </div>
-  <div class="footer-links">
-   <a href="#inicio">Inicio</a><a href="#videos">Vídeos</a>
-   <a href="#tutoriales">Tutoriales</a><a href="#novedades">Novedades</a>
-  </div>
- </div>
 </footer>
-
-<button id="top" aria-label="Volver arriba">↑</button>
+<div class="footer-rainbow"></div>
+<div class="toast" id="toast">¡Secreto desbloqueado!</div>
 
 <script>
-const menu=document.getElementById('menu');
-const nav=document.getElementById('navlinks');
-menu.addEventListener('click',()=>nav.classList.toggle('open'));
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+/* MENÚ MÓVIL */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
 
-const search=document.getElementById('search');
-const cards=[...document.querySelectorAll('.tutorial')];
-const filters=[...document.querySelectorAll('.filter')];
-let selected='all';
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
 
-function updateTutorials(){
- const term=search.value.toLowerCase().trim();
- let count=0;
- cards.forEach(card=>{
-  const categoryMatch=selected==='all'||card.dataset.cat.split(' ').includes(selected);
-  const textMatch=card.innerText.toLowerCase().includes(term);
-  const show=categoryMatch&&textMatch;
-  card.style.display=show?'block':'none';
-  if(show)count++;
- });
- document.getElementById('noResults').style.display=count?'none':'block';
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => navLinks.classList.remove("open"));
+});
+
+/* AÑO AUTOMÁTICO */
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* BUSCADOR Y FILTROS */
+const searchInput = document.getElementById("videoSearch");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const videoCards = [...document.querySelectorAll(".video-card")];
+const emptyState = document.getElementById("emptyState");
+
+let currentFilter = "todos";
+
+function filterVideos() {
+  const term = searchInput.value.toLowerCase().trim();
+  let visible = 0;
+
+  videoCards.forEach(card => {
+    const title = card.dataset.title.toLowerCase();
+    const category = card.dataset.category;
+    const matchesText = title.includes(term);
+    const matchesCategory = currentFilter === "todos" || category === currentFilter;
+    const show = matchesText && matchesCategory;
+
+    card.style.display = show ? "" : "none";
+    if (show) visible++;
+  });
+
+  emptyState.style.display = visible ? "none" : "block";
 }
-search.addEventListener('input',updateTutorials);
-filters.forEach(btn=>btn.addEventListener('click',()=>{
- filters.forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- selected=btn.dataset.filter;
- updateTutorials();
-}));
-document.getElementById('year').textContent=new Date().getFullYear();
 
-const topButton=document.getElementById('top');
-window.addEventListener('scroll',()=>topButton.classList.toggle('show',window.scrollY>450));
-topButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+searchInput.addEventListener("input", filterVideos);
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    filterButtons.forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+    currentFilter = button.dataset.filter;
+    filterVideos();
+  });
+});
+
+/* QUIZ */
+document.querySelectorAll(".quiz-options button").forEach(button => {
+  button.addEventListener("click", () => {
+    const result = document.getElementById("quizResult");
+    result.textContent = button.dataset.result;
+    result.style.display = "block";
+  });
+});
+
+/* VÍDEO ALEATORIO */
+const videoList = [
+  {
+    title:"Cómo instalar Menyoo en GTA 5",
+    url:"https://youtu.be/p2j1OEbqp9o"
+  },
+  {
+    title:"Cómo instalar OpenIV en GTA 5",
+    url:"https://youtu.be/NcGygok41Lk"
+  },
+  {
+    title:"Cómo instalar coches Add-On en GTA 5",
+    url:"https://youtu.be/pbcPa3jO1tA"
+  },
+  {
+    title:"TOP 4 mods esenciales para GTA 5",
+    url:"https://youtu.be/j_k2lIj25xc"
+  }
+];
+
+document.getElementById("randomVideo").addEventListener("click", () => {
+  const chosen = videoList[Math.floor(Math.random() * videoList.length)];
+  const result = document.getElementById("randomResult");
+
+  result.innerHTML = "";
+  const text = document.createElement("p");
+  text.textContent = "Tu vídeo elegido: " + chosen.title + " ";
+
+  const link = document.createElement("a");
+  link.href = chosen.url;
+  link.target = "_blank";
+  link.rel = "noopener";
+  link.textContent = "VER AHORA ↗";
+  link.style.fontWeight = "800";
+  link.style.color = "#d9c3ff";
+
+  text.appendChild(link);
+  result.appendChild(text);
+  result.style.display = "block";
+});
+
+/* ANIMACIONES AL DESPLAZARSE */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.12});
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+/* PEQUEÑO EASTER EGG: PULSA GP CINCO VECES */
+let gpClicks = 0;
+let gpTimer;
+
+document.querySelectorAll(".brand-mark").forEach(mark => {
+  mark.addEventListener("click", () => {
+    gpClicks++;
+    clearTimeout(gpTimer);
+
+    if (gpClicks >= 5) {
+      const toast = document.getElementById("toast");
+      toast.textContent = "🏆 ¡Has encontrado el secreto de GabriPlay!";
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2600);
+      gpClicks = 0;
+    } else {
+      gpTimer = setTimeout(() => gpClicks = 0, 1800);
+    }
+  });
+});
 </script>
 </body>
 </html>
