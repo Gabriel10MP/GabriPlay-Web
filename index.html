@@ -930,5 +930,20 @@ const observer=new IntersectionObserver(entries=>{
 },{threshold:.1});
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+ 
+<script>
+const GABRIPLAY_SUPABASE_URL = "https://gzqebfwknfnwnobwypve.supabase.co";
+
+const GABRIPLAY_SUPABASE_KEY = "sb_publishable_NjEt_shVbSEbvALrsFt4c_Q_GOGgPBKz";
+
+const gabriplayDB = window.supabase.createClient(
+    GABRIPLAY_SUPABASE_URL,
+    GABRIPLAY_SUPABASE_KEY
+);
+
+console.log("GabriPlay conectado con Supabase");
+</script>
+ 
 </body>
 </html>
