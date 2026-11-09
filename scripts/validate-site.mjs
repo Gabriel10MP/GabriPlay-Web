@@ -16,7 +16,7 @@ for (const file of htmlFiles) {
     seen.add(id);
   }
 
-  if (source.includes("\\n</body>")) errors.push(file + ": literal backslash-n before </body>");
+  if (source.includes("\\n<")) errors.push(file + ": literal backslash-n before an HTML tag");
   if (!/<meta[^>]+name=["']description["']/i.test(source)) warnings.push(file + ": missing meta description");
   if (!/<link[^>]+rel=["']icon["']/i.test(source)) warnings.push(file + ": missing favicon link");
 
