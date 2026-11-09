@@ -16,7 +16,12 @@ a.back,.back{border-color:#74313a;color:#e8c6c8;background:#100c0e}
 input,textarea{accent-color:#c52b40}
 button,.btn{transition:.2s}
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #e34b58;outline-offset:3px}
-.banner{background:radial-gradient(circle at 78% 28%,#c52b40 0 12%,#741421 12.5% 13%,transparent 13.5%),linear-gradient(90deg,#090809aa,#09080944),linear-gradient(135deg,#1a0d11,#090809 65%);position:relative}
+.banner{height:230px;background:radial-gradient(circle at 78% 28%,#c52b40 0 12%,#741421 12.5% 13%,transparent 13.5%),linear-gradient(90deg,#090809aa,#09080944),linear-gradient(135deg,#1a0d11,#090809 65%);position:relative;z-index:0;isolation:isolate}
+.banner:after{z-index:1;pointer-events:none}
+.body{position:relative;z-index:2}
+.avatar{position:relative;z-index:3;isolation:isolate;flex-shrink:0}
+.avatar img{display:block;object-fit:cover;object-position:center;width:100%;height:100%}
+
 .banner:after{content:"";position:absolute;inset:auto 8% 0 auto;width:38%;height:72%;opacity:.35;background:linear-gradient(#090809,#090809) 0 15%/100% 7px no-repeat,linear-gradient(#090809,#090809) 0 30%/100% 7px no-repeat,linear-gradient(#090809,#090809) 15% 0/9px 100% no-repeat,linear-gradient(#090809,#090809) 85% 0/9px 100% no-repeat}
 .avatar{border-color:#111114}
 .handle{color:#e49ba2}
