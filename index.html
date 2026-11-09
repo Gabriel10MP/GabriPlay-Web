@@ -395,7 +395,7 @@ footer{border-color:#48232a}
 @media(max-width:600px){.hero-bg:before{right:-3%;top:15%;width:230px;opacity:.6}.hero-bg:after{right:-8%;width:70%;opacity:.4}}
 
 </style>
-</head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">\n<link rel="apple-touch-icon" href="favicon.svg?v=1">\n</head>
 
 <body>
 <div class="rainbow"></div>
@@ -1469,5 +1469,36 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 })();
 </script>
 
-</body>
+
+<script>
+(() => {
+  const versionUrl = new URL("version.json", location.href);
+  let currentVersion = null;
+  let updatePending = false;
+  const hasActiveWork = () => {
+    const active = document.activeElement;
+    if (active && active.matches("input,textarea,select,[contenteditable=true]")) return true;
+    return !!document.querySelector(".modal.open, .lightbox.open, dialog[open]");
+  };
+  const checkForUpdate = async () => {
+    if (document.visibilityState !== "visible") return;
+    try {
+      const response = await fetch(versionUrl.href + "?check=" + Date.now(), { cache: "no-store" });
+      if (!response.ok) return;
+      const data = await response.json();
+      if (!data.version) return;
+      if (currentVersion === null) { currentVersion = data.version; return; }
+      if (data.version !== currentVersion) {
+        updatePending = true;
+        if (!hasActiveWork()) location.reload();
+      }
+    } catch (_) { /* Se reintentará en la siguiente comprobación. */ }
+  };
+  checkForUpdate();
+  window.setInterval(checkForUpdate, 60000);
+  window.addEventListener("focus", () => { if (updatePending && !hasActiveWork()) location.reload(); });
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
+})();
+</script>
+\n</body>
 </html>
