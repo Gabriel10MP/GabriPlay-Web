@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08080c">
-<meta name="description" content="GabriPlay: videojuegos, tutoriales, GTA V, Roblox Studio y una comunidad con esencia japonesa.">
+<meta name="description" content="GabriPlay: videojuegos, tutoriales, GTA V, Roblox y una comunidad gamer con estética japonesa.">
 <title>GabriPlay — Japón, gaming y mucho más</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1326,7 +1326,8 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
    const userIds=[...new Set(suggestions.map(x=>x.user_id).filter(Boolean))];
    profilesCache={};
    if(userIds.length) {
-    const {data:profiles}=await db.from("profiles").select("id,username,display_name,bio,avatar_url").in("id",userIds);
+    const {data:profiles,error:profilesError}=await db.from("profiles").select("id,username,display_name,bio,avatar_url").in("id",userIds);
+    if(profilesError) throw profilesError;
     if(loadVersion!==suggestionLoadVersion) return;
     (profiles || []).forEach(p=>profilesCache[p.id]=p);
     const {data:cosmetics,error:cosmeticError}=await db.from("gabriplay_user_cosmetics").select("user_id,cosmetic_code").in("user_id",userIds).eq("equipped",true);
@@ -1334,7 +1335,8 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     (cosmetics||[]).forEach(item=>{const profile=profilesCache[item.user_id];if(profile){profile.equippedCosmetics=profile.equippedCosmetics||[];profile.equippedCosmetics.push(item.cosmetic_code);}});
    }
    let voteIds=new Set(),voteCounts={};
-   const {data:votes}=await db.from("suggestion_votes").select("suggestion_id,user_id");
+   const {data:votes,error:voteError}=await db.from("suggestion_votes").select("suggestion_id,user_id");
+   if(voteError) throw voteError;
    if(loadVersion!==suggestionLoadVersion) return;
    (votes || []).forEach(v=>{
     voteCounts[v.suggestion_id]=(voteCounts[v.suggestion_id]||0)+1;
@@ -1513,5 +1515,5 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
 })();
 </script>
-\n</body>
+</body>
 </html>
