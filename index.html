@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08080c">
-<meta name="description" content="GabriPlay: videojuegos, tutoriales, GTA V, Roblox Studio y mucho más.">
-<title>GabriPlay — Play beyond</title>
+<meta name="description" content="GabriPlay: videojuegos, tutoriales, GTA V, Roblox Studio y una comunidad con esencia japonesa.">
+<title>GabriPlay — Japón, gaming y mucho más</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +20,8 @@
  --white:#f6f6f8;
  --muted:#a2a2ad;
  --line:#292933;
- --purple:#a879ff;
- --rainbow:linear-gradient(90deg,#ff4141,#ff963b,#ffe34b,#5cda78,#45c3ff,#a879ff,#f15dbb);
+ --purple:#c52b40;
+ --rainbow:linear-gradient(90deg,#ff4141,#ff963b,#ffe34b,#5cda78,#45c3ff,#c52b40,#f15dbb);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:85px}
@@ -30,7 +30,7 @@ a{color:inherit;text-decoration:none}
 button,input{font:inherit}
 button{cursor:pointer}
 img{display:block;max-width:100%}
-::selection{background:#a879ff;color:white}
+::selection{background:#c52b40;color:white}
 
 .rainbow{height:4px;background:var(--rainbow)}
 .container{width:min(1180px,calc(100% - 44px));margin:auto}
@@ -47,7 +47,7 @@ img{display:block;max-width:100%}
 .btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px #fff2}
 .btn-outline{background:#ffffff0b;color:white;border-color:#ffffff30}
 .btn-outline:hover{background:#ffffff18}
-.pill{display:inline-block;padding:7px 10px;border:1px solid #ffffff25;border-radius:5px;color:#d0c0ff;background:#a879ff12;font-size:9px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+.pill{display:inline-block;padding:7px 10px;border:1px solid #ffffff25;border-radius:5px;color:#d0c0ff;background:#c52b4012;font-size:9px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .card-hover{transition:transform .25s,border-color .25s,box-shadow .25s}
 .card-hover:hover{transform:translateY(-5px);border-color:#626270;box-shadow:0 18px 40px #0008}
@@ -71,7 +71,7 @@ img{display:block;max-width:100%}
 linear-gradient(90deg,#08080c 0%,#08080ce8 27%,#08080c60 72%,#08080ca8 100%),
 linear-gradient(0deg,#08080c 0%,transparent 50%),
 url("https://staticc.sportskeeda.com/editor/2020/09/f0e85-15993722712211-800.jpg") center 43%/cover;transform:scale(1.02)}
-.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 75% 40%,#a879ff17,transparent 40%)}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 75% 40%,#c52b4017,transparent 40%)}
 .hero-content{position:relative;z-index:2;padding:95px 0 110px}
 .hero-overline{font-size:10px;letter-spacing:4px;font-weight:900;color:#c5c5cf;text-transform:uppercase}
 .hero h1{font:900 clamp(76px,12vw,145px)/.78 "Barlow Condensed",sans-serif;letter-spacing:-2px;text-transform:uppercase;margin:30px 0}
@@ -87,7 +87,7 @@ url("https://staticc.sportskeeda.com/editor/2020/09/f0e85-15993722712211-800.jpg
 .ticker{border-top:1px solid #ffffff16;border-bottom:1px solid #ffffff16;overflow:hidden;background:#101016}
 .ticker-track{display:flex;gap:35px;white-space:nowrap;padding:17px 0;animation:marquee 28s linear infinite;width:max-content}
 .ticker-track span{font:800 15px "Barlow Condensed",sans-serif;letter-spacing:2px;color:#c8c8d1}
-.ticker-track b{color:#a879ff}
+.ticker-track b{color:#c52b40}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* QUICK ACCESS */
@@ -103,7 +103,7 @@ url("https://staticc.sportskeeda.com/editor/2020/09/f0e85-15993722712211-800.jpg
 .search{flex:1;min-width:200px;background:#121219;border:1px solid var(--line);color:white;padding:13px 15px;border-radius:8px;outline:none;font-size:12px}
 .search:focus{border-color:var(--purple)}
 .filter{background:#121219;border:1px solid var(--line);color:#bbb;padding:12px 16px;border-radius:8px;font-size:10px;font-weight:900}
-.filter.active{background:#a879ff20;border-color:#a879ff;color:white}
+.filter.active{background:#c52b4020;border-color:#c52b40;color:white}
 .video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:19px}
 .video-thumb{aspect-ratio:16/9;position:relative;overflow:hidden;background:#1a1a24}
 .video-thumb img{width:100%;height:100%;object-fit:cover;transition:.4s}
@@ -112,7 +112,7 @@ url("https://staticc.sportskeeda.com/editor/2020/09/f0e85-15993722712211-800.jpg
 .video-info{padding:20px}
 .video-info h3{font-size:17px;line-height:1.4;margin:13px 0 8px}
 .video-info p{font-size:11px;color:var(--muted);line-height:1.7}
-.video-meta{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:10px;font-weight:900;color:#d3c1ff}
+.video-meta{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:10px;font-weight:900;color:#e7a8ad}
 .video-meta span:last-child{color:#999}
 .no-results{display:none;text-align:center;padding:35px;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}
 
@@ -148,7 +148,7 @@ url("https://i.ytimg.com/vi/pbcPa3jO1tA/maxresdefault.jpg") center/cover}
 .lab-copy p{font-size:12px;color:var(--muted);line-height:1.9}
 .lab-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:23px}
 .lab-tab{background:#1c1c25;color:#bbb;border:1px solid #383844;border-radius:6px;padding:10px 12px;font-size:10px;font-weight:900}
-.lab-tab.active{background:#a879ff20;color:#fff;border-color:#a879ff}
+.lab-tab.active{background:#c52b4020;color:#fff;border-color:#c52b40}
 .lab-panel{margin-top:16px;padding:16px;background:#0b0b11;border:1px solid #2b2934;border-radius:8px;min-height:85px}
 .lab-panel p{font-size:11px}
 .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px}
@@ -156,7 +156,7 @@ url("https://i.ytimg.com/vi/pbcPa3jO1tA/maxresdefault.jpg") center/cover}
 .project-card .project-icon{font-size:27px}
 .project-card h4{font:800 22px "Barlow Condensed",sans-serif;text-transform:uppercase;margin:13px 0 7px}
 .project-card p{font-size:11px;line-height:1.7;color:var(--muted)}
-.project-status{display:inline-block;margin-top:15px;font-size:9px;font-weight:900;letter-spacing:1px;color:#d2baff}
+.project-status{display:inline-block;margin-top:15px;font-size:9px;font-weight:900;letter-spacing:1px;color:#e7a8ad}
 
 /* MINECRAFT / OTHER GAMES */
 .world-feature{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -178,23 +178,23 @@ url("https://i.ytimg.com/vi/pbcPa3jO1tA/maxresdefault.jpg") center/cover}
 .arcade-card h3{font:800 29px "Barlow Condensed",sans-serif;text-transform:uppercase;margin:12px 0}
 .arcade-card p{font-size:11px;line-height:1.8;color:var(--muted)}
 .arcade-button{margin-top:20px;border:0;border-radius:7px;padding:13px 17px;background:white;color:#08080c;font-size:10px;font-weight:900}
-.arcade-result{display:none;margin-top:16px;padding:15px;border-radius:8px;background:#a879ff18;border:1px solid #a879ff55;color:#eee;font-size:12px;line-height:1.8}
+.arcade-result{display:none;margin-top:16px;padding:15px;border-radius:8px;background:#c52b4018;border:1px solid #c52b4055;color:#eee;font-size:12px;line-height:1.8}
 .answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:17px}
 .answer-grid button{padding:12px 9px;background:#101016;color:#ddd;border:1px solid #343440;border-radius:7px;font-size:10px;font-weight:800}
-.answer-grid button:hover{border-color:#a879ff;background:#a879ff18}
+.answer-grid button:hover{border-color:#c52b40;background:#c52b4018}
 .meter{height:7px;background:#333;border-radius:20px;margin-top:13px;overflow:hidden}
 .meter-fill{height:100%;width:0;background:var(--rainbow);transition:width .5s}
 
 /* COMMUNITY / ROADMAP */
 .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.roadmap-item{padding:20px;border-top:2px solid #a879ff;background:var(--surface);border-radius:0 0 10px 10px}
-.roadmap-item span{font-size:9px;color:#bca1ff;font-weight:900;letter-spacing:1.5px}
+.roadmap-item{padding:20px;border-top:2px solid #c52b40;background:var(--surface);border-radius:0 0 10px 10px}
+.roadmap-item span{font-size:9px;color:#e2a0a5;font-weight:900;letter-spacing:1.5px}
 .roadmap-item h4{font:800 22px "Barlow Condensed",sans-serif;text-transform:uppercase;margin:12px 0 6px}
 .roadmap-item p{font-size:10px;color:var(--muted);line-height:1.7}
 
 /* ABOUT */
 .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:25px;align-items:stretch}
-.about-mark{min-height:270px;border:1px solid var(--line);border-radius:13px;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#a879ff22,transparent 45%),#111118;position:relative;overflow:hidden}
+.about-mark{min-height:270px;border:1px solid var(--line);border-radius:13px;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#c52b4022,transparent 45%),#111118;position:relative;overflow:hidden}
 .about-mark:before{content:"";width:200px;height:200px;border:1px solid #ffffff22;border-radius:50%;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff04;position:absolute}
 .about-gp{font:900 110px "Barlow Condensed",sans-serif;letter-spacing:-8px;background:var(--rainbow);background-clip:text;color:transparent;position:relative}
 .about-copy{padding:28px;border:1px solid var(--line);border-radius:13px;background:var(--surface)}
@@ -279,7 +279,7 @@ footer{border-top:1px solid var(--line);padding:38px 0}
 .community-panel h3,.account-panel h3{font:800 25px "Barlow Condensed",sans-serif;text-transform:uppercase;margin-bottom:8px}
 .community-note{color:var(--muted);font-size:11px;line-height:1.7;margin-bottom:18px}
 .gp-field{width:100%;background:#09090e;border:1px solid #33333e;border-radius:8px;color:white;padding:13px 14px;margin:0 0 11px;outline:none;font-size:12px}
-.gp-field:focus{border-color:#a879ff}
+.gp-field:focus{border-color:#c52b40}
 textarea.gp-field{min-height:105px;resize:vertical}
 .gp-action{border:0;border-radius:8px;background:white;color:#09090d;padding:12px 16px;font-size:10px;font-weight:900;letter-spacing:.5px}
 .gp-action:disabled{opacity:.45;cursor:not-allowed}
@@ -297,12 +297,12 @@ textarea.gp-field{min-height:105px;resize:vertical}
  .gp-admin-filters{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
  .gp-admin-filters button{border:1px solid #ffffff28;background:#ffffff08;color:#c9c9d3;border-radius:7px;padding:8px 10px;font-size:9px;font-weight:900;letter-spacing:.4px}
  .gp-admin-filters button.active{background:#fff;color:#09090d;border-color:#fff}
- .gp-admin-label{font-size:9px;color:#a879ff;font-weight:900;letter-spacing:1px;margin:0 0 9px}
+ .gp-admin-label{font-size:9px;color:#c52b40;font-weight:900;letter-spacing:1px;margin:0 0 9px}
 .gp-suggestion{padding:17px;background:#0c0c12;border:1px solid var(--line);border-radius:10px}
 .gp-suggestion-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px}
 .gp-suggestion h4{font-size:14px;margin-bottom:7px;overflow-wrap:anywhere}
 .gp-suggestion p{font-size:11px;color:#b8b8c3;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
-.gp-tag{font-size:9px;font-weight:900;letter-spacing:.8px;color:#cfc0ff;border:1px solid #a879ff45;padding:5px 8px;border-radius:20px;white-space:nowrap}
+.gp-tag{font-size:9px;font-weight:900;letter-spacing:.8px;color:#cfc0ff;border:1px solid #c52b4045;padding:5px 8px;border-radius:20px;white-space:nowrap}
 .gp-tag.pending{color:#ffd98a;border-color:#ffd98a55}
 .gp-tag.rejected{color:#ff9b9b;border-color:#ff9b9b55}
 .gp-card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
@@ -333,6 +333,65 @@ textarea.gp-field{min-height:105px;resize:vertical}
 @media(max-width:850px){.community-grid{grid-template-columns:1fr}.nav-account{padding:9px 10px;font-size:9px}}
 @media(max-width:600px){.community-panel,.account-panel{padding:17px}.gp-modal{padding:23px 19px}}
 
+
+/* JAPANESE CRIMSON IDENTITY — GabriPlay */
+:root{--bg:#080809;--surface:#111114;--surface2:#19191d;--white:#f4f1ed;--muted:#aaa4a1;--line:#302326;--purple:#d52b40;--rainbow:linear-gradient(90deg,#6f101d,#c51f35,#f05a62,#8f1728)}
+::selection{background:#c51f35;color:#fff}
+.rainbow{height:3px;background:linear-gradient(90deg,#4b0c16,#b51f32,#e34a58,#4b0c16)}
+.small-label{color:#d9bfc0}
+.small-label:before{background:linear-gradient(90deg,#9e1b2d,#ef5963)}
+.gradient-text{background:linear-gradient(110deg,#fff 5%,#f08086 48%,#b51f32 100%);background-clip:text;-webkit-background-clip:text;color:transparent}
+.pill{color:#f0b9bd;background:#c51f3518;border-color:#9d2938}
+.btn:hover{box-shadow:0 12px 35px #c51f3530}
+.btn-outline:hover{border-color:#b52a3b;background:#b51f321c}
+.topbar{background:#080809ed;border-bottom-color:#6d1c292e}
+.logo-symbol{border-radius:4px;border-color:#8f2636;background:linear-gradient(145deg,#191114,#09090b);box-shadow:inset 0 0 18px #9d1c2b22}
+.logo-symbol:after{height:3px;background:linear-gradient(90deg,#70101d,#e13c4c,#70101d)}
+.logo{letter-spacing:.2px}
+.nav-links a{letter-spacing:.65px}
+.nav-links a:hover{color:#f06b75}
+.nav-button{background:#bd2639;color:#fff;border:1px solid #e45b66}
+.nav-button:hover{background:#df3548;box-shadow:0 8px 25px #bd263944}
+.hero{background:#090809}
+.hero-bg{background:linear-gradient(90deg,#080809 0%,#080809ee 25%,#08080975 65%,#080809bd 100%),linear-gradient(0deg,#080809 0%,transparent 55%),radial-gradient(circle at 77% 35%,#b51f32 0 11%,#741421 11.3% 12%,transparent 12.4%),linear-gradient(135deg,#160d10,#080809 60%)}
+.hero-bg:before{content:"";position:absolute;width:clamp(190px,28vw,390px);aspect-ratio:1;border-radius:50%;right:9%;top:9%;background:radial-gradient(circle at 38% 35%,#f06a70,#c52a3c 62%,#751523 100%);box-shadow:0 0 90px #c51f3544;opacity:.82}
+.hero-bg:after{content:"";position:absolute;right:4%;bottom:13%;width:min(44vw,560px);height:36%;opacity:.52;background:linear-gradient(#090809,#090809) 0 12%/100% 7px no-repeat,linear-gradient(#090809,#090809) 0 28%/100% 7px no-repeat,linear-gradient(#090809,#090809) 13% 0/10px 100% no-repeat,linear-gradient(#090809,#090809) 87% 0/10px 100% no-repeat,linear-gradient(#090809,#090809) 50% 28%/7px 72% no-repeat;filter:drop-shadow(0 0 8px #000)}
+.hero:after{background:linear-gradient(90deg,#08080925,transparent 45%),linear-gradient(0deg,#080809 0%,transparent 48%),radial-gradient(ellipse at 78% 38%,#b51f321c,transparent 42%)}
+.hero-overline{color:#e7bfc2}
+.hero h1{letter-spacing:-1px}
+.hero h1 .outline{-webkit-text-stroke:1px #e6bfc2}
+.hero-bottom{color:#b8a7a7}
+.status-dot{background:#d34a56;box-shadow:0 0 12px #d34a56}
+.ticker{background:#100d0f;border-color:#5d202a}
+.ticker-track b{color:#e34b58}
+.quick-card:hover{border-color:#9b3340;background:#1b1215}
+.filter.active,.lab-tab.active{background:#b51f3222;border-color:#c33245}
+.search:focus{border-color:#c33245}
+.video-meta{color:#e5a0a5}
+.gta-feature{border-color:#68232e}
+.lab-copy,.project-card,.other-card,.arcade-card,.roadmap-item,.about-copy,.faq-item{box-shadow:inset 0 1px #ffffff05}
+.lab-tab.active{color:#fff}
+.project-status{color:#e49a9f}
+.arcade{background:#100d0f;border-color:#4a2027}
+.arcade-result{background:#b51f321c;border-color:#b51f3255}
+.roadmap-item{border-top-color:#c32c40}
+.roadmap-item span{color:#e49ba2}
+.about-mark{background:radial-gradient(circle at 50% 45%,#b51f3228,transparent 45%),#111114}
+.about-gp{background:linear-gradient(110deg,#fff,#e34b58 55%,#861728);background-clip:text;-webkit-background-clip:text;color:transparent}
+.nav-account{border-color:#6f3038}
+.nav-account:hover{background:#b51f321a;border-color:#c33b4a}
+.nav-account-avatar{border-color:#87323c}
+.community-panel,.account-panel{border-color:#48232a}
+.back-top{border-color:#8b3944;background:#160e11}
+.toast{box-shadow:0 8px 30px #0008}
+.section{position:relative}
+.section-heading h2{letter-spacing:.2px}
+.section-heading .section-number{color:#c06a73}
+footer{border-color:#48232a}
+.footer-links a:hover{color:#ed6a74}
+@media(max-width:850px){.nav-links{background:#100d0f;border-color:#54222b}}
+@media(max-width:600px){.hero-bg:before{right:-3%;top:15%;width:230px;opacity:.6}.hero-bg:after{right:-8%;width:70%;opacity:.4}}
+
 </style>
 </head>
 
@@ -346,13 +405,13 @@ textarea.gp-field{min-height:105px;resize:vertical}
    <span>GabriPlay</span>
   </a>
   <div class="nav-links" id="navLinks">
-   <a href="#videos">VÍDEOS</a>
+   <a href="#inicio">INICIO</a>
+   <a href="#videos">TUTORIALES</a>
    <a href="#gta">GTA V</a>
-   <a href="#roblox">ROBLOX STUDIO</a>
+   <a href="#roblox">ROBLOX</a>
    <a href="#mundos">JUEGOS</a>
-   <a href="#arcade">ARCADE</a>
    <a href="#comunidad">COMUNIDAD</a>
-   <a href="#sobre">SOBRE MÍ</a>
+   <a href="#sobre">SOBRE GABRIPLAY</a>
   </div>
   <div class="nav-right">
    <button class="nav-account" id="accountButton" type="button"><span class="nav-account-avatar" id="navAccountAvatar" hidden></span><span id="navAccountLabel">MI CUENTA</span></button>
