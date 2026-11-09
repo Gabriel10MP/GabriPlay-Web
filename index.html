@@ -329,6 +329,7 @@ textarea.gp-field{min-height:105px;resize:vertical}
 .gp-profile-bio{color:#858591;font-size:10px;line-height:1.5;margin-top:3px}
 .gp-profile-author strong{color:#f1f1f5;font-size:11px}
 .gp-creator-inline{display:inline-flex;vertical-align:middle;margin-left:7px;padding:3px 6px;border:1px solid #e34b58;border-radius:4px;background:linear-gradient(110deg,#54101b,#a51f32,#7a1424);color:#fff;font-size:8px;font-weight:900;letter-spacing:.55px}.gp-creator-name{background:linear-gradient(90deg,#fff,#ffb6bf,#fff,#ff6678,#fff);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:gpCreatorShine 4s linear infinite}@keyframes gpCreatorShine{to{background-position:220% center}}@media(prefers-reduced-motion:reduce){.gp-creator-name{animation:none}}
+.gp-name-crimson,.gp-name-ice,.gp-name-gold,.gp-name-sakura{background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:gpCreatorShine 3.2s linear infinite}.gp-name-crimson{background-image:linear-gradient(90deg,#fff,#ff697b,#fff)}.gp-name-ice{background-image:linear-gradient(90deg,#d7f6ff,#43b9f0,#fff)}.gp-name-gold{background-image:linear-gradient(90deg,#fff2b5,#d49b32,#fff0a3)}.gp-name-sakura{background-image:linear-gradient(90deg,#ffe1ed,#ef78aa,#fff)}.gp-frame-crimson{border:2px solid #c52b40!important;box-shadow:0 0 0 2px #c52b4040,0 0 15px #c52b4060}.gp-frame-onyx{border:2px solid #777680!important;box-shadow:inset 0 0 0 2px #17171c,0 0 0 2px #aaa9b640}@media(prefers-reduced-motion:reduce){.gp-name-crimson,.gp-name-ice,.gp-name-gold,.gp-name-sakura{animation:none}}
 #profileForm{margin-top:12px}
 #profileForm .gp-field{margin-bottom:10px}
 
@@ -1185,10 +1186,13 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   if (!value) return "";
   try { const parsed=new window.URL(value); return parsed.protocol==="https:"?parsed.href:""; } catch { return ""; }
  }
- function renderAvatar(element,url,name) {
+ function renderAvatar(element,url,name,cosmeticCodes=[]) {
   if (!element) return;
   const initial=(String(name||"G").trim()[0]||"G").toUpperCase();
   element.replaceChildren();
+  element.classList.remove("gp-frame-crimson","gp-frame-onyx");
+  if(cosmeticCodes.includes("frame_crimson")) element.classList.add("gp-frame-crimson");
+  if(cosmeticCodes.includes("frame_onyx")) element.classList.add("gp-frame-onyx");
   const src=safeImageUrl(url);
   if (src) {
    const img=document.createElement("img");img.className="gp-avatar-image";img.src=src;img.alt="Foto de perfil de "+(name||"usuario");img.referrerPolicy="no-referrer";
@@ -1200,13 +1204,16 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   const name=ownProfile?.display_name||metadata.display_name||ownProfile?.username||metadata.username||"Miembro";
   const username=ownProfile?.username||metadata.username||"usuario";
   const avatar=ownProfile?.avatar_url||metadata.avatar_url||"";
-  renderAvatar($("navAccountAvatar"),avatar,name);
+  const cosmetics=ownProfile?.equippedCosmetics||[];
+  renderAvatar($("navAccountAvatar"),avatar,name,cosmetics);
   $("navAccountAvatar").hidden=!currentUser;
   $("navAccountLabel").textContent=currentUser?name:"MI CUENTA";
-  renderAvatar($("communityAvatar"),avatar,name);
+  renderAvatar($("communityAvatar"),avatar,name,cosmetics);
   $("communityAvatar").hidden=!currentUser;
-  renderAvatar($("accountProfileAvatar"),avatar,name);
-  $("accountIdentityName").textContent=name;
+  renderAvatar($("accountProfileAvatar"),avatar,name,cosmetics);
+  const nameClass=cosmetics.find(code=>["name_crimson","name_ice","name_gold","name_sakura"].includes(code));
+  const identityName=$("accountIdentityName");identityName.textContent=name;identityName.classList.remove("gp-name-crimson","gp-name-ice","gp-name-gold","gp-name-sakura");if(nameClass)identityName.classList.add("gp-"+nameClass.replace("name_","name-"));
+  const navLabel=$("navAccountLabel");navLabel.classList.remove("gp-name-crimson","gp-name-ice","gp-name-gold","gp-name-sakura");if(currentUser&&nameClass)navLabel.classList.add("gp-"+nameClass.replace("name_","name-"));
   $("accountIdentityHandle").textContent="@"+username;
  }
  function openAccount() {
@@ -1247,6 +1254,9 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   const {data,error}=await db.from("profiles").select("username,display_name,bio,avatar_url,banner_url").eq("id",currentUser.id).maybeSingle();
   if (error) throw error;
   ownProfile=data||{};
+  const {data:cosmetics,error:cosmeticError}=await db.from("gabriplay_user_cosmetics").select("cosmetic_code").eq("user_id",currentUser.id).eq("equipped",true);
+  if(cosmeticError) throw cosmeticError;
+  ownProfile.equippedCosmetics=(cosmetics||[]).map(item=>item.cosmetic_code);
   const metadata=currentUser.user_metadata||{};
   $("profileUsername").value=ownProfile.username||metadata.username||"";
   $("profileDisplayName").value=ownProfile.display_name||metadata.display_name||metadata.username||"";
@@ -1319,6 +1329,9 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     const {data:profiles}=await db.from("profiles").select("id,username,display_name,bio,avatar_url").in("id",userIds);
     if(loadVersion!==suggestionLoadVersion) return;
     (profiles || []).forEach(p=>profilesCache[p.id]=p);
+    const {data:cosmetics,error:cosmeticError}=await db.from("gabriplay_user_cosmetics").select("user_id,cosmetic_code").in("user_id",userIds).eq("equipped",true);
+    if(cosmeticError) throw cosmeticError;
+    (cosmetics||[]).forEach(item=>{const profile=profilesCache[item.user_id];if(profile){profile.equippedCosmetics=profile.equippedCosmetics||[];profile.equippedCosmetics.push(item.cosmetic_code);}});
    }
    let voteIds=new Set(),voteCounts={};
    const {data:votes}=await db.from("suggestion_votes").select("suggestion_id,user_id");
@@ -1338,10 +1351,10 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     const author=document.createElement("div"); author.className="gp-profile-author";
     const avatar=document.createElement("span"); avatar.className="gp-profile-avatar";
     const authorName=profile?.display_name || profile?.username || "Miembro de GabriPlay";
-    renderAvatar(avatar,profile?.avatar_url,authorName);
+    renderAvatar(avatar,profile?.avatar_url,authorName,profile?.equippedCosmetics||[]);
     const authorInfo=document.createElement("div");
     const profileLink=document.createElement("a"); profileLink.href=profile?.username?"usuario.html?u="+encodeURIComponent(profile.username):"#"; profileLink.style.color="inherit"; profileLink.style.textDecoration="none";
-    const strong=document.createElement("strong"); strong.textContent=authorName; if(profile?.username==="gabri10")strong.classList.add("gp-creator-name"); profileLink.appendChild(strong); if(profile?.username==="gabri10"){const creator=document.createElement("span");creator.className="gp-creator-inline";creator.textContent="✦ CREADOR";profileLink.appendChild(creator);}
+    const strong=document.createElement("strong"); strong.textContent=authorName; if(profile?.username==="gabri10")strong.classList.add("gp-creator-name"); const nameEffect=(profile?.equippedCosmetics||[]).find(code=>["name_crimson","name_ice","name_gold","name_sakura"].includes(code));if(nameEffect)strong.classList.add("gp-"+nameEffect.replace("name_","name-")); profileLink.appendChild(strong); if(profile?.username==="gabri10"){const creator=document.createElement("span");creator.className="gp-creator-inline";creator.textContent="✦ CREADOR";profileLink.appendChild(creator);}
     const handle=document.createElement("div"); handle.textContent=profile?.username?"@"+profile.username:"Comunidad";
     profileLink.appendChild(handle); authorInfo.appendChild(profileLink);
     if(profile?.bio){const bio=document.createElement("div");bio.className="gp-profile-bio";bio.textContent=profile.bio;authorInfo.appendChild(bio);}
