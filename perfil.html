@@ -61,9 +61,9 @@
 <script>
 (()=>{
 "use strict";
-const URL="https://gzqebfwknfnwnobwypve.supabase.co";
+const SUPABASE_URL="https://gzqebfwknfnwnobwypve.supabase.co";
 const KEY="sb_publishable_NjEt_shVbSEbvALrsFt4cQ_GOGgPBKz";
-const db=window.supabase.createClient(URL,KEY);
+const db=window.supabase.createClient(SUPABASE_URL,KEY);
 const $=id=>document.getElementById(id);
 let user=null;
 const fields=["username","displayName","bio","avatarUrl","bannerUrl","websiteUrl","youtubeUrl","twitchUrl"];
