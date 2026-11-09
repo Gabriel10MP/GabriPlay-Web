@@ -132,6 +132,7 @@ $("profileEditor").addEventListener("submit",async e=>{
   if(error)throw error;
   const {error:authError}=await db.auth.updateUser({data:{username,display_name,bio,avatar_url:values.avatar_url,banner_url:values.banner_url}});
   if(authError)throw authError;
+  $("avatarUrl").value=values.avatar_url||"";$("bannerUrl").value=values.banner_url||"";
   $("avatarFile").value="";$("bannerFile").value="";
   setStatus("Perfil actualizado correctamente. Tus imágenes ya están guardadas.");
   updatePreview();
