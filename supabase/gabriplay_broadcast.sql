@@ -60,7 +60,7 @@ begin
   if char_length(trim(coalesce(post_title,''))) not between 1 and 100 then raise exception 'El título debe tener entre 1 y 100 caracteres.'; end if;
   if char_length(trim(coalesce(post_body,''))) not between 1 and 5000 then raise exception 'El mensaje debe tener entre 1 y 5000 caracteres.'; end if;
   if reaction_emojis is null or cardinality(reaction_emojis) not between 1 and 8 then raise exception 'Elige entre 1 y 8 emojis.'; end if;
-  if exists(select 1 from unnest(reaction_emojis) e where char_length(e)>16 or trim(e)='') then raise exception 'Hay un emoji no válido.'; end if;
+  if exists(select 1 from unnest(reaction_emojis) e where e is null or char_length(e)>16 or trim(e)='') then raise exception 'Hay un emoji no válido.'; end if;
   if cardinality(array(select distinct e from unnest(reaction_emojis) e)) <> cardinality(reaction_emojis) then raise exception 'No repitas emojis.'; end if;
   insert into public.gabriplay_broadcast_posts(title,body,allowed_emojis)
   values(trim(post_title),trim(post_body),reaction_emojis) returning id into new_id;
