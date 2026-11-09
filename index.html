@@ -267,8 +267,12 @@ footer{border-top:1px solid var(--line);padding:38px 0}
 }
 
 /* GABRIPLAY COMMUNITY + ACCOUNT */
-.nav-account{padding:11px 14px;border:1px solid #ffffff45;border-radius:7px;background:#ffffff0b;color:white;font-size:10px;font-weight:900;letter-spacing:.5px;white-space:nowrap}
+.nav-account{display:inline-flex;align-items:center;gap:9px;padding:7px 12px 7px 8px;border:1px solid #ffffff45;border-radius:999px;background:#ffffff0b;color:white;font-size:10px;font-weight:900;letter-spacing:.5px;white-space:nowrap;min-height:40px}
 .nav-account:hover{background:#ffffff18}
+.nav-account-avatar{width:26px;height:26px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#25252e;border:1px solid #ffffff35;font:800 11px "Barlow Condensed",sans-serif;flex:none}
+.nav-account-avatar img,.gp-avatar-image{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
+.nav-account-avatar[hidden]{display:none}
+#navAccountLabel{display:block;max-width:135px;overflow:hidden;text-overflow:ellipsis}
 .community-intro{max-width:650px;color:var(--muted);font-size:13px;line-height:1.8;margin-top:12px}
 .community-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);gap:18px;align-items:start}
 .community-panel,.account-panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
@@ -282,6 +286,13 @@ textarea.gp-field{min-height:105px;resize:vertical}
 .gp-action.secondary{background:#ffffff10;color:white;border:1px solid #ffffff30}
 .gp-status{font-size:11px;color:var(--muted);line-height:1.6;margin-top:12px;min-height:18px}
 .gp-userline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:12px 14px;background:#ffffff08;border:1px solid var(--line);border-radius:9px;font-size:11px;color:#d5d5df}
+.gp-community-identity{display:flex;align-items:center;gap:10px;min-width:0}
+.gp-community-avatar{width:34px;height:34px;border-radius:50%;overflow:hidden;display:grid;place-items:center;flex:none;background:#25252e;border:1px solid #ffffff30;font:800 14px "Barlow Condensed",sans-serif;color:white}
+.gp-community-avatar[hidden]{display:none}
+.gp-account-identity{display:flex;align-items:center;gap:13px;padding:14px;background:#ffffff08;border:1px solid var(--line);border-radius:10px;margin-bottom:15px}
+.gp-account-avatar{width:54px;height:54px;border-radius:50%;overflow:hidden;display:grid;place-items:center;flex:none;background:#25252e;border:2px solid #ffffff35;font:900 22px "Barlow Condensed",sans-serif}
+.gp-account-identity strong{display:block;font-size:14px;overflow-wrap:anywhere}
+.gp-account-identity small{display:block;color:#bca6ff;font-size:10px;margin-top:4px}
 .gp-list{display:grid;gap:12px}
  .gp-admin-filters{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
  .gp-admin-filters button{border:1px solid #ffffff28;background:#ffffff08;color:#c9c9d3;border-radius:7px;padding:8px 10px;font-size:9px;font-weight:900;letter-spacing:.4px}
@@ -313,7 +324,7 @@ textarea.gp-field{min-height:105px;resize:vertical}
 .gp-modal .gp-action{width:100%;margin-top:3px}
 .gp-legal{font-size:9px;color:#858591;line-height:1.6;margin-top:13px}
 .gp-profile-author{display:flex;align-items:center;gap:9px;margin:10px 0 12px;color:#bdbdc7;font-size:10px}
-.gp-profile-avatar{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#ffffff12;border:1px solid #ffffff25;color:white;font:800 12px "Barlow Condensed",sans-serif;flex:none}
+.gp-profile-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:#ffffff12;border:1px solid #ffffff25;color:white;font:800 13px "Barlow Condensed",sans-serif;flex:none}
 .gp-profile-bio{color:#858591;font-size:10px;line-height:1.5;margin-top:3px}
 .gp-profile-author strong{color:#f1f1f5;font-size:11px}
 #profileForm{margin-top:12px}
@@ -344,7 +355,7 @@ textarea.gp-field{min-height:105px;resize:vertical}
    <a href="#sobre">SOBRE MÍ</a>
   </div>
   <div class="nav-right">
-   <button class="nav-account" id="accountButton" type="button">MI CUENTA</button>
+   <button class="nav-account" id="accountButton" type="button"><span class="nav-account-avatar" id="navAccountAvatar" hidden></span><span id="navAccountLabel">MI CUENTA</span></button>
    <a class="nav-button" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">IR AL CANAL ↗</a>
    <button class="menu-button" id="menuButton" aria-label="Abrir menú">☰</button>
   </div>
@@ -810,7 +821,7 @@ textarea.gp-field{min-height:105px;resize:vertical}
    <span class="section-number">08 / COMUNIDAD</span>
   </div>
   <div class="gp-userline">
-   <span id="communityUser">Estás explorando como visitante.</span>
+   <div class="gp-community-identity"><span class="gp-community-avatar" id="communityAvatar" hidden></span><span id="communityUser">Estás explorando como visitante.</span></div>
    <button class="gp-action secondary" id="communityAccountAction" type="button">INICIAR SESIÓN</button>
   </div>
   <div class="community-grid">
@@ -894,6 +905,7 @@ textarea.gp-field{min-height:105px;resize:vertical}
    <p class="gp-status" id="accountStatus" aria-live="polite"></p>
   </form>
   <div id="signedInPanel" hidden>
+   <div class="gp-account-identity"><span class="gp-account-avatar" id="accountProfileAvatar">G</span><div><strong id="accountIdentityName">Mi perfil</strong><small id="accountIdentityHandle">@usuario</small></div></div>
    <p class="gp-modal-copy" id="signedInText"></p>
    <a class="gp-action" href="perfil.html" style="display:block;text-align:center;text-decoration:none;margin:0 0 14px">PERSONALIZAR MI PERFIL ↗</a>
    <form id="profileForm">
@@ -1090,6 +1102,7 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  let authMode = "login";
  let isAdmin = false;
  let profilesCache = {};
+ let ownProfile = null;
  let suggestionLoadVersion = 0;
  let adminSuggestionFilter = "all";
  const $ = (id) => document.getElementById(id);
@@ -1105,6 +1118,34 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   if (!el) return;
   el.textContent = message;
   el.style.color = isError ? "#ff9b9b" : "";
+ }
+ function safeImageUrl(value) {
+  if (!value) return "";
+  try { const parsed=new window.URL(value); return parsed.protocol==="https:"?parsed.href:""; } catch { return ""; }
+ }
+ function renderAvatar(element,url,name) {
+  if (!element) return;
+  const initial=(String(name||"G").trim()[0]||"G").toUpperCase();
+  element.replaceChildren();
+  const src=safeImageUrl(url);
+  if (src) {
+   const img=document.createElement("img");img.className="gp-avatar-image";img.src=src;img.alt="Foto de perfil de "+(name||"usuario");img.referrerPolicy="no-referrer";
+   img.onerror=()=>{element.replaceChildren();element.textContent=initial;};element.appendChild(img);
+  } else element.textContent=initial;
+ }
+ function updateAccountIdentity() {
+  const metadata=currentUser?.user_metadata||{};
+  const name=ownProfile?.display_name||metadata.display_name||ownProfile?.username||metadata.username||"Miembro";
+  const username=ownProfile?.username||metadata.username||"usuario";
+  const avatar=ownProfile?.avatar_url||metadata.avatar_url||"";
+  renderAvatar($("navAccountAvatar"),avatar,name);
+  $("navAccountAvatar").hidden=!currentUser;
+  $("navAccountLabel").textContent=currentUser?name:"MI CUENTA";
+  renderAvatar($("communityAvatar"),avatar,name);
+  $("communityAvatar").hidden=!currentUser;
+  renderAvatar($("accountProfileAvatar"),avatar,name);
+  $("accountIdentityName").textContent=name;
+  $("accountIdentityHandle").textContent="@"+username;
  }
  function openAccount() {
   modal.classList.add("open");
@@ -1129,24 +1170,26 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   $("signedInPanel").hidden = false;
   const metadata = currentUser?.user_metadata || {};
   $("signedInText").textContent = "Tu perfil de GabriPlay. El correo de tu cuenta nunca se muestra públicamente.";
-  $("profileUsername").value = metadata.username || "";
-  $("profileDisplayName").value = metadata.display_name || metadata.username || "";
-  $("profileBio").value = metadata.bio || "";
+  $("profileUsername").value = ownProfile?.username || metadata.username || "";
+  $("profileDisplayName").value = ownProfile?.display_name || metadata.display_name || metadata.username || "";
+  $("profileBio").value = ownProfile?.bio || metadata.bio || "";
+  updateAccountIdentity();
   setStatus($("profileStatus"), "");
-  loadOwnProfile();
  }
  function showAuthForm() {
   accountForm.hidden = false;
   $("signedInPanel").hidden = true;
  }
  async function loadOwnProfile() {
-  if (!currentUser) return;
-  const {data,error}=await db.from("profiles").select("username,display_name,bio").eq("id",currentUser.id).maybeSingle();
-  if (!error && data) {
-   $("profileUsername").value=data.username || "";
-   $("profileDisplayName").value=data.display_name || "";
-   $("profileBio").value=data.bio || "";
-  }
+  if (!currentUser) { ownProfile=null; updateAccountIdentity(); return; }
+  const {data,error}=await db.from("profiles").select("username,display_name,bio,avatar_url,banner_url").eq("id",currentUser.id).maybeSingle();
+  if (error) throw error;
+  ownProfile=data||{};
+  const metadata=currentUser.user_metadata||{};
+  $("profileUsername").value=ownProfile.username||metadata.username||"";
+  $("profileDisplayName").value=ownProfile.display_name||metadata.display_name||metadata.username||"";
+  $("profileBio").value=ownProfile.bio||metadata.bio||"";
+  updateAccountIdentity();
  }
  async function saveProfile(e) {
   e.preventDefault();
@@ -1169,6 +1212,8 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
    const {error:authError}=await db.auth.updateUser({data:{username,display_name:displayName,bio}});
    if(authError) throw authError;
    currentUser=(await db.auth.getUser()).data.user || currentUser;
+   ownProfile={...(ownProfile||{}),username,display_name:displayName,bio};
+   updateAccountIdentity();
    setStatus($("profileStatus"),"Perfil guardado correctamente.");
    $("communityUser").textContent="Sesión iniciada · "+displayName+(isAdmin?" · ADMINISTRADOR":"");
    showToast("Perfil actualizado.");
@@ -1231,7 +1276,7 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     const author=document.createElement("div"); author.className="gp-profile-author";
     const avatar=document.createElement("span"); avatar.className="gp-profile-avatar";
     const authorName=profile?.display_name || profile?.username || "Miembro de GabriPlay";
-    avatar.textContent=(authorName.trim()[0] || "G").toUpperCase();
+    renderAvatar(avatar,profile?.avatar_url,authorName);
     const authorInfo=document.createElement("div");
     const profileLink=document.createElement("a"); profileLink.href=profile?.username?"usuario.html?u="+encodeURIComponent(profile.username):"#"; profileLink.style.color="inherit"; profileLink.style.textDecoration="none";
     const strong=document.createElement("strong"); strong.textContent=authorName; profileLink.appendChild(strong);
@@ -1282,10 +1327,11 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  async function refreshSession(session) {
   currentUser=session?.user || null;
   await checkAdmin();
+  if (currentUser) await loadOwnProfile(); else { ownProfile=null; updateAccountIdentity(); }
   const metadata=currentUser?.user_metadata || {};
-  const publicName=metadata.display_name || metadata.username || "Miembro";
+  const publicName=ownProfile?.display_name || metadata.display_name || ownProfile?.username || metadata.username || "Miembro";
   $("adminSuggestionTools").hidden=!isAdmin;
-  accountButton.textContent=currentUser?"MI PERFIL":"MI CUENTA";
+  $("navAccountLabel").textContent=currentUser?publicName:"MI CUENTA";
   communityAction.textContent=currentUser?"MI CUENTA":"INICIAR SESIÓN";
   $("communityUser").textContent=currentUser?"Sesión iniciada · "+publicName+(isAdmin?" · ADMINISTRADOR":""):"Estás explorando como visitante.";
   $("suggestionSubmit").disabled=!currentUser;
