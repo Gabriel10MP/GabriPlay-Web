@@ -283,6 +283,10 @@ textarea.gp-field{min-height:105px;resize:vertical}
 .gp-status{font-size:11px;color:var(--muted);line-height:1.6;margin-top:12px;min-height:18px}
 .gp-userline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:12px 14px;background:#ffffff08;border:1px solid var(--line);border-radius:9px;font-size:11px;color:#d5d5df}
 .gp-list{display:grid;gap:12px}
+ .gp-admin-filters{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+ .gp-admin-filters button{border:1px solid #ffffff28;background:#ffffff08;color:#c9c9d3;border-radius:7px;padding:8px 10px;font-size:9px;font-weight:900;letter-spacing:.4px}
+ .gp-admin-filters button.active{background:#fff;color:#09090d;border-color:#fff}
+ .gp-admin-label{font-size:9px;color:#a879ff;font-weight:900;letter-spacing:1px;margin:0 0 9px}
 .gp-suggestion{padding:17px;background:#0c0c12;border:1px solid var(--line);border-radius:10px}
 .gp-suggestion-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px}
 .gp-suggestion h4{font-size:14px;margin-bottom:7px;overflow-wrap:anywhere}
@@ -813,7 +817,8 @@ textarea.gp-field{min-height:105px;resize:vertical}
    <div class="community-panel">
     <h3>IDEAS DE LA COMUNIDAD</h3>
     <p class="community-note">Las sugerencias aprobadas se mostrarán aquí. Para votar necesitas iniciar sesión.</p>
-    <div class="gp-list" id="suggestionList"><div class="gp-empty">Cargando sugerencias…</div></div>
+    <div id="adminSuggestionTools" hidden><div class="gp-admin-label">PANEL DE MODERACIÓN</div><div class="gp-admin-filters" id="adminSuggestionFilters"><button type="button" data-suggestion-filter="all" class="active">TODAS</button><button type="button" data-suggestion-filter="pending">PENDIENTES</button><button type="button" data-suggestion-filter="approved">APROBADAS</button><button type="button" data-suggestion-filter="rejected">RECHAZADAS</button><button type="button" data-suggestion-filter="completed">COMPLETADAS</button></div></div>
+     <div class="gp-list" id="suggestionList"><div class="gp-empty">Cargando sugerencias…</div></div>
    </div>
    <div class="community-panel">
     <h3>PROPÓN ALGO</h3>
@@ -1084,6 +1089,8 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  let authMode = "login";
  let isAdmin = false;
  let profilesCache = {};
+ let suggestionLoadVersion = 0;
+ let adminSuggestionFilter = "all";
  const $ = (id) => document.getElementById(id);
  const modal = $("accountModal");
  const accountButton = $("accountButton");
@@ -1178,6 +1185,7 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   } catch { isAdmin=false; }
  }
  async function loadSuggestions() {
+  const loadVersion=++suggestionLoadVersion;
   const list=$("suggestionList");
   if (!list) return;
   list.replaceChildren();
@@ -1185,9 +1193,13 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
    let query=db.from("suggestions").select("id,user_id,title,description,status,created_at").order("created_at",{ascending:false}).limit(50);
    // Los visitantes y usuarios normales solo solicitan propuestas públicas.
    if (!isAdmin) query=query.eq("status","approved");
+   else if(adminSuggestionFilter!=="all") query=query.eq("status",adminSuggestionFilter);
    const {data,error}=await query;
    if(error) throw error;
-   const suggestions=data || [];
+   if(loadVersion!==suggestionLoadVersion) return;
+   // Evita tarjetas repetidas si se solapan recargas de sesión, votos o moderación.
+   const uniqueSuggestions=[...new Map((data || []).map(item=>[item.id,item])).values()];
+   const suggestions=uniqueSuggestions;
    if(!suggestions.length) {
     const empty=document.createElement("div"); empty.className="gp-empty";
     empty.textContent=isAdmin?"Todavía no hay sugerencias.":"Todavía no hay propuestas aprobadas. ¡Puedes enviar la primera!";
@@ -1197,10 +1209,12 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
    profilesCache={};
    if(userIds.length) {
     const {data:profiles}=await db.from("profiles").select("id,username,display_name,bio,avatar_url").in("id",userIds);
+    if(loadVersion!==suggestionLoadVersion) return;
     (profiles || []).forEach(p=>profilesCache[p.id]=p);
    }
    let voteIds=new Set(),voteCounts={};
    const {data:votes}=await db.from("suggestion_votes").select("suggestion_id,user_id");
+   if(loadVersion!==suggestionLoadVersion) return;
    (votes || []).forEach(v=>{
     voteCounts[v.suggestion_id]=(voteCounts[v.suggestion_id]||0)+1;
     if(currentUser && v.user_id===currentUser.id) voteIds.add(v.suggestion_id);
@@ -1226,7 +1240,7 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     const title=document.createElement("h4"); title.textContent=item.title; card.appendChild(title);
     const desc=document.createElement("p"); desc.textContent=item.description; card.appendChild(desc);
     const actions=document.createElement("div"); actions.className="gp-card-actions";
-    if(item.status==="approved") {
+    if(item.status==="approved" && !isAdmin) {
      const vote=document.createElement("button");vote.type="button";
      vote.textContent=(voteIds.has(item.id)?"♥ VOTADO":"♡ VOTAR")+" · "+(voteCounts[item.id]||0);
      vote.disabled=!currentUser;
@@ -1234,7 +1248,7 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
      vote.addEventListener("click",()=>toggleVote(item.id));actions.appendChild(vote);
     }
     if(isAdmin) {
-     [["approved","APROBAR"],["rejected","RECHAZAR"],["completed","COMPLETADA"]].forEach(([value,label])=>{
+     [["pending","VOLVER A PENDIENTE"],["approved","APROBAR"],["rejected","RECHAZAR"],["completed","COMPLETADA"]].filter(([value])=>value!==item.status).forEach(([value,label])=>{
       const b=document.createElement("button");b.type="button";b.textContent=label;
       b.addEventListener("click",()=>moderateSuggestion(item.id,value));actions.appendChild(b);
      });
@@ -1261,13 +1275,14 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   if(!isAdmin){showToast("No tienes permisos para moderar.");return;}
   const {error}=await db.from("suggestions").update({status:nextStatus}).eq("id",id);
   if(error){showToast("No se pudo actualizar. Revisa los permisos de administrador.");return;}
-  showToast("Sugerencia actualizada.");await loadSuggestions();
+  showToast(nextStatus==="rejected"?"Sugerencia rechazada. Ya no será pública.":nextStatus==="pending"?"Sugerencia devuelta a pendientes.":"Estado de sugerencia actualizado.");await loadSuggestions();
  }
  async function refreshSession(session) {
   currentUser=session?.user || null;
   await checkAdmin();
   const metadata=currentUser?.user_metadata || {};
   const publicName=metadata.display_name || metadata.username || "Miembro";
+  $("adminSuggestionTools").hidden=!isAdmin;
   accountButton.textContent=currentUser?"MI PERFIL":"MI CUENTA";
   communityAction.textContent=currentUser?"MI CUENTA":"INICIAR SESIÓN";
   $("communityUser").textContent=currentUser?"Sesión iniciada · "+publicName+(isAdmin?" · ADMINISTRADOR":""):"Estás explorando como visitante.";
@@ -1285,6 +1300,13 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  document.addEventListener("keydown",e=>{if(e.key==="Escape" && modal.classList.contains("open"))closeAccount();});
  document.querySelectorAll("[data-auth-mode]").forEach(btn=>btn.addEventListener("click",()=>setAuthMode(btn.dataset.authMode)));
  profileForm.addEventListener("submit",saveProfile);
+ $("adminSuggestionFilters").addEventListener("click",e=>{
+  const button=e.target.closest("button[data-suggestion-filter]");
+  if(!button || !isAdmin) return;
+  adminSuggestionFilter=button.dataset.suggestionFilter;
+  $("adminSuggestionFilters").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b===button));
+  loadSuggestions();
+ });
  accountForm.addEventListener("submit",async e=>{
   e.preventDefault();
   const submit=$("accountSubmit");submit.disabled=true;
