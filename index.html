@@ -328,6 +328,7 @@ textarea.gp-field{min-height:105px;resize:vertical}
 .gp-profile-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:#ffffff12;border:1px solid #ffffff25;color:white;font:800 13px "Barlow Condensed",sans-serif;flex:none}
 .gp-profile-bio{color:#858591;font-size:10px;line-height:1.5;margin-top:3px}
 .gp-profile-author strong{color:#f1f1f5;font-size:11px}
+.gp-creator-inline{display:inline-flex;vertical-align:middle;margin-left:7px;padding:3px 6px;border:1px solid #e34b58;border-radius:4px;background:linear-gradient(110deg,#54101b,#a51f32,#7a1424);color:#fff;font-size:8px;font-weight:900;letter-spacing:.55px}.gp-creator-name{background:linear-gradient(90deg,#fff,#ffb6bf,#fff,#ff6678,#fff);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:gpCreatorShine 4s linear infinite}@keyframes gpCreatorShine{to{background-position:220% center}}@media(prefers-reduced-motion:reduce){.gp-creator-name{animation:none}}
 #profileForm{margin-top:12px}
 #profileForm .gp-field{margin-bottom:10px}
 
@@ -1340,7 +1341,7 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     renderAvatar(avatar,profile?.avatar_url,authorName);
     const authorInfo=document.createElement("div");
     const profileLink=document.createElement("a"); profileLink.href=profile?.username?"usuario.html?u="+encodeURIComponent(profile.username):"#"; profileLink.style.color="inherit"; profileLink.style.textDecoration="none";
-    const strong=document.createElement("strong"); strong.textContent=authorName; profileLink.appendChild(strong);
+    const strong=document.createElement("strong"); strong.textContent=authorName; if(profile?.username==="gabri10")strong.classList.add("gp-creator-name"); profileLink.appendChild(strong); if(profile?.username==="gabri10"){const creator=document.createElement("span");creator.className="gp-creator-inline";creator.textContent="✦ CREADOR";profileLink.appendChild(creator);}
     const handle=document.createElement("div"); handle.textContent=profile?.username?"@"+profile.username:"Comunidad";
     profileLink.appendChild(handle); authorInfo.appendChild(profileLink);
     if(profile?.bio){const bio=document.createElement("div");bio.className="gp-profile-bio";bio.textContent=profile.bio;authorInfo.appendChild(bio);}
