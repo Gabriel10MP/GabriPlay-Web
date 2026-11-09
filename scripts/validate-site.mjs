@@ -9,37 +9,37 @@ const warnings = [];
 
 for (const file of htmlFiles) {
   const source = fs.readFileSync(path.join(root, file), "utf8");
-  const ids = [...source.matchAll(/\\bid=["']([^"']+)["']/g)].map(match => match[1]);
+  const ids = [...source.matchAll(/\bid=["']([^"']+)["']/g)].map(match => match[1]);
   const seen = new Set();
   for (const id of ids) {
-    if (seen.has(id)) errors.push(`${file}: duplicate id="${id}"`);
+    if (seen.has(id)) errors.push(file + ': duplicate id="' + id + '"');
     seen.add(id);
   }
 
-  if (/\\\\n<\\/body>/i.test(source)) errors.push(`${file}: literal \\n before </body>`);
-  if (!/<meta[^>]+name=["']description["']/i.test(source)) warnings.push(`${file}: missing meta description`);
-  if (!/<link[^>]+rel=["']icon["']/i.test(source)) warnings.push(`${file}: missing favicon link`);
+  if (source.includes("\\n</body>")) errors.push(file + ": literal backslash-n before </body>");
+  if (!/<meta[^>]+name=["']description["']/i.test(source)) warnings.push(file + ": missing meta description");
+  if (!/<link[^>]+rel=["']icon["']/i.test(source)) warnings.push(file + ": missing favicon link");
 
-  const scripts = [...source.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi)];
+  const scripts = [...source.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)];
   scripts.forEach((match, index) => {
-    if (/\\bsrc=/i.test(match[1]) || !match[2].trim()) return;
+    if (/\bsrc=/i.test(match[1]) || !match[2].trim()) return;
     try {
-      new vm.Script(match[2], { filename: `${file} inline script ${index + 1}` });
+      new vm.Script(match[2], { filename: file + " inline script " + (index + 1) });
     } catch (error) {
-      errors.push(`${file} inline script ${index + 1}: ${error.message}`);
+      errors.push(file + " inline script " + (index + 1) + ": " + error.message);
     }
   });
 
-  const localRefs = [...source.matchAll(/\\b(?:href|src)=["']([^"']+)["']/gi)].map(match => match[1]);
+  const localRefs = [...source.matchAll(/\b(?:href|src)=["']([^"']+)["']/gi)].map(match => match[1]);
   for (const ref of localRefs) {
     if (!ref || ref.startsWith("#") || /^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(ref)) continue;
     const clean = decodeURIComponent(ref.split(/[?#]/)[0]);
     if (!clean) continue;
     const target = path.resolve(root, clean);
     if (!target.startsWith(root + path.sep) && target !== root) {
-      errors.push(`${file}: local reference escapes repository: ${ref}`);
+      errors.push(file + ": local reference escapes repository: " + ref);
     } else if (!fs.existsSync(target)) {
-      errors.push(`${file}: missing local file ${ref}`);
+      errors.push(file + ": missing local file " + ref);
     }
   }
 }
@@ -53,4 +53,4 @@ if (errors.length) {
   errors.forEach(item => console.error(" - " + item));
   process.exit(1);
 }
-console.log(`GabriPlay QA passed: ${htmlFiles.length} HTML pages checked, inline JavaScript parses, IDs are unique and local assets exist.`);
+console.log("GabriPlay QA passed: " + htmlFiles.length + " HTML pages checked, inline JavaScript parses, IDs are unique and local assets exist.");
