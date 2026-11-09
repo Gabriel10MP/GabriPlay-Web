@@ -111,7 +111,7 @@ $("profileEditor").addEventListener("submit",async e=>{
  try{
   const {error}=await db.from("profiles").upsert({id:user.id,username,display_name,bio,...values,updated_at:new Date().toISOString()},{onConflict:"id"});
   if(error)throw error;
-  const {error:authError}=await db.auth.updateUser({data:{username,display_name,bio}});
+  const {error:authError}=await db.auth.updateUser({data:{username,display_name,bio,avatar_url:values.avatar_url,banner_url:values.banner_url}});
   if(authError)throw authError;
   setStatus("Perfil actualizado correctamente. Los cambios ya están guardados.");
   updatePreview();
