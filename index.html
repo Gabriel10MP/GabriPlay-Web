@@ -229,9 +229,8 @@ footer{border-top:1px solid var(--line);padding:38px 0}
 .back-top.visible{display:block}
 
 /* REVEAL */
-.reveal{opacity:1;transform:none;transition:opacity .7s,transform .7s}
-html.js-ready .reveal{opacity:0;transform:translateY(20px)}
-html.js-ready .reveal.visible{opacity:1;transform:translateY(0)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
 @media(max-width:850px){
  .nav-links{display:none;position:absolute;top:74px;left:0;right:0;padding:22px;background:#101016;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
@@ -1050,341 +1049,184 @@ const observer=new IntersectionObserver(entries=>{
  });
 },{threshold:.1});
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-document.documentElement.classList.add("js-ready");
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (() => {
  "use strict";
- const $ = (id) => document.getElementById(id);
  const SUPABASE_URL = "https://gzqebfwknfnwnobwypve.supabase.co";
- const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_NjEt_shVbSEbvALrsFt4c_Q_GOGgPBKz";
+ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_NjEt_shVbSEbvALrsFt4cQ_GOGgPBKz";
+ const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+ let currentUser = null;
+ let authMode = "login";
+ let isAdmin = false;
+ let suggestionsCache = [];
+ const $ = (id) => document.getElementById(id);
  const modal = $("accountModal");
  const accountButton = $("accountButton");
  const communityAction = $("communityAccountAction");
  const accountForm = $("accountForm");
  const status = $("accountStatus");
  const suggestionStatus = $("suggestionStatus");
- const suggestionList = $("suggestionList");
- const suggestionSubmit = $("suggestionSubmit");
 
- let db = null;
- let currentUser = null;
- let authMode = "login";
- let isAdmin = false;
- let loadingSuggestions = false;
-
- function setStatus(element, message, isError = false) {
-  if (!element) return;
-  element.textContent = message;
-  element.style.color = isError ? "#ff9b9b" : "";
+ function setStatus(el, message, isError=false) {
+  el.textContent = message;
+  el.style.color = isError ? "#ff9b9b" : "";
  }
-
- function showEmpty(message) {
-  if (!suggestionList) return;
-  const empty = document.createElement("div");
-  empty.className = "gp-empty";
-  empty.textContent = message;
-  suggestionList.replaceChildren(empty);
- }
-
  function openAccount() {
-  if (!modal) return;
   modal.classList.add("open");
   document.body.style.overflow = "hidden";
-  if (currentUser) showSignedInPanel();
-  else setAuthMode("login");
+  if (currentUser) showSignedInPanel(); else setAuthMode("login");
  }
-
  function closeAccount() {
-  if (!modal) return;
   modal.classList.remove("open");
   document.body.style.overflow = "";
  }
-
  function setAuthMode(mode) {
   authMode = mode;
-  document.querySelectorAll("[data-auth-mode]").forEach(button => {
-   button.classList.toggle("active", button.dataset.authMode === mode);
-  });
-  const registerFields = $("registerFields");
-  if (registerFields) registerFields.hidden = mode !== "register";
-  $("accountPassword")?.setAttribute("autocomplete", mode === "register" ? "new-password" : "current-password");
-  if ($("accountSubmit")) $("accountSubmit").textContent = mode === "register" ? "CREAR CUENTA" : "ENTRAR";
-  if ($("accountModalTitle")) $("accountModalTitle").textContent = mode === "register" ? "ÚNETE A LA COMUNIDAD." : "TU CUENTA.";
+  document.querySelectorAll("[data-auth-mode]").forEach(btn => btn.classList.toggle("active", btn.dataset.authMode === mode));
+  $("registerFields").hidden = mode !== "register";
+  $("accountPassword").setAttribute("autocomplete", mode === "register" ? "new-password" : "current-password");
+  $("accountSubmit").textContent = mode === "register" ? "CREAR CUENTA" : "ENTRAR";
+  $("accountModalTitle").textContent = mode === "register" ? "ÚNETE A LA COMUNIDAD." : "TU CUENTA.";
   setStatus(status, "");
  }
-
  function showSignedInPanel() {
-  if (accountForm) accountForm.hidden = true;
-  if ($("signedInPanel")) $("signedInPanel").hidden = false;
-  setStatus($("signedInText"), "Has iniciado sesión como " + (currentUser?.email || "usuario de GabriPlay") + ".");
+  accountForm.hidden = true;
+  $("signedInPanel").hidden = false;
+  $("signedInText").textContent = "Has iniciado sesión como " + (currentUser.email || "usuario de GabriPlay") + ".";
  }
-
  function showAuthForm() {
-  if (accountForm) accountForm.hidden = false;
-  if ($("signedInPanel")) $("signedInPanel").hidden = true;
+  accountForm.hidden = false;
+  $("signedInPanel").hidden = true;
  }
-
  async function checkAdmin() {
-  isAdmin = false;
-  if (!currentUser || !db) return;
-  try {
-   const { data, error } = await db.from("gabriplay_admins")
-    .select("user_id").eq("user_id", currentUser.id).maybeSingle();
-   isAdmin = !error && !!data;
-  } catch (error) {
-   console.warn("No se pudo comprobar el rol de administrador:", error);
-  }
+  if (!currentUser) { isAdmin = false; return; }
+  const { data, error } = await db.from("gabriplay_admins").select("user_id").eq("user_id", currentUser.id).maybeSingle();
+  isAdmin = !error && !!data;
  }
-
  async function loadSuggestions() {
-  if (!db || !suggestionList || loadingSuggestions) return;
-  loadingSuggestions = true;
-  try {
-   let query = db.from("suggestions")
-    .select("id,user_id,title,description,status,created_at")
-    .order("created_at", { ascending: false }).limit(50);
-   if (!isAdmin) query = query.eq("status", "approved");
-   const { data, error } = await query;
-   if (error) {
-    showEmpty("No se han podido cargar las sugerencias. Revisa las tablas y permisos de Supabase.");
-    console.error("Error cargando sugerencias:", error);
-    return;
+  const list = $("suggestionList");
+  list.replaceChildren();
+  const { data, error } = await db.from("suggestions").select("id,user_id,title,description,status,created_at").order("created_at", {ascending:false}).limit(50);
+  if (error) {
+   const empty = document.createElement("div"); empty.className = "gp-empty";
+   empty.textContent = "No se han podido cargar las sugerencias. Comprueba la configuración de Supabase.";
+   list.appendChild(empty); return;
+  }
+  suggestionsCache = data || [];
+  if (!suggestionsCache.length) {
+   const empty = document.createElement("div"); empty.className = "gp-empty";
+   empty.textContent = "Todavía no hay sugerencias. ¡Puedes proponer la primera!";
+   list.appendChild(empty); return;
+  }
+  let voteIds = new Set();
+  let voteCounts = {};
+  if (currentUser) {
+   const { data: votes } = await db.from("suggestion_votes").select("suggestion_id,user_id");
+   (votes || []).forEach(v => { voteCounts[v.suggestion_id] = (voteCounts[v.suggestion_id] || 0) + 1; if (v.user_id === currentUser.id) voteIds.add(v.suggestion_id); });
+  }
+  suggestionsCache.forEach(item => {
+   const card = document.createElement("article"); card.className = "gp-suggestion";
+   const top = document.createElement("div"); top.className = "gp-suggestion-top";
+   const tag = document.createElement("span"); tag.className = "gp-tag" + (item.status === "pending" ? " pending" : item.status === "rejected" ? " rejected" : "");
+   tag.textContent = item.status === "pending" ? "PENDIENTE" : item.status === "completed" ? "COMPLETADA" : item.status === "rejected" ? "NO APROBADA" : "APROBADA";
+   const title = document.createElement("h4"); title.textContent = item.title;
+   top.appendChild(tag); card.appendChild(top); card.appendChild(title);
+   const desc = document.createElement("p"); desc.textContent = item.description; card.appendChild(desc);
+   const actions = document.createElement("div"); actions.className = "gp-card-actions";
+   if (item.status === "approved") {
+    const vote = document.createElement("button");
+    vote.type = "button"; vote.textContent = (voteIds.has(item.id) ? "♥ VOTADO" : "♡ VOTAR") + " · " + (voteCounts[item.id] || 0);
+    vote.addEventListener("click", () => toggleVote(item.id)); actions.appendChild(vote);
    }
-   const suggestions = data || [];
-   if (!suggestions.length) {
-    showEmpty(isAdmin ? "Todavía no hay propuestas." : "Todavía no hay sugerencias aprobadas. ¡Puedes proponer la primera!");
-    return;
-   }
-
-   let voteCounts = Object.create(null);
-   let votedIds = new Set();
-   const { data: votes, error: voteError } = await db.from("suggestion_votes")
-    .select("suggestion_id,user_id");
-   if (!voteError && Array.isArray(votes)) {
-    votes.forEach(vote => {
-     voteCounts[vote.suggestion_id] = (voteCounts[vote.suggestion_id] || 0) + 1;
-     if (currentUser && vote.user_id === currentUser.id) votedIds.add(vote.suggestion_id);
+   if (isAdmin) {
+    [["approved","APROBAR"],["rejected","RECHAZAR"],["completed","COMPLETADA"]].forEach(([value,label])=>{
+     const b=document.createElement("button"); b.type="button"; b.textContent=label;
+     b.addEventListener("click",()=>moderateSuggestion(item.id,value)); actions.appendChild(b);
     });
    }
-
-   const fragment = document.createDocumentFragment();
-   suggestions.forEach(item => {
-    const card = document.createElement("article");
-    card.className = "gp-suggestion";
-    const top = document.createElement("div");
-    top.className = "gp-suggestion-top";
-    const tag = document.createElement("span");
-    tag.className = "gp-tag" + (item.status === "pending" ? " pending" : item.status === "rejected" ? " rejected" : "");
-    tag.textContent = item.status === "pending" ? "PENDIENTE" : item.status === "completed" ? "COMPLETADA" : item.status === "rejected" ? "NO APROBADA" : "APROBADA";
-    top.appendChild(tag);
-    card.appendChild(top);
-
-    const title = document.createElement("h4");
-    title.textContent = item.title || "Sugerencia sin título";
-    card.appendChild(title);
-    const description = document.createElement("p");
-    description.textContent = item.description || "";
-    card.appendChild(description);
-
-    const actions = document.createElement("div");
-    actions.className = "gp-card-actions";
-    if (item.status === "approved") {
-     const voteButton = document.createElement("button");
-     voteButton.type = "button";
-     voteButton.textContent = (votedIds.has(item.id) ? "♥ VOTADO" : "♡ VOTAR") + " · " + (voteCounts[item.id] || 0);
-     voteButton.addEventListener("click", () => toggleVote(item.id));
-     actions.appendChild(voteButton);
-    }
-    if (isAdmin) {
-     [["approved", "APROBAR"], ["rejected", "RECHAZAR"], ["completed", "COMPLETADA"]].forEach(([value, label]) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = label;
-      button.addEventListener("click", () => moderateSuggestion(item.id, value));
-      actions.appendChild(button);
-     });
-    }
-    if (actions.childElementCount) card.appendChild(actions);
-    fragment.appendChild(card);
-   });
-   suggestionList.replaceChildren(fragment);
-  } catch (error) {
-   console.error("Error inesperado al cargar la comunidad:", error);
-   showEmpty("Ha ocurrido un error al cargar la comunidad. La web sigue disponible.");
-  } finally {
-   loadingSuggestions = false;
-  }
+   if (actions.childElementCount) card.appendChild(actions);
+   list.appendChild(card);
+  });
  }
-
  async function toggleVote(suggestionId) {
-  if (!currentUser) {
-   openAccount();
-   setStatus(status, "Inicia sesión para votar.");
-   return;
-  }
-  try {
-   const { data: existing, error: findError } = await db.from("suggestion_votes")
-    .select("suggestion_id").eq("suggestion_id", suggestionId)
-    .eq("user_id", currentUser.id).maybeSingle();
-   if (findError) throw findError;
-   const result = existing
-    ? await db.from("suggestion_votes").delete().eq("suggestion_id", suggestionId).eq("user_id", currentUser.id)
-    : await db.from("suggestion_votes").insert({ suggestion_id: suggestionId, user_id: currentUser.id });
-   if (result.error) throw result.error;
-   await loadSuggestions();
-  } catch (error) {
-   console.error("Error guardando voto:", error);
-   showToast("No se ha podido guardar el voto. Revisa los permisos de Supabase.");
-  }
+  if (!currentUser) { openAccount(); setStatus(status,"Inicia sesión para votar."); return; }
+  const { data: existing, error: findError } = await db.from("suggestion_votes").select("suggestion_id").eq("suggestion_id",suggestionId).eq("user_id",currentUser.id).maybeSingle();
+  if (findError) { showToast("No se ha podido comprobar tu voto."); return; }
+  const result = existing
+   ? await db.from("suggestion_votes").delete().eq("suggestion_id",suggestionId).eq("user_id",currentUser.id)
+   : await db.from("suggestion_votes").insert({suggestion_id:suggestionId,user_id:currentUser.id});
+  if (result.error) showToast("No se ha podido guardar el voto."); else await loadSuggestions();
  }
-
  async function moderateSuggestion(id, nextStatus) {
-  try {
-   const { error } = await db.from("suggestions").update({ status: nextStatus }).eq("id", id);
-   if (error) throw error;
-   showToast("Sugerencia actualizada.");
-   await loadSuggestions();
-  } catch (error) {
-   console.error("Error moderando sugerencia:", error);
-   showToast("No se pudo actualizar. Comprueba los permisos de administrador.");
-  }
+  const { error } = await db.from("suggestions").update({status:nextStatus}).eq("id",id);
+  if (error) { showToast("No se pudo actualizar. Revisa los permisos de administrador."); return; }
+  showToast("Sugerencia actualizada."); await loadSuggestions();
  }
-
  async function refreshSession(session) {
   currentUser = session?.user || null;
   await checkAdmin();
-  if (accountButton) accountButton.textContent = currentUser ? "MI PERFIL" : "MI CUENTA";
-  if (communityAction) communityAction.textContent = currentUser ? "MI CUENTA" : "INICIAR SESIÓN";
-  const communityUser = $("communityUser");
-  if (communityUser) communityUser.textContent = currentUser
-   ? "Sesión iniciada · " + (currentUser.email || "Usuario") + (isAdmin ? " · ADMINISTRADOR" : "")
-   : "Estás explorando como visitante.";
-  if (suggestionSubmit) suggestionSubmit.disabled = !currentUser;
+  accountButton.textContent = currentUser ? "MI PERFIL" : "MI CUENTA";
+  communityAction.textContent = currentUser ? "MI CUENTA" : "INICIAR SESIÓN";
+  $("communityUser").textContent = currentUser ? "Sesión iniciada · " + (currentUser.email || "Usuario") + (isAdmin ? " · ADMINISTRADOR" : "") : "Estás explorando como visitante.";
+  $("suggestionSubmit").disabled = !currentUser;
   setStatus(suggestionStatus, currentUser ? "Tu propuesta quedará pendiente de revisión." : "Inicia sesión para enviar una propuesta.");
-  if (modal?.classList.contains("open")) {
-   if (currentUser) showSignedInPanel();
-   else showAuthForm();
+  if (modal.classList.contains("open")) {
+   if (currentUser) showSignedInPanel(); else showAuthForm();
   }
   await loadSuggestions();
  }
-
- function showSupabaseUnavailable() {
-  setStatus(status, "El servicio de cuentas no ha cargado. Recarga la página o inténtalo más tarde.", true);
-  setStatus(suggestionStatus, "La comunidad no está disponible ahora mismo.", true);
-  if (suggestionSubmit) suggestionSubmit.disabled = true;
-  showEmpty("No se pudo conectar con el servicio de la comunidad.");
-  console.error("No se ha podido cargar la librería de Supabase.");
- }
-
- if (!window.supabase || typeof window.supabase.createClient !== "function") {
-  showSupabaseUnavailable();
-  return;
- }
-
- try {
-  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
- } catch (error) {
-  console.error("No se pudo iniciar Supabase:", error);
-  showSupabaseUnavailable();
-  return;
- }
-
- accountButton?.addEventListener("click", openAccount);
- communityAction?.addEventListener("click", openAccount);
- $("closeAccountModal")?.addEventListener("click", closeAccount);
- modal?.addEventListener("click", event => { if (event.target === modal) closeAccount(); });
- document.addEventListener("keydown", event => { if (event.key === "Escape" && modal?.classList.contains("open")) closeAccount(); });
- document.querySelectorAll("[data-auth-mode]").forEach(button => {
-  button.addEventListener("click", () => setAuthMode(button.dataset.authMode));
- });
-
- accountForm?.addEventListener("submit", async event => {
-  event.preventDefault();
-  const submit = $("accountSubmit");
-  if (submit) submit.disabled = true;
-  const email = $("accountEmail")?.value.trim() || "";
-  const password = $("accountPassword")?.value || "";
+ accountButton.addEventListener("click",openAccount);
+ communityAction.addEventListener("click",openAccount);
+ $("closeAccountModal").addEventListener("click",closeAccount);
+ modal.addEventListener("click",e=>{if(e.target===modal)closeAccount();});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape" && modal.classList.contains("open"))closeAccount();});
+ document.querySelectorAll("[data-auth-mode]").forEach(btn=>btn.addEventListener("click",()=>setAuthMode(btn.dataset.authMode)));
+ accountForm.addEventListener("submit",async e=>{
+  e.preventDefault();
+  const submit=$("accountSubmit"); submit.disabled=true;
+  const email=$("accountEmail").value.trim();
+  const password=$("accountPassword").value;
   try {
    if (authMode === "register") {
-    const username = $("accountUsername")?.value.trim().toLowerCase() || "";
-    const displayName = $("accountDisplayName")?.value.trim() || username;
-    if (!/^[a-z0-9_]{3,24}$/.test(username)) throw new Error("El usuario debe tener entre 3 y 24 caracteres: letras, números o guion bajo.");
-    if (password.length < 8) throw new Error("La contraseña debe tener al menos 8 caracteres.");
-    const { error } = await db.auth.signUp({
-     email, password,
-     options: {
-      data: { username, display_name: displayName },
-      emailRedirectTo: "https://gabriel10mp.github.io/GabriPlay-Web/"
-     }
-    });
+    const username=$("accountUsername").value.trim().toLowerCase();
+    const displayName=$("accountDisplayName").value.trim() || username;
+    if (!/^[a-z0-9_]{3,24}$/.test(username)) { setStatus(status,"El usuario debe tener entre 3 y 24 caracteres: letras, números o guion bajo.",true); return; }
+    if (password.length < 8) { setStatus(status,"La contraseña debe tener al menos 8 caracteres.",true); return; }
+    const { error } = await db.auth.signUp({email,password,options:{data:{username,display_name:displayName},emailRedirectTo:"https://gabriel10mp.github.io/GabriPlay-Web/"}});
     if (error) throw error;
-    setStatus(status, "Cuenta creada. Revisa tu correo para confirmar el registro antes de iniciar sesión.");
+    setStatus(status,"Cuenta creada. Revisa tu correo para confirmar el registro antes de iniciar sesión.");
    } else {
-    const { error } = await db.auth.signInWithPassword({ email, password });
+    const { error } = await db.auth.signInWithPassword({email,password});
     if (error) throw error;
-    setStatus(status, "Sesión iniciada correctamente.");
-    const { data, error: sessionError } = await db.auth.getSession();
-    if (sessionError) throw sessionError;
-    await refreshSession(data.session);
+    setStatus(status,"Sesión iniciada correctamente.");
+    await refreshSession((await db.auth.getSession()).data.session);
    }
-  } catch (error) {
-   setStatus(status, error.message || "Ha ocurrido un error.", true);
-  } finally {
-   if (submit) submit.disabled = false;
-  }
+  } catch(err) { setStatus(status,err.message || "Ha ocurrido un error.",true); }
+  finally { submit.disabled=false; }
  });
-
- $("signOutButton")?.addEventListener("click", async () => {
-  try {
-   const { error } = await db.auth.signOut();
-   if (error) throw error;
-   await refreshSession(null);
-   setAuthMode("login");
-   showAuthForm();
-   setStatus(status, "Has cerrado sesión.");
-  } catch (error) {
-   setStatus(status, error.message || "No se pudo cerrar la sesión.", true);
-  }
+ $("signOutButton").addEventListener("click",async()=>{
+  const {error}=await db.auth.signOut();
+  if(error){setStatus(status,error.message,true);return;}
+  setAuthMode("login"); showAuthForm(); setStatus(status,"Has cerrado sesión.");
  });
-
- $("suggestionForm")?.addEventListener("submit", async event => {
-  event.preventDefault();
-  if (!currentUser) { openAccount(); return; }
-  const title = $("suggestionTitle")?.value.trim() || "";
-  const description = $("suggestionDescription")?.value.trim() || "";
-  if (!title || !description) return;
-  if (suggestionSubmit) suggestionSubmit.disabled = true;
-  try {
-   const { error } = await db.from("suggestions").insert({
-    user_id: currentUser.id, title, description, status: "pending"
-   });
-   if (error) throw error;
-   $("suggestionForm").reset();
-   setStatus(suggestionStatus, "¡Idea enviada! Quedará pendiente de revisión.");
-   showToast("¡Sugerencia enviada!");
-   if (isAdmin) await loadSuggestions();
-  } catch (error) {
-   setStatus(suggestionStatus, error.message || "No se pudo enviar la propuesta.", true);
-  } finally {
-   if (suggestionSubmit) suggestionSubmit.disabled = !currentUser;
-  }
+ $("suggestionForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(!currentUser){openAccount();return;}
+  const title=$("suggestionTitle").value.trim();
+  const description=$("suggestionDescription").value.trim();
+  if(!title || !description)return;
+  const button=$("suggestionSubmit"); button.disabled=true;
+  const {error}=await db.from("suggestions").insert({user_id:currentUser.id,title,description,status:"pending"});
+  button.disabled=false;
+  if(error){setStatus(suggestionStatus,error.message,true);return;}
+  $("suggestionForm").reset(); setStatus(suggestionStatus,"¡Idea enviada! Quedará pendiente de revisión.");
+  await loadSuggestions();
  });
-
- db.auth.onAuthStateChange((_event, session) => {
-  setTimeout(() => { refreshSession(session).catch(error => console.error("Error actualizando sesión:", error)); }, 0);
- });
- db.auth.getSession()
-  .then(({ data, error }) => {
-   if (error) throw error;
-   return refreshSession(data.session);
-  })
-  .catch(error => {
-   console.error("No se pudo recuperar la sesión:", error);
-   showEmpty("No se pudo comprobar la sesión. Puedes seguir navegando por GabriPlay.");
-  });
+ db.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>refreshSession(session),0);});
+ db.auth.getSession().then(({data})=>refreshSession(data.session));
 })();
 </script>
 
