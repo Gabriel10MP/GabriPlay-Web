@@ -1,0 +1,27 @@
+name: Publish site version
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  update-version:
+    if: ${{ !contains(github.event.head_commit.message, '[skip version]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Write deployed version
+        run: |
+          printf '{\n  "version": "%s",\n  "updatedAt": "%s"\n}\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > version.json
+      - name: Commit version marker
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add version.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: publish site version [skip version]"
+            git push
+          fi
