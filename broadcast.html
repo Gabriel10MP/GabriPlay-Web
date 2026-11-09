@@ -119,4 +119,54 @@ db.auth.onAuthStateChange((_event,session)=>{user=session?.user||null;setTimeout
 <script>
 (()=>{const url=new URL("version.json",location.href);let version=null,pending=false;const check=async()=>{if(document.visibilityState!=="visible")return;try{const r=await fetch(url.href+"?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;const d=await r.json();if(!d.version)return;if(version===null){version=d.version;return}if(d.version!==version){pending=true;if(document.activeElement?.matches("input,textarea"))return;location.reload()}}catch(_){}};check();setInterval(check,60000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&pending)location.reload()})})();
 </script>
+<script>
+(() => {
+  const versionUrl = new URL("version.json", location.href);
+  let currentVersion = null;
+  let updatePending = false;
+  let checking = false;
+  const hasActiveWork = () => {
+    const active = document.activeElement;
+    if (active && active.matches("input,textarea,select,[contenteditable=true]")) return true;
+    return !!document.querySelector(".modal.open, .lightbox.open, dialog[open]");
+  };
+  const reloadWhenSafe = () => {
+    if (updatePending && !hasActiveWork() && document.visibilityState === "visible") {
+      location.reload();
+    }
+  };
+  const checkForUpdate = async () => {
+    if (checking || document.visibilityState !== "visible") return;
+    checking = true;
+    try {
+      const response = await fetch(versionUrl.href + "?check=" + Date.now(), { cache: "no-store" });
+      if (!response.ok) return;
+      const data = await response.json();
+      if (!data.version) return;
+      if (currentVersion === null) {
+        currentVersion = data.version;
+        return;
+      }
+      if (data.version !== currentVersion) {
+        updatePending = true;
+        reloadWhenSafe();
+      }
+    } catch (_) {
+      // Si la red o GitHub Pages falla temporalmente, se reintentará.
+    } finally {
+      checking = false;
+    }
+  };
+  checkForUpdate();
+  window.setInterval(checkForUpdate, 30000);
+  window.addEventListener("focus", () => { checkForUpdate(); reloadWhenSafe(); });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      checkForUpdate();
+      reloadWhenSafe();
+    }
+  });
+  document.addEventListener("focusout", () => window.setTimeout(reloadWhenSafe, 250));
+})();
+</script>
 </body></html>
