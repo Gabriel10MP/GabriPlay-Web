@@ -181,7 +181,7 @@ $("exportBtn").addEventListener("click",()=>{
  const rows=suggestions.filter(x=>!x.deleted_at);
  const cell=v=>'"'+String(v??"").replace(/"/g,'""').replace(/\r?\n/g," ")+'"';
  const csv=["id,titulo,descripcion,estado,fecha,autor",...rows.map(x=>[x.id,x.title,x.description,x.status,x.created_at,author(x.user_id)].map(cell).join(","))].join("\r\n");
- const blob=new Blob(["\\uFEFF",csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+ const blob=new Blob([String.fromCharCode(65279),csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");
  a.href=url;a.download="gabriplay-sugerencias.csv";document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);
  message("Exportación CSV preparada.");
 });
