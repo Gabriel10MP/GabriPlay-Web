@@ -510,6 +510,11 @@ footer{border-color:#48232a}
 @media(max-width:850px){.gp-hub-grid{grid-template-columns:1fr 1fr}.gp-hub-card.primary{grid-row:auto;min-height:230px;grid-column:span 2}}
 @media(max-width:600px){.gp-hub-intro{grid-template-columns:1fr}.gp-hub-grid{grid-template-columns:1fr}.gp-hub-card.primary{grid-column:auto;min-height:250px}.gp-hub-card{min-height:165px}.gp-hub-bottom{align-items:flex-start;flex-direction:column}}
 
+/* GabriPlay: mantener la portada centrada en el contenido del canal */
+#roblox, #mundos, #arcade { display:none !important; }
+#explorar .quick-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+#explorar .quick-card { min-height:190px; }
+@media(max-width:760px){#explorar .quick-grid{grid-template-columns:1fr;}}
 </style>
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
 <link rel="apple-touch-icon" href="favicon.svg?v=1">
@@ -528,11 +533,9 @@ footer{border-color:#48232a}
    <a href="#inicio">INICIO</a>
    <a href="#videos">TUTORIALES</a>
    <a href="#gta">GTA V</a>
-   <a href="#roblox">ROBLOX</a>
-   <a href="#mundos">JUEGOS</a>
    <a href="#comunidad">COMUNIDAD</a>
    <a href="broadcast.html">CANAL DEL CREADOR</a>
-   <a href="#sobre">SOBRE GABRIPLAY</a>
+   <a href="#sobre">EL CANAL</a>
   </div>
   <div class="nav-right">
    <a class="nav-button admin-nav-button" id="adminPanelButton" href="admin.html" hidden>⚙ ADMIN</a>
@@ -551,8 +554,7 @@ footer{border-color:#48232a}
   <div class="hero-overline">Bienvenido a la página oficial</div>
   <h1><span>PLAY</span><span class="outline">BEYOND.</span><span class="gradient-text">GABRIPLAY.</span></h1>
   <p class="hero-copy">
-   Videojuegos, tutoriales, mundos por descubrir y proyectos que van tomando forma.
-   Esto no es solo una página para ver vídeos. Es el universo de GabriPlay.
+   Tutoriales de GTA V, mods, herramientas y contenido gaming. Todo lo que encuentras aquí pertenece al canal GabriPlay.
   </p>
   <div class="hero-actions">
    <a class="btn" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">▶ ENTRAR AL CANAL</a>
@@ -560,7 +562,7 @@ footer{border-color:#48232a}
   </div>
   <div class="hero-bottom">
    <span><i class="status-dot"></i> GABRIPLAY ONLINE</span>
-   <span>GTA V · GAMING · CREACIÓN</span>
+   <span>GTA V · TUTORIALES · MODS</span>
    <span>EST. GABRIPLAY</span>
   </div>
  </div>
@@ -569,8 +571,8 @@ footer{border-color:#48232a}
 
 <div class="ticker">
  <div class="ticker-track">
-  <span>GABRIPLAY <b>✦</b> GTA V <b>✦</b> TUTORIALES <b>✦</b> ROBLOX STUDIO <b>✦</b> GAMING <b>✦</b> NUEVOS MUNDOS <b>✦</b></span>
-  <span>GABRIPLAY <b>✦</b> GTA V <b>✦</b> TUTORIALES <b>✦</b> ROBLOX STUDIO <b>✦</b> GAMING <b>✦</b> NUEVOS MUNDOS <b>✦</b></span>
+  <span>GABRIPLAY <b>✦</b> GTA V <b>✦</b> TUTORIALES <b>✦</b> MODS <b>✦</b> MENYOO <b>✦</b> OPENIV <b>✦</b> LSPDFR <b>✦</b></span>
+  <span>GABRIPLAY <b>✦</b> GTA V <b>✦</b> TUTORIALES <b>✦</b> MODS <b>✦</b> MENYOO <b>✦</b> OPENIV <b>✦</b> LSPDFR <b>✦</b></span>
  </div>
 </div>
 
@@ -581,33 +583,15 @@ footer{border-color:#48232a}
    <div>
     <div class="small-label">Elige tu destino</div>
     <h2>¿POR DÓNDE <span class="gradient-text">EMPEZAMOS?</span></h2>
-    <p>Hay varias zonas por descubrir. Elige una y entra directamente en ella.</p>
+    <p>Accede directamente a los vídeos, guías de GTA V y novedades del canal.</p>
    </div>
    <span class="section-number">01 / EXPLORAR</span>
   </div>
   <div class="quick-grid">
-   <a class="quick-card" href="#videos">
-    <div class="quick-icon">▶</div>
-    <h3>LOS VÍDEOS</h3>
-    <p>Tutoriales y contenido del canal.</p>
-   </a>
-   <a class="quick-card" href="#gta">
-    <div class="quick-icon">🚘</div>
-    <h3>LOS SANTOS</h3>
-    <p>Mods, coches y GTA V.</p>
-   </a>
-   <a class="quick-card" href="#roblox">
-    <div class="quick-icon">🧱</div>
-    <h3>EL LABORATORIO</h3>
-    <p>Roblox Studio y creación.</p>
-   </a>
-   <a class="quick-card" href="#arcade">
-    <div class="quick-icon">🎮</div>
-    <h3>EL ARCADE</h3>
-    <p>Pruebas, juegos y sorpresas.</p>
-   </a>
-  </div>
- </div>
+   <a class="quick-card" href="#videos"><div class="quick-icon">▶</div><h3>VÍDEOS Y TUTORIALES</h3><p>Guías, mods y contenido publicado en GabriPlay.</p></a>
+   <a class="quick-card" href="#gta"><div class="quick-icon">🚘</div><h3>GTA V</h3><p>Instalaciones, herramientas y modificaciones.</p></a>
+   <a class="quick-card" href="broadcast.html"><div class="quick-icon">📡</div><h3>CANAL DEL CREADOR</h3><p>Anuncios y novedades directamente de Gabri.</p></a>
+  </div> </div>
 </section>
 
 <!-- CANAL DEL CREADOR: DESTACADO EN PORTADA -->
@@ -633,7 +617,7 @@ footer{border-color:#48232a}
    <div>
     <div class="gp-hub-kicker">TU PUNTO DE PARTIDA · GABRIPLAY HUB</div>
     <h2 class="gp-hub-title">ENTRA. <span class="gradient-text">DESCUBRE.</span><br>FORMA PARTE.</h2>
-    <p>No te pierdas entre secciones. Aquí tienes las zonas principales de GabriPlay: contenido, novedades, comunidad y tu propio espacio.</p>
+    <p>Todo lo importante del canal, reunido en un solo sitio: vídeos, novedades y comunidad.</p>
    </div>
    <span class="section-number">01 / EXPLORA</span>
   </div>
@@ -647,7 +631,7 @@ footer{border-color:#48232a}
     <span class="gp-hub-link">ABRIR TRANSMISIÓN ↗</span>
    </a>
    <a class="gp-hub-card" href="#comunidad">
-    <div><div class="gp-hub-icon">◈</div><span class="gp-hub-kicker">HECHO ENTRE TODOS</span><h3>LA COMUNIDAD.</h3><p>Comparte ideas, vota propuestas y ayuda a decidir qué puede llegar después.</p></div>
+    <div><div class="gp-hub-icon">◈</div><span class="gp-hub-kicker">HECHO ENTRE TODOS</span><h3>LA COMUNIDAD.</h3><p>Propón nuevos tutoriales, comparte ideas y vota las próximas propuestas del canal.</p></div>
     <span class="gp-hub-link">ENTRAR EN LA COMUNIDAD ↗</span>
    </a>
    <a class="gp-hub-card" href="perfil.html">
@@ -673,7 +657,7 @@ footer{border-color:#48232a}
    <div>
     <div class="small-label">Contenido del canal</div>
     <h2>ÚLTIMOS <span class="gradient-text">VÍDEOS.</span></h2>
-    <p>Una selección de vídeos de GabriPlay. Busca un tema o filtra por categoría.</p>
+    <p>Tutoriales y vídeos publicados en el canal. Busca por nombre o filtra por tema.</p>
    </div>
    <a class="btn btn-outline" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">VER TODO EL CANAL ↗</a>
   </div>
@@ -749,7 +733,7 @@ footer{border-color:#48232a}
    <div>
     <div class="small-label">Una ciudad, miles de posibilidades</div>
     <h2>WELCOME TO <span class="gradient-text">LOS SANTOS.</span></h2>
-    <p>Una zona dedicada a GTA V, sus modificaciones y los tutoriales que puedes encontrar en el canal.</p>
+    <p>El contenido principal de GabriPlay: mods, herramientas, coches y guías para GTA V.</p>
    </div>
    <span class="section-number">02 / GTA V</span>
   </div>
@@ -1005,10 +989,10 @@ footer{border-color:#48232a}
   <div class="about-grid">
    <div class="about-mark"><div class="about-gp">GP</div></div>
    <div class="about-copy">
-    <div class="small-label">Detrás de GabriPlay</div>
-    <h3>UN CANAL. MUCHAS IDEAS. <span class="gradient-text">UNA IDENTIDAD.</span></h3>
-    <p>GabriPlay es un espacio para compartir videojuegos, tutoriales y proyectos. La idea es disfrutar creando contenido, descubrir cosas nuevas y hacer que cada vídeo tenga algo que aportar.</p>
-    <p>Esta web reúne el canal, sus contenidos y los proyectos que puedan ir apareciendo. No es una página estática: está pensada para crecer con GabriPlay.</p>
+    <div class="small-label">Sobre el canal</div>
+    <h3>TUTORIALES, MODS Y <span class="gradient-text">GTA V.</span></h3>
+    <p>GabriPlay es un canal de videojuegos centrado en tutoriales, modificaciones y contenido gaming. Aquí puedes encontrar guías para instalar herramientas, añadir vehículos y personalizar GTA V.</p>
+    <p>La web acompaña al canal: reúne sus vídeos, publica novedades y permite que la comunidad proponga qué contenido le gustaría ver.</p>
     <a class="btn" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">VISITAR GABRIPLAY EN YOUTUBE ↗</a>
    </div>
   </div>
@@ -1091,15 +1075,13 @@ footer{border-color:#48232a}
   <div class="footer-main">
    <div>
     <a class="logo" href="#inicio"><span class="logo-symbol">GP</span><span>GabriPlay</span></a>
-    <p>PLAY BEYOND. GABRIPLAY.<br>Una web creada alrededor de un canal y sus mundos.</p>
+    <p>PLAY BEYOND. GABRIPLAY.<br>Tutoriales, mods y contenido de GTA V.</p>
    </div>
    <div class="footer-links">
     <a href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">YOUTUBE ↗</a>
     <a href="broadcast.html">CANAL DEL CREADOR</a>
     <a href="#videos">VÍDEOS</a>
     <a href="#gta">GTA V</a>
-    <a href="#roblox">ROBLOX LAB</a>
-    <a href="#mundos">JUEGOS</a>
     <a href="#inicio">VOLVER ARRIBA ↑</a>
    </div>
   </div>
