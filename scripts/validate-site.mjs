@@ -22,7 +22,7 @@ for (const file of htmlFiles) {
 
   const scripts = [...source.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)];
   scripts.forEach((match, index) => {
-    if (/\bsrc=/i.test(match[1]) || !match[2].trim()) return;
+    if (/\bsrc=/i.test(match[1]) || /\btype=["\']application\/ld\+json["\']/i.test(match[1]) || !match[2].trim()) return;
     try {
       new vm.Script(match[2], { filename: file + " inline script " + (index + 1) });
     } catch (error) {
