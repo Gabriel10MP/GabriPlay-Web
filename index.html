@@ -485,6 +485,31 @@ footer{border-color:#48232a}
  .gp-broadcast-feature{padding:25px 22px}
 }
 
+
+/* HOMEPAGE HUB 2.0 */
+.gp-hub-section{padding-top:45px}
+.gp-hub-intro{display:grid;grid-template-columns:1fr auto;gap:25px;align-items:end;margin-bottom:26px}
+.gp-hub-intro p{max-width:490px;color:var(--muted);font-size:12px;line-height:1.85;margin-top:12px}
+.gp-hub-kicker{font-size:9px;letter-spacing:2.5px;font-weight:900;color:#e3a0a8;text-transform:uppercase}
+.gp-hub-title{font:900 clamp(42px,6vw,65px)/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;margin-top:12px}
+.gp-hub-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:13px}
+.gp-hub-card{position:relative;min-height:190px;padding:23px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,#191920,#101016);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s,border-color .25s,background .25s}
+.gp-hub-card:hover{transform:translateY(-4px);border-color:#9a4754;background:linear-gradient(145deg,#24191f,#111116)}
+.gp-hub-card.primary{grid-row:span 2;min-height:393px;background:radial-gradient(circle at 85% 12%,#c52b4030,transparent 38%),linear-gradient(145deg,#1d151a,#101016)}
+.gp-hub-card:after{content:"";position:absolute;width:170px;height:170px;border:1px solid #ffffff0d;border-radius:50%;right:-70px;bottom:-85px;box-shadow:0 0 0 25px #ffffff05,0 0 0 50px #ffffff03;pointer-events:none}
+.gp-hub-icon{font-size:25px;margin-bottom:17px}
+.gp-hub-card h3{font:900 27px/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;max-width:300px}
+.gp-hub-card p{font-size:11px;line-height:1.75;color:var(--muted);max-width:330px;margin-top:10px}
+.gp-hub-link{display:inline-flex;align-items:center;gap:9px;margin-top:20px;font-size:9px;font-weight:900;letter-spacing:1.3px;color:#f1b4bb}
+.gp-hub-card.primary h3{font-size:clamp(38px,5vw,58px);max-width:370px}
+.gp-hub-card.primary .gp-hub-icon{font-size:38px}
+.gp-hub-bottom{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:15px;padding:15px 18px;border:1px solid var(--line);border-radius:10px;background:#101016}
+.gp-hub-bottom span{font-size:10px;color:var(--muted);line-height:1.6}
+.gp-hub-bottom strong{color:#fff}
+.gp-hub-bottom a{white-space:nowrap;font-size:9px;font-weight:900;letter-spacing:1px;color:#f0a8b0}
+@media(max-width:850px){.gp-hub-grid{grid-template-columns:1fr 1fr}.gp-hub-card.primary{grid-row:auto;min-height:230px;grid-column:span 2}}
+@media(max-width:600px){.gp-hub-intro{grid-template-columns:1fr}.gp-hub-grid{grid-template-columns:1fr}.gp-hub-card.primary{grid-column:auto;min-height:250px}.gp-hub-card{min-height:165px}.gp-hub-bottom{align-items:flex-start;flex-direction:column}}
+
 </style>
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
 <link rel="apple-touch-icon" href="favicon.svg?v=1">
@@ -597,6 +622,47 @@ footer{border-color:#48232a}
    </div>
    <div class="gp-broadcast-cta"><span class="btn">ENTRAR AL CANAL ↗</span></div>
   </a>
+ </div>
+</section>
+
+
+<!-- GABRIPLAY HUB: ACCESOS Y DESCUBRIMIENTO -->
+<section class="section gp-hub-section" id="hub">
+ <div class="container reveal">
+  <div class="gp-hub-intro">
+   <div>
+    <div class="gp-hub-kicker">TU PUNTO DE PARTIDA · GABRIPLAY HUB</div>
+    <h2 class="gp-hub-title">ENTRA. <span class="gradient-text">DESCUBRE.</span><br>FORMA PARTE.</h2>
+    <p>No te pierdas entre secciones. Aquí tienes las zonas principales de GabriPlay: contenido, novedades, comunidad y tu propio espacio.</p>
+   </div>
+   <span class="section-number">01 / EXPLORA</span>
+  </div>
+  <div class="gp-hub-grid">
+   <a class="gp-hub-card primary" href="#videos">
+    <div><div class="gp-hub-icon">▶</div><span class="gp-hub-kicker">EMPIEZA POR EL CONTENIDO</span><h3>ENCUENTRA TU PRÓXIMO <span class="gradient-text">VÍDEO FAVORITO.</span></h3><p>Tutoriales, mods y guías para descubrir cosas nuevas y sacar más partido a tus juegos.</p></div>
+    <span class="gp-hub-link">EXPLORAR VÍDEOS <span>↗</span></span>
+   </a>
+   <a class="gp-hub-card" href="broadcast.html">
+    <div><div class="gp-hub-icon">📡</div><span class="gp-hub-kicker">DIRECTO DEL CREADOR</span><h3>GABRIPLAY BROADCAST.</h3><p>Anuncios, adelantos y novedades publicadas por el creador.</p></div>
+    <span class="gp-hub-link">ABRIR TRANSMISIÓN ↗</span>
+   </a>
+   <a class="gp-hub-card" href="#comunidad">
+    <div><div class="gp-hub-icon">◈</div><span class="gp-hub-kicker">HECHO ENTRE TODOS</span><h3>LA COMUNIDAD.</h3><p>Comparte ideas, vota propuestas y ayuda a decidir qué puede llegar después.</p></div>
+    <span class="gp-hub-link">ENTRAR EN LA COMUNIDAD ↗</span>
+   </a>
+   <a class="gp-hub-card" href="perfil.html">
+    <div><div class="gp-hub-icon">◉</div><span class="gp-hub-kicker">TU IDENTIDAD</span><h3>CREA TU PERFIL.</h3><p>Personaliza tu espacio, muestra tus logros y configura tu identidad en GabriPlay.</p></div>
+    <span class="gp-hub-link">EDITAR MI PERFIL ↗</span>
+   </a>
+   <a class="gp-hub-card" href="tienda.html">
+    <div><div class="gp-hub-icon">✦</div><span class="gp-hub-kicker">HAZLO A TU MANERA</span><h3>LA TIENDA.</h3><p>Descubre efectos y complementos para darle personalidad a tu perfil.</p></div>
+    <span class="gp-hub-link">VISITAR LA TIENDA ↗</span>
+   </a>
+  </div>
+  <div class="gp-hub-bottom">
+   <span><strong>¿Primera vez por aquí?</strong> Explora el contenido, crea una cuenta y participa en la comunidad.</span>
+   <a href="#explorar">DESCUBRIR TODAS LAS SECCIONES ↓</a>
+  </div>
  </div>
 </section>
 
