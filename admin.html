@@ -203,29 +203,49 @@ verify().catch(e=>showGate("No se pudo cargar el panel: "+e.message));
   const versionUrl = new URL("version.json", location.href);
   let currentVersion = null;
   let updatePending = false;
+  let checking = false;
   const hasActiveWork = () => {
     const active = document.activeElement;
     if (active && active.matches("input,textarea,select,[contenteditable=true]")) return true;
     return !!document.querySelector(".modal.open, .lightbox.open, dialog[open]");
   };
+  const reloadWhenSafe = () => {
+    if (updatePending && !hasActiveWork() && document.visibilityState === "visible") {
+      location.reload();
+    }
+  };
   const checkForUpdate = async () => {
-    if (document.visibilityState !== "visible") return;
+    if (checking || document.visibilityState !== "visible") return;
+    checking = true;
     try {
       const response = await fetch(versionUrl.href + "?check=" + Date.now(), { cache: "no-store" });
       if (!response.ok) return;
       const data = await response.json();
       if (!data.version) return;
-      if (currentVersion === null) { currentVersion = data.version; return; }
+      if (currentVersion === null) {
+        currentVersion = data.version;
+        return;
+      }
       if (data.version !== currentVersion) {
         updatePending = true;
-        if (!hasActiveWork()) location.reload();
+        reloadWhenSafe();
       }
-    } catch (_) { /* Se reintentará en la siguiente comprobación. */ }
+    } catch (_) {
+      // Si la red o GitHub Pages falla temporalmente, se reintentará.
+    } finally {
+      checking = false;
+    }
   };
   checkForUpdate();
-  window.setInterval(checkForUpdate, 60000);
-  window.addEventListener("focus", () => { if (updatePending && !hasActiveWork()) location.reload(); });
-  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
+  window.setInterval(checkForUpdate, 30000);
+  window.addEventListener("focus", () => { checkForUpdate(); reloadWhenSafe(); });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      checkForUpdate();
+      reloadWhenSafe();
+    }
+  });
+  document.addEventListener("focusout", () => window.setTimeout(reloadWhenSafe, 250));
 })();
 </script>
 </body>
