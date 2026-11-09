@@ -103,7 +103,7 @@ function renderSuggestionCard(x,trash=false){
  const el=document.createElement("article");el.className="item";
  const title=document.createElement("div");title.className="item-head";
  const info=document.createElement("div");
- const h=document.createElement("h3");h.textContent=x.title;const meta=document.createElement("div");meta.className="meta";meta.textContent=author(x.user_id)+" · "+date(x.created_at);const nameEffect=(p.equippedCosmetics||[]).find(code=>["name_crimson","name_ice","name_gold","name_sakura"].includes(code));if(nameEffect)h.classList.add("admin-"+nameEffect.replace("name_","name-"));if(p.username==="gabri10"){const creator=document.createElement("span");creator.className="creator-inline";creator.textContent="✦ CREADOR · GABRIPLAY";meta.append(" ",creator);}
+ const h=document.createElement("h3");h.textContent=x.title;const meta=document.createElement("div");meta.className="meta";meta.replaceChildren();const authorName=document.createElement("span");authorName.textContent=author(x.user_id);const nameEffect=(p.equippedCosmetics||[]).find(code=>["name_crimson","name_ice","name_gold","name_sakura"].includes(code));if(nameEffect)authorName.classList.add("admin-"+nameEffect.replace("name_","name-"));meta.append(authorName,document.createTextNode(" · "+date(x.created_at)));if(p.username==="gabri10"){const creator=document.createElement("span");creator.className="creator-inline";creator.textContent="✦ CREADOR · GABRIPLAY";meta.append(" ",creator);}
  info.append(h,meta);const pill=document.createElement("span");pill.className="pill "+cls;pill.textContent=status;
  title.append(info,pill);
  const desc=document.createElement("p");desc.textContent=x.description;
