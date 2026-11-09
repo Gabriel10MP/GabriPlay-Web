@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#08080c">
-<meta name="description" content="Personaliza tu perfil de la comunidad GabriPlay.">
+<meta name="description" content="Editor privado para personalizar tu perfil de la comunidad GabriPlay.">
+<meta name="robots" content="noindex,nofollow">
 <title>Mi perfil — GabriPlay</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +48,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .profile-theme-ocean{--red:#4b9ac2;--red2:#75c7e8}.profile-theme-emerald{--red:#368b68;--red2:#64c99b}.profile-theme-crimson{--red:#c52b40;--red2:#e34b58}
 .profile-theme-ocean .gp-badge{border-color:#386d88;background:#10202a;color:#c8edff}.profile-theme-emerald .gp-badge{border-color:#326e54;background:#10241b;color:#c9ffe0}
 </style>
-<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">\n<link rel="apple-touch-icon" href="favicon.svg?v=1">\n</head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
+<link rel="apple-touch-icon" href="favicon.svg?v=1">
+</head>
 <body>
 <div class="rainbow"></div>
 <header class="top wrap"><a class="logo" href="index.html"><span class="mark">GP</span><span>GabriPlay</span></a><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="back" href="tienda.html">✦ TIENDA</a><a class="back" id="creatorPanelLink" href="creador.html" hidden>♛ CONTROL CREADOR</a><a class="back" href="index.html#comunidad">← COMUNIDAD</a></div></header>
@@ -211,5 +214,5 @@ init().catch(err=>setStatus(err.message||"No se pudo cargar tu perfil.",true));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
 })();
 </script>
-\n</body>
+</body>
 </html>

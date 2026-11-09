@@ -5,8 +5,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08080c">
-<meta name="description" content="GabriPlay: videojuegos, tutoriales, GTA V, Roblox Studio y una comunidad con esencia japonesa.">
+<meta name="description" content="GabriPlay: videojuegos, tutoriales, GTA V, Roblox y una comunidad gamer con estética japonesa.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GabriPlay">
+<meta property="og:title" content="GabriPlay — Gaming, tutoriales y comunidad">
+<meta property="og:description" content="Videojuegos, tutoriales, GTA V, Roblox y una comunidad gamer con estética japonesa.">
+<meta property="og:url" content="https://gabriel10mp.github.io/GabriPlay-Web/">
+<meta property="og:image" content="https://gabriel10mp.github.io/GabriPlay-Web/favicon.svg">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://gabriel10mp.github.io/GabriPlay-Web/">
 <title>GabriPlay — Japón, gaming y mucho más</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "GabriPlay",
+  "url": "https://gabriel10mp.github.io/GabriPlay-Web/",
+  "description": "Videojuegos, tutoriales y comunidad gamer."
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -395,8 +412,12 @@ footer{border-color:#48232a}
 @media(max-width:850px){.nav-links{background:#100d0f;border-color:#54222b}}
 @media(max-width:600px){.hero-bg:before{right:-3%;top:15%;width:230px;opacity:.6}.hero-bg:after{right:-8%;width:70%;opacity:.4}}
 
+:focus-visible{outline:2px solid #e34b58;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
-<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">\n<link rel="apple-touch-icon" href="favicon.svg?v=1">\n</head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
+<link rel="apple-touch-icon" href="favicon.svg?v=1">
+</head>
 
 <body>
 <div class="rainbow"></div>
@@ -1326,7 +1347,8 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
    const userIds=[...new Set(suggestions.map(x=>x.user_id).filter(Boolean))];
    profilesCache={};
    if(userIds.length) {
-    const {data:profiles}=await db.from("profiles").select("id,username,display_name,bio,avatar_url").in("id",userIds);
+    const {data:profiles,error:profilesError}=await db.from("profiles").select("id,username,display_name,bio,avatar_url").in("id",userIds);
+    if(profilesError) throw profilesError;
     if(loadVersion!==suggestionLoadVersion) return;
     (profiles || []).forEach(p=>profilesCache[p.id]=p);
     const {data:cosmetics,error:cosmeticError}=await db.from("gabriplay_user_cosmetics").select("user_id,cosmetic_code").in("user_id",userIds).eq("equipped",true);
@@ -1334,7 +1356,8 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     (cosmetics||[]).forEach(item=>{const profile=profilesCache[item.user_id];if(profile){profile.equippedCosmetics=profile.equippedCosmetics||[];profile.equippedCosmetics.push(item.cosmetic_code);}});
    }
    let voteIds=new Set(),voteCounts={};
-   const {data:votes}=await db.from("suggestion_votes").select("suggestion_id,user_id");
+   const {data:votes,error:voteError}=await db.from("suggestion_votes").select("suggestion_id,user_id");
+   if(voteError) throw voteError;
    if(loadVersion!==suggestionLoadVersion) return;
    (votes || []).forEach(v=>{
     voteCounts[v.suggestion_id]=(voteCounts[v.suggestion_id]||0)+1;
@@ -1513,5 +1536,5 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
 })();
 </script>
-\n</body>
+</body>
 </html>

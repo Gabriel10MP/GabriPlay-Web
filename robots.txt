@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /perfil.html
+Disallow: /admin.html
+Disallow: /creador.html
+
+Sitemap: https://gabriel10mp.github.io/GabriPlay-Web/sitemap.xml
