@@ -49,7 +49,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 </head>
 <body>
 <div class="rainbow"></div>
-<header class="top wrap"><a class="logo" href="index.html"><span class="mark">GP</span><span>GabriPlay</span></a><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="back" href="tienda.html">✦ TIENDA</a><a class="back" href="index.html#comunidad">← COMUNIDAD</a></div></header>
+<header class="top wrap"><a class="logo" href="index.html"><span class="mark">GP</span><span>GabriPlay</span></a><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="back" href="tienda.html">✦ TIENDA</a><a class="back" id="creatorPanelLink" href="creador.html" hidden>♛ CONTROL CREADOR</a><a class="back" href="index.html#comunidad">← COMUNIDAD</a></div></header>
 <main class="main wrap">
  <div class="eyebrow">TU ESPACIO · TU IDENTIDAD</div>
  <h1>PERSONALIZA TU <span style="background:var(--rainbow);background-clip:text;-webkit-background-clip:text;color:transparent">PERFIL.</span></h1>
@@ -136,6 +136,7 @@ async function init(){
  user=data.session?.user;
  if(!user){setStatus("Inicia sesión desde la página principal y vuelve aquí para editar tu perfil.",true);$("save").disabled=true;return}
  const {data:adminRole}=await db.rpc("is_gabriplay_admin",{target_user_id:user.id});isAdmin=!!adminRole;
+ const {data:creatorRole,error:creatorRoleError}=await db.rpc("gabriplay_is_creator");if(!creatorRoleError&&creatorRole) $("creatorPanelLink").hidden=false;
  const {data:profile,error:profileError}=await db.from("profiles").select("username,display_name,bio,avatar_url,banner_url,website_url,youtube_url,twitch_url,profile_theme").eq("id",user.id).maybeSingle();
  if(profileError)throw profileError;
  const meta=user.user_metadata||{};$("profileTheme").value=profile?.profile_theme||"crimson";
