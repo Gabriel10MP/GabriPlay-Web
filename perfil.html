@@ -40,6 +40,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .links a:hover{background:#b51f321c}
 .footer{border-color:#48232a}
 .status{color:#b8a7a7}
+
+/* Perfiles 2.0: insignias, logros y temas */
+.badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.gp-badge{display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border:1px solid #71303a;border-radius:6px;background:#2a1016;color:#ffd8dc;font-size:9px;font-weight:900;letter-spacing:.7px}.gp-badge.creator{background:linear-gradient(120deg,#57101c,#a51e32);border-color:#ef6674;color:#fff}.gp-badge.admin{background:#21191a;border-color:#b17b42;color:#ffdca8}.gp-badge.achievement{background:#171719;border-color:#55515a;color:#ded9dc}
+.profile-theme-ocean{--red:#4b9ac2;--red2:#75c7e8}.profile-theme-emerald{--red:#368b68;--red2:#64c99b}.profile-theme-crimson{--red:#c52b40;--red2:#e34b58}
+.profile-theme-ocean .gp-badge{border-color:#386d88;background:#10202a;color:#c8edff}.profile-theme-emerald .gp-badge{border-color:#326e54;background:#10241b;color:#c9ffe0}
 </style>
 </head>
 <body>
@@ -57,6 +62,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
      <div class="field"><label for="username">NOMBRE DE USUARIO</label><input id="username" maxlength="24" required placeholder="tu_usuario"></div>
      <div class="field"><label for="displayName">NOMBRE VISIBLE</label><input id="displayName" maxlength="40" required placeholder="Cómo te llamas en GabriPlay"></div>
     </div>
+    <div class="field"><label for="profileTheme">ESTILO DEL PERFIL</label><select id="profileTheme" style="width:100%;background:#09090e;border:1px solid #33333e;border-radius:8px;color:white;padding:12px 13px;font-size:12px"><option value="crimson">Crimson japonés · Original</option><option value="ocean">Océano · Azul</option><option value="emerald">Esmeralda · Verde</option></select><p class="upload-note">Cambia los detalles de color de tu perfil público.</p></div>
     <div class="field"><label for="bio">BIOGRAFÍA</label><textarea id="bio" maxlength="160" placeholder="Cuéntale algo a la comunidad..."></textarea></div>
     <div class="field"><label for="avatarFile">FOTO DE PERFIL</label><input id="avatarFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><p class="upload-note">PNG, JPG, WEBP o GIF · Máximo 5 MB. Si no seleccionas una imagen nueva, se conservará la actual.</p><input id="avatarUrl" maxlength="1000" type="url" placeholder="O pega un enlace HTTPS externo (opcional)" style="margin-top:8px"></div>
     <div class="field"><label for="bannerFile">IMAGEN DE PORTADA / BANNER</label><input id="bannerFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><p class="upload-note">PNG, JPG, WEBP o GIF · Máximo 5 MB. Se verá como portada de tu perfil.</p><input id="bannerUrl" maxlength="1000" type="url" placeholder="O pega un enlace HTTPS externo (opcional)" style="margin-top:8px"></div>
@@ -74,7 +80,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
    <div class="preview-body">
     <div class="avatar" id="previewAvatar">G</div>
     <div class="preview-name" id="previewName">Tu nombre</div>
-    <div class="preview-handle" id="previewHandle">@tu_usuario</div>
+    <div class="preview-handle" id="previewHandle">@tu_usuario</div><div class="badges" id="previewBadges"><span class="gp-badge achievement">✧ MIEMBRO</span></div>
     <p class="preview-bio" id="previewBio">Tu biografía aparecerá aquí.</p>
     <div class="preview-links" id="previewLinks"></div>
     <a class="preview-open" id="previewOpen" href="#" target="_blank" rel="noopener">ABRIR PERFIL PÚBLICO ↗</a>
@@ -93,7 +99,7 @@ const KEY="sb_publishable_NjEt_shVbSEbvALrsFt4cQ_GOGgPBKz";
 const db=window.supabase.createClient(SUPABASE_URL,KEY);
 const $=id=>document.getElementById(id);
 let user=null;
-const fields=["username","displayName","bio","avatarUrl","bannerUrl","websiteUrl","youtubeUrl","twitchUrl"];
+const fields=["username","displayName","bio","avatarUrl","bannerUrl","websiteUrl","youtubeUrl","twitchUrl","profileTheme"];
 const MAX_IMAGE_SIZE=5*1024*1024;
 const ALLOWED_IMAGE_TYPES=["image/png","image/jpeg","image/webp","image/gif"];
 let previewObjectUrls=[];
@@ -104,7 +110,7 @@ function updatePreview(){
  previewObjectUrls.forEach(url=>URL.revokeObjectURL(url));previewObjectUrls=[];
  const name=val("displayName")||"Tu nombre",handle=val("username")||"tu_usuario",avatarFile=$("avatarFile").files?.[0],bannerFile=$("bannerFile").files?.[0],avatar=avatarFile?URL.createObjectURL(avatarFile):safeUrl(val("avatarUrl")),banner=bannerFile?URL.createObjectURL(bannerFile):safeUrl(val("bannerUrl"));
  if(avatarFile)previewObjectUrls.push(avatar);if(bannerFile)previewObjectUrls.push(banner);
- $("previewName").textContent=name;$("previewHandle").textContent="@"+handle;$("previewBio").textContent=val("bio")||"Tu biografía aparecerá aquí.";
+ $("previewName").textContent=name;$("previewHandle").textContent="@"+handle;const theme=["crimson","ocean","emerald"].includes(val("profileTheme"))?val("profileTheme"):"crimson";$("preview").className="panel preview profile-theme-"+theme;$("previewBadges").replaceChildren();const creator=handle.toLowerCase()==="gabri10";if(creator){const b=document.createElement("span");b.className="gp-badge creator";b.textContent="✦ CREADOR · GABRIPLAY";$("previewBadges").append(b)}const memberBadge=document.createElement("span");memberBadge.className="gp-badge achievement";memberBadge.textContent="✧ MIEMBRO";$("previewBadges").append(memberBadge);$("previewBio").textContent=val("bio")||"Tu biografía aparecerá aquí.";
  $("previewAvatar").replaceChildren();
  if(avatar){const img=document.createElement("img");img.src=avatar;img.alt="Foto de perfil";img.referrerPolicy="no-referrer";img.onerror=()=>{$("previewAvatar").textContent=(name[0]||"G").toUpperCase()};$("previewAvatar").appendChild(img)}
  else $("previewAvatar").textContent=(name[0]||"G").toUpperCase();
@@ -129,9 +135,9 @@ async function init(){
  const {data,error}=await db.auth.getSession();if(error)throw error;
  user=data.session?.user;
  if(!user){setStatus("Inicia sesión desde la página principal y vuelve aquí para editar tu perfil.",true);$("save").disabled=true;return}
- const {data:profile,error:profileError}=await db.from("profiles").select("username,display_name,bio,avatar_url,banner_url,website_url,youtube_url,twitch_url").eq("id",user.id).maybeSingle();
+ const {data:profile,error:profileError}=await db.from("profiles").select("username,display_name,bio,avatar_url,banner_url,website_url,youtube_url,twitch_url,profile_theme").eq("id",user.id).maybeSingle();
  if(profileError)throw profileError;
- const meta=user.user_metadata||{};
+ const meta=user.user_metadata||{};$("profileTheme").value=profile?.profile_theme||"crimson";
  $("username").value=profile?.username||meta.username||"";
  $("displayName").value=profile?.display_name||meta.display_name||"";
  $("bio").value=profile?.bio||meta.bio||"";
@@ -147,7 +153,7 @@ $("profileEditor").addEventListener("submit",async e=>{
  const username=val("username").toLowerCase(),display_name=val("displayName"),bio=val("bio");
  if(!/^[a-z0-9_]{3,24}$/.test(username)){setStatus("El usuario debe tener entre 3 y 24 caracteres: letras, números o guion bajo.",true);return}
  if(!display_name||display_name.length>40||bio.length>160){setStatus("Revisa el nombre visible o la biografía.",true);return}
- const values={avatar_url:val("avatarUrl"),banner_url:val("bannerUrl"),website_url:val("websiteUrl"),youtube_url:val("youtubeUrl"),twitch_url:val("twitchUrl")};
+ const values={avatar_url:val("avatarUrl"),banner_url:val("bannerUrl"),website_url:val("websiteUrl"),youtube_url:val("youtubeUrl"),twitch_url:val("twitchUrl"),profile_theme:val("profileTheme")||"crimson"};
  for(const [key,value] of Object.entries(values)){if(value&&!safeUrl(value)){setStatus("Todos los enlaces deben ser URL seguras que empiecen por https://",true);return}}
  const avatarFile=$("avatarFile").files?.[0],bannerFile=$("bannerFile").files?.[0];
  if((avatarFile&&(avatarFile.size>MAX_IMAGE_SIZE||!ALLOWED_IMAGE_TYPES.includes(avatarFile.type)))||(bannerFile&&(bannerFile.size>MAX_IMAGE_SIZE||!ALLOWED_IMAGE_TYPES.includes(bannerFile.type)))){setStatus("Las imágenes deben ser PNG, JPG, WEBP o GIF y no superar 5 MB.",true);return}
