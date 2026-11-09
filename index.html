@@ -895,6 +895,7 @@ textarea.gp-field{min-height:105px;resize:vertical}
   </form>
   <div id="signedInPanel" hidden>
    <p class="gp-modal-copy" id="signedInText"></p>
+   <a class="gp-action" href="perfil.html" style="display:block;text-align:center;text-decoration:none;margin:0 0 14px">PERSONALIZAR MI PERFIL ↗</a>
    <form id="profileForm">
     <label class="gp-form-label" for="profileUsername">NOMBRE DE USUARIO</label>
     <input class="gp-field" id="profileUsername" maxlength="24" autocomplete="nickname" placeholder="TuUsuario" required>
@@ -1232,9 +1233,10 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
     const authorName=profile?.display_name || profile?.username || "Miembro de GabriPlay";
     avatar.textContent=(authorName.trim()[0] || "G").toUpperCase();
     const authorInfo=document.createElement("div");
-    const strong=document.createElement("strong"); strong.textContent=authorName;
+    const profileLink=document.createElement("a"); profileLink.href=profile?.username?"usuario.html?u="+encodeURIComponent(profile.username):"#"; profileLink.style.color="inherit"; profileLink.style.textDecoration="none";
+    const strong=document.createElement("strong"); strong.textContent=authorName; profileLink.appendChild(strong);
     const handle=document.createElement("div"); handle.textContent=profile?.username?"@"+profile.username:"Comunidad";
-    authorInfo.appendChild(strong); authorInfo.appendChild(handle);
+    profileLink.appendChild(handle); authorInfo.appendChild(profileLink);
     if(profile?.bio){const bio=document.createElement("div");bio.className="gp-profile-bio";bio.textContent=profile.bio;authorInfo.appendChild(bio);}
     author.appendChild(avatar);author.appendChild(authorInfo);card.appendChild(author);
     const title=document.createElement("h4"); title.textContent=item.title; card.appendChild(title);

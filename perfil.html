@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08080c">
+<meta name="description" content="Personaliza tu perfil de la comunidad GabriPlay.">
+<title>Mi perfil — GabriPlay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080c;--surface:#111118;--surface2:#181820;--white:#f6f6f8;--muted:#a2a2ad;--line:#292933;--purple:#a879ff;--rainbow:linear-gradient(90deg,#ff4141,#ff963b,#ffe34b,#5cda78,#45c3ff,#a879ff,#f15dbb)}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif;min-height:100vh}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.rainbow{height:4px;background:var(--rainbow)}.wrap{width:min(1080px,calc(100% - 36px));margin:auto}.top{height:72px;border-bottom:1px solid #ffffff15;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:900;letter-spacing:-.7px;display:flex;align-items:center;gap:10px}.mark{width:39px;height:39px;display:grid;place-items:center;background:#15151c;border:1px solid #ffffff35;border-radius:9px;font:900 23px "Barlow Condensed";position:relative}.mark:after{content:"";position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--rainbow)}.back{font-size:10px;font-weight:900;color:#ccc;border:1px solid #ffffff2a;border-radius:7px;padding:11px 14px}.main{padding:55px 0 80px}.eyebrow{font-size:10px;font-weight:900;letter-spacing:3px;color:#c5b0ff}.eyebrow:before{content:"";display:inline-block;width:23px;height:3px;background:var(--rainbow);vertical-align:middle;margin-right:9px}h1{font:900 clamp(48px,8vw,82px)/.9 "Barlow Condensed";text-transform:uppercase;margin:17px 0 12px}.sub{font-size:12px;color:var(--muted);line-height:1.8;max-width:610px}.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.8fr);gap:18px;margin-top:32px;align-items:start}.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:23px}.panel h2{font:800 25px "Barlow Condensed";text-transform:uppercase;margin-bottom:5px}.hint{font-size:10px;color:var(--muted);line-height:1.7;margin-bottom:19px}.field{margin-bottom:15px}.field label{display:block;font-size:9px;font-weight:900;letter-spacing:1px;color:#d0d0d8;margin-bottom:7px}.field input,.field textarea{width:100%;background:#09090e;border:1px solid #33333e;border-radius:8px;color:white;padding:12px 13px;font-size:12px;outline:none}.field input:focus,.field textarea:focus{border-color:var(--purple)}.field textarea{min-height:92px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:7px}.btn{border:0;border-radius:8px;padding:13px 16px;background:white;color:#09090d;font-size:10px;font-weight:900;cursor:pointer}.btn:disabled{opacity:.5;cursor:wait}.btn.secondary{background:#ffffff0b;color:white;border:1px solid #ffffff30}.status{min-height:18px;font-size:11px;color:var(--muted);margin-top:13px;line-height:1.6}.preview{overflow:hidden;padding:0}.banner{height:145px;background:radial-gradient(ellipse at 70% 20%,#a879ff55,transparent 50%),linear-gradient(130deg,#171720,#252034);background-position:center;background-size:cover}.preview-body{padding:0 21px 22px}.avatar{width:82px;height:82px;margin-top:-40px;border:4px solid var(--surface);border-radius:50%;background:#25252e;display:grid;place-items:center;font:900 32px "Barlow Condensed";overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.preview-name{font-size:20px;font-weight:900;margin-top:12px;overflow-wrap:anywhere}.preview-handle{font-size:10px;color:#bca6ff;margin-top:3px}.preview-bio{font-size:11px;color:#bcbcc6;line-height:1.7;margin-top:13px;white-space:pre-wrap;overflow-wrap:anywhere}.preview-links{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.preview-links span{font-size:9px;font-weight:800;border:1px solid #ffffff25;border-radius:6px;padding:7px 9px;color:#ddd}.tip{font-size:10px;color:#8e8e9a;line-height:1.7;margin-top:16px}.preview-open{display:inline-block;margin-top:17px;font-size:10px;font-weight:900;color:#d2baff}.footer{border-top:1px solid var(--line);padding:22px 0;color:#777;font-size:9px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.preview{grid-row:1}.main{padding-top:38px}}@media(max-width:480px){.panel{padding:18px}.two{grid-template-columns:1fr;gap:0}.banner{height:115px}}
+</style>
+</head>
+<body>
+<div class="rainbow"></div>
+<header class="top wrap"><a class="logo" href="index.html"><span class="mark">GP</span><span>GabriPlay</span></a><a class="back" href="index.html#comunidad">← VOLVER A LA COMUNIDAD</a></header>
+<main class="main wrap">
+ <div class="eyebrow">TU ESPACIO · TU IDENTIDAD</div>
+ <h1>PERSONALIZA TU <span style="background:var(--rainbow);background-clip:text;-webkit-background-clip:text;color:transparent">PERFIL.</span></h1>
+ <p class="sub">Configura cómo te verá el resto de la comunidad. Los cambios se guardan en tu cuenta y aparecerán en tu perfil público.</p>
+ <div class="layout">
+  <section class="panel">
+   <h2>DATOS DEL PERFIL</h2><p class="hint">Los campos son opcionales salvo tu nombre de usuario y nombre visible. Usa enlaces https:// para tus imágenes y redes.</p>
+   <form id="profileEditor">
+    <div class="two">
+     <div class="field"><label for="username">NOMBRE DE USUARIO</label><input id="username" maxlength="24" required placeholder="tu_usuario"></div>
+     <div class="field"><label for="displayName">NOMBRE VISIBLE</label><input id="displayName" maxlength="40" required placeholder="Cómo te llamas en GabriPlay"></div>
+    </div>
+    <div class="field"><label for="bio">BIOGRAFÍA</label><textarea id="bio" maxlength="160" placeholder="Cuéntale algo a la comunidad..."></textarea></div>
+    <div class="field"><label for="avatarUrl">URL DE FOTO DE PERFIL</label><input id="avatarUrl" maxlength="1000" type="url" placeholder="https://..."></div>
+    <div class="field"><label for="bannerUrl">URL DEL BANNER</label><input id="bannerUrl" maxlength="1000" type="url" placeholder="https://..."></div>
+    <div class="field"><label for="websiteUrl">TU WEB / ENLACE</label><input id="websiteUrl" maxlength="500" type="url" placeholder="https://..."></div>
+    <div class="two">
+     <div class="field"><label for="youtubeUrl">YOUTUBE</label><input id="youtubeUrl" maxlength="500" type="url" placeholder="https://youtube.com/@..."></div>
+     <div class="field"><label for="twitchUrl">TWITCH</label><input id="twitchUrl" maxlength="500" type="url" placeholder="https://twitch.tv/..."></div>
+    </div>
+    <div class="actions"><button class="btn" id="save" type="submit">GUARDAR CAMBIOS</button><a class="btn secondary" id="publicLink" href="#" target="_blank" rel="noopener">VER MI PERFIL ↗</a></div>
+    <p class="status" id="status" aria-live="polite">Comprobando tu sesión...</p>
+   </form>
+  </section>
+  <aside class="panel preview">
+   <div class="banner" id="previewBanner"></div>
+   <div class="preview-body">
+    <div class="avatar" id="previewAvatar">G</div>
+    <div class="preview-name" id="previewName">Tu nombre</div>
+    <div class="preview-handle" id="previewHandle">@tu_usuario</div>
+    <p class="preview-bio" id="previewBio">Tu biografía aparecerá aquí.</p>
+    <div class="preview-links" id="previewLinks"></div>
+    <a class="preview-open" id="previewOpen" href="#" target="_blank" rel="noopener">ABRIR PERFIL PÚBLICO ↗</a>
+    <p class="tip">La vista previa se actualiza mientras escribes. Las imágenes se configuran mediante URL por ahora; la subida directa de archivos llegará en otra mejora.</p>
+   </div>
+  </aside>
+ </div>
+</main>
+<footer class="footer wrap"><span>© <span id="year"></span> GABRIPLAY</span><span>PLAY BEYOND.</span></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(()=>{
+"use strict";
+const SUPABASE_URL="https://gzqebfwknfnwnobwypve.supabase.co";
+const KEY="sb_publishable_NjEt_shVbSEbvALrsFt4cQ_GOGgPBKz";
+const db=window.supabase.createClient(SUPABASE_URL,KEY);
+const $=id=>document.getElementById(id);
+let user=null;
+const fields=["username","displayName","bio","avatarUrl","bannerUrl","websiteUrl","youtubeUrl","twitchUrl"];
+const val=id=>$(id).value.trim();
+function setStatus(message,error=false){$("status").textContent=message;$("status").style.color=error?"#ff9b9b":""}
+function safeUrl(value){if(!value)return "";try{const u=new URL(value);return u.protocol==="https:"?u.href:""}catch{return ""}}
+function updatePreview(){
+ const name=val("displayName")||"Tu nombre",handle=val("username")||"tu_usuario",avatar=safeUrl(val("avatarUrl")),banner=safeUrl(val("bannerUrl"));
+ $("previewName").textContent=name;$("previewHandle").textContent="@"+handle;$("previewBio").textContent=val("bio")||"Tu biografía aparecerá aquí.";
+ $("previewAvatar").replaceChildren();
+ if(avatar){const img=document.createElement("img");img.src=avatar;img.alt="Foto de perfil";img.referrerPolicy="no-referrer";img.onerror=()=>{$("previewAvatar").textContent=(name[0]||"G").toUpperCase()};$("previewAvatar").appendChild(img)}
+ else $("previewAvatar").textContent=(name[0]||"G").toUpperCase();
+ $("previewBanner").style.backgroundImage=banner?"url("+JSON.stringify(banner)+")":"radial-gradient(ellipse at 70% 20%,#a879ff55,transparent 50%),linear-gradient(130deg,#171720,#252034)";
+ const links=[["WEB",val("websiteUrl")],["YOUTUBE",val("youtubeUrl")],["TWITCH",val("twitchUrl")]].filter(x=>safeUrl(x[1]));
+ $("previewLinks").replaceChildren();links.forEach(([label])=>{const s=document.createElement("span");s.textContent=label;$("previewLinks").appendChild(s)});
+ const href=handle?"usuario.html?u="+encodeURIComponent(handle):"#";$("publicLink").href=href;$("previewOpen").href=href;
+}
+fields.forEach(id=>$(id).addEventListener("input",updatePreview));
+async function init(){
+ $("year").textContent=new Date().getFullYear();
+ const {data,error}=await db.auth.getSession();if(error)throw error;
+ user=data.session?.user;
+ if(!user){setStatus("Inicia sesión desde la página principal y vuelve aquí para editar tu perfil.",true);$("save").disabled=true;return}
+ const {data:profile,error:profileError}=await db.from("profiles").select("username,display_name,bio,avatar_url,banner_url,website_url,youtube_url,twitch_url").eq("id",user.id).maybeSingle();
+ if(profileError)throw profileError;
+ const meta=user.user_metadata||{};
+ $("username").value=profile?.username||meta.username||"";
+ $("displayName").value=profile?.display_name||meta.display_name||"";
+ $("bio").value=profile?.bio||meta.bio||"";
+ $("avatarUrl").value=profile?.avatar_url||"";
+ $("bannerUrl").value=profile?.banner_url||"";
+ $("websiteUrl").value=profile?.website_url||"";
+ $("youtubeUrl").value=profile?.youtube_url||"";
+ $("twitchUrl").value=profile?.twitch_url||"";
+ updatePreview();setStatus("Sesión iniciada. Puedes personalizar tu perfil.");
+}
+$("profileEditor").addEventListener("submit",async e=>{
+ e.preventDefault();if(!user)return;
+ const username=val("username").toLowerCase(),display_name=val("displayName"),bio=val("bio");
+ if(!/^[a-z0-9_]{3,24}$/.test(username)){setStatus("El usuario debe tener entre 3 y 24 caracteres: letras, números o guion bajo.",true);return}
+ if(!display_name||display_name.length>40||bio.length>160){setStatus("Revisa el nombre visible o la biografía.",true);return}
+ const values={avatar_url:val("avatarUrl"),banner_url:val("bannerUrl"),website_url:val("websiteUrl"),youtube_url:val("youtubeUrl"),twitch_url:val("twitchUrl")};
+ for(const [key,value] of Object.entries(values)){if(value&&!safeUrl(value)){setStatus("Todos los enlaces deben ser URL seguras que empiecen por https://",true);return}}
+ const btn=$("save");btn.disabled=true;setStatus("Guardando cambios...");
+ try{
+  const {error}=await db.from("profiles").upsert({id:user.id,username,display_name,bio,...values,updated_at:new Date().toISOString()},{onConflict:"id"});
+  if(error)throw error;
+  const {error:authError}=await db.auth.updateUser({data:{username,display_name,bio}});
+  if(authError)throw authError;
+  setStatus("Perfil actualizado correctamente. Los cambios ya están guardados.");
+  updatePreview();
+ }catch(err){setStatus(err.code==="23505"?"Ese nombre de usuario ya está ocupado.":(err.message||"No se pudo guardar el perfil."),true)}
+ finally{btn.disabled=false}
+});
+init().catch(err=>setStatus(err.message||"No se pudo cargar tu perfil.",true));
+})();
+</script>
+</body>
+</html>
