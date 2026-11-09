@@ -100,11 +100,11 @@ $("postForm").addEventListener("submit",async e=>{
  e.preventDefault();if(!isCreator)return;
  const title=$("postTitle").value.trim(),body=$("postBody").value.trim(),emojis=parseEmojis($("postEmojis").value);
  if(!title||!body||emojis.length<1||emojis.length>8){say("editorStatus","Completa el título, el mensaje y elige entre 1 y 8 emojis.",true);return}
- const button=$("savePost");button.disabled=true;
+ const wasEditing=!!editingId;const button=$("savePost");button.disabled=true;
  try{
   const rpc=editingId?"gabriplay_broadcast_update":"gabriplay_broadcast_create";
   const args=editingId?{target_post_id:editingId,post_title:title,post_body:body,reaction_emojis:emojis}:{post_title:title,post_body:body,reaction_emojis:emojis};
-  const r=await db.rpc(rpc,args);if(r.error)throw r.error;resetEditor();await loadFeed();say("editorStatus",editingId?"Cambios guardados.":"Publicación publicada.")
+  const r=await db.rpc(rpc,args);if(r.error)throw r.error;resetEditor();await loadFeed();say("editorStatus",wasEditing?"Cambios guardados.":"Publicación publicada.")
  }catch(err){say("editorStatus",err.message||"No se pudo guardar la publicación.",true)}
  finally{button.disabled=false}
 });
