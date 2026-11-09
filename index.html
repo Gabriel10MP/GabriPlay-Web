@@ -308,6 +308,13 @@ textarea.gp-field{min-height:105px;resize:vertical}
 .gp-modal .gp-field{margin-bottom:13px}
 .gp-modal .gp-action{width:100%;margin-top:3px}
 .gp-legal{font-size:9px;color:#858591;line-height:1.6;margin-top:13px}
+.gp-profile-author{display:flex;align-items:center;gap:9px;margin:10px 0 12px;color:#bdbdc7;font-size:10px}
+.gp-profile-avatar{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#ffffff12;border:1px solid #ffffff25;color:white;font:800 12px "Barlow Condensed",sans-serif;flex:none}
+.gp-profile-bio{color:#858591;font-size:10px;line-height:1.5;margin-top:3px}
+.gp-profile-author strong{color:#f1f1f5;font-size:11px}
+#profileForm{margin-top:12px}
+#profileForm .gp-field{margin-bottom:10px}
+
 @media(max-width:850px){.community-grid{grid-template-columns:1fr}.nav-account{padding:9px 10px;font-size:9px}}
 @media(max-width:600px){.community-panel,.account-panel{padding:17px}.gp-modal{padding:23px 19px}}
 
@@ -883,7 +890,17 @@ textarea.gp-field{min-height:105px;resize:vertical}
   </form>
   <div id="signedInPanel" hidden>
    <p class="gp-modal-copy" id="signedInText"></p>
-   <button class="gp-action secondary" id="signOutButton" type="button">CERRAR SESIÓN</button>
+   <form id="profileForm">
+    <label class="gp-form-label" for="profileUsername">NOMBRE DE USUARIO</label>
+    <input class="gp-field" id="profileUsername" maxlength="24" autocomplete="nickname" placeholder="TuUsuario" required>
+    <label class="gp-form-label" for="profileDisplayName">NOMBRE VISIBLE</label>
+    <input class="gp-field" id="profileDisplayName" maxlength="40" placeholder="Cómo te verá la comunidad" required>
+    <label class="gp-form-label" for="profileBio">DESCRIPCIÓN</label>
+    <textarea class="gp-field" id="profileBio" maxlength="160" placeholder="Cuéntale algo a la comunidad (opcional)" rows="3"></textarea>
+    <button class="gp-action" id="saveProfileButton" type="submit">GUARDAR PERFIL</button>
+    <p class="gp-status" id="profileStatus" aria-live="polite"></p>
+   </form>
+   <button class="gp-action secondary" id="signOutButton" type="button" style="margin-top:10px">CERRAR SESIÓN</button>
   </div>
   <p class="gp-legal">No publiques datos personales en tus sugerencias. Tu correo no se muestra en la comunidad.</p>
  </div>
@@ -1056,12 +1073,17 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 (() => {
  "use strict";
  const SUPABASE_URL = "https://gzqebfwknfnwnobwypve.supabase.co";
- const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_NjEt_shVbSEbvALrsFt4cQ_GOGgPBKz";
+ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_NjEt_shVbSEbvALrsFt4c_Q_GOGgPBKz";
+ if (!window.supabase || typeof window.supabase.createClient !== "function") {
+  const list = document.getElementById("suggestionList");
+  if (list) list.textContent = "La comunidad no está disponible ahora mismo. Recarga la página más tarde.";
+  return;
+ }
  const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
  let currentUser = null;
  let authMode = "login";
  let isAdmin = false;
- let suggestionsCache = [];
+ let profilesCache = {};
  const $ = (id) => document.getElementById(id);
  const modal = $("accountModal");
  const accountButton = $("accountButton");
@@ -1069,15 +1091,17 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  const accountForm = $("accountForm");
  const status = $("accountStatus");
  const suggestionStatus = $("suggestionStatus");
+ const profileForm = $("profileForm");
 
  function setStatus(el, message, isError=false) {
+  if (!el) return;
   el.textContent = message;
   el.style.color = isError ? "#ff9b9b" : "";
  }
  function openAccount() {
   modal.classList.add("open");
   document.body.style.overflow = "hidden";
-  if (currentUser) showSignedInPanel(); else setAuthMode("login");
+  if (currentUser) showSignedInPanel(); else { showAuthForm(); setAuthMode("login"); }
  }
  function closeAccount() {
   modal.classList.remove("open");
@@ -1095,86 +1119,162 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  function showSignedInPanel() {
   accountForm.hidden = true;
   $("signedInPanel").hidden = false;
-  $("signedInText").textContent = "Has iniciado sesión como " + (currentUser.email || "usuario de GabriPlay") + ".";
+  const metadata = currentUser?.user_metadata || {};
+  $("signedInText").textContent = "Tu perfil de GabriPlay. El correo de tu cuenta nunca se muestra públicamente.";
+  $("profileUsername").value = metadata.username || "";
+  $("profileDisplayName").value = metadata.display_name || metadata.username || "";
+  $("profileBio").value = metadata.bio || "";
+  setStatus($("profileStatus"), "");
+  loadOwnProfile();
  }
  function showAuthForm() {
   accountForm.hidden = false;
   $("signedInPanel").hidden = true;
  }
+ async function loadOwnProfile() {
+  if (!currentUser) return;
+  const {data,error}=await db.from("profiles").select("username,display_name,bio").eq("id",currentUser.id).maybeSingle();
+  if (!error && data) {
+   $("profileUsername").value=data.username || "";
+   $("profileDisplayName").value=data.display_name || "";
+   $("profileBio").value=data.bio || "";
+  }
+ }
+ async function saveProfile(e) {
+  e.preventDefault();
+  if (!currentUser) return;
+  const username=$("profileUsername").value.trim().toLowerCase();
+  const displayName=$("profileDisplayName").value.trim();
+  const bio=$("profileBio").value.trim();
+  if (!/^[a-z0-9_]{3,24}$/.test(username)) {
+   setStatus($("profileStatus"),"El usuario debe tener entre 3 y 24 caracteres: letras, números o guion bajo.",true); return;
+  }
+  if (!displayName || displayName.length>40 || bio.length>160) {
+   setStatus($("profileStatus"),"Revisa el nombre visible y la descripción.",true); return;
+  }
+  const button=$("saveProfileButton"); button.disabled=true;
+  try {
+   const {error}=await db.from("profiles").upsert({
+    id:currentUser.id,username,display_name:displayName,bio,updated_at:new Date().toISOString()
+   },{onConflict:"id"});
+   if(error) throw error;
+   const {error:authError}=await db.auth.updateUser({data:{username,display_name:displayName,bio}});
+   if(authError) throw authError;
+   currentUser=(await db.auth.getUser()).data.user || currentUser;
+   setStatus($("profileStatus"),"Perfil guardado correctamente.");
+   $("communityUser").textContent="Sesión iniciada · "+displayName+(isAdmin?" · ADMINISTRADOR":"");
+   showToast("Perfil actualizado.");
+   await loadSuggestions();
+  } catch(err) {
+   const message=err?.code==="23505"?"Ese nombre de usuario ya está en uso.":(err.message || "No se pudo guardar el perfil.");
+   setStatus($("profileStatus"),message,true);
+  } finally { button.disabled=false; }
+ }
  async function checkAdmin() {
-  if (!currentUser) { isAdmin = false; return; }
-  const { data, error } = await db.from("gabriplay_admins").select("user_id").eq("user_id", currentUser.id).maybeSingle();
-  isAdmin = !error && !!data;
+  if (!currentUser) { isAdmin=false; return; }
+  try {
+   const {data,error}=await db.from("gabriplay_admins").select("user_id").eq("user_id",currentUser.id).maybeSingle();
+   isAdmin=!error && !!data;
+  } catch { isAdmin=false; }
  }
  async function loadSuggestions() {
-  const list = $("suggestionList");
+  const list=$("suggestionList");
+  if (!list) return;
   list.replaceChildren();
-  const { data, error } = await db.from("suggestions").select("id,user_id,title,description,status,created_at").order("created_at", {ascending:false}).limit(50);
-  if (error) {
-   const empty = document.createElement("div"); empty.className = "gp-empty";
-   empty.textContent = "No se han podido cargar las sugerencias. Comprueba la configuración de Supabase.";
-   list.appendChild(empty); return;
-  }
-  suggestionsCache = data || [];
-  if (!suggestionsCache.length) {
-   const empty = document.createElement("div"); empty.className = "gp-empty";
-   empty.textContent = "Todavía no hay sugerencias. ¡Puedes proponer la primera!";
-   list.appendChild(empty); return;
-  }
-  let voteIds = new Set();
-  let voteCounts = {};
-  if (currentUser) {
-   const { data: votes } = await db.from("suggestion_votes").select("suggestion_id,user_id");
-   (votes || []).forEach(v => { voteCounts[v.suggestion_id] = (voteCounts[v.suggestion_id] || 0) + 1; if (v.user_id === currentUser.id) voteIds.add(v.suggestion_id); });
-  }
-  suggestionsCache.forEach(item => {
-   const card = document.createElement("article"); card.className = "gp-suggestion";
-   const top = document.createElement("div"); top.className = "gp-suggestion-top";
-   const tag = document.createElement("span"); tag.className = "gp-tag" + (item.status === "pending" ? " pending" : item.status === "rejected" ? " rejected" : "");
-   tag.textContent = item.status === "pending" ? "PENDIENTE" : item.status === "completed" ? "COMPLETADA" : item.status === "rejected" ? "NO APROBADA" : "APROBADA";
-   const title = document.createElement("h4"); title.textContent = item.title;
-   top.appendChild(tag); card.appendChild(top); card.appendChild(title);
-   const desc = document.createElement("p"); desc.textContent = item.description; card.appendChild(desc);
-   const actions = document.createElement("div"); actions.className = "gp-card-actions";
-   if (item.status === "approved") {
-    const vote = document.createElement("button");
-    vote.type = "button"; vote.textContent = (voteIds.has(item.id) ? "♥ VOTADO" : "♡ VOTAR") + " · " + (voteCounts[item.id] || 0);
-    vote.addEventListener("click", () => toggleVote(item.id)); actions.appendChild(vote);
+  try {
+   let query=db.from("suggestions").select("id,user_id,title,description,status,created_at").order("created_at",{ascending:false}).limit(50);
+   // Los visitantes y usuarios normales solo solicitan propuestas públicas.
+   if (!isAdmin) query=query.eq("status","approved");
+   const {data,error}=await query;
+   if(error) throw error;
+   const suggestions=data || [];
+   if(!suggestions.length) {
+    const empty=document.createElement("div"); empty.className="gp-empty";
+    empty.textContent=isAdmin?"Todavía no hay sugerencias.":"Todavía no hay propuestas aprobadas. ¡Puedes enviar la primera!";
+    list.appendChild(empty); return;
    }
-   if (isAdmin) {
-    [["approved","APROBAR"],["rejected","RECHAZAR"],["completed","COMPLETADA"]].forEach(([value,label])=>{
-     const b=document.createElement("button"); b.type="button"; b.textContent=label;
-     b.addEventListener("click",()=>moderateSuggestion(item.id,value)); actions.appendChild(b);
-    });
+   const userIds=[...new Set(suggestions.map(x=>x.user_id).filter(Boolean))];
+   profilesCache={};
+   if(userIds.length) {
+    const {data:profiles}=await db.from("profiles").select("id,username,display_name,bio,avatar_url").in("id",userIds);
+    (profiles || []).forEach(p=>profilesCache[p.id]=p);
    }
-   if (actions.childElementCount) card.appendChild(actions);
-   list.appendChild(card);
-  });
+   let voteIds=new Set(),voteCounts={};
+   const {data:votes}=await db.from("suggestion_votes").select("suggestion_id,user_id");
+   (votes || []).forEach(v=>{
+    voteCounts[v.suggestion_id]=(voteCounts[v.suggestion_id]||0)+1;
+    if(currentUser && v.user_id===currentUser.id) voteIds.add(v.suggestion_id);
+   });
+   suggestions.forEach(item=>{
+    const card=document.createElement("article"); card.className="gp-suggestion";
+    const top=document.createElement("div"); top.className="gp-suggestion-top";
+    const tag=document.createElement("span");
+    tag.className="gp-tag"+(item.status==="pending"?" pending":item.status==="rejected"?" rejected":"");
+    tag.textContent=item.status==="pending"?"PENDIENTE":item.status==="completed"?"COMPLETADA":item.status==="rejected"?"NO APROBADA":"APROBADA";
+    top.appendChild(tag); card.appendChild(top);
+    const profile=profilesCache[item.user_id];
+    const author=document.createElement("div"); author.className="gp-profile-author";
+    const avatar=document.createElement("span"); avatar.className="gp-profile-avatar";
+    const authorName=profile?.display_name || profile?.username || "Miembro de GabriPlay";
+    avatar.textContent=(authorName.trim()[0] || "G").toUpperCase();
+    const authorInfo=document.createElement("div");
+    const strong=document.createElement("strong"); strong.textContent=authorName;
+    const handle=document.createElement("div"); handle.textContent=profile?.username?"@"+profile.username:"Comunidad";
+    authorInfo.appendChild(strong); authorInfo.appendChild(handle);
+    if(profile?.bio){const bio=document.createElement("div");bio.className="gp-profile-bio";bio.textContent=profile.bio;authorInfo.appendChild(bio);}
+    author.appendChild(avatar);author.appendChild(authorInfo);card.appendChild(author);
+    const title=document.createElement("h4"); title.textContent=item.title; card.appendChild(title);
+    const desc=document.createElement("p"); desc.textContent=item.description; card.appendChild(desc);
+    const actions=document.createElement("div"); actions.className="gp-card-actions";
+    if(item.status==="approved") {
+     const vote=document.createElement("button");vote.type="button";
+     vote.textContent=(voteIds.has(item.id)?"♥ VOTADO":"♡ VOTAR")+" · "+(voteCounts[item.id]||0);
+     vote.disabled=!currentUser;
+     vote.title=currentUser?"Votar esta propuesta":"Inicia sesión para votar";
+     vote.addEventListener("click",()=>toggleVote(item.id));actions.appendChild(vote);
+    }
+    if(isAdmin) {
+     [["approved","APROBAR"],["rejected","RECHAZAR"],["completed","COMPLETADA"]].forEach(([value,label])=>{
+      const b=document.createElement("button");b.type="button";b.textContent=label;
+      b.addEventListener("click",()=>moderateSuggestion(item.id,value));actions.appendChild(b);
+     });
+    }
+    if(actions.childElementCount) card.appendChild(actions);
+    list.appendChild(card);
+   });
+  } catch(err) {
+   const empty=document.createElement("div");empty.className="gp-empty";
+   empty.textContent=err.message || "No se han podido cargar las sugerencias. Comprueba Supabase.";
+   list.appendChild(empty);
+  }
  }
  async function toggleVote(suggestionId) {
-  if (!currentUser) { openAccount(); setStatus(status,"Inicia sesión para votar."); return; }
-  const { data: existing, error: findError } = await db.from("suggestion_votes").select("suggestion_id").eq("suggestion_id",suggestionId).eq("user_id",currentUser.id).maybeSingle();
-  if (findError) { showToast("No se ha podido comprobar tu voto."); return; }
-  const result = existing
+  if(!currentUser){openAccount();setStatus(status,"Inicia sesión para votar.");return;}
+  const {data:existing,error:findError}=await db.from("suggestion_votes").select("suggestion_id").eq("suggestion_id",suggestionId).eq("user_id",currentUser.id).maybeSingle();
+  if(findError){showToast("No se ha podido comprobar tu voto.");return;}
+  const result=existing
    ? await db.from("suggestion_votes").delete().eq("suggestion_id",suggestionId).eq("user_id",currentUser.id)
    : await db.from("suggestion_votes").insert({suggestion_id:suggestionId,user_id:currentUser.id});
-  if (result.error) showToast("No se ha podido guardar el voto."); else await loadSuggestions();
+  if(result.error) showToast("No se ha podido guardar el voto."); else await loadSuggestions();
  }
- async function moderateSuggestion(id, nextStatus) {
-  const { error } = await db.from("suggestions").update({status:nextStatus}).eq("id",id);
-  if (error) { showToast("No se pudo actualizar. Revisa los permisos de administrador."); return; }
-  showToast("Sugerencia actualizada."); await loadSuggestions();
+ async function moderateSuggestion(id,nextStatus) {
+  if(!isAdmin){showToast("No tienes permisos para moderar.");return;}
+  const {error}=await db.from("suggestions").update({status:nextStatus}).eq("id",id);
+  if(error){showToast("No se pudo actualizar. Revisa los permisos de administrador.");return;}
+  showToast("Sugerencia actualizada.");await loadSuggestions();
  }
  async function refreshSession(session) {
-  currentUser = session?.user || null;
+  currentUser=session?.user || null;
   await checkAdmin();
-  accountButton.textContent = currentUser ? "MI PERFIL" : "MI CUENTA";
-  communityAction.textContent = currentUser ? "MI CUENTA" : "INICIAR SESIÓN";
-  $("communityUser").textContent = currentUser ? "Sesión iniciada · " + (currentUser.email || "Usuario") + (isAdmin ? " · ADMINISTRADOR" : "") : "Estás explorando como visitante.";
-  $("suggestionSubmit").disabled = !currentUser;
-  setStatus(suggestionStatus, currentUser ? "Tu propuesta quedará pendiente de revisión." : "Inicia sesión para enviar una propuesta.");
-  if (modal.classList.contains("open")) {
-   if (currentUser) showSignedInPanel(); else showAuthForm();
+  const metadata=currentUser?.user_metadata || {};
+  const publicName=metadata.display_name || metadata.username || "Miembro";
+  accountButton.textContent=currentUser?"MI PERFIL":"MI CUENTA";
+  communityAction.textContent=currentUser?"MI CUENTA":"INICIAR SESIÓN";
+  $("communityUser").textContent=currentUser?"Sesión iniciada · "+publicName+(isAdmin?" · ADMINISTRADOR":""):"Estás explorando como visitante.";
+  $("suggestionSubmit").disabled=!currentUser;
+  setStatus(suggestionStatus,currentUser?"Tu propuesta quedará pendiente de revisión.":"Inicia sesión para enviar una propuesta.");
+  if(modal.classList.contains("open")) {
+   if(currentUser) showSignedInPanel(); else showAuthForm();
   }
   await loadSuggestions();
  }
@@ -1184,33 +1284,34 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  modal.addEventListener("click",e=>{if(e.target===modal)closeAccount();});
  document.addEventListener("keydown",e=>{if(e.key==="Escape" && modal.classList.contains("open"))closeAccount();});
  document.querySelectorAll("[data-auth-mode]").forEach(btn=>btn.addEventListener("click",()=>setAuthMode(btn.dataset.authMode)));
+ profileForm.addEventListener("submit",saveProfile);
  accountForm.addEventListener("submit",async e=>{
   e.preventDefault();
-  const submit=$("accountSubmit"); submit.disabled=true;
+  const submit=$("accountSubmit");submit.disabled=true;
   const email=$("accountEmail").value.trim();
   const password=$("accountPassword").value;
   try {
-   if (authMode === "register") {
+   if(authMode==="register") {
     const username=$("accountUsername").value.trim().toLowerCase();
     const displayName=$("accountDisplayName").value.trim() || username;
-    if (!/^[a-z0-9_]{3,24}$/.test(username)) { setStatus(status,"El usuario debe tener entre 3 y 24 caracteres: letras, números o guion bajo.",true); return; }
-    if (password.length < 8) { setStatus(status,"La contraseña debe tener al menos 8 caracteres.",true); return; }
-    const { error } = await db.auth.signUp({email,password,options:{data:{username,display_name:displayName},emailRedirectTo:"https://gabriel10mp.github.io/GabriPlay-Web/"}});
-    if (error) throw error;
+    if(!/^[a-z0-9_]{3,24}$/.test(username)){setStatus(status,"El usuario debe tener entre 3 y 24 caracteres: letras, números o guion bajo.",true);return;}
+    if(password.length<8){setStatus(status,"La contraseña debe tener al menos 8 caracteres.",true);return;}
+    const {error}=await db.auth.signUp({email,password,options:{data:{username,display_name:displayName},emailRedirectTo:"https://gabriel10mp.github.io/GabriPlay-Web/"}});
+    if(error) throw error;
     setStatus(status,"Cuenta creada. Revisa tu correo para confirmar el registro antes de iniciar sesión.");
    } else {
-    const { error } = await db.auth.signInWithPassword({email,password});
-    if (error) throw error;
+    const {error}=await db.auth.signInWithPassword({email,password});
+    if(error) throw error;
     setStatus(status,"Sesión iniciada correctamente.");
     await refreshSession((await db.auth.getSession()).data.session);
    }
-  } catch(err) { setStatus(status,err.message || "Ha ocurrido un error.",true); }
-  finally { submit.disabled=false; }
+  } catch(err){setStatus(status,err.message || "Ha ocurrido un error.",true);}
+  finally{submit.disabled=false;}
  });
  $("signOutButton").addEventListener("click",async()=>{
   const {error}=await db.auth.signOut();
   if(error){setStatus(status,error.message,true);return;}
-  setAuthMode("login"); showAuthForm(); setStatus(status,"Has cerrado sesión.");
+  setAuthMode("login");showAuthForm();setStatus(status,"Has cerrado sesión.");
  });
  $("suggestionForm").addEventListener("submit",async e=>{
   e.preventDefault();
@@ -1218,15 +1319,20 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   const title=$("suggestionTitle").value.trim();
   const description=$("suggestionDescription").value.trim();
   if(!title || !description)return;
-  const button=$("suggestionSubmit"); button.disabled=true;
-  const {error}=await db.from("suggestions").insert({user_id:currentUser.id,title,description,status:"pending"});
-  button.disabled=false;
-  if(error){setStatus(suggestionStatus,error.message,true);return;}
-  $("suggestionForm").reset(); setStatus(suggestionStatus,"¡Idea enviada! Quedará pendiente de revisión.");
-  await loadSuggestions();
+  const button=$("suggestionSubmit");button.disabled=true;
+  try {
+   const {error}=await db.from("suggestions").insert({user_id:currentUser.id,title,description,status:"pending"});
+   if(error) throw error;
+   $("suggestionForm").reset();
+   setStatus(suggestionStatus,"¡Idea enviada! Quedará pendiente de revisión.");
+   await loadSuggestions();
+  } catch(err){setStatus(suggestionStatus,err.message || "No se pudo enviar la sugerencia.",true);}
+  finally{button.disabled=false;}
  });
  db.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>refreshSession(session),0);});
- db.auth.getSession().then(({data})=>refreshSession(data.session));
+ db.auth.getSession().then(({data,error})=>{if(error)throw error;return refreshSession(data.session);}).catch(err=>{
+  setStatus(suggestionStatus,err.message || "No se pudo comprobar la sesión.",true);
+ });
 })();
 </script>
 
