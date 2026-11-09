@@ -1017,6 +1017,24 @@ const navLinks=document.getElementById("navLinks");
 menuButton.addEventListener("click",()=>navLinks.classList.toggle("open"));
 navLinks.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>navLinks.classList.remove("open")));
 
+// Al volver a INICIO, cerrar cualquier ventana o panel flotante abierto.
+function closeHomeOverlays(){
+ navLinks.classList.remove("open");
+ document.querySelectorAll(".gp-modal-backdrop.open, .modal.open, .lightbox.open, dialog[open]").forEach(el=>{
+  el.classList.remove("open");
+  if(el.tagName==="DIALOG" && typeof el.close==="function") el.close();
+ });
+ document.body.style.overflow="";
+ const lightboxImage=document.getElementById("lightboxImage");
+ if(lightboxImage) lightboxImage.removeAttribute("src");
+}
+document.querySelectorAll('a[href="#inicio"]').forEach(link=>{
+ link.addEventListener("click",closeHomeOverlays);
+});
+window.addEventListener("hashchange",()=>{
+ if(location.hash==="#inicio" || location.hash==="") closeHomeOverlays();
+});
+
 // AÑO
 document.getElementById("year").textContent=new Date().getFullYear();
 
