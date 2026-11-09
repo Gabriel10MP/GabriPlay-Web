@@ -41,7 +41,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .footer{border-color:#48232a}
 .status{color:#b8a7a7}
 
-/* Perfiles 2.0: insignias, logros y temas */
+/* Perfiles 2.0: insignias, logros y temas */.profile-theme-ocean .banner{background:radial-gradient(circle at 78% 28%,#398eb8 0 12%,#174c70 12.5% 13%,transparent 13.5%),linear-gradient(135deg,#0b1820,#080d12 65%)}.profile-theme-ocean .handle,.profile-theme-ocean .preview-handle{color:#83c9e8}.profile-theme-emerald .banner{background:radial-gradient(circle at 78% 28%,#39966c 0 12%,#17563b 12.5% 13%,transparent 13.5%),linear-gradient(135deg,#0b1b13,#080e0a 65%)}.profile-theme-emerald .handle,.profile-theme-emerald .preview-handle{color:#8ddab0}
 .badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.gp-badge{display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border:1px solid #71303a;border-radius:6px;background:#2a1016;color:#ffd8dc;font-size:9px;font-weight:900;letter-spacing:.7px}.gp-badge.creator{background:linear-gradient(120deg,#57101c,#a51e32);border-color:#ef6674;color:#fff}.gp-badge.admin{background:#21191a;border-color:#b17b42;color:#ffdca8}.gp-badge.achievement{background:#171719;border-color:#55515a;color:#ded9dc}
 .profile-theme-ocean{--red:#4b9ac2;--red2:#75c7e8}.profile-theme-emerald{--red:#368b68;--red2:#64c99b}.profile-theme-crimson{--red:#c52b40;--red2:#e34b58}
 .profile-theme-ocean .gp-badge{border-color:#386d88;background:#10202a;color:#c8edff}.profile-theme-emerald .gp-badge{border-color:#326e54;background:#10241b;color:#c9ffe0}
@@ -98,7 +98,7 @@ const SUPABASE_URL="https://gzqebfwknfnwnobwypve.supabase.co";
 const KEY="sb_publishable_NjEt_shVbSEbvALrsFt4cQ_GOGgPBKz";
 const db=window.supabase.createClient(SUPABASE_URL,KEY);
 const $=id=>document.getElementById(id);
-let user=null;
+let user=null,isAdmin=false;
 const fields=["username","displayName","bio","avatarUrl","bannerUrl","websiteUrl","youtubeUrl","twitchUrl","profileTheme"];
 const MAX_IMAGE_SIZE=5*1024*1024;
 const ALLOWED_IMAGE_TYPES=["image/png","image/jpeg","image/webp","image/gif"];
@@ -110,7 +110,7 @@ function updatePreview(){
  previewObjectUrls.forEach(url=>URL.revokeObjectURL(url));previewObjectUrls=[];
  const name=val("displayName")||"Tu nombre",handle=val("username")||"tu_usuario",avatarFile=$("avatarFile").files?.[0],bannerFile=$("bannerFile").files?.[0],avatar=avatarFile?URL.createObjectURL(avatarFile):safeUrl(val("avatarUrl")),banner=bannerFile?URL.createObjectURL(bannerFile):safeUrl(val("bannerUrl"));
  if(avatarFile)previewObjectUrls.push(avatar);if(bannerFile)previewObjectUrls.push(banner);
- $("previewName").textContent=name;$("previewHandle").textContent="@"+handle;const theme=["crimson","ocean","emerald"].includes(val("profileTheme"))?val("profileTheme"):"crimson";$("preview").className="panel preview profile-theme-"+theme;$("previewBadges").replaceChildren();const creator=handle.toLowerCase()==="gabri10";if(creator){const b=document.createElement("span");b.className="gp-badge creator";b.textContent="✦ CREADOR · GABRIPLAY";$("previewBadges").append(b)}const memberBadge=document.createElement("span");memberBadge.className="gp-badge achievement";memberBadge.textContent="✧ MIEMBRO";$("previewBadges").append(memberBadge);$("previewBio").textContent=val("bio")||"Tu biografía aparecerá aquí.";
+ $("previewName").textContent=name;$("previewHandle").textContent="@"+handle;const theme=["crimson","ocean","emerald"].includes(val("profileTheme"))?val("profileTheme"):"crimson";$("preview").className="panel preview profile-theme-"+theme;$("previewBadges").replaceChildren();const creator=handle.toLowerCase()==="gabri10";if(creator){const b=document.createElement("span");b.className="gp-badge creator";b.textContent="✦ CREADOR · GABRIPLAY";$("previewBadges").append(b)}if(isAdmin){const adminBadge=document.createElement("span");adminBadge.className="gp-badge admin";adminBadge.textContent="⚙ ADMINISTRADOR";$("previewBadges").append(adminBadge)}const memberBadge=document.createElement("span");memberBadge.className="gp-badge achievement";memberBadge.textContent="✧ MIEMBRO";$("previewBadges").append(memberBadge);$("previewBio").textContent=val("bio")||"Tu biografía aparecerá aquí.";
  $("previewAvatar").replaceChildren();
  if(avatar){const img=document.createElement("img");img.src=avatar;img.alt="Foto de perfil";img.referrerPolicy="no-referrer";img.onerror=()=>{$("previewAvatar").textContent=(name[0]||"G").toUpperCase()};$("previewAvatar").appendChild(img)}
  else $("previewAvatar").textContent=(name[0]||"G").toUpperCase();
@@ -135,6 +135,7 @@ async function init(){
  const {data,error}=await db.auth.getSession();if(error)throw error;
  user=data.session?.user;
  if(!user){setStatus("Inicia sesión desde la página principal y vuelve aquí para editar tu perfil.",true);$("save").disabled=true;return}
+ const {data:adminRole}=await db.rpc("is_gabriplay_admin",{target_user_id:user.id});isAdmin=!!adminRole;
  const {data:profile,error:profileError}=await db.from("profiles").select("username,display_name,bio,avatar_url,banner_url,website_url,youtube_url,twitch_url,profile_theme").eq("id",user.id).maybeSingle();
  if(profileError)throw profileError;
  const meta=user.user_metadata||{};$("profileTheme").value=profile?.profile_theme||"crimson";
