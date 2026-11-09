@@ -414,6 +414,77 @@ footer{border-color:#48232a}
 
 :focus-visible{outline:2px solid #e34b58;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* HOME REFRESH — minimalismo editorial */
+:root{--rainbow:linear-gradient(90deg,#f4f4f6 0%,#c9c9d1 55%,#c52b40 100%)}
+.section{padding:82px 0}
+.section-heading{margin-bottom:29px}
+.section-heading h2{letter-spacing:-.8px}
+.small-label{letter-spacing:2.2px;color:#a9a9b4}
+.topbar{background:#08080cf2;border-bottom-color:#ffffff18}
+.nav{height:70px}
+.logo-symbol{border-radius:9px;background:#101015}
+.hero{min-height:610px;background:#09090d}
+.hero-bg{background:linear-gradient(90deg,#08080cf7 0%,#08080ce8 38%,#08080c75 100%),linear-gradient(0deg,#08080c 0%,transparent 58%),url("https://staticc.sportskeeda.com/editor/2020/09/f0e85-15993722712211-800.jpg") center 43%/cover;transform:none}
+.hero:after{background:linear-gradient(115deg,transparent 45%,#c52b4010 100%)}
+.hero-content{padding:90px 0 85px}
+.hero-overline{letter-spacing:3px;color:#d0d0d7}
+.hero h1{font-size:clamp(66px,9.6vw,116px);line-height:.84;letter-spacing:-1.5px;margin:25px 0}
+.hero-copy{max-width:470px;font-size:13px;color:#c2c2cb}
+.hero-bottom{margin-top:48px;gap:20px}
+.btn{border-radius:6px;padding:13px 18px;letter-spacing:.7px}
+.btn-outline{border-color:#ffffff30;background:#ffffff08}
+.ticker{background:#0d0d12;border-color:#ffffff12}
+.ticker-track{padding:13px 0;animation-duration:42s}
+.ticker-track span{font-size:13px;color:#a9a9b3}
+.quick-grid{gap:12px}
+.quick-card{padding:22px;border-radius:9px;background:#101016;border-color:#24242d;min-height:142px}
+.quick-card:hover{background:#15151d;border-color:#555}
+.quick-icon{font-size:20px;margin-bottom:14px;color:#e5e5eb}
+.quick-card h3{font-size:20px;letter-spacing:.2px}
+.quick-card p{font-size:11px;color:#9696a2}
+.video-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.video-card{border-radius:10px;background:#101016;border-color:#24242d}
+.video-thumb{background:linear-gradient(135deg,#191920,#0d0d12);aspect-ratio:16/9}
+.video-thumb img{background:#17171f}
+.video-info{padding:17px}
+.video-info h3{font-size:15px;letter-spacing:-.2px}
+.video-info p{font-size:11px}
+.pill{border-color:#ffffff20;color:#e4b2b8;background:#c52b4010;letter-spacing:1px}
+.video-meta{color:#e1a0a8}
+.card-hover:hover{transform:translateY(-3px);box-shadow:0 12px 28px #0006}
+.gta-feature{border-radius:10px}
+.gallery-item{border-radius:8px}
+.lab-copy,.world-copy,.about-copy{border-radius:10px}
+.project-card,.other-card,.arcade-card{border-radius:9px}
+.roadmap-item{background:#101016}
+.gp-broadcast-feature{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:28px;padding:32px 34px;border:1px solid #34313a;border-radius:12px;background:linear-gradient(110deg,#15131a 0%,#101016 58%,#1a1014 100%);overflow:hidden}
+.gp-broadcast-feature:after{content:"";position:absolute;width:230px;height:230px;right:8%;top:-150px;border:1px solid #c52b403d;border-radius:50%;box-shadow:0 0 0 35px #c52b4009,0 0 0 70px #c52b4006;pointer-events:none}
+.gp-broadcast-copy{position:relative;z-index:1}
+.gp-broadcast-kicker{font-size:9px;font-weight:900;letter-spacing:2.5px;color:#e3a1a8;text-transform:uppercase}
+.gp-broadcast-feature h3{font:800 clamp(28px,4vw,43px)/1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:12px 0 9px}
+.gp-broadcast-feature p{max-width:570px;color:#a8a8b3;font-size:12px;line-height:1.8}
+.gp-broadcast-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:17px}
+.gp-broadcast-tags span{padding:6px 9px;border:1px solid #ffffff1c;border-radius:5px;color:#c7c7d0;font-size:9px;font-weight:800}
+.gp-broadcast-cta{position:relative;z-index:1;white-space:nowrap}
+.gp-broadcast-cta .btn{background:#c52b40;border-color:#c52b40;color:white}
+.thumb-fallback:before{content:"GABRIPLAY · VÍDEO";position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 75% 20%,#c52b4033,transparent 38%),linear-gradient(135deg,#20202a,#09090e);color:#eee;font:800 17px "Barlow Condensed",sans-serif;letter-spacing:2px}
+.thumb-fallback img{display:none}
+@media(max-width:850px){
+ .video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .gp-broadcast-feature{grid-template-columns:1fr;gap:20px}
+ .gp-broadcast-cta{justify-self:start}
+}
+@media(max-width:600px){
+ .section{padding:64px 0}
+ .hero{min-height:560px}
+ .hero-content{padding:78px 0}
+ .hero h1{font-size:clamp(60px,15vw,82px)}
+ .hero-bottom{margin-top:38px;gap:12px;font-size:9px}
+ .video-grid{grid-template-columns:1fr}
+ .gp-broadcast-feature{padding:25px 22px}
+}
+
 </style>
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
 <link rel="apple-touch-icon" href="favicon.svg?v=1">
@@ -511,6 +582,21 @@ footer{border-color:#48232a}
     <p>Pruebas, juegos y sorpresas.</p>
    </a>
   </div>
+ </div>
+</section>
+
+<!-- CANAL DEL CREADOR: DESTACADO EN PORTADA -->
+<section class="section" id="canal-creador" style="padding-top:12px">
+ <div class="container reveal">
+  <a class="gp-broadcast-feature" href="broadcast.html" aria-label="Entrar al Canal del Creador">
+   <div class="gp-broadcast-copy">
+    <div class="gp-broadcast-kicker">✦ Canal oficial del creador</div>
+    <h3>LO QUE PASA EN <span class="gradient-text">GABRIPLAY.</span></h3>
+    <p>Anuncios, novedades, adelantos y mensajes publicados directamente por el creador. Entra, descubre las últimas actualizaciones y deja tu reacción.</p>
+    <div class="gp-broadcast-tags"><span>ANUNCIOS</span><span>PRIMEROS ADELANTOS</span><span>REACCIONES</span></div>
+   </div>
+   <div class="gp-broadcast-cta"><span class="btn">ENTRAR AL CANAL ↗</span></div>
+  </a>
  </div>
 </section>
 
@@ -943,6 +1029,7 @@ footer{border-color:#48232a}
    </div>
    <div class="footer-links">
     <a href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">YOUTUBE ↗</a>
+    <a href="broadcast.html">CANAL DEL CREADOR</a>
     <a href="#videos">VÍDEOS</a>
     <a href="#gta">GTA V</a>
     <a href="#roblox">ROBLOX LAB</a>
@@ -1555,5 +1642,23 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
 })();
 </script>
+<script>
+(() => {
+ document.querySelectorAll(".video-thumb img").forEach(img => {
+  const card=img.closest(".video-thumb");
+  const match=(img.getAttribute("src")||"").match(/(?:vi|embed)\/([^/]+)/);
+  if(!match) return;
+  const id=match[1];
+  const candidates=["https://img.youtube.com/vi/"+id+"/sddefault.jpg","https://img.youtube.com/vi/"+id+"/hqdefault.jpg","https://img.youtube.com/vi/"+id+"/mqdefault.jpg","https://img.youtube.com/vi/"+id+"/default.jpg"];
+  let attempt=0;
+  img.addEventListener("error",function retry(){
+   if(attempt<candidates.length){img.src=candidates[attempt++];return;}
+   card.classList.add("thumb-fallback");
+   img.remove();
+  });
+ });
+})();
+</script>
+
 </body>
 </html>
