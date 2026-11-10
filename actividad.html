@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08080c">
+<meta name="description" content="Actividad reciente, novedades y propuestas de la comunidad GabriPlay.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GabriPlay"><meta property="og:title" content="Actividad de la comunidad — GabriPlay"><meta property="og:description" content="Novedades del creador y actividad reciente de la comunidad.">
+<title>Actividad de la comunidad — GabriPlay</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#08080c;--panel:#111118;--line:#30252b;--red:#c52b40;--muted:#aaa8b2;--white:#f6f6f8}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 78% 0%,#a21d3020,transparent 36%),var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif}a{color:inherit;text-decoration:none}.top{height:68px;width:min(1080px,calc(100% - 36px));margin:auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff18}.logo{font-weight:900;letter-spacing:.5px}.logo b{color:#f16b7c}.back{font-size:10px;font-weight:900;color:#f0c8ce;border:1px solid #74313a;border-radius:7px;padding:10px 13px}.wrap{width:min(1000px,calc(100% - 36px));margin:auto}.hero{padding:58px 0 35px}.eyebrow{font-size:10px;letter-spacing:3px;color:#e88b98;font-weight:900}.hero h1{font:900 clamp(48px,9vw,86px)/.88 "Barlow Condensed";margin:16px 0;text-transform:uppercase}.hero h1 span{background:linear-gradient(90deg,#fff,#eaa0a9 45%,#c52b40);background-clip:text;color:transparent}.intro{font-size:13px;color:var(--muted);line-height:1.8;max-width:650px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0 22px}.status{font-size:10px;color:#aaa}.refresh{border:1px solid #ffffff2b;border-radius:7px;padding:10px 13px;background:#ffffff09;color:#fff;font-size:10px;font-weight:900}.refresh:hover{border-color:#c52b40}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:17px;align-items:start}.column{display:grid;gap:17px}.panel{background:linear-gradient(145deg,#15151d,#0e0e13);border:1px solid #ffffff1b;border-radius:13px;padding:21px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}.panel h2{font:800 25px "Barlow Condensed";margin:0;text-transform:uppercase}.tag{font-size:8px;font-weight:900;letter-spacing:1px;color:#f0a2ad;border:1px solid #c52b4055;border-radius:30px;padding:6px 8px}.feed{display:grid;gap:11px}.item{padding:14px;border:1px solid #ffffff16;background:#ffffff05;border-radius:9px}.item h3{font:800 22px/1.1 "Barlow Condensed";margin:0 0 8px}.item p{font-size:11px;color:#c9c5ce;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}.date{font-size:9px;color:#89838d;margin-top:11px}.empty,.warning{padding:20px;text-align:center;border:1px dashed #ffffff2b;border-radius:9px;color:var(--muted);font-size:11px;line-height:1.8}.warning{border-color:#c52b4055;color:#e8b9c0}.member{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid #ffffff12}.member:last-child{border-bottom:0}.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;overflow:hidden;flex-shrink:0;background:#31131b;border:1px solid #a43b4b;color:#fff;font-weight:900;font-size:12px}.avatar img{width:100%;height:100%;object-fit:cover}.member strong{font-size:11px}.member small{display:block;color:#918b95;font-size:9px;margin-top:4px}.link{display:inline-block;margin-top:12px;color:#f1a1ab;font-size:10px;font-weight:900}.foot{padding:25px 0 35px;margin-top:35px;border-top:1px solid #ffffff16;color:#777;font-size:9px;text-align:center}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero{padding-top:42px}.panel{padding:17px}.toolbar{align-items:flex-start;flex-direction:column}}
+:focus-visible{outline:2px solid #e34b58;outline-offset:3px}
+</style>
+</head>
+<body>
+<header class="top"><a class="logo" href="index.html">✦ GABRI<b>PLAY</b></a><a class="back" href="index.html">← VOLVER A GABRIPLAY</a></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">LO QUE SE MUEVE EN GABRIPLAY</div><h1>CENTRO DE<br><span>ACTIVIDAD.</span></h1><p class="intro">Un vistazo rápido a las novedades oficiales, las ideas que llegan a la comunidad y las nuevas incorporaciones. Todo reunido en un mismo sitio.</p></section>
+<div class="toolbar"><span class="status" id="updated">Cargando actividad…</span><button class="refresh" id="refresh" type="button">↻ ACTUALIZAR</button></div>
+<div class="grid">
+<div class="column">
+<section class="panel"><div class="panel-head"><h2>NOVEDADES DEL CREADOR</h2><span class="tag">BROADCAST</span></div><div class="feed" id="broadcast"><div class="empty">Cargando publicaciones…</div></div><a class="link" href="broadcast.html">ABRIR CANAL COMPLETO ↗</a></section>
+<section class="panel"><div class="panel-head"><h2>IDEAS APROBADAS</h2><span class="tag">COMUNIDAD</span></div><div class="feed" id="ideas"><div class="empty">Cargando propuestas…</div></div><a class="link" href="index.html#comunidad">IR A LA COMUNIDAD ↗</a></section>
+</div>
+<aside class="column"><section class="panel"><div class="panel-head"><h2>ÚLTIMOS MIEMBROS</h2><span class="tag">COMUNIDAD</span></div><div id="members"><div class="empty">Cargando miembros…</div></div><a class="link" href="index.html#comunidad">CONOCER LA COMUNIDAD ↗</a></section>
+<section class="panel"><div class="panel-head"><h2>SEGUIR EXPLORANDO</h2></div><p class="intro">Pásate por el canal, descubre los vídeos y consulta los próximos planes de GabriPlay.</p><a class="link" href="gta-vi.html">PROYECTO GTA VI ↗</a><br><a class="link" href="https://youtube.com/@GabriPlay10" target="_blank" rel="noopener">CANAL DE YOUTUBE ↗</a></section></aside>
+</div>
+</main>
+<footer class="foot">GABRIPLAY · CENTRO DE ACTIVIDAD · PLAY BEYOND.</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(()=>{
+"use strict";
+const db=window.supabase.createClient("https://gzqebfwknfnwnobwypve.supabase.co","sb_publishable_NjEt_shVbSEbvALrsFt4c_Q_GOGgPBKz");
+const $=id=>document.getElementById(id);
+const date=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?"":d.toLocaleString("es-ES",{dateStyle:"medium",timeStyle:"short"})};
+const empty=(el,msg)=>{el.replaceChildren();const d=document.createElement("div");d.className="empty";d.textContent=msg;el.append(d)};
+function itemCard(title,body,when){const card=document.createElement("article");card.className="item";const h=document.createElement("h3");h.textContent=title||"Sin título";const p=document.createElement("p");p.textContent=body||"";card.append(h);if(body)card.append(p);const d=document.createElement("div");d.className="date";d.textContent=date(when);if(d.textContent)card.append(d);return card}
+async function load(){
+ $("updated").textContent="Actualizando…";
+ const b=$("broadcast"),i=$("ideas"),m=$("members");
+ const results=await Promise.allSettled([
+  db.rpc("gabriplay_broadcast_feed"),
+  db.from("suggestions").select("id,title,description,created_at").eq("status","approved").is("deleted_at",null).order("created_at",{ascending:false}).limit(5),
+  db.from("profiles").select("id,username,display_name,avatar_url,created_at").order("created_at",{ascending:false}).limit(5)
+ ]);
+ const [br,ir,mr]=results;
+ if(br.status==="fulfilled"&&!br.value.error){
+  const posts=Array.isArray(br.value.data)?br.value.data:[];
+  empty(b,posts.length?"":"Todavía no hay comunicados. Vuelve pronto.");
+  if(posts.length){b.replaceChildren();posts.slice(0,4).forEach(p=>b.append(itemCard(p.title,p.body,p.created_at)))}
+ }else{empty(b,"El canal de novedades todavía no está disponible. Puedes consultarlo en la página de Broadcast.");const n=document.createElement("p");n.className="date";n.textContent="Si acabas de activar el canal, comprueba que la configuración SQL de Broadcast esté aplicada.";b.append(n)}
+ if(ir.status==="fulfilled"&&!ir.value.error){
+  const rows=ir.value.data||[];
+  if(rows.length){i.replaceChildren();rows.forEach(x=>i.append(itemCard(x.title,x.description,x.created_at)))}else empty(i,"Aún no hay propuestas aprobadas. ¡La primera podría ser la tuya!");
+ }else empty(i,"No se han podido cargar las propuestas ahora mismo.");
+ if(mr.status==="fulfilled"&&!mr.value.error){
+  const rows=mr.value.data||[];m.replaceChildren();
+  if(!rows.length)empty(m,"Todavía no hay miembros para mostrar.");
+  rows.forEach(p=>{const row=document.createElement("a");row.className="member";row.href="usuario.html?u="+encodeURIComponent(p.username||"");const av=document.createElement("span");av.className="avatar";if(p.avatar_url){const img=document.createElement("img");img.src=p.avatar_url;img.alt="";img.onerror=()=>{av.textContent=(p.display_name||p.username||"G")[0].toUpperCase()};av.append(img)}else av.textContent=(p.display_name||p.username||"G")[0].toUpperCase();const info=document.createElement("span");const strong=document.createElement("strong");strong.textContent=p.display_name||p.username||"Miembro";const small=document.createElement("small");small.textContent="@"+(p.username||"miembro")+(p.created_at?" · "+date(p.created_at):"");info.append(strong,small);row.append(av,info);m.append(row)})
+ }else empty(m,"No se ha podido cargar el directorio de miembros.");
+ $("updated").textContent="Última actualización: "+new Date().toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});
+}
+$("refresh").addEventListener("click",()=>load().catch(()=>{$("updated").textContent="No se pudo actualizar. Inténtalo de nuevo."}));
+load().catch(()=>{$("updated").textContent="No se pudo cargar la actividad."});
+})();
+</script>
+<script>
+(()=>{let v=null;const check=async()=>{try{const r=await fetch("version.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;const d=await r.json();if(!d.version)return;if(v===null){v=d.version;return}if(v!==d.version)location.reload()}catch(_){}};check();setInterval(check,60000)})();
+</script>
+</body>
+</html>
