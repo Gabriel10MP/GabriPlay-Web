@@ -400,3 +400,35 @@ body.version-modal-open{overflow:hidden}
 .updates-note strong{color:#e7dfe0}
 @media(max-width:850px){.updates-grid{grid-template-columns:1fr 1fr}.update-card:last-child{grid-column:1/-1;min-height:270px}}
 @media(max-width:650px){.updates-section{padding:57px 0 63px}.updates-heading-note{display:none}.updates-intro-row{align-items:flex-start;flex-direction:column;gap:12px;margin-top:-7px}.updates-grid{grid-template-columns:1fr;gap:10px}.update-card,.update-card:last-child{grid-column:auto;min-height:0;padding:17px}.update-card-body{padding:20px 0 17px}.update-card-body h3{font-size:26px}.updates-note{align-items:flex-start;padding:12px}}
+
+
+/* Radar: cada fuente y aviso queda delimitado en su propio recuadro. */
+.updates-intro-row{align-items:center;margin:0 0 18px;padding:15px 17px;border:1px solid #ffffff20;border-left:2px solid var(--red);background:linear-gradient(100deg,#191719,#111416)}
+.updates-intro-row>p{max-width:720px}
+.updates-grid{gap:16px}
+.update-card{position:relative;min-height:335px;padding:0;border:1px solid #34383a;background:#121516;box-shadow:0 14px 32px #0003;overflow:hidden}
+.update-card::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:#ffffff20}
+.update-card-featured::before{background:var(--red)}
+.update-card:hover{transform:translateY(-3px);border-color:#a64c57}
+.update-card-top{min-height:53px;padding:0 18px;border-bottom:1px solid #ffffff18;background:#171a1c}
+.update-card-mark{min-width:35px;height:30px;background:#0e1011}
+.update-card-body{flex:1;padding:23px 18px 22px}
+.update-card-body h3{min-height:56px;padding-bottom:13px;border-bottom:1px solid #ffffff18}
+.update-card-body>p:last-child{padding-top:1px}
+.update-card-link{margin:0 12px 12px;min-height:58px;padding:11px 13px;border-color:#34383a;background:#0c0f10}
+.updates-note{margin-top:17px;padding:15px 17px;border-color:#34383a;background:#151819}
+.updates-note-icon{background:#0e1011}
+@media(max-width:850px){
+ .updates-grid{gap:12px}
+ .update-card{min-height:320px}
+ .update-card:last-child{grid-column:1/-1;min-height:260px}
+}
+@media(max-width:650px){
+ .updates-intro-row{padding:13px 14px;margin-bottom:13px}
+ .updates-grid{gap:11px}
+ .update-card,.update-card:last-child{min-height:0;padding:0}
+ .update-card-body{padding:19px 16px 17px}
+ .update-card-body h3{min-height:0;padding-bottom:11px}
+ .update-card-link{margin:0 10px 10px}
+ .updates-note{padding:13px}
+}
