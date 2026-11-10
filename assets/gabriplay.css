@@ -296,3 +296,21 @@ body.version-modal-open{overflow:hidden}
  .toolkit-modal-actions{align-items:stretch;flex-direction:column-reverse}
  .toolkit-modal-back,.toolkit-modal-accept{width:100%}
 }
+
+
+/* Ventana de versiones: consulta independiente de los enlaces de descarga. */
+.version-info-options{margin-top:20px}
+.version-info-card{min-height:190px;cursor:default}
+.version-info-card:hover{border-color:#ffffff20;background:#111416}
+.version-info-card small{line-height:1.75}
+.version-info-card b{line-height:1.5;color:#e9a0a7;font-size:7px}
+.toolkit-modal-footnote a{color:#e9a0a7;text-decoration:none}
+.toolkit-modal-footnote a:hover{color:#fff;text-decoration:underline}
+.resource-version-label{display:block;margin:5px 0 8px;color:#e18a93;font-size:8px;font-weight:900;letter-spacing:1.2px}
+.resource-version-select{display:block;width:100%;min-height:47px;padding:0 13px;border:1px solid #ffffff2c;border-radius:0;background:#101315;color:#f1f0ed;font:600 11px "DM Sans",sans-serif;outline:none}
+.resource-version-select:focus{border-color:#b95460}
+.resource-version-select option{background:#101315;color:#f1f0ed}
+.resource-online-warning{margin:18px 0 20px}
+.toolkit-modal-accept:disabled{opacity:.38;cursor:not-allowed}
+.toolkit-modal-accept:disabled:hover{background:#a64c5726}
+@media(max-width:520px){.version-info-options{grid-template-columns:1fr}.version-info-card{min-height:145px}.version-info-card strong{margin-top:14px}}
