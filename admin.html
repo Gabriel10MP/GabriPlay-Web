@@ -16,10 +16,12 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
 <link rel="apple-touch-icon" href="favicon.svg?v=1">
 <link rel="stylesheet" href="gabriplay-polish.css?v=1">
+<link rel="stylesheet" href="assets/gabriplay-site.css?v=1">
+<meta property="og:site_name" content="GabriPlay">
 </head>
 <body>
-<header class="top"><div><a class="brand" href="index.html">GABRI<span><b>PLAY</b></span></a><small> / ADMIN</small></div><div class="top-actions"><a class="btn" href="index.html">Volver a la web</a><button class="btn" id="logoutBtn" hidden>Cerrar sesión</button></div></header>
-<main class="wrap">
+<a class="gp-skip" href="#contenido">Saltar al contenido</a><header class="gp-global-header gp-admin-header"><nav class="gp-global-nav"><a class="gp-brand" href="index.html" aria-label="GabriPlay, inicio"><span class="gp-brand-mark">GP</span><span><span class="gp-brand-name">Gabri<span>Play</span></span><small>WEB OFICIAL</small></span></a><span class="gp-admin-label">PANEL PRIVADO</span><div class="gp-nav-actions"><a class="gp-nav-extra" href="index.html">Volver a la web</a><button class="btn" id="logoutBtn" hidden>Cerrar sesión</button></div></nav></header>
+<main class="wrap" id="contenido">
 <div class="eyebrow">CENTRO DE CONTROL</div>
 <div class="heading"><div><h1>Administración</h1><div class="muted" id="welcome">Comprobando sesión…</div></div><button class="btn" id="refreshBtn" hidden>↻ Actualizar datos</button></div>
 <div id="gate" class="panel"><h2>Acceso restringido</h2><p class="muted" id="gateText">Comprobando tus permisos de administrador…</p><div id="loginBox" class="hidden"><p>Inicia sesión desde la página principal y vuelve aquí.</p><a class="btn primary" href="index.html#comunidad">Ir a iniciar sesión</a></div></div>
