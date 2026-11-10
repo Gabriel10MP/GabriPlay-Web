@@ -187,6 +187,8 @@ document.getElementById("year").textContent=new Date().getFullYear();
  const resourceName=document.getElementById("resourceName");
  const resourceVersion=document.getElementById("resourceVersion");
  const acceptResource=document.getElementById("acceptResource");
+ /* Mantener las ventanas como hijas directas de body para evitar recortes y stacking contexts del layout. */
+ document.body.append(versionModal,resourceModal);
  let destination="";
  let lastFocus=null;
  const open=modal=>{lastFocus=document.activeElement;modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("version-modal-open");const focusable=modal.querySelector("button:not([disabled]),select");if(focusable)focusable.focus();};
