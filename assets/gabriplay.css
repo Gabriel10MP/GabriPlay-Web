@@ -314,3 +314,57 @@ body.version-modal-open{overflow:hidden}
 .toolkit-modal-accept:disabled{opacity:.38;cursor:not-allowed}
 .toolkit-modal-accept:disabled:hover{background:#a64c5726}
 @media(max-width:520px){.version-info-options{grid-template-columns:1fr}.version-info-card{min-height:145px}.version-info-card strong{margin-top:14px}}
+
+
+/* Corrección de escritorio: los diálogos siempre cubren el viewport, por encima de toda la web. */
+@media (min-width: 521px){
+ html body .toolkit-modal{
+  position:fixed!important;
+  inset:0!important;
+  z-index:2147483000!important;
+  display:none;
+  width:100vw;
+  height:100vh;
+  height:100dvh;
+  min-height:100vh;
+  margin:0!important;
+  padding:32px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow-y:auto!important;
+  isolation:isolate;
+  box-sizing:border-box;
+ }
+ html body .toolkit-modal.open{
+  display:flex!important;
+ }
+ html body .toolkit-modal .toolkit-modal-backdrop{
+  position:fixed!important;
+  inset:0!important;
+  z-index:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  height:100dvh!important;
+  background:rgba(3,4,5,.84)!important;
+  backdrop-filter:blur(9px);
+ }
+ html body .toolkit-modal .toolkit-modal-panel{
+  position:relative!important;
+  z-index:1!important;
+  flex:0 1 620px;
+  width:min(620px,calc(100vw - 64px))!important;
+  max-width:620px!important;
+  max-height:calc(100dvh - 64px)!important;
+  margin:auto!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  box-shadow:0 32px 110px rgba(0,0,0,.82),0 0 0 1px rgba(255,255,255,.035);
+ }
+}
+@media (min-width: 1100px){
+ html body .toolkit-modal .toolkit-modal-panel{
+  width:min(660px,calc(100vw - 96px))!important;
+  max-width:660px!important;
+  padding:38px!important;
+ }
+}
