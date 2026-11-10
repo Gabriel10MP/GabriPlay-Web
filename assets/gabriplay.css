@@ -200,3 +200,51 @@
  .toolkit-warning{align-items:flex-start}
  .toolkit-footer{align-items:flex-start;flex-direction:column;gap:10px}
 }
+
+
+/* Base de mods: tarjetas independientes, con jerarquía y enlaces integrados */
+.toolkit-section{padding:76px 0 82px}
+.toolkit-intro{max-width:690px;margin:-10px 0 27px}
+.toolkit-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+.toolkit-card-box{position:relative;display:flex;flex-direction:column;min-width:0;min-height:360px;padding:19px 19px 16px;border:1px solid #ffffff1c;background:linear-gradient(155deg,#17191b 0%,#111315 62%,#0e1011 100%);box-shadow:0 14px 35px #0002;overflow:hidden;transition:transform .22s,border-color .22s,background .22s}
+.toolkit-card-box::after{content:"";position:absolute;inset:auto -35px -70px auto;width:170px;height:170px;border:1px solid #ffffff09;border-radius:50%;pointer-events:none}
+.toolkit-card-box:hover{transform:translateY(-3px);border-color:#75434a;background:linear-gradient(155deg,#1b1a1c,#121415 70%)}
+.toolkit-card-featured{border-top:2px solid var(--red);background:linear-gradient(155deg,#201719 0%,#141416 46%,#101213 100%)}
+.toolkit-card-head{display:flex;align-items:center;gap:9px;min-height:19px}
+.toolkit-number{color:var(--red-soft);font:800 12px "Barlow Condensed",sans-serif}
+.toolkit-tag{color:#a1a6a2;font-size:7px;font-weight:900;letter-spacing:1.2px}
+.toolkit-symbol{margin-left:auto;padding:5px 7px;border:1px solid #ffffff20;color:#b9bfba;font-size:7px;font-weight:900;letter-spacing:.7px}
+.toolkit-brand-mark{display:flex;align-items:baseline;justify-content:center;width:76px;height:76px;margin:26px 0 19px;border:1px solid #ffffff20;background:linear-gradient(145deg,#222527,#101213);color:#f2f0ed;font:900 29px/.9 "Barlow Condensed",sans-serif;letter-spacing:-1.5px;box-shadow:inset 0 0 24px #ffffff06}
+.toolkit-brand-shv{font-size:34px}
+.toolkit-brand-shv span{color:var(--red-soft);font-size:23px}
+.toolkit-brand-openiv{font-size:20px;letter-spacing:-.8px}
+.toolkit-brand-openiv span{color:var(--red-soft)}
+.toolkit-brand-version{font-size:26px;letter-spacing:-1px}
+.toolkit-brand-version span{padding:0 3px;color:var(--red-soft);font-size:16px}
+.toolkit-card-content h3{margin:0 0 9px;color:#f1f0ed;font:800 27px/.98 "Barlow Condensed",Impact,sans-serif;text-transform:uppercase}
+.toolkit-card-content p{margin:0;color:#a5aaa6;font-size:10px;line-height:1.8}
+.toolkit-card-content code{padding:2px 4px;border:1px solid #ffffff18;background:#090a0b;color:#f09aa3;font-size:9px}
+.toolkit-card-meta{margin-top:auto;padding:19px 0 12px;color:#777e79;font-size:6px;font-weight:900;letter-spacing:1px}
+.toolkit-card-link{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:55px;padding:9px 13px;border:1px solid #ffffff25;background:#0b0d0e;transition:border-color .2s,background .2s}
+.toolkit-card-link:hover{border-color:#b95460;background:#1a1214}
+.toolkit-card-link>span{display:flex;flex-direction:column;gap:4px}
+.toolkit-card-link small{color:#929995;font-size:6px;font-weight:900;letter-spacing:1.1px}
+.toolkit-card-link strong{color:#f0efec;font-size:9px;font-weight:800;letter-spacing:.2px}
+.toolkit-card-link>b{color:var(--red-soft);font-size:17px;font-weight:500}
+.toolkit-warning{margin-top:17px}
+.toolkit-footer{margin-top:20px}
+@media(max-width:900px){.toolkit-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.toolkit-card-box:last-child{grid-column:1/-1;min-height:300px}.toolkit-card-box:last-child .toolkit-brand-mark{margin-top:18px}}
+@media(max-width:650px){
+ .toolkit-section{padding:57px 0 63px}
+ .toolkit-intro{margin:-7px 0 20px;font-size:11px}
+ .toolkit-cards{grid-template-columns:1fr;gap:11px}
+ .toolkit-card-box,.toolkit-card-box:last-child{grid-column:auto;min-height:0;padding:17px}
+ .toolkit-brand-mark{width:62px;height:62px;margin:19px 0 15px;font-size:29px}
+ .toolkit-brand-openiv{font-size:18px}
+ .toolkit-brand-version{font-size:23px}
+ .toolkit-card-content h3{font-size:25px}
+ .toolkit-card-content p{font-size:10px}
+ .toolkit-card-meta{padding:15px 0 10px}
+ .toolkit-warning{align-items:flex-start}
+ .toolkit-footer{align-items:flex-start;flex-direction:column;gap:10px}
+}
