@@ -1,606 +1,84 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090a0c">
-<meta name="description" content="GabriPlay: tutoriales, mods y contenido de videojuegos. Explora vídeos, novedades y participa en la comunidad.">
-<meta property="og:type" content="website"><meta property="og:site_name" content="GabriPlay"><meta property="og:title" content="GabriPlay — Web oficial"><meta property="og:description" content="Tutoriales, mods, vídeos y comunidad de GabriPlay."><meta property="og:url" content="https://gabriel10mp.github.io/GabriPlay-Web/">
-<link rel="canonical" href="https://gabriel10mp.github.io/GabriPlay-Web/"><link rel="icon" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<title>GabriPlay — Web oficial</title><style>
-:root{color-scheme:dark;--bg:#090a0c;--panel:#111317;--panel2:#171a20;--line:#292d34;--text:#f4f5f7;--muted:#9da3ad;--red:#d92f48;--red2:#ff5268;--max:1180px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}img{display:block;max-width:100%}::selection{background:var(--red);color:#fff}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}.topline{height:3px;background:linear-gradient(90deg,#751827,var(--red),#ff8794)}.site-header{position:sticky;top:0;z-index:30;background:#090a0ceF;border-bottom:1px solid #ffffff12;backdrop-filter:blur(18px)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.7px;font-size:19px}.brand-mark{width:37px;height:37px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(145deg,#f34b61,#851b2d);font:900 16px "Barlow Condensed",sans-serif;box-shadow:0 8px 25px #d92f4830}.brand span:last-child span{color:#f05b70}.nav-links{display:flex;align-items:center;gap:27px;color:#b9bdc5;font-size:12px;font-weight:700}.nav-links a:hover{color:#fff}.nav-actions{display:flex;align-items:center;gap:10px}.account-button,.nav-cta,.menu-button{border:1px solid #ffffff24;background:#ffffff08;color:#fff;border-radius:9px;padding:11px 14px;font-size:11px;font-weight:800}.nav-cta{background:#f1f2f4;color:#101114;border-color:#f1f2f4}.account-button:hover,.nav-cta:hover{transform:translateY(-2px)}.menu-button{display:none}.hero{position:relative;overflow:hidden;padding:92px 0 78px;border-bottom:1px solid #ffffff12;background:radial-gradient(ellipse at 77% 36%,#b5223a22,transparent 36%),linear-gradient(115deg,#0b0c0f 0%,#0b0c0f 58%,#170d12 100%)}.hero:after{content:"";position:absolute;width:560px;height:560px;border:1px solid #ffffff0c;border-radius:50%;right:-100px;top:-160px;box-shadow:0 0 0 55px #ffffff04,0 0 0 110px #ffffff03;pointer-events:none}.hero-grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(90deg,transparent,#000 70%);opacity:.3}.hero-layout{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:65px}.eyebrow{display:flex;align-items:center;gap:10px;color:#f07888;font-size:10px;font-weight:900;letter-spacing:2.6px;text-transform:uppercase}.eyebrow:before{content:"";width:25px;height:2px;background:var(--red)}h1,h2,h3,p{margin-top:0}.hero h1{font:900 clamp(58px,8vw,100px)/.88 "Barlow Condensed",Impact,sans-serif;letter-spacing:-2px;text-transform:uppercase;margin:23px 0}.hero h1 span{color:#ed4b62}.hero-copy{max-width:530px;color:#b9bec7;font-size:15px;line-height:1.9}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:14px 19px;border-radius:8px;background:#f2f3f5;color:#111318;font-size:11px;font-weight:900;border:1px solid #f2f3f5;transition:.2s}.button:hover{transform:translateY(-3px)}.button.ghost{background:#ffffff08;color:#fff;border-color:#ffffff25}.hero-meta{display:flex;gap:24px;margin-top:38px;color:#8f96a1;font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}.hero-art{position:relative;min-height:380px;display:grid;place-items:center}.art-frame{position:absolute;width:min(100%,420px);aspect-ratio:1/1;border:1px solid #ffffff1c;border-radius:28px;transform:rotate(4deg);background:linear-gradient(145deg,#ffffff0c,#ffffff02);box-shadow:0 35px 90px #0008}.art-frame:before,.art-frame:after{content:"";position:absolute;border:1px solid #d92f4840;border-radius:50%;inset:12%}.art-frame:after{inset:24%;border-color:#ffffff18}.art-core{position:relative;z-index:2;width:210px;height:210px;border-radius:36px;display:grid;place-items:center;background:linear-gradient(145deg,#1e2027,#0d0e12);border:1px solid #ffffff28;box-shadow:0 25px 80px #000a;transform:rotate(-8deg)}.art-core strong{font:900 88px/.8 "Barlow Condensed",sans-serif;letter-spacing:-7px;color:#f4f4f6}.art-core strong span{color:var(--red)}.art-caption{position:absolute;bottom:7%;right:0;z-index:3;padding:13px 16px;border:1px solid #ffffff20;border-radius:10px;background:#111318eF;color:#d5d8de;font-size:10px;font-weight:800;letter-spacing:1.3px}.art-caption b{color:#f05a70}.ticker{border-bottom:1px solid #ffffff12;overflow:hidden;padding:15px 0;color:#9ea4ad;font-size:10px;font-weight:900;letter-spacing:2px;text-align:center}.ticker span{color:#e74b62;margin:0 12px}.section{padding:82px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:28px}.section-kicker{color:#ef7585;font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.section-head h2{font:900 clamp(38px,5vw,58px)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:10px 0 0}.section-head p{max-width:410px;color:var(--muted);font-size:13px;line-height:1.8;margin-bottom:2px}.feature-strip{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.feature-main,.feature-side{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,#191c22,#101216);min-height:260px;padding:30px}.feature-main:after{content:"GP";position:absolute;right:16px;bottom:-62px;font:900 250px/.9 "Barlow Condensed",sans-serif;color:#ffffff06;pointer-events:none}.feature-main>*{position:relative;z-index:1}.feature-main h3{font:900 38px/.98 "Barlow Condensed",sans-serif;text-transform:uppercase;max-width:470px;margin:17px 0 10px}.feature-main p,.feature-side p{max-width:470px;color:#aeb4be;font-size:13px;line-height:1.8}.feature-side{display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#281018,#131116)}.feature-side h3{font:900 32px/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:15px 0}.tag{display:inline-flex;padding:7px 9px;border-radius:5px;background:#d92f481c;color:#ff8b9a;font-size:9px;font-weight:900;letter-spacing:1.5px}.video-tools{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0 20px}.video-tools input{flex:1;min-width:220px;background:#12151a;border:1px solid var(--line);border-radius:8px;color:#fff;padding:12px 14px;outline:none}.video-tools input:focus{border-color:#c84a5d}.filter{border:1px solid var(--line);border-radius:8px;background:#111318;color:#aeb4be;padding:10px 13px;font-size:10px;font-weight:900}.filter.active{background:#e9eaed;color:#111318;border-color:#e9eaed}.video-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.video-card{display:block;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:#111318;transition:.22s}.video-card:hover{transform:translateY(-5px);border-color:#a84656;box-shadow:0 20px 40px #0005}.video-thumb{position:relative;aspect-ratio:16/9;background:#1b1e25;overflow:hidden}.video-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s}.video-card:hover .video-thumb img{transform:scale(1.04)}.play-button{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:43px;height:43px;border-radius:50%;display:grid;place-items:center;background:#08090bd9;color:#fff;border:1px solid #ffffff55;font-size:13px}.video-info{padding:16px}.video-info .pill{font-size:9px;letter-spacing:1px;color:#ef7182;font-weight:900}.video-info h3{font-size:14px;line-height:1.45;margin:9px 0 6px}.video-info p{color:#969da8;font-size:11px;line-height:1.6;margin:0}.no-results{color:var(--muted);padding:24px;text-align:center}.broadcast-card{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:34px;border-radius:16px;border:1px solid #59303a;background:radial-gradient(ellipse at 85% 30%,#d92f4828,transparent 40%),linear-gradient(120deg,#1a1116,#111318)}.broadcast-card h2{font:900 clamp(34px,5vw,54px)/.95 "Barlow Condensed",sans-serif;margin:12px 0}.broadcast-card p{max-width:570px;color:#b4b9c2;font-size:13px;line-height:1.8;margin-bottom:0}.community-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.community-panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px}.community-panel h3{font:800 25px "Barlow Condensed",sans-serif;text-transform:uppercase;margin-bottom:8px}.community-note{color:var(--muted);font-size:12px;line-height:1.7}.gp-userline{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:20px 0}.gp-community-identity{display:flex;align-items:center;gap:10px;color:#c4c8cf;font-size:12px}.gp-community-avatar,.nav-account-avatar,.gp-account-avatar{display:inline-grid;place-items:center;overflow:hidden;width:34px;height:34px;border-radius:50%;background:#242831;color:#fff;font-weight:900}.gp-community-avatar img,.nav-account-avatar img,.gp-account-avatar img{width:100%;height:100%;object-fit:cover}.gp-action{border:1px solid #ffffff25;background:#f0f1f3;color:#111318;border-radius:8px;padding:11px 14px;font-size:10px;font-weight:900}.gp-action.secondary{background:#ffffff08;color:#fff}.gp-list{display:grid;gap:10px;margin-top:15px}.gp-empty{padding:16px;border:1px dashed #353943;border-radius:9px;color:#89919d;font-size:12px}.gp-form-label{display:block;color:#aeb4be;font-size:9px;font-weight:900;letter-spacing:1.3px;margin:13px 0 7px}.gp-field{width:100%;padding:12px 13px;border-radius:8px;border:1px solid #303640;background:#0c0e12;color:#fff;outline:none}.gp-field:focus{border-color:#d04c60}.gp-status{min-height:18px;color:#aeb4be;font-size:11px}.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center}.about-stamp{min-height:240px;border-radius:16px;border:1px solid #ffffff18;background:linear-gradient(145deg,#1c2028,#101216);display:grid;place-items:center}.about-stamp strong{font:900 100px/.8 "Barlow Condensed",sans-serif;letter-spacing:-8px}.about-stamp strong span{color:var(--red)}.about-copy p{color:#aeb4be;font-size:14px;line-height:1.9}.about-points{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.about-points span{padding:8px 10px;border:1px solid var(--line);border-radius:6px;color:#c6cad1;font-size:9px;font-weight:900;letter-spacing:1px}.footer{border-top:1px solid #ffffff14;padding:34px 0;color:#8f96a1;font-size:10px}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}.footer-links{display:flex;gap:20px;flex-wrap:wrap;font-weight:800}.footer-links a:hover{color:#fff}.gp-modal-backdrop{position:fixed;inset:0;z-index:80;background:#000c;backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;overflow:auto}.gp-modal-backdrop.open{display:flex}.gp-modal{position:relative;width:min(470px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#12151a;border:1px solid #ffffff24;border-radius:17px;padding:30px;box-shadow:0 30px 100px #000b}.gp-modal-close{position:absolute;right:15px;top:13px;border:0;background:none;color:#c6cbd3;font-size:27px}.gp-auth-brand{display:flex;align-items:center;gap:8px;font-weight:900;margin-bottom:20px}.gp-auth-brand img{width:30px;height:30px}.gp-auth-brand small{display:block;color:#888f9a;font-size:8px;letter-spacing:1.5px}.gp-modal h2{font:900 34px "Barlow Condensed",sans-serif;text-transform:uppercase;margin-bottom:6px}.gp-modal-copy,.gp-legal{color:#a5acb6;font-size:12px;line-height:1.7}.gp-tabs{display:flex;gap:7px;margin:20px 0}.gp-tabs button{flex:1;border:1px solid var(--line);background:#0d0f13;color:#aab0ba;border-radius:7px;padding:11px;font-size:9px;font-weight:900}.gp-tabs button.active{background:#f1f2f4;color:#111318}.gp-modal .gp-action{width:100%;margin-top:14px}.gp-account-identity{display:flex;align-items:center;gap:12px;margin:18px 0}.gp-account-identity small{display:block;color:#9ba2ad}.gp-legal{border-top:1px solid #ffffff14;padding-top:15px;margin-top:22px}.back-top{position:fixed;right:22px;bottom:22px;z-index:20;width:42px;height:42px;border-radius:50%;border:1px solid #ffffff2b;background:#171a20;color:#fff;opacity:0;pointer-events:none;transition:.2s}.back-top.visible{opacity:1;pointer-events:auto}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;z-index:90;background:#f1f2f4;color:#111;padding:12px 18px;border-radius:8px;font-size:11px;font-weight:800;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}[hidden]{display:none!important}:focus-visible{outline:2px solid #ff7889;outline-offset:3px}
-@media(max-width:900px){.hero-layout{grid-template-columns:1fr .8fr;gap:25px}.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nav-links{gap:14px}.feature-strip{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.wrap{width:min(var(--max),calc(100% - 30px))}.nav{height:66px}.nav-links{display:none;position:absolute;top:66px;left:0;right:0;padding:18px 22px 22px;background:#0d0f13;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.nav-links.open{display:flex}.menu-button{display:block}.nav-cta{display:none}.hero{padding:65px 0 48px}.hero-layout{grid-template-columns:1fr}.hero-art{min-height:250px;max-width:420px;width:100%;margin:0 auto}.art-frame{width:260px}.art-core{width:145px;height:145px;border-radius:26px}.art-core strong{font-size:64px}.art-caption{right:4%;bottom:0}.hero h1{font-size:clamp(58px,16vw,82px)}.section{padding:62px 0}.section-head{display:block}.section-head p{margin-top:12px}.feature-strip,.community-layout,.about-grid{grid-template-columns:1fr}.broadcast-card{display:block;padding:25px}.broadcast-card .button{margin-top:22px}.video-grid{gap:10px}.video-info{padding:12px}.video-info h3{font-size:12px}.video-tools input{min-width:100%}.footer-inner{align-items:flex-start;flex-direction:column}.hero-meta{gap:13px;flex-wrap:wrap}}
-@media(max-width:420px){.video-grid{grid-template-columns:1fr}.video-thumb{aspect-ratio:16/8.8}.hero-actions .button{flex:1}.community-panel{padding:18px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
-
-/* Identidad real de GabriPlay */
-.brand{gap:12px;font-size:18px;letter-spacing:-.4px}
-.brand-logo{width:48px;height:48px;object-fit:cover;border-radius:50%;border:1px solid #d92f48;box-shadow:0 0 0 3px #d92f4818}
-.brand-mark{display:none}
-.hero{background:#08090b}
-.hero:after,.hero-grid{display:none}
-.hero-layout{grid-template-columns:1.05fr .95fr;gap:42px}
-.hero-art{min-height:420px}
-.art-frame{width:min(100%,410px);border-radius:50%;transform:none;background:radial-gradient(circle,#211016 0,#0c0d10 65%);border-color:#7c2635;box-shadow:0 0 0 12px #d92f4808,0 25px 80px #000}
-.art-frame:before{inset:7%;border-color:#d92f4855}
-.art-frame:after{inset:16%;border-color:#ffffff18}
-.logo-stage{position:relative;z-index:2;width:min(75%,300px);aspect-ratio:1;display:grid;place-items:center;border-radius:50%;overflow:hidden;box-shadow:0 25px 80px #000c}
-.logo-stage img{width:100%;height:100%;object-fit:cover}
-.art-caption{right:2%;bottom:4%;letter-spacing:1px}
-.hero h1{font-size:clamp(58px,7vw,86px);letter-spacing:-1px}
-.hero-copy{max-width:490px}
-.section{padding:72px 0}
-.section-head h2{letter-spacing:-.5px}
-.feature-strip{gap:12px}
-.feature-main,.feature-side{border-radius:10px;min-height:235px}
-.feature-main{background:#111317}
-.feature-main:after{display:none}
-.feature-side{background:#171014;border-color:#51202c}
-.video-card{border-radius:9px;background:#101114}
-.video-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px #0006}
-.video-thumb{background:#090a0c}
-.broadcast-card{border-radius:10px;background:#151014;border-color:#572633}
-.community-panel{border-radius:10px}
-.about-stamp{background:#0b0c0e;border-color:#55202e;border-radius:10px}
-.about-stamp img{width:min(72%,230px);aspect-ratio:1;object-fit:cover;border-radius:50%;border:1px solid #d92f48;box-shadow:0 0 0 8px #d92f4810}
-.footer{background:#08090b}
-@media(max-width:700px){.hero-layout{grid-template-columns:1fr}.hero-art{min-height:290px}.art-frame{width:250px}.logo-stage{width:180px}.brand-logo{width:40px;height:40px}}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0b0c">
+<meta name="description" content="GabriPlay: tutoriales, mods y videojuegos. Vídeos, novedades y contenido del canal.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GabriPlay">
+<meta property="og:title" content="GabriPlay — Canal oficial">
+<meta property="og:description" content="Tutoriales, mods y videojuegos. Bienvenido a GabriPlay.">
+<meta property="og:url" content="https://gabriel10mp.github.io/GabriPlay-Web/">
+<link rel="canonical" href="https://gabriel10mp.github.io/GabriPlay-Web/">
+<link rel="icon" href="favicon.svg">
+<link rel="stylesheet" href="assets/gabriplay.css">
+<title>GabriPlay — Canal oficial</title>
 </head>
 <body>
-<div class="topline"></div>
-<header class="site-header"><nav class="nav wrap" aria-label="Navegación principal">
-<a class="brand" href="#inicio" aria-label="GabriPlay inicio"><img class="brand-logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABELDA8MChEPDg8TEhEUGSobGRcXGTMkJh4qPDU/Pjs1OjlDS2BRQ0daSDk6U3FUWmNma2xrQFB2fnRofWBpa2f/2wBDARITExkWGTEbGzFnRTpFZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2f/wgARCABgAGADASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAwQAAQIFBv/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/9oADAMBAAIQAxAAAAHgyWVuYmt7HF1Y2Epfo03z5dXlDZudB7zGd10+ivBF6LgXGTLHlKgxlvNS0z3Ob0Lhrzxe0cXHo+VNoZ3qdcEzVxoDoE6K1M3ms4rQOBrPp3B4YvWT3mJ/mNNsc95RmxwjMZWM0ZazJldvnLJJcHIoWdCDKEs61o2IIy6kuP/EACQQAAICAgICAgMBAQAAAAAAAAECAAMREgQhEzEQICIyQSNC/9oACAEBAAEFAvnEyJv1loCIajr9B3PXwRDBFIi2BmZfIhGPkjUQdz+nuCqwxlKRG1Zf9nsAYRIWyYPdXEZ5olSoyFb7PLaFzMmttmY2DE/5+OJxws5HIWkWWNYT5HTRlmDMGAxsuD7bGaF2azkGta1FllQpEutFSNcbIzdoY/7f0kFZUmEtpd7F4+IpCS603OTgKkY4nuD9uP3H/F6uRoo5KIPK178h+wJtCx+WAVUPanSGlAJW2p9mKgWapklYPVhyYmGnnJHYErIUg/k4yBXFU+S51H0GDMZnjOupnUyPH2wLaEnP1WwqWs3mDNZ1Nvp//8QAHBEAAgIDAQEAAAAAAAAAAAAAAAECERASQSEx/9oACAEDAQE/ATxFtGzNU/mI0lYhywh+qx5hDd0aQborWVEl3MHohzSVRI/bIMlXBfSTtlD8VYUl0aXCmXWP/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAERMBAgIf/aAAgBAgEBPwG9sl6vpGHZ/8QAKRAAAgAFAwMCBwAAAAAAAAAAAAECEBEhMSAiURJBYQMyMFJxgZGhsf/aAAgBAQAGPwKdzE9yKrVbTu4ojH0SHE1067S9puyVRWMUNLqVdFfU2rgtSEcfVVLuOKVhXfg/uhepFnscxcFYmKGFRdKPbPyO0tuCrH8zN8RSBKp1O5WlJqV+LSRtVi7LYPCLF9GKkVvsdLOX4FDiE6V8DKqRLvmsq6OqKJHJdXncwsUPEqvsVZVr8C2/sftRbOjyNFZ5LD1cmaGZZLaP/8QAJBABAAICAgIDAAIDAAAAAAAAAQARITFBUWFxEIGRILGh0eH/2gAIAQEAAT8h+am9eIFr9Q+yZKu4n0cSmJp1e4lfwCqJem3fxVnhhqpa8Rr+wWEtqyjIwSgamk5lj5UTl38APSdQt5DzAoNt8TGFfbGkAdLzFJy/MuiWBox+QBIChrccTBtol1KljCECeHuGOlysAH4IlAXTq4yIZpSdcxsCJjwlobt/tOB9xCrIwjIelalIMuoy9RJV0G2cij53HvJVKmzAYkqYziUregI9ZPKHR2E5S0TNhXLNcL7ZQyl0BNcF6I4zEtMkpcfcxiXT3KKa5JWJVD3F7Z2uf6FADEH+YPHxE/oE5coGkysxXdb9y1QKMN9SgCpkFxHprOGNNyYsOcIAn8MIm3cXjUqArUV1txKKXV8zVsW1eIm1oZOI50Sy669zMno3oJuEvpYhkFYLglq32ywX1DiYzr4eEih3UtAMzSmVhYmOYxKwa7l9r1Bul1uLrnte0rJpOLgHP5DTZHy104YoCP2wazHuJbwe5QcsSW1mJQClTAG1Iit/iQcU7mVqeKnQH7luU/Y/8iXCsP4f/9oADAMBAAIAAwAAABAE6otAEUL1BtBqVwmyAT01weMAp/4qFCXnyMH/xAAhEQEAAgIBBAMBAAAAAAAAAAABABEhMRBBUYGRYXGx4f/aAAgBAwEBPxALwSvkY2s1BNvuIb/iIjTAlbdRA51Cqjhd9TWGvyM12xFvhqEKG5lkvjXuXUuvBLO8LKY+ZZ9kJx1NSzSEQM02oQ/sTUZjCdFvzANlROmWLeWf/8QAGxEAAwEBAQEBAAAAAAAAAAAAAAERECFRMUH/2gAIAQIBAT8QPpwhWsduJauC2CIKlqovN6CZuseEMShRdxp/gn6Umf/EACYQAQACAgIBAwQDAQAAAAAAAAEAESExQVFhcYGREKHR4SDB8LH/2gAIAQEAAT8Q+gK0ZZs2umX9RDD6q2U0D1VR9oMAm6xdwBuNhNWzIMsMF1URUiJw/wABIWsTm+X4y85mGDFZBxCWZ9ZsJEie2hYeRvFf3DKG6oQb+AJjDFg9WYlD7Jp+gWxE0Da/qLwSn07FNncGCqAaYamIN7BVblIpOghXqoFRNLFPUJV8xwbKrMOXJq2qsUruaW40KGVXzApEpNwFPfCcvEsAtcXuNm4h0VcUc+I8ZMmF+vURNJ4S+7lmWarQmDNdzoYDtRqEXK0Hcf61drOVPZAXQA8nUVAIVTjpEC1V2v8AkpEqwxHR5mMh2mjuYREwOvLHbXwcHoQQJGFrsa+35iMGThH2blfIPJK2AfRlOyM0lRxgG1aLu7+8qMLYBziLeKlCvMWhfp0vEJF+FIER9x78X+ok1bapUdrxLDaCFXFa8MC31azBQKuZbJHT3FYNnwgjEBoUtkEEQGm2+vfuIIWjKlkMZJUAwqrGM/eKn3zX5lb8tQ49UVSkTQeWa1boGoDns8EfpZ6g2U521dEW6UHPQMRWWqisE9fOYrDyByP9qHzhi2qOtS9hnGnyyybq+edL5we8DRjRx3+JoXKbiMQURBs+JuDy9buGtbeohZYCxkvONGqeGURJ1LV0oXncNGwG0eq56lFkKMxubOPeo+1r7QCiqsuFeUBNWOUEaDnRNPeNx8L9hQyuBTfQlKdb+sI4ICN5D/bl5dobvix+MZi0CG3TE0paXY3U0ns7HX59oCEEcGYylYN42xqogWSD46hVFOQC+rjoujQ8B3Ftt+jElJpgimWOJ5K6l18NgFhGdZNGFwJCWXpuAGYvIQxtgB3B1AgLfRLUJAfuI1tf4rA4HI944KjGdgTkSLaKqwNQBsJ5MNAWhw394s47tu194t/X/9k=" alt="Logo de GabriPlay"><span>Gabri<span>Play</span></span></a>
-<div class="nav-links" id="navLinks"><a href="#inicio">Inicio</a><a href="#videos">Vídeos</a><a href="broadcast.html">Novedades</a><a href="#comunidad">Comunidad</a><a href="#sobre">El canal</a></div>
-<div class="nav-actions"><a class="nav-cta" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Ver YouTube ↗</a><button class="account-button" id="accountButton" type="button"><span class="nav-account-avatar" id="navAccountAvatar" hidden></span><span id="navAccountLabel">Iniciar sesión</span></button><a id="adminPanelButton" href="admin.html" hidden>Administración</a><button class="menu-button" id="menuButton" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button></div>
-</nav></header>
+<header class="site-header">
+  <nav class="nav container" aria-label="Navegación principal">
+    <a class="brand" href="#inicio"><img src="data:image/jpeg;base64,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" alt=""><span>GabriPlay</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menú</button>
+    <div class="nav-links" id="navLinks"><a href="#inicio">Inicio</a><a href="#videos">Vídeos</a><a href="#sobre">Sobre el canal</a></div>
+    <a class="nav-cta" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Ver canal en YouTube ↗</a>
+  </nav>
+</header>
 <main>
-<section class="hero" id="inicio"><div class="hero-grid"></div><div class="wrap hero-layout">
-<div><div class="eyebrow">La web oficial de GabriPlay</div><h1>JUEGA.<br>DESCUBRE.<br><span>GABRIPLAY.</span></h1><p class="hero-copy">Tutoriales, mods y contenido de videojuegos. Encuentra guías útiles, descubre lo que se cuece en el canal y comparte tus ideas con la comunidad.</p><div class="hero-actions"><a class="button" href="#videos">Explorar vídeos <span>↘</span></a><a class="button ghost" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Ir al canal de YouTube ↗</a></div><div class="hero-meta"><span>Vídeos y tutoriales</span><span>Mods y guías</span><span>Comunidad</span></div></div>
-<div class="hero-art" aria-hidden="true"><div class="logo-stage"><img src="data:image/jpeg;base64,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" alt="Logo oficial de GabriPlay"></div><div class="art-caption">GABRIPLAY <b>·</b> WEB OFICIAL</div></div>
-</div></section>
-<div class="ticker">TUTORIALES <span>✦</span> MODS <span>✦</span> VIDEOJUEGOS <span>✦</span> COMUNIDAD <span>✦</span> GABRIPLAY</div>
-<section class="section"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Empieza por aquí</div><h2>TODO LO QUE BUSCAS.</h2></div><p>Una web para encontrar el contenido del canal sin perderte entre apartados innecesarios.</p></div>
-<div class="feature-strip"><a class="feature-main" href="#videos"><span class="tag">CONTENIDO</span><h3>Tutoriales claros. Mods. Nuevos descubrimientos.</h3><p>Accede a los vídeos destacados y encuentra rápidamente la guía que necesitas.</p><span class="button">Explorar vídeos ↗</span></a><a class="feature-side" href="broadcast.html"><div><span class="tag">CANAL DEL CREADOR</span><h3>Las novedades de GabriPlay, directamente aquí.</h3><p>Anuncios, adelantos y publicaciones del creador en un solo sitio.</p></div><span class="button ghost">Ver novedades ↗</span></a></div></div></section>
-<section class="section" id="videos" style="padding-top:20px"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Biblioteca del canal</div><h2>VÍDEOS DESTACADOS.</h2></div><p>Tutoriales y contenido publicado en YouTube. Busca por título o filtra por categoría.</p></div>
-<div class="video-tools"><input id="videoSearch" type="search" placeholder="Buscar vídeos o tutoriales..." aria-label="Buscar vídeos"><button class="filter active" data-filter="all" type="button">Todos</button><button class="filter" data-filter="tutorial" type="button">Tutoriales</button><button class="filter" data-filter="mods" type="button">Mods</button><a class="button ghost" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Ver canal ↗</a></div>
-<div class="video-grid" id="videoGrid"><a class="video-card card card-hover" data-category="tutorial" data-title="Cómo instalar Menyoo en GTA 5" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener">
-    <div class="video-thumb">
-     <img src="https://i.ytimg.com/vi/p2j1OEbqp9o/maxresdefault.jpg" alt="Miniatura del tutorial Menyoo" onerror="this.src='https://i.ytimg.com/vi/p2j1OEbqp9o/hqdefault.jpg'">
-     <span class="play-button">▶</span>
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div>
+        <div class="overline">Canal de videojuegos</div>
+        <h1>Esto es<br><span>GabriPlay.</span></h1>
+        <p class="hero-copy">Tutoriales, mods y videojuegos. Un espacio para descubrir cosas nuevas, aprender a modificar tus juegos y disfrutar del contenido sin complicaciones.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#videos">Ver vídeos <span aria-hidden="true">↘</span></a><a class="button button-quiet" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Ir al canal de YouTube ↗</a></div>
+        <p class="hero-note">GTA V · MODS · TUTORIALES · MÁS VIDEOJUEGOS</p>
+      </div>
+      <div class="hero-visual"><img src="data:image/jpeg;base64,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" alt="Logo de GabriPlay"><span class="hero-label">GABRIPLAY · CANAL OFICIAL</span></div>
     </div>
-    <div class="video-info">
-     <span class="pill">TUTORIAL GTA V</span>
-     <h3>Cómo instalar Menyoo en GTA 5</h3>
-     <p>Una guía para empezar a utilizar uno de los menús más conocidos del juego.</p>
-     <div class="video-meta"><span>VER VÍDEO ↗</span><span>GABRIPLAY</span></div>
+  </section>
+  <section class="section" id="videos">
+    <div class="container">
+      <div class="section-heading"><div><div class="section-index">01 / CONTENIDO</div><h2>Vídeos del canal</h2></div><p>Una selección de tutoriales y vídeos publicados en GabriPlay.</p></div>
+      <div class="video-grid">
+        <a class="video-card" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener">
+          <div class="video-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/p2j1OEbqp9o/hqdefault.jpg" alt="Miniatura: Cómo instalar Menyoo en GTA 5"><span class="play">▶</span></div>
+          <div class="video-copy"><span class="video-type">TUTORIAL · GTA V</span><h3>Cómo instalar Menyoo en GTA 5</h3><p>Una guía para empezar a utilizar uno de los menús más conocidos del juego.</p><span class="video-link">VER VÍDEO ↗</span></div>
+        </a>
+        <a class="video-card" href="https://youtu.be/NcGygok41Lk" target="_blank" rel="noopener">
+          <div class="video-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/NcGygok41Lk/hqdefault.jpg" alt="Miniatura: Cómo instalar OpenIV en GTA 5"><span class="play">▶</span></div>
+          <div class="video-copy"><span class="video-type">TUTORIAL · GTA V</span><h3>Cómo instalar OpenIV en GTA 5</h3><p>Conoce la herramienta y aprende a dar los primeros pasos con las modificaciones.</p><span class="video-link">VER VÍDEO ↗</span></div>
+        </a>
+        <a class="video-card" href="https://youtu.be/pbcPa3jO1tA" target="_blank" rel="noopener">
+          <div class="video-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/pbcPa3jO1tA/hqdefault.jpg" alt="Miniatura: Cómo instalar coches Add-On en GTA 5"><span class="play">▶</span></div>
+          <div class="video-copy"><span class="video-type">MODS · GTA V</span><h3>Cómo instalar coches Add-On en GTA 5</h3><p>Aprende a añadir nuevos vehículos a tu partida.</p><span class="video-link">VER VÍDEO ↗</span></div>
+        </a>
+        <a class="video-card" href="https://youtu.be/j_k2lIj25xc" target="_blank" rel="noopener">
+          <div class="video-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/j_k2lIj25xc/hqdefault.jpg" alt="Miniatura: Top 4 mods esenciales para GTA 5"><span class="play">▶</span></div>
+          <div class="video-copy"><span class="video-type">SELECCIÓN · MODS</span><h3>TOP 4 mods esenciales para GTA 5</h3><p>Cuatro modificaciones que merece la pena conocer.</p><span class="video-link">VER VÍDEO ↗</span></div>
+        </a>
+      </div>
+      <div class="all-videos"><a class="button button-quiet" href="https://www.youtube.com/@GabriPlay10/videos" target="_blank" rel="noopener">Ver todos los vídeos en YouTube ↗</a></div>
     </div>
-   </a>
-<a class="video-card card card-hover" data-category="tutorial" data-title="Cómo instalar OpenIV en GTA 5" href="https://youtu.be/NcGygok41Lk" target="_blank" rel="noopener">
-    <div class="video-thumb">
-     <img src="https://i.ytimg.com/vi/NcGygok41Lk/maxresdefault.jpg" alt="Miniatura del tutorial OpenIV" onerror="this.src='https://i.ytimg.com/vi/NcGygok41Lk/hqdefault.jpg'">
-     <span class="play-button">▶</span>
+  </section>
+  <section class="section about" id="sobre">
+    <div class="container about-grid">
+      <div class="about-mark"><img src="data:image/jpeg;base64,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" alt="Logo de GabriPlay"></div>
+      <div class="about-copy"><div class="section-index">02 / SOBRE EL CANAL</div><h2>Un canal hecho para disfrutar.</h2><p>¡Buenas! Soy el creador de GabriPlay. En el canal encontrarás principalmente contenido de videojuegos, tutoriales y mods, especialmente de GTA. La idea es compartir lo que voy descubriendo y crear vídeos que realmente puedan servirte.</p><p>Esto es GabriPlay: un proyecto personal que sigue creciendo vídeo a vídeo.</p><a class="button button-primary" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Conocer el canal ↗</a></div>
     </div>
-    <div class="video-info">
-     <span class="pill">TUTORIAL GTA V</span>
-     <h3>Cómo instalar OpenIV en GTA 5</h3>
-     <p>Una guía para conocer la herramienta y empezar con las modificaciones.</p>
-     <div class="video-meta"><span>VER VÍDEO ↗</span><span>GABRIPLAY</span></div>
-    </div>
-   </a>
-<a class="video-card card card-hover" data-category="mods" data-title="Cómo instalar coches Add-On en GTA 5" href="https://youtu.be/pbcPa3jO1tA" target="_blank" rel="noopener">
-    <div class="video-thumb">
-     <img src="https://i.ytimg.com/vi/pbcPa3jO1tA/maxresdefault.jpg" alt="Miniatura del tutorial de coches Add-On" onerror="this.src='https://i.ytimg.com/vi/pbcPa3jO1tA/hqdefault.jpg'">
-     <span class="play-button">▶</span>
-    </div>
-    <div class="video-info">
-     <span class="pill">MODS GTA V</span>
-     <h3>Cómo instalar coches Add-On en GTA 5</h3>
-     <p>Aprende a añadir nuevos vehículos a tu partida.</p>
-     <div class="video-meta"><span>VER VÍDEO ↗</span><span>GABRIPLAY</span></div>
-    </div>
-   </a>
-<a class="video-card card card-hover" data-category="mods" data-title="TOP 4 mods esenciales para GTA 5" href="https://youtu.be/j_k2lIj25xc" target="_blank" rel="noopener">
-    <div class="video-thumb">
-     <img src="https://i.ytimg.com/vi/j_k2lIj25xc/maxresdefault.jpg" alt="Miniatura del top de mods" onerror="this.src='https://i.ytimg.com/vi/j_k2lIj25xc/hqdefault.jpg'">
-     <span class="play-button">▶</span>
-    </div>
-    <div class="video-info">
-     <span class="pill">SELECCIÓN DE MODS</span>
-     <h3>TOP 4 mods esenciales para GTA 5</h3>
-     <p>Cuatro modificaciones que merece la pena conocer.</p>
-     <div class="video-meta"><span>VER VÍDEO ↗</span><span>GABRIPLAY</span></div>
-    </div>
-   </a></div><p class="no-results" id="noResults" hidden>No hay vídeos que coincidan con tu búsqueda.</p></div></section>
-<section class="section" style="padding-top:15px"><div class="wrap"><a class="broadcast-card" href="broadcast.html"><div><div class="section-kicker">Canal oficial del creador</div><h2>LO QUE PASA EN GABRIPLAY.</h2><p>Anuncios, novedades, adelantos y mensajes publicados directamente por el creador. Entra para estar al día.</p></div><span class="button">Entrar al canal ↗</span></a></div></section>
-<section class="section" id="comunidad"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Comunidad GabriPlay</div><h2>PARTICIPA.</h2></div><p>Comparte ideas para próximos vídeos y ayuda a decidir qué contenido merece llegar al canal.</p></div>
-<div class="gp-userline"><div class="gp-community-identity"><span class="gp-community-avatar" id="communityAvatar" hidden></span><span id="communityUser">Estás explorando como visitante.</span></div><button class="gp-action secondary" id="communityAccountAction" type="button">Iniciar sesión</button></div>
-<div class="community-layout"><div class="community-panel"><h3>Ideas de la comunidad</h3><p class="community-note">Las sugerencias aprobadas aparecerán aquí. Para votar necesitas iniciar sesión.</p><div id="adminSuggestionTools" hidden><div id="adminSuggestionFilters"></div></div><div class="gp-list" id="suggestionList"><div class="gp-empty">Cargando sugerencias…</div></div></div>
-<div class="community-panel"><h3>Propón una idea</h3><p class="community-note">¿Qué tutorial, mod o mejora te gustaría ver en GabriPlay?</p><form id="suggestionForm"><label class="gp-form-label" for="suggestionTitle">Título de la propuesta</label><input class="gp-field" id="suggestionTitle" maxlength="80" placeholder="Ej. Un nuevo tutorial" required><label class="gp-form-label" for="suggestionDescription">Cuéntanos más</label><textarea class="gp-field" id="suggestionDescription" rows="4" maxlength="500" placeholder="Describe brevemente tu idea..."></textarea><button class="gp-action" id="suggestionSubmit" type="submit">Enviar propuesta →</button><p class="gp-status" id="suggestionStatus" aria-live="polite">Inicia sesión para enviar una propuesta.</p></form></div></div>
-</div></section>
-<section class="section" id="sobre"><div class="wrap about-grid"><div class="about-stamp"><img src="data:image/jpeg;base64,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" alt="Logo oficial de GabriPlay"></div><div class="about-copy"><div class="section-kicker">Sobre el canal</div><h2 style="font:900 clamp(38px,5vw,58px)/.95 'Barlow Condensed',sans-serif;margin:12px 0 18px">ESTO ES GABRIPLAY.</h2><p>GabriPlay es un espacio dedicado a los videojuegos, los tutoriales y los mods. La idea de esta web es reunir el contenido del canal, compartir novedades y dar voz a quienes forman parte de la comunidad.</p><div class="about-points"><span>TUTORIALES</span><span>MODS</span><span>VIDEOJUEGOS</span><span>COMUNIDAD</span></div><div style="margin-top:24px"><a class="button" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Visitar el canal ↗</a></div></div></div></section>
+  </section>
+  <section class="container contact-row">
+    <div><div class="section-index">03 / ENCUÉNTRAME</div><h2>Seguimos por aquí.</h2><p>El contenido nuevo y las novedades se publican en mis redes.</p></div>
+    <div class="social-links"><a href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">YouTube ↗</a></div>
+  </section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><div><a class="brand" href="#inicio"><span class="brand-mark logo-symbol">GP</span><span>Gabri<span>Play</span></span></a><p style="margin:12px 0 0">Web oficial de GabriPlay · Tutoriales, mods y videojuegos.</p></div><div class="footer-links"><a href="broadcast.html">Novedades</a><a href="#videos">Vídeos</a><a href="#comunidad">Comunidad</a><a href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">YouTube ↗</a></div><div>© <span id="year"></span> GabriPlay</div></div></footer>
-<div class="lightbox" id="lightbox" hidden><button id="lightboxClose" type="button">×</button><img id="lightboxImage" alt="Imagen ampliada"></div><div class="toast" id="toast"></div>
-<div class="gp-modal-backdrop" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
- <div class="gp-modal">
-  <button class="gp-modal-close" id="closeAccountModal" type="button" aria-label="Cerrar">×</button>
-  <div class="gp-auth-brand"><img src="favicon.svg" alt=""><span>GabriPlay</span><small>CUENTA DE LA COMUNIDAD</small></div>
-  <h2 id="accountModalTitle">Qué bueno verte.</h2>
-  <p class="gp-modal-copy">Accede a tu espacio para participar, votar propuestas y personalizar tu perfil.</p>
-  <div class="gp-tabs" role="tablist" aria-label="Tipo de acceso">
-   <button type="button" class="active" data-auth-mode="login">INICIAR SESIÓN</button>
-   <button type="button" data-auth-mode="register">REGISTRARSE</button>
-  </div>
-  <form id="accountForm">
-   <div id="registerFields" hidden>
-    <label class="gp-form-label" for="accountUsername">NOMBRE DE USUARIO</label>
-    <input class="gp-field" id="accountUsername" maxlength="24" autocomplete="username" placeholder="TuUsuario">
-    <label class="gp-form-label" for="accountDisplayName">NOMBRE VISIBLE</label>
-    <input class="gp-field" id="accountDisplayName" maxlength="40" placeholder="Cómo te verá la comunidad">
-   </div>
-   <label class="gp-form-label" for="accountEmail">Correo electrónico</label>
-   <input class="gp-field" id="accountEmail" type="email" maxlength="254" autocomplete="email" placeholder="nombre@correo.com" required>
-   <label class="gp-form-label" for="accountPassword">Contraseña</label>
-   <input class="gp-field" id="accountPassword" type="password" minlength="8" autocomplete="current-password" placeholder="Introduce tu contraseña" required>
-   <button class="gp-action" id="accountSubmit" type="submit">Iniciar sesión <span aria-hidden="true">→</span></button>
-   <p class="gp-status" id="accountStatus" aria-live="polite"></p>
-  </form>
-  <div id="signedInPanel" hidden>
-   <div class="gp-account-identity"><span class="gp-account-avatar" id="accountProfileAvatar">G</span><div><strong id="accountIdentityName">Mi perfil</strong><small id="accountIdentityHandle">@usuario</small></div></div>
-   <p class="gp-modal-copy" id="signedInText"></p>
-   <a class="gp-action" href="perfil.html" style="display:block;text-align:center;text-decoration:none;margin:0 0 14px">PERSONALIZAR MI PERFIL ↗</a>
-   <form id="profileForm">
-    <label class="gp-form-label" for="profileUsername">NOMBRE DE USUARIO</label>
-    <input class="gp-field" id="profileUsername" maxlength="24" autocomplete="nickname" placeholder="TuUsuario" required>
-    <label class="gp-form-label" for="profileDisplayName">NOMBRE VISIBLE</label>
-    <input class="gp-field" id="profileDisplayName" maxlength="40" placeholder="Cómo te verá la comunidad" required>
-    <label class="gp-form-label" for="profileBio">DESCRIPCIÓN</label>
-    <textarea class="gp-field" id="profileBio" maxlength="160" placeholder="Cuéntale algo a la comunidad (opcional)" rows="3"></textarea>
-    <button class="gp-action" id="saveProfileButton" type="submit">GUARDAR PERFIL</button>
-    <p class="gp-status" id="profileStatus" aria-live="polite"></p>
-   </form>
-   <button class="gp-action secondary" id="signOutButton" type="button" style="margin-top:10px">CERRAR SESIÓN</button>
-  </div>
-  <p class="gp-legal">Tu correo electrónico es privado y no aparece en tu perfil público. No compartas datos personales en tus publicaciones.</p>
- </div>
-</div>
-
-
-<button class="back-top" id="backTop" type="button" aria-label="Volver arriba">↑</button>
+<footer><div class="container footer-inner"><span class="footer-brand">GabriPlay</span><span>© <span id="year"></span> GabriPlay. Todos los derechos reservados.</span></div></footer>
 <script>
-(() => {
- "use strict";
- const $=id=>document.getElementById(id),menuButton=$("menuButton"),navLinks=$("navLinks");
- if(menuButton&&navLinks)menuButton.addEventListener("click",()=>navLinks.classList.toggle("open"));
- if(navLinks)navLinks.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>navLinks.classList.remove("open")));
- function closeHomeOverlays(){
-  if(navLinks)navLinks.classList.remove("open");
-  document.querySelectorAll(".gp-modal-backdrop.open,.modal.open,.lightbox.open,dialog[open]").forEach(el=>{el.classList.remove("open");if(el.tagName==="DIALOG"&&el.close)el.close();});
-  document.body.style.overflow="";const img=$("lightboxImage");if(img)img.removeAttribute("src");
- }
- document.querySelectorAll('a[href="#inicio"]').forEach(a=>a.addEventListener("click",closeHomeOverlays));
- window.addEventListener("hashchange",()=>{if(!location.hash||location.hash==="#inicio")closeHomeOverlays();});
- const year=$("year");if(year)year.textContent=new Date().getFullYear();
- const search=$("videoSearch"),cards=[...document.querySelectorAll(".video-card")],filters=[...document.querySelectorAll(".filter")];let activeFilter="all";
- function updateVideos(){if(!search)return;const term=search.value.toLowerCase().trim();let count=0;cards.forEach(card=>{const show=(card.dataset.title||"").toLowerCase().includes(term)&&(activeFilter==="all"||card.dataset.category===activeFilter);card.hidden=!show;if(show)count++;});const empty=$("noResults");if(empty)empty.hidden=count>0;}
- if(search)search.addEventListener("input",updateVideos);
- filters.forEach(btn=>btn.addEventListener("click",()=>{filters.forEach(b=>b.classList.remove("active"));btn.classList.add("active");activeFilter=btn.dataset.filter||"all";updateVideos();}));
-const lightbox=$("lightbox"),lightboxImage=$("lightboxImage"),lightboxClose=$("lightboxClose");
- document.querySelectorAll(".gallery-item").forEach(item=>item.addEventListener("click",()=>{if(lightboxImage&&lightbox){lightboxImage.src=item.dataset.full||"";lightbox.classList.add("open");}}));
- function closeLightbox(){if(lightbox)lightbox.classList.remove("open");if(lightboxImage)lightboxImage.removeAttribute("src");}
- if(lightboxClose)lightboxClose.addEventListener("click",closeLightbox);if(lightbox)lightbox.addEventListener("click",e=>{if(e.target===lightbox)closeLightbox();});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();});
- window.showToast=function(message){const toast=$("toast");if(!toast)return;toast.textContent=message;toast.classList.add("show");window.setTimeout(()=>toast.classList.remove("show"),2300);};
- let clicks=0,timer;document.querySelectorAll(".logo-symbol").forEach(logo=>logo.addEventListener("click",()=>{clicks++;clearTimeout(timer);if(clicks>=5){window.showToast("✦ SECRETO DESBLOQUEADO · GABRIPLAY");clicks=0;}else timer=window.setTimeout(()=>clicks=0,1700);}));
- const backTop=$("backTop");if(backTop){window.addEventListener("scroll",()=>backTop.classList.toggle("visible",window.scrollY>600),{passive:true});backTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));}
- if("IntersectionObserver"in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target);}}),{threshold:.08});document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));}else document.querySelectorAll(".reveal").forEach(el=>el.classList.add("visible"));
-})();
+const menuButton=document.getElementById("menuToggle");
+const nav=document.getElementById("navLinks");
+menuButton.addEventListener("click",()=>{const opened=nav.classList.toggle("open");menuButton.setAttribute("aria-expanded",String(opened));});
+nav.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{nav.classList.remove("open");menuButton.setAttribute("aria-expanded","false");}));
+document.getElementById("year").textContent=new Date().getFullYear();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-(() => {
- "use strict";
- const SUPABASE_URL = "https://gzqebfwknfnwnobwypve.supabase.co";
- const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_NjEt_shVbSEbvALrsFt4cQ_GOGgPBKz";
- if (!window.supabase || typeof window.supabase.createClient !== "function") {
-  const list = document.getElementById("suggestionList");
-  if (list) list.textContent = "La comunidad no está disponible ahora mismo. Recarga la página más tarde.";
-  return;
- }
- const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
- let currentUser = null;
- let authMode = "login";
- let isAdmin = false;
- let profilesCache = {};
- let ownProfile = null;
- let suggestionLoadVersion = 0;
- let adminSuggestionFilter = "all";
- const $ = (id) => document.getElementById(id);
- const modal = $("accountModal");
- const accountButton = $("accountButton");
- const communityAction = $("communityAccountAction");
- const accountForm = $("accountForm");
- const status = $("accountStatus");
- const suggestionStatus = $("suggestionStatus");
- const profileForm = $("profileForm");
-
- function setStatus(el, message, isError=false) {
-  if (!el) return;
-  el.textContent = message;
-  el.style.color = isError ? "#ff9b9b" : "";
- }
- function safeImageUrl(value) {
-  if (!value) return "";
-  try { const parsed=new window.URL(value); return parsed.protocol==="https:"?parsed.href:""; } catch { return ""; }
- }
- function renderAvatar(element,url,name,cosmeticCodes=[]) {
-  if (!element) return;
-  const initial=(String(name||"G").trim()[0]||"G").toUpperCase();
-  element.replaceChildren();
-  element.classList.remove("gp-frame-crimson","gp-frame-onyx");
-  if(cosmeticCodes.includes("frame_crimson")) element.classList.add("gp-frame-crimson");
-  if(cosmeticCodes.includes("frame_onyx")) element.classList.add("gp-frame-onyx");
-  const src=safeImageUrl(url);
-  if (src) {
-   const img=document.createElement("img");img.className="gp-avatar-image";img.src=src;img.alt="Foto de perfil de "+(name||"usuario");img.referrerPolicy="no-referrer";
-   img.onerror=()=>{element.replaceChildren();element.textContent=initial;};element.appendChild(img);
-  } else element.textContent=initial;
- }
- function updateAccountIdentity() {
-  const metadata=currentUser?.user_metadata||{};
-  const name=ownProfile?.display_name||metadata.display_name||ownProfile?.username||metadata.username||"Miembro";
-  const username=ownProfile?.username||metadata.username||"usuario";
-  const avatar=ownProfile?.avatar_url||metadata.avatar_url||"";
-  const cosmetics=ownProfile?.equippedCosmetics||[];
-  renderAvatar($("navAccountAvatar"),avatar,name,cosmetics);
-  $("navAccountAvatar").classList.toggle("gp-owner-frame",username==="gabri10");
-  $("navAccountAvatar").hidden=!currentUser;
-  $("navAccountLabel").textContent=currentUser?name:"MI CUENTA";
-  renderAvatar($("communityAvatar"),avatar,name,cosmetics);
-  $("communityAvatar").classList.toggle("gp-owner-frame",username==="gabri10");
-  $("communityAvatar").hidden=!currentUser;
-  renderAvatar($("accountProfileAvatar"),avatar,name,cosmetics);
-  $("accountProfileAvatar").classList.toggle("gp-owner-frame",username==="gabri10");
-  const nameClass=cosmetics.find(code=>["name_crimson","name_ice","name_gold","name_sakura"].includes(code));
-  const identityName=$("accountIdentityName");identityName.textContent=name;identityName.classList.remove("gp-name-crimson","gp-name-ice","gp-name-gold","gp-name-sakura","gp-owner-name");if(username==="gabri10")identityName.classList.add("gp-owner-name");else if(nameClass)identityName.classList.add("gp-"+nameClass.replace("name_","name-"));
-  const navLabel=$("navAccountLabel");navLabel.classList.remove("gp-name-crimson","gp-name-ice","gp-name-gold","gp-name-sakura","gp-owner-name");if(currentUser&&username==="gabri10")navLabel.classList.add("gp-owner-name");else if(currentUser&&nameClass)navLabel.classList.add("gp-"+nameClass.replace("name_","name-"));
-  $("accountIdentityHandle").textContent="@"+username;
- }
- function openAccount() {
-  modal.classList.add("open");
-  document.body.style.overflow = "hidden";
-  if (currentUser) showSignedInPanel(); else { showAuthForm(); setAuthMode("login"); }
- }
- function closeAccount() {
-  modal.classList.remove("open");
-  document.body.style.overflow = "";
- }
- function setAuthMode(mode) {
-  authMode = mode;
-  document.querySelectorAll("[data-auth-mode]").forEach(btn => btn.classList.toggle("active", btn.dataset.authMode === mode));
-  $("registerFields").hidden = mode !== "register";
-  $("accountPassword").setAttribute("autocomplete", mode === "register" ? "new-password" : "current-password");
-  $("accountSubmit").textContent = mode === "register" ? "CREAR CUENTA" : "ENTRAR";
-  $("accountModalTitle").textContent = mode === "register" ? "ÚNETE A LA COMUNIDAD." : "TU CUENTA.";
-  setStatus(status, "");
- }
- function showSignedInPanel() {
-  accountForm.hidden = true;
-  $("signedInPanel").hidden = false;
-  const metadata = currentUser?.user_metadata || {};
-  $("signedInText").textContent = "Tu perfil de GabriPlay. El correo de tu cuenta nunca se muestra públicamente.";
-  $("profileUsername").value = ownProfile?.username || metadata.username || "";
-  $("profileDisplayName").value = ownProfile?.display_name || metadata.display_name || metadata.username || "";
-  $("profileBio").value = ownProfile?.bio || metadata.bio || "";
-  updateAccountIdentity();
-  setStatus($("profileStatus"), "");
- }
- function showAuthForm() {
-  accountForm.hidden = false;
-  $("signedInPanel").hidden = true;
- }
- async function loadOwnProfile() {
-  if (!currentUser) { ownProfile=null; updateAccountIdentity(); return; }
-  const {data,error}=await db.from("profiles").select("username,display_name,bio,avatar_url,banner_url").eq("id",currentUser.id).maybeSingle();
-  if (error) throw error;
-  ownProfile=data||{};
-  const {data:cosmetics,error:cosmeticError}=await db.from("gabriplay_user_cosmetics").select("cosmetic_code").eq("user_id",currentUser.id).eq("equipped",true);
-  if(cosmeticError) throw cosmeticError;
-  ownProfile.equippedCosmetics=(cosmetics||[]).map(item=>item.cosmetic_code);
-  const metadata=currentUser.user_metadata||{};
-  $("profileUsername").value=ownProfile.username||metadata.username||"";
-  $("profileDisplayName").value=ownProfile.display_name||metadata.display_name||metadata.username||"";
-  $("profileBio").value=ownProfile.bio||metadata.bio||"";
-  updateAccountIdentity();
- }
- async function saveProfile(e) {
-  e.preventDefault();
-  if (!currentUser) return;
-  const username=$("profileUsername").value.trim().toLowerCase();
-  const displayName=$("profileDisplayName").value.trim();
-  const bio=$("profileBio").value.trim();
-  if (!/^[a-z0-9_]{3,24}$/.test(username)) {
-   setStatus($("profileStatus"),"El usuario debe tener entre 3 y 24 caracteres: letras, números o guion bajo.",true); return;
-  }
-  if (!displayName || displayName.length>40 || bio.length>160) {
-   setStatus($("profileStatus"),"Revisa el nombre visible y la descripción.",true); return;
-  }
-  const button=$("saveProfileButton"); button.disabled=true;
-  try {
-   const {error}=await db.from("profiles").upsert({
-    id:currentUser.id,username,display_name:displayName,bio,updated_at:new Date().toISOString()
-   },{onConflict:"id"});
-   if(error) throw error;
-   const {error:authError}=await db.auth.updateUser({data:{username,display_name:displayName,bio}});
-   if(authError) throw authError;
-   currentUser=(await db.auth.getUser()).data.user || currentUser;
-   ownProfile={...(ownProfile||{}),username,display_name:displayName,bio};
-   updateAccountIdentity();
-   setStatus($("profileStatus"),"Perfil guardado correctamente.");
-   $("communityUser").textContent="Sesión iniciada · "+displayName+(isAdmin?" · ADMINISTRADOR":"");
-   showToast("Perfil actualizado.");
-   await loadSuggestions();
-  } catch(err) {
-   const message=err?.code==="23505"?"Ese nombre de usuario ya está en uso.":(err.message || "No se pudo guardar el perfil.");
-   setStatus($("profileStatus"),message,true);
-  } finally { button.disabled=false; }
- }
- async function checkAdmin() {
-  if (!currentUser) { isAdmin=false; return; }
-  try {
-   const {data,error}=await db.from("gabriplay_admins").select("user_id").eq("user_id",currentUser.id).maybeSingle();
-   isAdmin=!error && !!data;
-  } catch { isAdmin=false; }
- }
- async function loadSuggestions() {
-  const loadVersion=++suggestionLoadVersion;
-  const list=$("suggestionList");
-  if (!list) return;
-  list.replaceChildren();
-  try {
-   let query=db.from("suggestions").select("id,user_id,title,description,status,created_at").order("created_at",{ascending:false}).limit(50);
-   // Los visitantes y usuarios normales solo solicitan propuestas públicas.
-   if (!isAdmin) query=query.eq("status","approved");
-   else if(adminSuggestionFilter!=="all") query=query.eq("status",adminSuggestionFilter);
-   const {data,error}=await query;
-   if(error) throw error;
-   if(loadVersion!==suggestionLoadVersion) return;
-   // Evita tarjetas repetidas si se solapan recargas de sesión, votos o moderación.
-   const uniqueSuggestions=[...new Map((data || []).map(item=>[item.id,item])).values()];
-   const suggestions=uniqueSuggestions;
-   if(!suggestions.length) {
-    const empty=document.createElement("div"); empty.className="gp-empty";
-    empty.textContent=isAdmin?"Todavía no hay sugerencias.":"Todavía no hay propuestas aprobadas. ¡Puedes enviar la primera!";
-    list.appendChild(empty); return;
-   }
-   const userIds=[...new Set(suggestions.map(x=>x.user_id).filter(Boolean))];
-   profilesCache={};
-   if(userIds.length) {
-    const {data:profiles,error:profilesError}=await db.from("profiles").select("id,username,display_name,bio,avatar_url").in("id",userIds);
-    if(profilesError) throw profilesError;
-    if(loadVersion!==suggestionLoadVersion) return;
-    (profiles || []).forEach(p=>profilesCache[p.id]=p);
-    const {data:cosmetics,error:cosmeticError}=await db.from("gabriplay_user_cosmetics").select("user_id,cosmetic_code").in("user_id",userIds).eq("equipped",true);
-    if(cosmeticError) throw cosmeticError;
-    (cosmetics||[]).forEach(item=>{const profile=profilesCache[item.user_id];if(profile){profile.equippedCosmetics=profile.equippedCosmetics||[];profile.equippedCosmetics.push(item.cosmetic_code);}});
-   }
-   let voteIds=new Set(),voteCounts={};
-   const {data:votes,error:voteError}=await db.from("suggestion_votes").select("suggestion_id,user_id");
-   if(voteError) throw voteError;
-   if(loadVersion!==suggestionLoadVersion) return;
-   (votes || []).forEach(v=>{
-    voteCounts[v.suggestion_id]=(voteCounts[v.suggestion_id]||0)+1;
-    if(currentUser && v.user_id===currentUser.id) voteIds.add(v.suggestion_id);
-   });
-   suggestions.forEach(item=>{
-    const card=document.createElement("article"); card.className="gp-suggestion";
-    const top=document.createElement("div"); top.className="gp-suggestion-top";
-    const tag=document.createElement("span");
-    tag.className="gp-tag"+(item.status==="pending"?" pending":item.status==="rejected"?" rejected":"");
-    tag.textContent=item.status==="pending"?"PENDIENTE":item.status==="completed"?"COMPLETADA":item.status==="rejected"?"NO APROBADA":"APROBADA";
-    top.appendChild(tag); card.appendChild(top);
-    const profile=profilesCache[item.user_id];
-    const author=document.createElement("div"); author.className="gp-profile-author";
-    const avatar=document.createElement("span"); avatar.className="gp-profile-avatar";
-    const authorName=profile?.display_name || profile?.username || "Miembro de GabriPlay";
-    renderAvatar(avatar,profile?.avatar_url,authorName,profile?.equippedCosmetics||[]);if(profile?.username==="gabri10")avatar.classList.add("gp-owner-frame");
-    const authorInfo=document.createElement("div");
-    const profileLink=document.createElement("a"); profileLink.href=profile?.username?"usuario.html?u="+encodeURIComponent(profile.username):"#"; profileLink.style.color="inherit"; profileLink.style.textDecoration="none";
-    const strong=document.createElement("strong"); strong.textContent=authorName; const isOwner=profile?.username==="gabri10"; if(isOwner)strong.classList.add("gp-owner-name"); const nameEffect=(profile?.equippedCosmetics||[]).find(code=>["name_crimson","name_ice","name_gold","name_sakura"].includes(code));if(nameEffect&&!isOwner)strong.classList.add("gp-"+nameEffect.replace("name_","name-")); profileLink.appendChild(strong); if(isOwner){const verified=document.createElement("span");verified.className="gp-owner-verified";verified.textContent="✓";verified.title="Cuenta verificada · Propietario de GabriPlay";profileLink.appendChild(verified);const owner=document.createElement("span");owner.className="gp-owner-role";owner.textContent="♛ OWNER";profileLink.appendChild(owner);}else if(profile?.username==="gabri10"){const creator=document.createElement("span");creator.className="gp-creator-inline";creator.textContent="✦ CREADOR";profileLink.appendChild(creator);}
-    const handle=document.createElement("div"); handle.textContent=profile?.username?"@"+profile.username:"Comunidad";
-    profileLink.appendChild(handle); authorInfo.appendChild(profileLink);
-    if(profile?.bio){const bio=document.createElement("div");bio.className="gp-profile-bio";bio.textContent=profile.bio;authorInfo.appendChild(bio);}
-    author.appendChild(avatar);author.appendChild(authorInfo);card.appendChild(author);
-    const title=document.createElement("h4"); title.textContent=item.title; card.appendChild(title);
-    const desc=document.createElement("p"); desc.textContent=item.description; card.appendChild(desc);
-    const actions=document.createElement("div"); actions.className="gp-card-actions";
-    if(item.status==="approved" && !isAdmin) {
-     const vote=document.createElement("button");vote.type="button";
-     vote.textContent=(voteIds.has(item.id)?"♥ VOTADO":"♡ VOTAR")+" · "+(voteCounts[item.id]||0);
-     vote.disabled=!currentUser;
-     vote.title=currentUser?"Votar esta propuesta":"Inicia sesión para votar";
-     vote.addEventListener("click",()=>toggleVote(item.id));actions.appendChild(vote);
-    }
-    if(isAdmin) {
-     [["pending","VOLVER A PENDIENTE"],["approved","APROBAR"],["rejected","RECHAZAR"],["completed","COMPLETADA"]].filter(([value])=>value!==item.status).forEach(([value,label])=>{
-      const b=document.createElement("button");b.type="button";b.textContent=label;
-      b.addEventListener("click",()=>moderateSuggestion(item.id,value));actions.appendChild(b);
-     });
-    }
-    if(actions.childElementCount) card.appendChild(actions);
-    list.appendChild(card);
-   });
-  } catch(err) {
-   const empty=document.createElement("div");empty.className="gp-empty";
-   empty.textContent=err.message || "No se han podido cargar las sugerencias. Comprueba Supabase.";
-   list.appendChild(empty);
-  }
- }
- async function toggleVote(suggestionId) {
-  if(!currentUser){openAccount();setStatus(status,"Inicia sesión para votar.");return;}
-  const {data:existing,error:findError}=await db.from("suggestion_votes").select("suggestion_id").eq("suggestion_id",suggestionId).eq("user_id",currentUser.id).maybeSingle();
-  if(findError){showToast("No se ha podido comprobar tu voto.");return;}
-  const result=existing
-   ? await db.from("suggestion_votes").delete().eq("suggestion_id",suggestionId).eq("user_id",currentUser.id)
-   : await db.from("suggestion_votes").insert({suggestion_id:suggestionId,user_id:currentUser.id});
-  if(result.error) showToast("No se ha podido guardar el voto."); else await loadSuggestions();
- }
- async function moderateSuggestion(id,nextStatus) {
-  if(!isAdmin){showToast("No tienes permisos para moderar.");return;}
-  const {error}=await db.from("suggestions").update({status:nextStatus}).eq("id",id);
-  if(error){showToast("No se pudo actualizar. Revisa los permisos de administrador.");return;}
-  showToast(nextStatus==="rejected"?"Sugerencia rechazada. Ya no será pública.":nextStatus==="pending"?"Sugerencia devuelta a pendientes.":"Estado de sugerencia actualizado.");await loadSuggestions();
- }
- async function refreshSession(session) {
-  currentUser=session?.user || null;
-  await checkAdmin();
-  if (currentUser) await loadOwnProfile(); else { ownProfile=null; updateAccountIdentity(); }
-  const metadata=currentUser?.user_metadata || {};
-  const publicName=ownProfile?.display_name || metadata.display_name || ownProfile?.username || metadata.username || "Miembro";
-  $("adminSuggestionTools").hidden=!isAdmin;
-  $("adminPanelButton").hidden=!isAdmin;
-  $("navAccountLabel").textContent=currentUser?publicName:"MI CUENTA";
-  communityAction.textContent=currentUser?"MI CUENTA":"INICIAR SESIÓN";
-  $("communityUser").textContent=currentUser?"Sesión iniciada · "+publicName+(isAdmin?" · ADMINISTRADOR":""):"Estás explorando como visitante.";
-  $("suggestionSubmit").disabled=!currentUser;
-  setStatus(suggestionStatus,currentUser?"Tu propuesta quedará pendiente de revisión.":"Inicia sesión para enviar una propuesta.");
-  if(modal.classList.contains("open")) {
-   if(currentUser) showSignedInPanel(); else showAuthForm();
-  }
-  await loadSuggestions();
- }
- accountButton.addEventListener("click",openAccount);
- communityAction.addEventListener("click",openAccount);
- $("closeAccountModal").addEventListener("click",closeAccount);
- modal.addEventListener("click",e=>{if(e.target===modal)closeAccount();});
- document.addEventListener("keydown",e=>{if(e.key==="Escape" && modal.classList.contains("open"))closeAccount();});
- document.querySelectorAll("[data-auth-mode]").forEach(btn=>btn.addEventListener("click",()=>setAuthMode(btn.dataset.authMode)));
- profileForm.addEventListener("submit",saveProfile);
- $("adminSuggestionFilters").addEventListener("click",e=>{
-  const button=e.target.closest("button[data-suggestion-filter]");
-  if(!button || !isAdmin) return;
-  adminSuggestionFilter=button.dataset.suggestionFilter;
-  $("adminSuggestionFilters").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b===button));
-  loadSuggestions();
- });
- accountForm.addEventListener("submit",async e=>{
-  e.preventDefault();
-  const submit=$("accountSubmit");submit.disabled=true;
-  const email=$("accountEmail").value.trim();
-  const password=$("accountPassword").value;
-  try {
-   if(authMode==="register") {
-    const username=$("accountUsername").value.trim().toLowerCase();
-    const displayName=$("accountDisplayName").value.trim() || username;
-    if(!/^[a-z0-9_]{3,24}$/.test(username)){setStatus(status,"El usuario debe tener entre 3 y 24 caracteres: letras, números o guion bajo.",true);return;}
-    if(password.length<8){setStatus(status,"La contraseña debe tener al menos 8 caracteres.",true);return;}
-    const {error}=await db.auth.signUp({email,password,options:{data:{username,display_name:displayName},emailRedirectTo:"https://gabriel10mp.github.io/GabriPlay-Web/"}});
-    if(error) throw error;
-    setStatus(status,"Cuenta creada. Revisa tu correo para confirmar el registro antes de iniciar sesión.");
-   } else {
-    const {error}=await db.auth.signInWithPassword({email,password});
-    if(error) throw error;
-    setStatus(status,"Sesión iniciada correctamente.");
-    await refreshSession((await db.auth.getSession()).data.session);
-   }
-  } catch(err){setStatus(status,err.message || "Ha ocurrido un error.",true);}
-  finally{submit.disabled=false;}
- });
- $("signOutButton").addEventListener("click",async()=>{
-  const {error}=await db.auth.signOut();
-  if(error){setStatus(status,error.message,true);return;}
-  setAuthMode("login");showAuthForm();setStatus(status,"Has cerrado sesión.");
- });
- $("suggestionForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if(!currentUser){openAccount();return;}
-  const title=$("suggestionTitle").value.trim();
-  const description=$("suggestionDescription").value.trim();
-  if(!title || !description)return;
-  const button=$("suggestionSubmit");button.disabled=true;
-  try {
-   const {error}=await db.from("suggestions").insert({user_id:currentUser.id,title,description,status:"pending"});
-   if(error) throw error;
-   $("suggestionForm").reset();
-   setStatus(suggestionStatus,"¡Idea enviada! Quedará pendiente de revisión.");
-   await loadSuggestions();
-  } catch(err){setStatus(suggestionStatus,err.message || "No se pudo enviar la sugerencia.",true);}
-  finally{button.disabled=false;}
- });
- db.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>refreshSession(session),0);});
- db.auth.getSession().then(({data,error})=>{if(error)throw error;return refreshSession(data.session);}).catch(err=>{
-  setStatus(suggestionStatus,err.message || "No se pudo comprobar la sesión.",true);
- });
-})();
-</script>
-<script>
-(() => {
-  const versionUrl = new URL("version.json", location.href);
-  let currentVersion = null;
-  let updatePending = false;
-  let checking = false;
-  const hasActiveWork = () => {
-    const active = document.activeElement;
-    if (active && active.matches("input,textarea,select,[contenteditable=true]")) return true;
-    return !!document.querySelector(".modal.open, .lightbox.open, dialog[open]");
-  };
-  const reloadWhenSafe = () => {
-    if (updatePending && !hasActiveWork() && document.visibilityState === "visible") {
-      location.reload();
-    }
-  };
-  const checkForUpdate = async () => {
-    if (checking || document.visibilityState !== "visible") return;
-    checking = true;
-    try {
-      const response = await fetch(versionUrl.href + "?check=" + Date.now(), { cache: "no-store" });
-      if (!response.ok) return;
-      const data = await response.json();
-      if (!data.version) return;
-      if (currentVersion === null) {
-        currentVersion = data.version;
-        return;
-      }
-      if (data.version !== currentVersion) {
-        updatePending = true;
-        reloadWhenSafe();
-      }
-    } catch (_) {
-      // Si la red o GitHub Pages falla temporalmente, se reintentará.
-    } finally {
-      checking = false;
-    }
-  };
-  checkForUpdate();
-  window.setInterval(checkForUpdate, 30000);
-  window.addEventListener("focus", () => { checkForUpdate(); reloadWhenSafe(); });
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-      checkForUpdate();
-      reloadWhenSafe();
-    }
-  });
-  document.addEventListener("focusout", () => window.setTimeout(reloadWhenSafe, 250));
-})();
-</script>
-<script>
-(() => {
- document.querySelectorAll(".video-thumb img").forEach(img => {
-  const card=img.closest(".video-thumb");
-  const match=(img.getAttribute("src")||"").match(/(?:vi|embed)\/([^/]+)/);
-  if(!match) return;
-  const id=match[1];
-  const candidates=["https://img.youtube.com/vi/"+id+"/sddefault.jpg","https://img.youtube.com/vi/"+id+"/hqdefault.jpg","https://img.youtube.com/vi/"+id+"/mqdefault.jpg","https://img.youtube.com/vi/"+id+"/default.jpg"];
-  let attempt=0;
-  img.addEventListener("error",function retry(){
-   if(attempt<candidates.length){img.src=candidates[attempt++];return;}
-   card.classList.add("thumb-fallback");
-   img.remove();
-  });
- });
-})();
-</script>
-</body></html>
+</body>
+</html>
