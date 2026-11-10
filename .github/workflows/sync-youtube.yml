@@ -36,7 +36,7 @@ jobs:
               published = entry.findtext("atom:published", default="", namespaces=ns)
               if video_id:
                   videos.append({"id": video_id, "title": title, "published": published})
-          Path("latest-videos.json").write_text(json.dumps(videos[:15], ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+          Path("latest-videos.json").write_text(json.dumps(videos[:15], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
           print(f"Saved {len(videos[:15])} public videos")
           PY
       - name: Commit updated feed
