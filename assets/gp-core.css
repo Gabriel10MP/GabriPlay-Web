@@ -3,7 +3,7 @@
 .gp-global-header{position:sticky;top:0;z-index:50;background:rgba(9,10,12,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.09)}
 .gp-global-nav{width:min(1180px,calc(100% - 40px));min-height:68px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .gp-brand{display:flex;align-items:center;gap:10px;color:#f5f5f6;text-decoration:none;font-weight:900;letter-spacing:-.5px}
-.gp-brand-mark{width:34px;height:34px;display:grid;place-items:center;border-radius:8px;background:#17191e;border:1px solid #383b43;color:#fff;font-size:13px;font-weight:900}
+.gp-brand-image{width:38px;height:38px;object-fit:contain;border-radius:8px;display:block}
 .gp-brand-name{font-size:17px}.gp-brand-name span{color:#e34a60}.gp-brand small{display:block;color:#858b95;font-size:8px;letter-spacing:1.5px;margin-top:1px}
 .gp-nav-links,.gp-nav-actions{display:flex;align-items:center;gap:20px}
 .gp-nav-links a,.gp-nav-extra,.gp-nav-account{color:#b8bdc6;text-decoration:none;font-size:11px;font-weight:750;transition:color .16s}
