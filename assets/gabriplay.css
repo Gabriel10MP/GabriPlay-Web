@@ -126,31 +126,32 @@
 .catalog-item[hidden]{display:none!important}
 @media(max-width:700px){.catalog-tools{margin-bottom:25px}.catalog-search{min-height:54px;padding:0 14px}.catalog-search input{height:52px;font-size:11px}.catalog-filters{gap:7px;padding-top:16px}.catalog-filters::before{width:100%;min-height:0;margin:0 0 3px}.filter-chip{min-height:34px;padding:7px 11px;font-size:8px}.catalog-result{align-self:flex-start;margin:13px 0 0}}
 
-/* Kit de herramientas para mods */
-.toolkit-section{padding:82px 0 86px;border-top:1px solid #ffffff12;background:linear-gradient(135deg,#111315 0%,#0b0d0e 65%,#111011 100%)}
-.toolkit-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:34px}
-.toolkit-heading h2{margin:9px 0 12px;font:800 clamp(42px,5vw,64px)/.9 "Barlow Condensed",Impact,sans-serif;letter-spacing:-.5px;text-transform:uppercase}
-.toolkit-heading h2 span{color:var(--red-soft)}
-.toolkit-intro{max-width:590px;margin:0;color:#a4a8a4;font-size:12px;line-height:1.85}
-.toolkit-stamp{flex:none;padding:13px 17px;border:1px solid #ffffff24;color:#929793;font:800 9px/1.7 "DM Sans",sans-serif;letter-spacing:1.5px;text-align:right}
-.toolkit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.toolkit-card{position:relative;display:flex;flex-direction:column;min-height:250px;padding:23px 22px 20px;border:1px solid #ffffff1c;background:linear-gradient(145deg,#17191b,#101213);transition:transform .25s,border-color .25s,background .25s}
-.toolkit-card:hover{transform:translateY(-4px);border-color:#8e4650;background:linear-gradient(145deg,#1b191a,#111213)}
-.toolkit-card-main{border-top:2px solid var(--red)}
+
+/* Base para moddear: integrado en el sistema editorial de GabriPlay */
+.toolkit-section{padding:78px 0 86px;border-top:1px solid #ffffff0c;background:#0d0f10}
+.toolkit-heading-note{padding-bottom:8px;color:#858b87;font-size:8px;font-weight:800;letter-spacing:1.5px}
+.toolkit-intro{max-width:650px;margin:-12px 0 28px;color:#a4a8a4;font-size:12px;line-height:1.85}
+.toolkit-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr);gap:22px}
+.toolkit-side{display:flex;flex-direction:column;border-top:1px solid #ffffff20}
+.toolkit-card{position:relative;display:flex;flex-direction:column;min-width:0;padding:20px 0;border:0;border-bottom:1px solid #ffffff1c;background:transparent;transition:background .2s}
+.toolkit-card:hover{transform:none;border-color:#ffffff30;background:#ffffff04}
+.toolkit-card-main{min-height:100%;padding:24px 25px 23px;border:1px solid #ffffff20;border-top:2px solid var(--red);background:linear-gradient(145deg,#17191b,#101213)}
+.toolkit-card-main:hover{border-color:#9e4b55;background:linear-gradient(145deg,#1b1a1b,#111213)}
 .toolkit-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#858b87;font-size:7px;font-weight:900;letter-spacing:1.2px}
-.toolkit-mark{display:grid;place-items:center;min-width:34px;height:30px;padding:0 7px;border:1px solid #ffffff20;color:#e98a93;font:800 9px "Barlow Condensed",sans-serif;letter-spacing:.8px}
-.toolkit-card h3{margin:26px 0 9px;color:#f0efec;font:800 30px/.95 "Barlow Condensed",Impact,sans-serif;text-transform:uppercase}
-.toolkit-card p{margin:0 0 22px;color:#9da29e;font-size:11px;line-height:1.8}
+.toolkit-mark{display:grid;place-items:center;min-width:34px;height:28px;padding:0 7px;border:1px solid #ffffff20;color:var(--red-soft);font:800 9px "Barlow Condensed",sans-serif;letter-spacing:.8px}
+.toolkit-card h3{margin:20px 0 9px;color:#f0efec;font:800 29px/.95 "Barlow Condensed",Impact,sans-serif;text-transform:uppercase}
+.toolkit-card-main h3{margin-top:34px;font-size:40px}
+.toolkit-card p{max-width:570px;margin:0 0 18px;color:#9da29e;font-size:11px;line-height:1.8}
 .toolkit-card p code{padding:2px 5px;border:1px solid #ffffff1a;background:#090a0b;color:#e8a0a6;font-size:10px}
 .toolkit-card>a{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:13px;border-top:1px solid #ffffff20;color:#e9e8e4;font-size:8px;font-weight:900;letter-spacing:1.1px}
 .toolkit-card>a span,.toolkit-footer a span{color:var(--red-soft);font-size:14px}
 .toolkit-card>a:hover,.toolkit-footer a:hover{color:var(--red-soft)}
-.toolkit-warning{display:flex;align-items:center;gap:14px;margin-top:17px;padding:15px 18px;border:1px solid #9c48512e;background:#a64c570c}
-.toolkit-warning-mark{display:grid;place-items:center;flex:none;width:25px;height:25px;border:1px solid #a64c57;color:#f08a94;font-weight:900}
-.toolkit-warning p{margin:0;color:#b7b9b5;font-size:10px;line-height:1.7}
+.toolkit-warning{display:flex;align-items:center;gap:14px;margin-top:18px;padding:13px 16px;border:1px solid #ffffff18;background:#111315}
+.toolkit-warning-mark{display:grid;place-items:center;flex:none;width:24px;height:24px;border:1px solid #a64c57;color:#f08a94;font-weight:900}
+.toolkit-warning p{margin:0;color:#aeb2ae;font-size:10px;line-height:1.7}
 .toolkit-warning strong{color:#f0dadd}
-.toolkit-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:25px;padding-top:17px;border-top:1px solid #ffffff17}
+.toolkit-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:22px;padding-top:15px;border-top:1px solid #ffffff17}
 .toolkit-footer>span{color:#777d79;font-size:8px;font-weight:900;letter-spacing:1.2px}
 .toolkit-footer a{display:flex;align-items:center;gap:14px;color:#e9e8e4;font-size:8px;font-weight:900;letter-spacing:1px}
-@media(max-width:900px){.toolkit-grid{grid-template-columns:1fr 1fr}.toolkit-card-note{grid-column:1/-1;min-height:210px}}
-@media(max-width:650px){.toolkit-section{padding:58px 0 62px}.toolkit-heading{align-items:flex-start;margin-bottom:25px}.toolkit-heading h2{font-size:49px}.toolkit-intro{font-size:11px}.toolkit-stamp{display:none}.toolkit-grid{grid-template-columns:1fr;gap:10px}.toolkit-card,.toolkit-card-note{grid-column:auto;min-height:0;padding:20px}.toolkit-card h3{margin-top:21px;font-size:28px}.toolkit-card p{margin-bottom:20px}.toolkit-warning{align-items:flex-start;padding:13px}.toolkit-footer{align-items:flex-start;flex-direction:column;gap:10px}}
+@media(max-width:900px){.toolkit-grid{grid-template-columns:1fr;gap:14px}.toolkit-card-main{min-height:250px}.toolkit-side{display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:0}.toolkit-side .toolkit-card{border-top:1px solid #ffffff20}.toolkit-card-main h3{margin-top:25px}}
+@media(max-width:650px){.toolkit-section{padding:57px 0 63px}.toolkit-heading{gap:12px}.toolkit-heading-note{display:none}.toolkit-intro{margin:-8px 0 22px;font-size:11px}.toolkit-grid{gap:12px}.toolkit-card-main{min-height:0;padding:20px}.toolkit-card-main h3{margin-top:24px;font-size:35px}.toolkit-side{display:flex;gap:0}.toolkit-side .toolkit-card{padding:18px 0}.toolkit-card h3{margin-top:17px;font-size:27px}.toolkit-warning{align-items:flex-start;padding:12px}.toolkit-footer{align-items:flex-start;flex-direction:column;gap:10px}}
