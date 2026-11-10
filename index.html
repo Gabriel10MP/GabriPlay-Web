@@ -123,7 +123,7 @@
             <p>Legacy y Enhanced no siempre comparten compatibilidad. Comprueba qué edición tienes y revisa los requisitos de cada herramienta antes de instalarla.</p>
           </div>
           <div class="toolkit-card-meta"><span>LEGACY · ENHANCED</span></div>
-          <a class="toolkit-card-link" href="https://www.dev-c.com/gtav/scripthookv/" target="_blank" rel="noopener"><span><small>REVISAR SOPORTE</small><strong>Ver versiones compatibles</strong></span><b>↗</b></a>
+          <button class="toolkit-card-link toolkit-version-trigger" id="openVersionPicker" type="button"><span><small>ELIGE TU EDICIÓN</small><strong>Ver versiones compatibles</strong></span><b>＋</b></button>
         </article>
       </div>
       <div class="toolkit-warning"><span class="toolkit-warning-mark">!</span><p><strong>Solo modo Historia:</strong> Script Hook V no está pensado para GTA Online. No entres al multijugador con mods instalados.</p></div>
@@ -141,6 +141,30 @@
 </main>
 <footer class="site-footer"><div class="container footer-inner"><a class="footer-brand" href="#inicio">GABRI<span>PLAY</span></a><span>© <span id="year"></span> GabriPlay</span><a href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">YOUTUBE ↗</a></div></footer>
 
+
+<div class="toolkit-modal" id="versionModal" aria-hidden="true">
+  <button class="toolkit-modal-backdrop" type="button" data-close-version aria-label="Cerrar ventana"></button>
+  <section class="toolkit-modal-panel" role="dialog" aria-modal="true" aria-labelledby="versionModalTitle">
+    <button class="toolkit-modal-close" type="button" data-close-version aria-label="Cerrar">×</button>
+    <div class="toolkit-modal-kicker">GABRIPLAY / COMPATIBILIDAD</div>
+    <div id="versionPickerStep">
+      <h2 id="versionModalTitle">¿Qué versión de GTA V tienes?</h2>
+      <p class="toolkit-modal-intro">Selecciona la edición que aparece en tu biblioteca. La compatibilidad de cada herramienta puede variar entre versiones.</p>
+      <div class="version-options">
+        <button class="version-option" type="button" data-game-version="Legacy"><span class="version-option-index">01 / EDICIÓN CLÁSICA</span><strong>GTA V <em>Legacy</em></strong><small>La versión original de PC.</small><b>SELECCIONAR ↗</b></button>
+        <button class="version-option" type="button" data-game-version="Enhanced"><span class="version-option-index">02 / EDICIÓN MEJORADA</span><strong>GTA V <em>Enhanced</em></strong><small>La edición mejorada para PC.</small><b>SELECCIONAR ↗</b></button>
+      </div>
+      <p class="toolkit-modal-footnote">Elegir una edición no garantiza que todos los mods sean compatibles. Revisa siempre los requisitos del creador.</p>
+    </div>
+    <div id="versionWarningStep" hidden>
+      <div class="toolkit-modal-alert">! <span>ANTES DE CONTINUAR</span></div>
+      <h2 id="versionWarningTitle">Mods para modo Historia</h2>
+      <p class="toolkit-modal-intro">Has seleccionado <strong id="selectedGameVersion"></strong>. La página oficial de Script Hook V ofrece la descarga y sus notas de compatibilidad; comprueba allí que la versión sea compatible con tu juego.</p>
+      <div class="toolkit-modal-warning"><strong>Importante:</strong> Script Hook V no funciona en GTA Online. Utiliza estos mods únicamente en el modo Historia y no entres al multijugador con ellos instalados.</div>
+      <div class="toolkit-modal-actions"><button class="toolkit-modal-back" id="backToVersions" type="button">← CAMBIAR VERSIÓN</button><button class="toolkit-modal-accept" id="acceptModsWarning" type="button">ACEPTAR Y CONTINUAR <span>↗</span></button></div>
+    </div>
+  </section>
+</div>
 <div class="modal" id="accountModal" aria-hidden="true"><div class="modal-backdrop" data-close-account></div><section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="modal-close" type="button" id="closeAccount" aria-label="Cerrar">×</button><div class="modal-kicker">GABRIPLAY / CUENTA</div><h2 id="accountTitle">Tu espacio en GabriPlay.</h2><p class="modal-intro">Inicia sesión o crea una cuenta para acceder a tu perfil.</p><div id="accountTabs" class="account-tabs"><button type="button" class="active" data-mode="login">Iniciar sesión</button><button type="button" data-mode="signup">Crear cuenta</button></div><form id="accountForm"><label class="form-label" id="usernameLabel" hidden>Nombre de usuario<input id="accountUsername" type="text" autocomplete="username" minlength="3" maxlength="20" placeholder="TuUsuario"></label><label class="form-label">Correo electrónico<input id="accountEmail" type="email" autocomplete="email" required placeholder="correo@ejemplo.com"></label><label class="form-label">Contraseña<input id="accountPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo 8 caracteres"></label><button class="button account-submit" id="accountSubmit" type="submit">Iniciar sesión</button></form><div class="account-status" id="accountStatus" role="status" aria-live="polite"></div><div class="account-logged" id="accountLogged" hidden><p id="accountWelcome"></p><section class="favorites-panel" aria-labelledby="favoritesTitle"><div class="favorites-heading"><div><span class="modal-kicker">TU BIBLIOTECA</span><h3 id="favoritesTitle">Mis favoritos</h3></div><span class="favorites-count" id="favoritesCount">0</span></div><p class="favorites-empty" id="favoritesEmpty">Todavía no has guardado ningún vídeo. Explora el contenido y pulsa «Guardar» para añadirlo aquí.</p><div class="favorites-list" id="favoritesList"></div></section><button class="button ghost account-submit" id="signOutButton" type="button">Cerrar sesión</button></div><p class="account-footnote">No compartas tu contraseña con nadie.</p></section></div>
 <script>
 const menuButton=document.getElementById("menuToggle"),nav=document.getElementById("navLinks");
@@ -182,6 +206,32 @@ document.getElementById("year").textContent=new Date().getFullYear();
  search.addEventListener("input",updateCatalog);
 })();
 </script>
+
+<script>
+/* Selector de edición y aviso antes de abrir la descarga de Script Hook V. */
+(()=>{
+ const modal=document.getElementById("versionModal");
+ const picker=document.getElementById("versionPickerStep");
+ const warning=document.getElementById("versionWarningStep");
+ const selected=document.getElementById("selectedGameVersion");
+ const open=document.getElementById("openVersionPicker");
+ const close=()=>{modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.classList.remove("version-modal-open");};
+ const showPicker=()=>{picker.hidden=false;warning.hidden=true;};
+ open.addEventListener("click",()=>{showPicker();modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("version-modal-open");});
+ modal.querySelectorAll("[data-close-version]").forEach(button=>button.addEventListener("click",close));
+ modal.querySelectorAll("[data-game-version]").forEach(button=>button.addEventListener("click",()=>{
+  selected.textContent="GTA V "+button.dataset.gameVersion;
+  picker.hidden=true;warning.hidden=false;
+ }));
+ document.getElementById("backToVersions").addEventListener("click",showPicker);
+ document.getElementById("acceptModsWarning").addEventListener("click",()=>{
+  window.open("https://www.dev-c.com/gtav/scripthookv/","_blank","noopener,noreferrer");
+  close();
+ });
+ document.addEventListener("keydown",event=>{if(event.key==="Escape"&&modal.classList.contains("open"))close();});
+})();
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (()=>{"use strict";
