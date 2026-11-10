@@ -51,12 +51,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
 <link rel="apple-touch-icon" href="favicon.svg?v=1">
 <link rel="stylesheet" href="gabriplay-polish.css?v=1">
-<link rel="stylesheet" href="assets/gabriplay-site.css?v=1">
+<link rel="stylesheet" href="assets/gp-core.css?v=1">
 <meta property="og:site_name" content="GabriPlay">
 </head>
 <body>
 <div class="rainbow"></div>
-<a class="gp-skip" href="#contenido">Saltar al contenido</a><header class="gp-global-header"><nav class="gp-global-nav"><a class="gp-brand" href="index.html" aria-label="GabriPlay, inicio"><span class="gp-brand-mark">GP</span><span><span class="gp-brand-name">Gabri<span>Play</span></span><small>WEB OFICIAL</small></span></a><nav class="gp-nav-links" aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="index.html#videos">Vídeos</a><a href="broadcast.html">Novedades</a><a href="index.html#comunidad">Comunidad</a></nav><div class="gp-nav-actions"><a class="gp-nav-extra" href="tienda.html">Tienda</a><a class="gp-nav-extra" id="creatorPanelLink" href="creador.html" hidden>Control creador</a><a class="gp-nav-account" href="index.html#comunidad">Mi cuenta</a></div></nav></header>
+<a class="gp-skip" href="#contenido">Saltar al contenido</a><header class="gp-global-header"><nav class="gp-global-nav"><a class="gp-brand" href="index.html" aria-label="GabriPlay, inicio"><span class="gp-brand-mark">GP</span><span><span class="gp-brand-name">Gabri<span>Play</span></span><small>WEB OFICIAL</small></span></a><nav class="gp-nav-links" aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="index.html#videos">Vídeos</a><a href="broadcast.html">Novedades</a><a href="index.html#comunidad">Comunidad</a></nav><div class="gp-nav-actions"><a class="gp-nav-extra" href="tienda.html">Tienda</a><a class="gp-nav-extra" id="creatorPanelLink" href="creador.html" hidden>Control creador</a><a class="gp-nav-account" href="perfil.html">Mi perfil</a></div></nav></header>
 <main class="main wrap" id="contenido">
  <div class="eyebrow">TU ESPACIO · TU IDENTIDAD</div>
  <h1>PERSONALIZA TU <span style="background:var(--rainbow);background-clip:text;-webkit-background-clip:text;color:transparent">PERFIL.</span></h1>
@@ -174,13 +174,24 @@ $("profileEditor").addEventListener("submit",async e=>{
   if(bannerFile)values.banner_url=await uploadImage(bannerFile,"banner");
   const {error}=await db.from("profiles").upsert({id:user.id,username,display_name,bio,...values,updated_at:new Date().toISOString()},{onConflict:"id"});
   if(error)throw error;
-  const {error:authError}=await db.auth.updateUser({data:{username,display_name,bio,avatar_url:values.avatar_url,banner_url:values.banner_url}});
-  if(authError)throw authError;
+  // La tabla profiles es la fuente pública del perfil. No dependemos de user_metadata:
+  // actualizar metadata después de guardar podía mostrar un error aunque la foto ya estuviera guardada.
+  const {data:saved,error:verifyError}=await db.from("profiles").select("avatar_url,banner_url,username,display_name").eq("id",user.id).single();
+  if(verifyError)throw verifyError;
+  if((values.avatar_url||null)!==(saved.avatar_url||null)||(values.banner_url||null)!==(saved.banner_url||null))throw new Error("Supabase no confirmó el guardado de las imágenes. Comprueba las políticas de profiles y el bucket profile-media.");
   $("avatarUrl").value=values.avatar_url||"";$("bannerUrl").value=values.banner_url||"";
   $("avatarFile").value="";$("bannerFile").value="";
   setStatus("Perfil actualizado correctamente. Tus imágenes ya están guardadas.");
   updatePreview();
- }catch(err){setStatus(err.code==="23505"?"Ese nombre de usuario ya está ocupado.":(err.message||"No se pudo guardar el perfil."),true)}
+  }catch(err){
+  const raw=String(err?.message||"");
+  const hint=/bucket|storage|row.level|policy|permission|not found|404/i.test(raw)
+   ?" No se ha podido acceder al almacenamiento profile-media. Ejecuta el SQL de almacenamiento y revisa sus políticas en Supabase."
+   :/profile_theme|column .* does not exist|schema cache/i.test(raw)
+   ?" Falta aplicar la migración de personalización de perfiles en Supabase."
+   :"";
+  setStatus(err.code==="23505"?"Ese nombre de usuario ya está ocupado.":(raw||"No se pudo guardar el perfil.")+hint,true)
+ }
  finally{btn.disabled=false}
 });
 init().catch(err=>setStatus(err.message||"No se pudo cargar tu perfil.",true));
