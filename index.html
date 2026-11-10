@@ -103,7 +103,7 @@
             <p>Permite ejecutar muchos plugins y scripts <code>.asi</code> de GTA V. También incluye ASI Loader, necesario para cargar este tipo de archivos.</p>
           </div>
           <div class="toolkit-card-meta"><span>ACTUALIZACIONES TRAS LOS PARCHES DEL JUEGO</span></div>
-          <a class="toolkit-card-link" href="https://www.dev-c.com/gtav/scripthookv/" target="_blank" rel="noopener"><span><small>DESCARGA OFICIAL</small><strong>Visitar Script Hook V</strong></span><b>↗</b></a>
+          <button class="toolkit-card-link toolkit-resource-trigger" type="button" data-resource-name="Script Hook V" data-resource-url="https://www.dev-c.com/gtav/scripthookv/"><span><small>DESCARGA OFICIAL</small><strong>Visitar Script Hook V</strong></span><b>↗</b></button>
         </article>
         <article class="toolkit-card-box">
           <div class="toolkit-card-head"><span class="toolkit-number">02</span><span class="toolkit-tag">GESTIÓN DE ARCHIVOS</span><span class="toolkit-symbol">TOOLS</span></div>
@@ -113,7 +113,7 @@
             <p>Una herramienta para explorar y modificar archivos de GTA V. Su ASI Manager permite configurar OpenIV.ASI y preparar la carpeta <code>mods</code>.</p>
           </div>
           <div class="toolkit-card-meta"><span>EXPLORADOR Y GESTOR DE ARCHIVOS</span></div>
-          <a class="toolkit-card-link" href="https://openiv.com/" target="_blank" rel="noopener"><span><small>SITIO OFICIAL</small><strong>Visitar OpenIV</strong></span><b>↗</b></a>
+          <button class="toolkit-card-link toolkit-resource-trigger" type="button" data-resource-name="OpenIV" data-resource-url="https://openiv.com/"><span><small>SITIO OFICIAL</small><strong>Visitar OpenIV</strong></span><b>↗</b></button>
         </article>
         <article class="toolkit-card-box toolkit-card-compat">
           <div class="toolkit-card-head"><span class="toolkit-number">03</span><span class="toolkit-tag">COMPATIBILIDAD</span><span class="toolkit-symbol">GTA V</span></div>
@@ -146,23 +146,32 @@
   <button class="toolkit-modal-backdrop" type="button" data-close-version aria-label="Cerrar ventana"></button>
   <section class="toolkit-modal-panel" role="dialog" aria-modal="true" aria-labelledby="versionModalTitle">
     <button class="toolkit-modal-close" type="button" data-close-version aria-label="Cerrar">×</button>
-    <div class="toolkit-modal-kicker">GABRIPLAY / COMPATIBILIDAD</div>
-    <div id="versionPickerStep">
-      <h2 id="versionModalTitle">¿Qué versión de GTA V tienes?</h2>
-      <p class="toolkit-modal-intro">Selecciona la edición que aparece en tu biblioteca. La compatibilidad de cada herramienta puede variar entre versiones.</p>
-      <div class="version-options">
-        <button class="version-option" type="button" data-game-version="Legacy"><span class="version-option-index">01 / EDICIÓN CLÁSICA</span><strong>GTA V <em>Legacy</em></strong><small>La versión original de PC.</small><b>SELECCIONAR ↗</b></button>
-        <button class="version-option" type="button" data-game-version="Enhanced"><span class="version-option-index">02 / EDICIÓN MEJORADA</span><strong>GTA V <em>Enhanced</em></strong><small>La edición mejorada para PC.</small><b>SELECCIONAR ↗</b></button>
-      </div>
-      <p class="toolkit-modal-footnote">Elegir una edición no garantiza que todos los mods sean compatibles. Revisa siempre los requisitos del creador.</p>
+    <div class="toolkit-modal-kicker">GABRIPLAY / GUÍA DE VERSIONES</div>
+    <h2 id="versionModalTitle">Dos ediciones. Distinta compatibilidad.</h2>
+    <p class="toolkit-modal-intro">En PC existen dos ediciones de GTA V. No des por hecho que una herramienta o un mod sirve para ambas: comprueba siempre la versión indicada en su página oficial.</p>
+    <div class="version-options version-info-options">
+      <article class="version-option version-info-card"><span class="version-option-index">01 / EDICIÓN ORIGINAL</span><strong>GTA V <em>Legacy</em></strong><small>La versión clásica de PC. Mantiene su propia instalación y comunidad de mods.</small><b>COMPRUEBA LOS REQUISITOS DE CADA MOD</b></article>
+      <article class="version-option version-info-card"><span class="version-option-index">02 / EDICIÓN MEJORADA</span><strong>GTA V <em>Enhanced</em></strong><small>La actualización mejorada para PC, con cambios técnicos y requisitos distintos.</small><b>NECESITA HERRAMIENTAS COMPATIBLES</b></article>
     </div>
-    <div id="versionWarningStep" hidden>
-      <div class="toolkit-modal-alert">! <span>ANTES DE CONTINUAR</span></div>
-      <h2 id="versionWarningTitle">Mods para modo Historia</h2>
-      <p class="toolkit-modal-intro">Has seleccionado <strong id="selectedGameVersion"></strong>. La página oficial de Script Hook V ofrece la descarga y sus notas de compatibilidad; comprueba allí que la versión sea compatible con tu juego.</p>
-      <div class="toolkit-modal-warning"><strong>Importante:</strong> Script Hook V no funciona en GTA Online. Utiliza estos mods únicamente en el modo Historia y no entres al multijugador con ellos instalados.</div>
-      <div class="toolkit-modal-actions"><button class="toolkit-modal-back" id="backToVersions" type="button">← CAMBIAR VERSIÓN</button><button class="toolkit-modal-accept" id="acceptModsWarning" type="button">ACEPTAR Y CONTINUAR <span>↗</span></button></div>
-    </div>
+    <p class="toolkit-modal-footnote">Rockstar mantiene las dos ediciones por separado. Si juegas con amigos, debéis iniciar la misma edición. <a href="https://www.rockstargames.com/es/newswire/article/7551a7k917554a/free-upgrade-for-grand-theft-auto-v-on-pc-now-available" target="_blank" rel="noopener">Información oficial de Rockstar ↗</a></p>
+  </section>
+</div>
+<div class="toolkit-modal" id="resourceModal" aria-hidden="true">
+  <button class="toolkit-modal-backdrop" type="button" data-close-resource aria-label="Cerrar ventana"></button>
+  <section class="toolkit-modal-panel" role="dialog" aria-modal="true" aria-labelledby="resourceModalTitle">
+    <button class="toolkit-modal-close" type="button" data-close-resource aria-label="Cerrar">×</button>
+    <div class="toolkit-modal-kicker">GABRIPLAY / SALIDA A WEB OFICIAL</div>
+    <h2 id="resourceModalTitle">Antes de continuar.</h2>
+    <p class="toolkit-modal-intro">Vas a visitar la página oficial de <strong id="resourceName">la herramienta</strong>. Primero, indica qué edición de GTA V utilizas.</p>
+    <label class="resource-version-label" for="resourceVersion">TU VERSIÓN DE GTA V</label>
+    <select class="resource-version-select" id="resourceVersion">
+      <option value="">Selecciona Legacy o Enhanced…</option>
+      <option value="Legacy">GTA V Legacy</option>
+      <option value="Enhanced">GTA V Enhanced</option>
+    </select>
+    <div class="toolkit-modal-warning resource-online-warning"><strong>Importante sobre GTA Online:</strong> los mods y herramientas de modificación de esta guía son para el modo Historia. No entres a GTA Online con mods instalados. Comprueba también que la descarga sea compatible con la edición que has seleccionado.</div>
+    <div class="toolkit-modal-actions"><button class="toolkit-modal-back" type="button" data-close-resource>VOLVER</button><button class="toolkit-modal-accept" id="acceptResource" type="button" disabled>ACEPTAR Y VISITAR WEB <span>↗</span></button></div>
+    <p class="toolkit-modal-footnote">La selección solo sirve para que revises los requisitos correctos; no cambia ni instala archivos.</p>
   </section>
 </div>
 <div class="modal" id="accountModal" aria-hidden="true"><div class="modal-backdrop" data-close-account></div><section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="modal-close" type="button" id="closeAccount" aria-label="Cerrar">×</button><div class="modal-kicker">GABRIPLAY / CUENTA</div><h2 id="accountTitle">Tu espacio en GabriPlay.</h2><p class="modal-intro">Inicia sesión o crea una cuenta para acceder a tu perfil.</p><div id="accountTabs" class="account-tabs"><button type="button" class="active" data-mode="login">Iniciar sesión</button><button type="button" data-mode="signup">Crear cuenta</button></div><form id="accountForm"><label class="form-label" id="usernameLabel" hidden>Nombre de usuario<input id="accountUsername" type="text" autocomplete="username" minlength="3" maxlength="20" placeholder="TuUsuario"></label><label class="form-label">Correo electrónico<input id="accountEmail" type="email" autocomplete="email" required placeholder="correo@ejemplo.com"></label><label class="form-label">Contraseña<input id="accountPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo 8 caracteres"></label><button class="button account-submit" id="accountSubmit" type="submit">Iniciar sesión</button></form><div class="account-status" id="accountStatus" role="status" aria-live="polite"></div><div class="account-logged" id="accountLogged" hidden><p id="accountWelcome"></p><section class="favorites-panel" aria-labelledby="favoritesTitle"><div class="favorites-heading"><div><span class="modal-kicker">TU BIBLIOTECA</span><h3 id="favoritesTitle">Mis favoritos</h3></div><span class="favorites-count" id="favoritesCount">0</span></div><p class="favorites-empty" id="favoritesEmpty">Todavía no has guardado ningún vídeo. Explora el contenido y pulsa «Guardar» para añadirlo aquí.</p><div class="favorites-list" id="favoritesList"></div></section><button class="button ghost account-submit" id="signOutButton" type="button">Cerrar sesión</button></div><p class="account-footnote">No compartas tu contraseña con nadie.</p></section></div>
@@ -171,6 +180,42 @@ const menuButton=document.getElementById("menuToggle"),nav=document.getElementBy
 menuButton.addEventListener("click",()=>{const opened=nav.classList.toggle("open");menuButton.setAttribute("aria-expanded",String(opened));});
 nav.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{nav.classList.remove("open");menuButton.setAttribute("aria-expanded","false");}));
 document.getElementById("year").textContent=new Date().getFullYear();
+/* Ventanas independientes: información de ediciones y salida a cada web oficial. */
+(()=>{
+ const versionModal=document.getElementById("versionModal");
+ const resourceModal=document.getElementById("resourceModal");
+ const resourceName=document.getElementById("resourceName");
+ const resourceVersion=document.getElementById("resourceVersion");
+ const acceptResource=document.getElementById("acceptResource");
+ let destination="";
+ let lastFocus=null;
+ const open=modal=>{lastFocus=document.activeElement;modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("version-modal-open");const focusable=modal.querySelector("button:not([disabled]),select");if(focusable)focusable.focus();};
+ const close=modal=>{modal.classList.remove("open");modal.setAttribute("aria-hidden","true");if(!versionModal.classList.contains("open")&&!resourceModal.classList.contains("open"))document.body.classList.remove("version-modal-open");if(lastFocus&&lastFocus.focus)lastFocus.focus();};
+ document.getElementById("openVersionPicker").addEventListener("click",()=>open(versionModal));
+ document.querySelectorAll("[data-close-version]").forEach(button=>button.addEventListener("click",()=>close(versionModal)));
+ document.querySelectorAll(".toolkit-resource-trigger").forEach(button=>button.addEventListener("click",()=>{
+  destination=button.dataset.resourceUrl||"";
+  resourceName.textContent=button.dataset.resourceName||"la herramienta";
+  resourceVersion.value="";
+  acceptResource.disabled=true;
+  open(resourceModal);
+ }));
+ resourceVersion.addEventListener("change",()=>{acceptResource.disabled=!resourceVersion.value;});
+ document.querySelectorAll("[data-close-resource]").forEach(button=>button.addEventListener("click",()=>close(resourceModal)));
+ acceptResource.addEventListener("click",()=>{
+  if(!destination||!resourceVersion.value)return;
+  const url=destination;
+  close(resourceModal);
+  window.open(url,"_blank","noopener,noreferrer");
+ });
+ document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"){
+   if(resourceModal.classList.contains("open"))close(resourceModal);
+   else if(versionModal.classList.contains("open"))close(versionModal);
+  }
+ });
+})();
+
 </script>
 <script>
 /* Buscador y filtros del catálogo de vídeos. */
