@@ -248,3 +248,51 @@
  .toolkit-warning{align-items:flex-start}
  .toolkit-footer{align-items:flex-start;flex-direction:column;gap:10px}
 }
+
+
+/* Ventana de selección de versión y confirmación de seguridad */
+.toolkit-version-trigger{width:100%;font:inherit;text-align:left;cursor:pointer;color:inherit}
+.toolkit-version-trigger:hover{color:#fff}
+.toolkit-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+.toolkit-modal.open{display:flex}
+.toolkit-modal-backdrop{position:absolute;inset:0;width:100%;height:100%;border:0;background:#030405d9;backdrop-filter:blur(7px);cursor:default}
+.toolkit-modal-panel{position:relative;width:min(100%,570px);max-height:min(90vh,760px);overflow:auto;padding:34px;border:1px solid #ffffff26;border-top:2px solid var(--red);background:linear-gradient(145deg,#191b1d,#0e1011 75%);box-shadow:0 28px 90px #000b;animation:versionModalIn .2s ease-out}
+@keyframes versionModalIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.toolkit-modal-close{position:absolute;top:15px;right:17px;width:32px;height:32px;border:1px solid #ffffff24;background:#101213;color:#d9d9d5;font-size:22px;cursor:pointer}
+.toolkit-modal-close:hover{border-color:#b95460;color:#ffabb2}
+.toolkit-modal-kicker{margin-bottom:19px;color:var(--red-soft);font-size:8px;font-weight:900;letter-spacing:1.5px}
+.toolkit-modal-panel h2{max-width:430px;margin:0 35px 10px 0;color:#f1f0ed;font:800 37px/.98 "Barlow Condensed",sans-serif;text-transform:uppercase}
+.toolkit-modal-intro{margin:0 0 22px;color:#a5aaa6;font-size:11px;line-height:1.8}
+.version-options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.version-option{display:flex;flex-direction:column;align-items:flex-start;min-height:165px;padding:17px;border:1px solid #ffffff20;background:#111416;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
+.version-option:hover{border-color:#b95460;background:#1b1517}
+.version-option-index{color:#e18a93;font-size:7px;font-weight:900;letter-spacing:1px}
+.version-option strong{margin-top:22px;color:#f1f0ed;font:800 25px/.95 "Barlow Condensed",sans-serif;text-transform:uppercase}
+.version-option strong em{color:var(--red-soft);font-style:normal}
+.version-option small{margin-top:7px;color:#929995;font-size:9px}
+.version-option b{margin-top:auto;padding-top:17px;color:#e9e8e4;font-size:8px;letter-spacing:1px}
+.version-option:hover b{color:#ffabb2}
+.toolkit-modal-footnote{margin:17px 0 0;color:#747c77;font-size:9px;line-height:1.7}
+.toolkit-modal-alert{display:flex;align-items:center;gap:9px;margin:0 0 17px;color:#f08a94;font-weight:900}
+.toolkit-modal-alert:first-letter{display:grid}
+.toolkit-modal-alert span{font-size:8px;letter-spacing:1.3px}
+.toolkit-modal-warning{margin:17px 0 22px;padding:15px 16px;border:1px solid #a64c5755;background:#a64c5710;color:#d5c5c6;font-size:10px;line-height:1.8}
+.toolkit-modal-warning strong{color:#ffabb2}
+.toolkit-modal-actions{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolkit-modal-back,.toolkit-modal-accept{min-height:44px;padding:0 15px;font-size:8px;font-weight:900;letter-spacing:.8px;cursor:pointer}
+.toolkit-modal-back{border:1px solid #ffffff24;background:#111315;color:#b9bfba}
+.toolkit-modal-back:hover{border-color:#ffffff50;color:#fff}
+.toolkit-modal-accept{border:1px solid #b95460;background:#a64c5726;color:#ffabb2}
+.toolkit-modal-accept:hover{background:#a64c5745}
+.toolkit-modal-accept span{padding-left:10px;font-size:14px}
+body.version-modal-open{overflow:hidden}
+@media(max-width:520px){
+ .toolkit-modal{padding:12px}
+ .toolkit-modal-panel{padding:27px 19px 22px}
+ .toolkit-modal-panel h2{font-size:31px}
+ .version-options{grid-template-columns:1fr}
+ .version-option{min-height:135px}
+ .version-option strong{margin-top:14px}
+ .toolkit-modal-actions{align-items:stretch;flex-direction:column-reverse}
+ .toolkit-modal-back,.toolkit-modal-accept{width:100%}
+}
