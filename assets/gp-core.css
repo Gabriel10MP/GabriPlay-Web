@@ -1,0 +1,14 @@
+/* GabriPlay core — navegación y elementos compartidos. Sin selectores globales agresivos. */
+:root{--gp-bg:#090a0c;--gp-panel:#111317;--gp-line:#292d34;--gp-text:#f4f5f7;--gp-muted:#9da3ad;--gp-red:#d92f48}
+.gp-global-header{position:sticky;top:0;z-index:50;background:rgba(9,10,12,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.09)}
+.gp-global-nav{width:min(1180px,calc(100% - 40px));min-height:68px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.gp-brand{display:flex;align-items:center;gap:10px;color:#f5f5f6;text-decoration:none;font-weight:900;letter-spacing:-.5px}
+.gp-brand-mark{width:34px;height:34px;display:grid;place-items:center;border-radius:8px;background:#17191e;border:1px solid #383b43;color:#fff;font-size:13px;font-weight:900}
+.gp-brand-name{font-size:17px}.gp-brand-name span{color:#e34a60}.gp-brand small{display:block;color:#858b95;font-size:8px;letter-spacing:1.5px;margin-top:1px}
+.gp-nav-links,.gp-nav-actions{display:flex;align-items:center;gap:20px}
+.gp-nav-links a,.gp-nav-extra,.gp-nav-account{color:#b8bdc6;text-decoration:none;font-size:11px;font-weight:750;transition:color .16s}
+.gp-nav-links a:hover,.gp-nav-extra:hover,.gp-nav-account:hover{color:#fff}
+.gp-nav-account{padding:10px 13px;border:1px solid #ffffff24;border-radius:7px;color:#fff}
+.gp-skip{position:absolute;left:-9999px;top:8px}.gp-skip:focus{left:8px;z-index:100;background:#fff;color:#111;padding:10px;border-radius:5px}
+.gp-footer-links{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.gp-footer-links a{color:#9da3ad;text-decoration:none;font-size:10px;font-weight:700}.gp-footer-links a:hover{color:#fff}
+@media(max-width:760px){.gp-global-nav{width:calc(100% - 28px);min-height:62px;gap:12px;flex-wrap:wrap;padding:10px 0}.gp-nav-links{order:3;width:100%;justify-content:space-between;gap:10px;padding:5px 0 2px}.gp-nav-links a,.gp-nav-extra,.gp-nav-account{font-size:10px}.gp-nav-actions{gap:9px}.gp-brand-name{font-size:15px}}
