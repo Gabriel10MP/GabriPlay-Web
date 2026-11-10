@@ -13,3 +13,22 @@
 /* Biblioteca personal y favoritos */
 .video-feature-wrap{position:relative;min-width:0}.video-feature-wrap .video-feature{height:100%}.favorite-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid #ffffff30;background:#101214eF;color:#d7d8d5;font-size:8px;font-weight:900;letter-spacing:.8px;padding:9px 11px;transition:background .2s,border-color .2s,color .2s}.favorite-button:hover,.favorite-button.is-saved{border-color:#a84b56;color:#ff9aa3}.feature-favorite{position:absolute;right:14px;top:14px;z-index:2;background:#090a0bdc}.video-row-wrap{position:relative;min-width:0;border-bottom:1px solid #ffffff1c}.video-row-wrap .video-row{border-bottom:0;padding-right:70px}.row-favorite{position:absolute;right:0;top:50%;transform:translateY(-50%);padding:8px 7px;font-size:7px}.favorites-panel{margin:20px 0 15px;padding:18px 0;border-top:1px solid #34383a;border-bottom:1px solid #34383a}.favorites-heading{display:flex;align-items:center;justify-content:space-between}.favorites-heading h3{margin:5px 0 0;font:800 25px/.95 "Barlow Condensed",sans-serif;text-transform:uppercase}.favorites-count{display:grid;place-items:center;min-width:28px;height:28px;border:1px solid #78414a;color:#ff9aa3;font-size:11px;font-weight:800}.favorites-empty{color:#9da3a0;font-size:10px;line-height:1.7}.favorites-list{display:grid;gap:9px;margin-top:12px}.favorite-item{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:8px;border:1px solid #ffffff16;background:#ffffff05}.favorite-item-link{display:flex;align-items:center;gap:10px;min-width:0;flex:1}.favorite-item-link img{width:82px;aspect-ratio:16/9;object-fit:cover}.favorite-item-copy{display:flex;flex-direction:column;gap:3px;min-width:0}.favorite-item-copy small{color:var(--red-soft);font-size:7px;font-weight:800;letter-spacing:.8px}.favorite-item-copy strong{font-size:10px;line-height:1.35}.favorite-item-copy>span{color:#888f8a;font-size:8px}.favorite-remove{border:0;background:none;color:#a9aeaa;font-size:8px;padding:8px}.favorite-remove:hover{color:#ff9aa3}
 @media(max-width:650px){.video-row-wrap .video-row{padding-right:62px}.row-favorite{font-size:6px;padding:7px 5px}.feature-favorite{top:9px;right:9px}.favorite-item-link img{width:70px}}
+
+
+/* Buscador y filtros del catálogo */
+.catalog-tools{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:14px 24px;align-items:center;margin:-7px 0 27px;padding:16px 0;border-top:1px solid #ffffff14;border-bottom:1px solid #ffffff14}
+.catalog-search{display:flex;align-items:center;gap:11px;min-width:0;padding:0 13px;border:1px solid #ffffff25;background:#111315;transition:border-color .2s}
+.catalog-search:focus-within{border-color:#a94d58}
+.catalog-search input{width:100%;min-width:0;height:43px;border:0;outline:0;background:transparent;color:#f1f0ed;font-size:11px}
+.catalog-search input::placeholder{color:#777d79}
+.search-symbol{color:var(--red-soft);font-size:23px;line-height:1}
+.catalog-search kbd{color:#777d79;font-size:15px}
+.catalog-filters{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:7px}
+.filter-chip{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid #ffffff20;background:transparent;color:#aeb2ae;font-size:9px;font-weight:700;transition:background .2s,border-color .2s,color .2s}
+.filter-chip:hover{border-color:#8d454e;color:#fff}
+.filter-chip.active{border-color:#a64c57;background:#a64c571a;color:#ffabb2}
+.filter-chip span{color:#ffabb2;font-size:8px}
+.catalog-result{grid-column:1/-1;margin:-5px 0 0;color:#777d79;font-size:8px;letter-spacing:.8px;text-transform:uppercase}
+.catalog-item[hidden]{display:none!important}
+@media(max-width:900px){.catalog-tools{grid-template-columns:1fr}.catalog-filters{justify-content:flex-start}.catalog-result{grid-column:auto}}
+@media(max-width:650px){.catalog-tools{gap:12px;margin-bottom:20px;padding:13px 0}.catalog-filters{gap:6px}.filter-chip{padding:8px 9px;font-size:8px}.catalog-search input{height:41px}}
