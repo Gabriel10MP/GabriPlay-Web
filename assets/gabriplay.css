@@ -108,3 +108,20 @@
  .filter-chip{min-height:33px;padding:7px 10px;font-size:8px}
  .catalog-result{margin-top:0}
 }
+
+/* Catálogo: jerarquía clara y controles separados */
+.catalog-tools{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:0 0 34px;padding:0;border:0;background:transparent}
+.catalog-search{position:relative;display:flex;align-items:center;width:100%;min-height:62px;gap:15px;padding:0 20px;border:1px solid #34383a;border-left:3px solid var(--red);background:linear-gradient(100deg,#17191b,#101213 72%);box-shadow:0 12px 30px #0002}
+.catalog-search:focus-within{border-color:#a64c57;border-left-color:var(--red-soft)}
+.catalog-search .search-symbol{font-size:25px;color:#e47c86}
+.catalog-search input{height:60px;font-size:13px}
+.catalog-search kbd{display:grid;place-items:center;width:28px;height:28px;border:1px solid #ffffff20;color:#777d79;font:11px "DM Sans",sans-serif}
+.catalog-filters{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:9px;padding:20px 0 0}
+.catalog-filters::before{content:"EXPLORAR POR";display:inline-flex;align-items:center;min-height:34px;margin-right:8px;color:#858b87;font-size:8px;font-weight:900;letter-spacing:1.5px}
+.filter-chip{min-height:36px;padding:8px 15px;border:1px solid #34383a;border-radius:2px;background:#111315;color:#aeb2ae;font-size:9px;font-weight:800;letter-spacing:.35px}
+.filter-chip:hover{border-color:#a64c57;background:#191416;color:#fff}
+.filter-chip.active{border-color:#b95460;background:#a64c571c;color:#ffabb2;box-shadow:inset 0 -2px 0 #b95460}
+.filter-chip span{color:#ffabb2}
+.catalog-result{align-self:flex-end;margin:-29px 0 0;color:#777d79;font-size:8px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase}
+.catalog-item[hidden]{display:none!important}
+@media(max-width:700px){.catalog-tools{margin-bottom:25px}.catalog-search{min-height:54px;padding:0 14px}.catalog-search input{height:52px;font-size:11px}.catalog-filters{gap:7px;padding-top:16px}.catalog-filters::before{width:100%;min-height:0;margin:0 0 3px}.filter-chip{min-height:34px;padding:7px 11px;font-size:8px}.catalog-result{align-self:flex-start;margin:13px 0 0}}
