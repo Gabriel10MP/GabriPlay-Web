@@ -107,4 +107,26 @@ try{if(mode==="signup"){const handle=username.value.trim();if(!/^[a-zA-Z0-9_]{3,
 signout.addEventListener("click",async()=>{signout.disabled=true;const {error}=await client.auth.signOut();signout.disabled=false;if(error){say(error.message,true);return;}paintSession(null);setMode("login");say("Has cerrado sesión.");});
 })();
 </script>
+<script>
+/* Comprueba si hay una nueva versión publicada y actualiza la página. */
+(()=>{"use strict";
+const VERSION_URL="./version.json";
+let currentVersion=null;
+async function checkForUpdates(){
+  if(document.visibilityState!=="visible")return;
+  try{
+    const response=await fetch(VERSION_URL+"?check="+Date.now(),{cache:"no-store"});
+    if(!response.ok)return;
+    const data=await response.json();
+    if(!data.version)return;
+    if(currentVersion===null){currentVersion=data.version;return;}
+    if(data.version!==currentVersion){window.location.reload();}
+  }catch(_error){
+    /* Si no hay conexión, se volverá a comprobar en el siguiente ciclo. */
+  }
+}
+checkForUpdates();
+window.setInterval(checkForUpdates,30000);
+})();
+</script>
 </body></html>
