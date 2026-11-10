@@ -83,6 +83,16 @@
           <div class="video-list-note"><span>GABRIPLAY</span><span>CONTENIDO NUEVO EN YOUTUBE</span></div>
         </div>
       </div>
+      <section class="latest-videos" aria-labelledby="latestVideosTitle">
+        <div class="latest-videos-heading">
+          <div><p class="section-index">02 <span>/</span> PUBLICACIONES</p><h3 id="latestVideosTitle">Recién publicados<span>.</span></h3></div>
+          <span class="latest-sync"><i></i> SINCRONIZADO CON YOUTUBE</span>
+        </div>
+        <div class="latest-video-grid" id="latestVideoGrid" aria-live="polite">
+          <p class="latest-video-state">Cargando los últimos vídeos del canal…</p>
+        </div>
+        <p class="latest-video-footnote" id="latestVideoStatus">Las nuevas publicaciones aparecerán aquí automáticamente.</p>
+      </section>
     </div>
   </section>
 
@@ -220,6 +230,46 @@ document.getElementById("year").textContent=new Date().getFullYear();
 
 </script>
 <script>
+/* Últimas publicaciones públicas del canal GabriPlay. */
+(()=>{
+ const grid=document.getElementById("latestVideoGrid");
+ const status=document.getElementById("latestVideoStatus");
+ if(!grid||!status)return;
+ const excluded=new Set(["NcGygok41Lk","p2j1OEbqp9o","pbcPa3jO1tA","j_k2lIj25xc"]);
+ const feedUrl="./latest-videos.json";
+ const dateFormat=new Intl.DateTimeFormat("es-ES",{day:"numeric",month:"short",year:"numeric"});
+ function makeCard(video){
+  const article=document.createElement("article");article.className="latest-video-card";
+  const link=document.createElement("a");link.className="latest-video-link";link.href="https://www.youtube.com/watch?v="+encodeURIComponent(video.id);link.target="_blank";link.rel="noopener";
+  const media=document.createElement("div");media.className="latest-video-media";
+  const image=document.createElement("img");image.src="https://i.ytimg.com/vi/"+encodeURIComponent(video.id)+"/hqdefault.jpg";image.alt="";image.loading="lazy";
+  const play=document.createElement("span");play.className="latest-video-play";play.textContent="▶";media.append(image,play);
+  const copy=document.createElement("div");copy.className="latest-video-copy";
+  const meta=document.createElement("span");meta.className="latest-video-date";const date=new Date(video.published);meta.textContent=Number.isNaN(date.getTime())?"NUEVO EN EL CANAL":dateFormat.format(date).toUpperCase();
+  const title=document.createElement("h4");title.textContent=video.title||"Nuevo vídeo de GabriPlay";
+  const cta=document.createElement("span");cta.className="latest-video-cta";cta.textContent="VER VÍDEO ↗";
+  copy.append(meta,title,cta);link.append(media,copy);article.append(link);return article;
+ }
+ async function loadLatest(){
+  try{
+   const response=await fetch(feedUrl+"?t="+Date.now(),{cache:"no-store"});
+   if(!response.ok)throw new Error("No se pudo consultar el feed");
+   const videos=await response.json();
+   const fresh=(Array.isArray(videos)?videos:[]).filter(video=>video.id&&!excluded.has(video.id)).slice(0,6);
+   grid.replaceChildren();
+   if(!fresh.length){
+    const empty=document.createElement("p");empty.className="latest-video-state";empty.textContent="Todavía no hay publicaciones nuevas. Cuando subas un vídeo, aparecerá aquí.";grid.append(empty);
+   }else fresh.forEach(video=>grid.append(makeCard(video)));
+   status.textContent="Última comprobación: "+new Intl.DateTimeFormat("es-ES",{hour:"2-digit",minute:"2-digit"}).format(new Date())+" · Actualización automática cada 15 minutos.";
+  }catch(_error){
+   if(!grid.children.length){const error=document.createElement("p");error.className="latest-video-state";error.textContent="No se han podido cargar los últimos vídeos ahora mismo.";grid.append(error);}
+   status.textContent="Se volverá a intentar automáticamente.";
+  }
+ }
+ loadLatest();window.setInterval(loadLatest,15*60*1000);
+})();
+</script>
+<script>
 /* Buscador y filtros del catálogo de vídeos. */
 (()=>{
  const search=document.getElementById("videoSearch");
@@ -251,31 +301,6 @@ document.getElementById("year").textContent=new Date().getFullYear();
   updateCatalog();
  }));
  search.addEventListener("input",updateCatalog);
-})();
-</script>
-
-<script>
-/* Selector de edición y aviso antes de abrir la descarga de Script Hook V. */
-(()=>{
- const modal=document.getElementById("versionModal");
- const picker=document.getElementById("versionPickerStep");
- const warning=document.getElementById("versionWarningStep");
- const selected=document.getElementById("selectedGameVersion");
- const open=document.getElementById("openVersionPicker");
- const close=()=>{modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.classList.remove("version-modal-open");};
- const showPicker=()=>{picker.hidden=false;warning.hidden=true;};
- open.addEventListener("click",()=>{showPicker();modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("version-modal-open");});
- modal.querySelectorAll("[data-close-version]").forEach(button=>button.addEventListener("click",close));
- modal.querySelectorAll("[data-game-version]").forEach(button=>button.addEventListener("click",()=>{
-  selected.textContent="GTA V "+button.dataset.gameVersion;
-  picker.hidden=true;warning.hidden=false;
- }));
- document.getElementById("backToVersions").addEventListener("click",showPicker);
- document.getElementById("acceptModsWarning").addEventListener("click",()=>{
-  window.open("https://www.dev-c.com/gtav/scripthookv/","_blank","noopener,noreferrer");
-  close();
- });
- document.addEventListener("keydown",event=>{if(event.key==="Escape"&&modal.classList.contains("open"))close();});
 })();
 </script>
 
