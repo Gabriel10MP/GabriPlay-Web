@@ -590,10 +590,9 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
   <div class="nav-links" id="navLinks">
    <a href="#inicio">INICIO</a>
    <a href="#videos">VÍDEOS</a>
-   <a href="broadcast.html">NOVEDADES</a>
-   <a href="actividad.html">ACTIVIDAD</a>
+   <a href="#canal-creador">NOVEDADES</a>
    <a href="#comunidad">COMUNIDAD</a>
-   <a href="#sobre">SOBRE EL CANAL</a>
+   <a href="#sobre">SOBRE GABRIPLAY</a>
   </div>
   <div class="nav-right">
    <a class="nav-button admin-nav-button" id="adminPanelButton" href="admin.html" hidden>⚙ ADMIN</a>
@@ -687,12 +686,6 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
    <button class="filter" data-filter="tutorial" type="button">TUTORIALES</button>
    <button class="filter" data-filter="mods" type="button">MODS</button>
   </div>
-  <div class="gp-video-surprise">
-   <div><span class="gp-video-surprise-label">NO SABES QUÉ VER?</span><strong>Deja que GabriPlay elija por ti.</strong></div>
-   <button id="rouletteButton" type="button">🎲 ELEGIR UN VÍDEO</button>
-   <div id="rouletteResult" class="gp-roulette-result" aria-live="polite"></div>
-  </div>
-
   <div class="video-grid" id="videoGrid">
    <a class="video-card card card-hover" data-category="tutorial" data-title="Cómo instalar Menyoo en GTA 5" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener">
     <div class="video-thumb">
@@ -921,9 +914,7 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
  function updateVideos(){if(!search)return;const term=search.value.toLowerCase().trim();let count=0;cards.forEach(card=>{const show=(card.dataset.title||"").toLowerCase().includes(term)&&(activeFilter==="all"||card.dataset.category===activeFilter);card.hidden=!show;if(show)count++;});const empty=$("noResults");if(empty)empty.hidden=count>0;}
  if(search)search.addEventListener("input",updateVideos);
  filters.forEach(btn=>btn.addEventListener("click",()=>{filters.forEach(b=>b.classList.remove("active"));btn.classList.add("active");activeFilter=btn.dataset.filter||"all";updateVideos();}));
- const choices=cards.map(card=>({title:card.dataset.title||card.querySelector("h3")?.textContent||"Vídeo GabriPlay",url:card.href})).filter(v=>v.url);
- const roulette=$("rouletteButton");if(roulette)roulette.addEventListener("click",()=>{if(!choices.length)return;const v=choices[Math.floor(Math.random()*choices.length)],box=$("rouletteResult");if(!box)return;box.replaceChildren();const label=document.createElement("span");label.textContent="TE HA TOCADO: "+v.title+" ";const link=document.createElement("a");link.href=v.url;link.target="_blank";link.rel="noopener";link.textContent="VER VÍDEO ↗";box.append(label,link);box.classList.add("visible");});
- const lightbox=$("lightbox"),lightboxImage=$("lightboxImage"),lightboxClose=$("lightboxClose");
+const lightbox=$("lightbox"),lightboxImage=$("lightboxImage"),lightboxClose=$("lightboxClose");
  document.querySelectorAll(".gallery-item").forEach(item=>item.addEventListener("click",()=>{if(lightboxImage&&lightbox){lightboxImage.src=item.dataset.full||"";lightbox.classList.add("open");}}));
  function closeLightbox(){if(lightbox)lightbox.classList.remove("open");if(lightboxImage)lightboxImage.removeAttribute("src");}
  if(lightboxClose)lightboxClose.addEventListener("click",closeLightbox);if(lightbox)lightbox.addEventListener("click",e=>{if(e.target===lightbox)closeLightbox();});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();});
