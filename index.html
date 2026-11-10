@@ -53,8 +53,23 @@
         <div><p class="section-index">01 <span>/</span> SELECCIÓN</p><h2>Del canal<span>.</span></h2></div>
         <a class="all-videos" href="https://www.youtube.com/@GabriPlay10/videos" target="_blank" rel="noopener">VER TODOS LOS VÍDEOS <span>↗</span></a>
       </div>
+      <div class="catalog-tools" aria-label="Buscar y filtrar vídeos">
+        <label class="catalog-search">
+          <span class="search-symbol" aria-hidden="true">⌕</span>
+          <input id="videoSearch" type="search" placeholder="Buscar vídeos, tutoriales o mods…" autocomplete="off" aria-label="Buscar en el contenido">
+          <kbd>⌕</kbd>
+        </label>
+        <div class="catalog-filters" role="group" aria-label="Filtrar por categoría">
+          <button type="button" class="filter-chip active" data-filter="all" aria-pressed="true">Todo <span>04</span></button>
+          <button type="button" class="filter-chip" data-filter="tutoriales" aria-pressed="false">Tutoriales</button>
+          <button type="button" class="filter-chip" data-filter="mods" aria-pressed="false">Mods</button>
+          <button type="button" class="filter-chip" data-filter="herramientas" aria-pressed="false">Herramientas</button>
+          <button type="button" class="filter-chip" data-filter="selecciones" aria-pressed="false">Selecciones</button>
+        </div>
+        <p class="catalog-result" id="catalogResult" aria-live="polite">4 contenidos disponibles</p>
+      </div>
       <div class="video-layout">
-        <div class="video-feature-wrap">
+        <div class="video-feature-wrap catalog-item" data-category="herramientas" data-search="openiv empieza instalar mods herramientas gta v tutorial">
         <a class="video-feature" href="https://youtu.be/NcGygok41Lk" target="_blank" rel="noopener">
           <div class="video-image"><img loading="lazy" src="https://i.ytimg.com/vi/NcGygok41Lk/hqdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/NcGygok41Lk/sddefault.jpg'" alt="Tutorial de OpenIV para GTA 5"><span class="video-play">▶</span><span class="video-duration">TUTORIAL</span></div>
           <div class="video-feature-info"><span class="video-category">01 / HERRAMIENTAS · GTA V</span><h3>OpenIV: empieza a instalar mods</h3><p>Una guía para conocer una de las herramientas esenciales de GTA V.</p><span class="video-arrow">↗</span></div>
@@ -62,9 +77,9 @@
         <button class="favorite-button feature-favorite" type="button" data-favorite="openiv" aria-label="Guardar OpenIV en favoritos" title="Guardar en favoritos"><span>＋</span> GUARDAR</button>
         </div>
         <div class="video-list">
-          <div class="video-row-wrap"><a class="video-row" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/p2j1OEbqp9o/hqdefault.jpg" alt="Menyoo en GTA 5"><span class="row-copy"><small>GTA V · TUTORIAL</small><strong>Cómo instalar Menyoo en GTA 5</strong><span>Ver vídeo ↗</span></span><span class="row-number">01</span></a><button class="favorite-button row-favorite" type="button" data-favorite="menyoo" aria-label="Guardar Cómo instalar Menyoo en GTA 5 en favoritos" title="Guardar en favoritos">＋</button></div>
-          <div class="video-row-wrap"><a class="video-row" href="https://youtu.be/pbcPa3jO1tA" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/pbcPa3jO1tA/hqdefault.jpg" alt="Instalar coches Add-On en GTA 5"><span class="row-copy"><small>GTA V · MODS</small><strong>Instalar coches Add-On</strong><span>Ver vídeo ↗</span></span><span class="row-number">02</span></a><button class="favorite-button row-favorite" type="button" data-favorite="addon-cars" aria-label="Guardar Instalar coches Add-On en favoritos" title="Guardar en favoritos">＋</button></div>
-          <div class="video-row-wrap"><a class="video-row" href="https://youtu.be/j_k2lIj25xc" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/j_k2lIj25xc/hqdefault.jpg" alt="Selección de mods esenciales para GTA 5"><span class="row-copy"><small>GTA V · SELECCIÓN</small><strong>4 mods esenciales para GTA 5</strong><span>Ver vídeo ↗</span></span><span class="row-number">03</span></a><button class="favorite-button row-favorite" type="button" data-favorite="essential-mods" aria-label="Guardar 4 mods esenciales para GTA 5 en favoritos" title="Guardar en favoritos">＋</button></div>
+          <div class="video-row-wrap catalog-item" data-category="tutoriales" data-search="como instalar menyoo gta 5 tutorial"> <a class="video-row" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/p2j1OEbqp9o/hqdefault.jpg" alt="Menyoo en GTA 5"><span class="row-copy"><small>GTA V · TUTORIAL</small><strong>Cómo instalar Menyoo en GTA 5</strong><span>Ver vídeo ↗</span></span><span class="row-number">01</span></a><button class="favorite-button row-favorite" type="button" data-favorite="menyoo" aria-label="Guardar Cómo instalar Menyoo en GTA 5 en favoritos" title="Guardar en favoritos">＋</button></div>
+          <div class="video-row-wrap catalog-item" data-category="mods" data-search="instalar coches addon gta 5 mods vehiculos"> <a class="video-row" href="https://youtu.be/pbcPa3jO1tA" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/pbcPa3jO1tA/hqdefault.jpg" alt="Instalar coches Add-On en GTA 5"><span class="row-copy"><small>GTA V · MODS</small><strong>Instalar coches Add-On</strong><span>Ver vídeo ↗</span></span><span class="row-number">02</span></a><button class="favorite-button row-favorite" type="button" data-favorite="addon-cars" aria-label="Guardar Instalar coches Add-On en favoritos" title="Guardar en favoritos">＋</button></div>
+          <div class="video-row-wrap catalog-item" data-category="selecciones" data-search="4 mods esenciales gta 5 seleccion recomendaciones"> <a class="video-row" href="https://youtu.be/j_k2lIj25xc" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/j_k2lIj25xc/hqdefault.jpg" alt="Selección de mods esenciales para GTA 5"><span class="row-copy"><small>GTA V · SELECCIÓN</small><strong>4 mods esenciales para GTA 5</strong><span>Ver vídeo ↗</span></span><span class="row-number">03</span></a><button class="favorite-button row-favorite" type="button" data-favorite="essential-mods" aria-label="Guardar 4 mods esenciales para GTA 5 en favoritos" title="Guardar en favoritos">＋</button></div>
           <div class="video-list-note"><span>GABRIPLAY</span><span>CONTENIDO NUEVO EN YOUTUBE</span></div>
         </div>
       </div>
@@ -87,6 +102,39 @@ const menuButton=document.getElementById("menuToggle"),nav=document.getElementBy
 menuButton.addEventListener("click",()=>{const opened=nav.classList.toggle("open");menuButton.setAttribute("aria-expanded",String(opened));});
 nav.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{nav.classList.remove("open");menuButton.setAttribute("aria-expanded","false");}));
 document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+<script>
+/* Buscador y filtros del catálogo de vídeos. */
+(()=>{
+ const search=document.getElementById("videoSearch");
+ const chips=[...document.querySelectorAll("[data-filter]")];
+ const items=[...document.querySelectorAll(".catalog-item")];
+ const result=document.getElementById("catalogResult");
+ if(!search||!items.length)return;
+ let category="all";
+ function updateCatalog(){
+  const term=search.value.trim().toLocaleLowerCase("es");
+  let visible=0;
+  items.forEach(item=>{
+   const matchesCategory=category==="all"||item.dataset.category===category;
+   const matchesText=!term||item.dataset.search.includes(term);
+   const show=matchesCategory&&matchesText;
+   item.hidden=!show;
+   if(show)visible++;
+  });
+  result.textContent=visible+" "+(visible===1?"contenido disponible":"contenidos disponibles");
+ }
+ chips.forEach(chip=>chip.addEventListener("click",()=>{
+  category=chip.dataset.filter;
+  chips.forEach(other=>{
+   const active=other===chip;
+   other.classList.toggle("active",active);
+   other.setAttribute("aria-pressed",String(active));
+  });
+  updateCatalog();
+ }));
+ search.addEventListener("input",updateCatalog);
+})();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
