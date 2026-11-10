@@ -112,12 +112,13 @@ document.getElementById("year").textContent=new Date().getFullYear();
  const result=document.getElementById("catalogResult");
  if(!search||!items.length)return;
  let category="all";
+ const normalize=value=>value.toLocaleLowerCase("es").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"");
  function updateCatalog(){
-  const term=search.value.trim().toLocaleLowerCase("es");
+  const term=normalize(search.value.trim());
   let visible=0;
   items.forEach(item=>{
    const matchesCategory=category==="all"||item.dataset.category===category;
-   const matchesText=!term||item.dataset.search.includes(term);
+   const matchesText=!term||normalize(item.dataset.search).includes(term);
    const show=matchesCategory&&matchesText;
    item.hidden=!show;
    if(show)visible++;
