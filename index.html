@@ -568,52 +568,41 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
 <body>
 <div class="rainbow"></div>
 
-<header class="topbar">
- <nav class="nav container">
-  <a class="logo" href="#inicio">
-   <span class="logo-symbol">GP</span>
-   <span>GabriPlay</span>
+<header class="topbar gp-header">
+ <nav class="nav container" aria-label="Navegación principal">
+  <a class="logo gp-brand" href="#inicio" aria-label="GabriPlay, inicio">
+   <img class="gp-brand-logo" src="favicon.svg" alt="Logo de GabriPlay"><span>Gabri<span>Play</span></span>
   </a>
   <div class="nav-links" id="navLinks">
-   <a href="#inicio">INICIO</a>
-   <a href="#videos">VÍDEOS</a>
-   <a href="#canal-creador">NOVEDADES</a>
-   <a href="#comunidad">COMUNIDAD</a>
-   <a href="#sobre">SOBRE GABRIPLAY</a>
+   <a href="#inicio">Inicio</a><a href="#videos">Vídeos</a><a href="broadcast.html">Novedades</a><a href="#comunidad">Comunidad</a><a href="#sobre">El canal</a>
   </div>
   <div class="nav-right">
-   <a class="nav-button admin-nav-button" id="adminPanelButton" href="admin.html" hidden>⚙ ADMIN</a>
-   <button class="nav-account" id="accountButton" type="button"><span class="nav-account-avatar" id="navAccountAvatar" hidden></span><span id="navAccountLabel">MI CUENTA</span></button>
-   <a class="nav-button" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">IR AL CANAL ↗</a>
-   <button class="menu-button" id="menuButton" aria-label="Abrir menú">☰</button>
+   <a class="nav-button admin-nav-button" id="adminPanelButton" href="admin.html" hidden>Administración</a>
+   <button class="nav-account" id="accountButton" type="button"><span class="nav-account-avatar" id="navAccountAvatar" hidden></span><span id="navAccountLabel">Iniciar sesión</span></button>
+   <a class="nav-button gp-youtube" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">YouTube <span aria-hidden="true">↗</span></a>
+   <button class="menu-button" id="menuButton" aria-label="Abrir menú" aria-expanded="false">☰</button>
   </div>
  </nav>
 </header>
 
 <main>
 <!-- PORTADA -->
-<section class="hero" id="inicio">
- <div class="hero-bg"></div>
- <div class="container hero-content">
-  <div class="hero-overline">Bienvenido a la página oficial</div>
-  <h1><span>PLAY</span><span class="outline">BEYOND.</span><span class="gradient-text">GABRIPLAY.</span></h1>
-  <p class="hero-copy">
-   Tutoriales de GTA V, mods, herramientas y contenido gaming. Todo lo que encuentras aquí pertenece al canal GabriPlay.
-  </p>
-  <div class="hero-actions">
-   <a class="btn" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">▶ ENTRAR AL CANAL</a>
-   <a class="btn btn-outline" href="#videos">VER LOS VÍDEOS ↓</a>
+<section class="gp-hero" id="inicio">
+ <div class="gp-hero-grid" aria-hidden="true"></div>
+ <div class="container gp-hero-inner">
+  <div class="gp-hero-copy">
+   <div class="gp-eyebrow"><i></i> WEB OFICIAL DEL CANAL</div>
+   <h1>EL UNIVERSO<br><span>GABRIPLAY.</span></h1>
+   <p>Tutoriales, mods y contenido de videojuegos. Encuentra guías, descubre novedades y forma parte de la comunidad.</p>
+   <div class="hero-actions"><a class="btn gp-primary" href="#videos">Explorar vídeos <span>↘</span></a><a class="btn btn-outline" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">Ver canal de YouTube ↗</a></div>
+   <div class="gp-hero-meta"><span>GTA V & GAMING</span><span>·</span><span>TUTORIALES Y MODS</span><span>·</span><span>COMUNIDAD</span></div>
   </div>
-  <div class="hero-bottom">
-   <span><i class="status-dot"></i> GABRIPLAY ONLINE</span>
-   <span>GTA V · TUTORIALES · MODS</span>
-   <span>EST. GABRIPLAY</span>
-  </div>
+  <div class="gp-hero-art" aria-label="Identidad visual de GabriPlay"><div class="gp-art-orbit orbit-one"></div><div class="gp-art-orbit orbit-two"></div><div class="gp-art-mark"><img src="favicon.svg" alt="GabriPlay"></div><span class="gp-art-caption">PLAY BEYOND.</span><span class="gp-art-index">GP / 001</span></div>
  </div>
- <div class="hero-scroll">DESLIZA PARA EXPLORAR ↓</div>
+ <a class="gp-scroll-cue" href="#videos">DESCUBRIR <span>↓</span></a>
 </section>
 
-<div class="ticker">
+<div class="ticker gp-ticker">
  <div class="ticker-track">
   <span>GABRIPLAY <b>✦</b> GTA V <b>✦</b> TUTORIALES <b>✦</b> MODS <b>✦</b> MENYOO <b>✦</b> OPENIV <b>✦</b> LSPDFR <b>✦</b></span>
   <span>GABRIPLAY <b>✦</b> GTA V <b>✦</b> TUTORIALES <b>✦</b> MODS <b>✦</b> MENYOO <b>✦</b> OPENIV <b>✦</b> LSPDFR <b>✦</b></span>
@@ -824,10 +813,10 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
 <div class="gp-modal-backdrop" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
  <div class="gp-modal">
   <button class="gp-modal-close" id="closeAccountModal" type="button" aria-label="Cerrar">×</button>
-  <div class="gp-modal-mark">GP / GABRIPLAY</div>
-  <h2 id="accountModalTitle">TU CUENTA.</h2>
-  <p class="gp-modal-copy">Entra en la comunidad de GabriPlay y comparte tus ideas.</p>
-  <div class="gp-tabs">
+  <div class="gp-auth-brand"><img src="favicon.svg" alt=""><span>GabriPlay</span><small>CUENTA DE LA COMUNIDAD</small></div>
+  <h2 id="accountModalTitle">Qué bueno verte.</h2>
+  <p class="gp-modal-copy">Accede a tu espacio para participar, votar propuestas y personalizar tu perfil.</p>
+  <div class="gp-tabs" role="tablist" aria-label="Tipo de acceso">
    <button type="button" class="active" data-auth-mode="login">INICIAR SESIÓN</button>
    <button type="button" data-auth-mode="register">REGISTRARSE</button>
   </div>
@@ -838,11 +827,11 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
     <label class="gp-form-label" for="accountDisplayName">NOMBRE VISIBLE</label>
     <input class="gp-field" id="accountDisplayName" maxlength="40" placeholder="Cómo te verá la comunidad">
    </div>
-   <label class="gp-form-label" for="accountEmail">CORREO ELECTRÓNICO</label>
-   <input class="gp-field" id="accountEmail" type="email" maxlength="254" autocomplete="email" placeholder="tu@email.com" required>
-   <label class="gp-form-label" for="accountPassword">CONTRASEÑA</label>
-   <input class="gp-field" id="accountPassword" type="password" minlength="8" autocomplete="current-password" placeholder="Mínimo 8 caracteres" required>
-   <button class="gp-action" id="accountSubmit" type="submit">ENTRAR</button>
+   <label class="gp-form-label" for="accountEmail">Correo electrónico</label>
+   <input class="gp-field" id="accountEmail" type="email" maxlength="254" autocomplete="email" placeholder="nombre@correo.com" required>
+   <label class="gp-form-label" for="accountPassword">Contraseña</label>
+   <input class="gp-field" id="accountPassword" type="password" minlength="8" autocomplete="current-password" placeholder="Introduce tu contraseña" required>
+   <button class="gp-action" id="accountSubmit" type="submit">Iniciar sesión <span aria-hidden="true">→</span></button>
    <p class="gp-status" id="accountStatus" aria-live="polite"></p>
   </form>
   <div id="signedInPanel" hidden>
@@ -861,7 +850,7 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
    </form>
    <button class="gp-action secondary" id="signOutButton" type="button" style="margin-top:10px">CERRAR SESIÓN</button>
   </div>
-  <p class="gp-legal">No publiques datos personales en tus sugerencias. Tu correo no se muestra en la comunidad.</p>
+  <p class="gp-legal">Tu correo electrónico es privado y no aparece en tu perfil público. No compartas datos personales en tus publicaciones.</p>
  </div>
 </div>
 
