@@ -54,14 +54,17 @@
         <a class="all-videos" href="https://www.youtube.com/@GabriPlay10/videos" target="_blank" rel="noopener">VER TODOS LOS VÍDEOS <span>↗</span></a>
       </div>
       <div class="video-layout">
+        <div class="video-feature-wrap">
         <a class="video-feature" href="https://youtu.be/NcGygok41Lk" target="_blank" rel="noopener">
           <div class="video-image"><img loading="lazy" src="https://i.ytimg.com/vi/NcGygok41Lk/hqdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/NcGygok41Lk/sddefault.jpg'" alt="Tutorial de OpenIV para GTA 5"><span class="video-play">▶</span><span class="video-duration">TUTORIAL</span></div>
           <div class="video-feature-info"><span class="video-category">01 / HERRAMIENTAS · GTA V</span><h3>OpenIV: empieza a instalar mods</h3><p>Una guía para conocer una de las herramientas esenciales de GTA V.</p><span class="video-arrow">↗</span></div>
         </a>
+        <button class="favorite-button feature-favorite" type="button" data-favorite="openiv" aria-label="Guardar OpenIV en favoritos" title="Guardar en favoritos"><span>＋</span> GUARDAR</button>
+        </div>
         <div class="video-list">
-          <a class="video-row" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/p2j1OEbqp9o/hqdefault.jpg" alt="Menyoo en GTA 5"><span class="row-copy"><small>GTA V · TUTORIAL</small><strong>Cómo instalar Menyoo en GTA 5</strong><span>Ver vídeo ↗</span></span><span class="row-number">01</span></a>
-          <a class="video-row" href="https://youtu.be/pbcPa3jO1tA" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/pbcPa3jO1tA/hqdefault.jpg" alt="Instalar coches Add-On en GTA 5"><span class="row-copy"><small>GTA V · MODS</small><strong>Instalar coches Add-On</strong><span>Ver vídeo ↗</span></span><span class="row-number">02</span></a>
-          <a class="video-row" href="https://youtu.be/j_k2lIj25xc" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/j_k2lIj25xc/hqdefault.jpg" alt="Selección de mods esenciales para GTA 5"><span class="row-copy"><small>GTA V · SELECCIÓN</small><strong>4 mods esenciales para GTA 5</strong><span>Ver vídeo ↗</span></span><span class="row-number">03</span></a>
+          <div class="video-row-wrap"><a class="video-row" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/p2j1OEbqp9o/hqdefault.jpg" alt="Menyoo en GTA 5"><span class="row-copy"><small>GTA V · TUTORIAL</small><strong>Cómo instalar Menyoo en GTA 5</strong><span>Ver vídeo ↗</span></span><span class="row-number">01</span></a><button class="favorite-button row-favorite" type="button" data-favorite="menyoo" aria-label="Guardar Cómo instalar Menyoo en GTA 5 en favoritos" title="Guardar en favoritos">＋</button></div>
+          <div class="video-row-wrap"><a class="video-row" href="https://youtu.be/pbcPa3jO1tA" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/pbcPa3jO1tA/hqdefault.jpg" alt="Instalar coches Add-On en GTA 5"><span class="row-copy"><small>GTA V · MODS</small><strong>Instalar coches Add-On</strong><span>Ver vídeo ↗</span></span><span class="row-number">02</span></a><button class="favorite-button row-favorite" type="button" data-favorite="addon-cars" aria-label="Guardar Instalar coches Add-On en favoritos" title="Guardar en favoritos">＋</button></div>
+          <div class="video-row-wrap"><a class="video-row" href="https://youtu.be/j_k2lIj25xc" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/j_k2lIj25xc/hqdefault.jpg" alt="Selección de mods esenciales para GTA 5"><span class="row-copy"><small>GTA V · SELECCIÓN</small><strong>4 mods esenciales para GTA 5</strong><span>Ver vídeo ↗</span></span><span class="row-number">03</span></a><button class="favorite-button row-favorite" type="button" data-favorite="essential-mods" aria-label="Guardar 4 mods esenciales para GTA 5 en favoritos" title="Guardar en favoritos">＋</button></div>
           <div class="video-list-note"><span>GABRIPLAY</span><span>CONTENIDO NUEVO EN YOUTUBE</span></div>
         </div>
       </div>
@@ -78,7 +81,7 @@
 </main>
 <footer class="site-footer"><div class="container footer-inner"><a class="footer-brand" href="#inicio">GABRI<span>PLAY</span></a><span>© <span id="year"></span> GabriPlay</span><a href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">YOUTUBE ↗</a></div></footer>
 
-<div class="modal" id="accountModal" aria-hidden="true"><div class="modal-backdrop" data-close-account></div><section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="modal-close" type="button" id="closeAccount" aria-label="Cerrar">×</button><div class="modal-kicker">GABRIPLAY / CUENTA</div><h2 id="accountTitle">Tu espacio en GabriPlay.</h2><p class="modal-intro">Inicia sesión o crea una cuenta para acceder a tu perfil.</p><div id="accountTabs" class="account-tabs"><button type="button" class="active" data-mode="login">Iniciar sesión</button><button type="button" data-mode="signup">Crear cuenta</button></div><form id="accountForm"><label class="form-label" id="usernameLabel" hidden>Nombre de usuario<input id="accountUsername" type="text" autocomplete="username" minlength="3" maxlength="20" placeholder="TuUsuario"></label><label class="form-label">Correo electrónico<input id="accountEmail" type="email" autocomplete="email" required placeholder="correo@ejemplo.com"></label><label class="form-label">Contraseña<input id="accountPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo 8 caracteres"></label><button class="button account-submit" id="accountSubmit" type="submit">Iniciar sesión</button></form><div class="account-status" id="accountStatus" role="status" aria-live="polite"></div><div class="account-logged" id="accountLogged" hidden><p id="accountWelcome"></p><button class="button ghost account-submit" id="signOutButton" type="button">Cerrar sesión</button></div><p class="account-footnote">No compartas tu contraseña con nadie.</p></section></div>
+<div class="modal" id="accountModal" aria-hidden="true"><div class="modal-backdrop" data-close-account></div><section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="modal-close" type="button" id="closeAccount" aria-label="Cerrar">×</button><div class="modal-kicker">GABRIPLAY / CUENTA</div><h2 id="accountTitle">Tu espacio en GabriPlay.</h2><p class="modal-intro">Inicia sesión o crea una cuenta para acceder a tu perfil.</p><div id="accountTabs" class="account-tabs"><button type="button" class="active" data-mode="login">Iniciar sesión</button><button type="button" data-mode="signup">Crear cuenta</button></div><form id="accountForm"><label class="form-label" id="usernameLabel" hidden>Nombre de usuario<input id="accountUsername" type="text" autocomplete="username" minlength="3" maxlength="20" placeholder="TuUsuario"></label><label class="form-label">Correo electrónico<input id="accountEmail" type="email" autocomplete="email" required placeholder="correo@ejemplo.com"></label><label class="form-label">Contraseña<input id="accountPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo 8 caracteres"></label><button class="button account-submit" id="accountSubmit" type="submit">Iniciar sesión</button></form><div class="account-status" id="accountStatus" role="status" aria-live="polite"></div><div class="account-logged" id="accountLogged" hidden><p id="accountWelcome"></p><section class="favorites-panel" aria-labelledby="favoritesTitle"><div class="favorites-heading"><div><span class="modal-kicker">TU BIBLIOTECA</span><h3 id="favoritesTitle">Mis favoritos</h3></div><span class="favorites-count" id="favoritesCount">0</span></div><p class="favorites-empty" id="favoritesEmpty">Todavía no has guardado ningún vídeo. Explora el contenido y pulsa «Guardar» para añadirlo aquí.</p><div class="favorites-list" id="favoritesList"></div></section><button class="button ghost account-submit" id="signOutButton" type="button">Cerrar sesión</button></div><p class="account-footnote">No compartas tu contraseña con nadie.</p></section></div>
 <script>
 const menuButton=document.getElementById("menuToggle"),nav=document.getElementById("navLinks");
 menuButton.addEventListener("click",()=>{const opened=nav.classList.toggle("open");menuButton.setAttribute("aria-expanded",String(opened));});
@@ -89,11 +92,66 @@ document.getElementById("year").textContent=new Date().getFullYear();
 <script>
 (()=>{"use strict";
 const URL="https://gzqebfwknfnwnobwypve.supabase.co",KEY="sb_publishable_NjEt_shVbSEbvALrsFt4cQ_GOGgPBKz";
-const $=id=>document.getElementById(id),modal=$("accountModal"),form=$("accountForm"),status=$("accountStatus"),tabs=$("accountTabs"),username=$("accountUsername"),usernameLabel=$("usernameLabel"),email=$("accountEmail"),password=$("accountPassword"),submit=$("accountSubmit"),logged=$("accountLogged"),welcome=$("accountWelcome"),signout=$("signOutButton"),accountButton=$("accountButton");
-let mode="login",client=null,user=null;
+const $=id=>document.getElementById(id),modal=$("accountModal"),form=$("accountForm"),status=$("accountStatus"),tabs=$("accountTabs"),username=$("accountUsername"),usernameLabel=$("usernameLabel"),email=$("accountEmail"),password=$("accountPassword"),submit=$("accountSubmit"),logged=$("accountLogged"),welcome=$("accountWelcome"),signout=$("signOutButton"),accountButton=$("accountButton"),favoritesList=$("favoritesList"),favoritesEmpty=$("favoritesEmpty"),favoritesCount=$("favoritesCount");
+let mode="login",client=null,user=null,favorites=new Set(),favoriteBusy=new Set();
+const CONTENT={
+ openiv:{title:"OpenIV: empieza a instalar mods",category:"HERRAMIENTAS · GTA V",video:"NcGygok41Lk"},
+ menyoo:{title:"Cómo instalar Menyoo en GTA 5",category:"TUTORIAL · GTA V",video:"p2j1OEbqp9o"},
+ "addon-cars":{title:"Instalar coches Add-On",category:"MODS · GTA V",video:"pbcPa3jO1tA"},
+ "essential-mods":{title:"4 mods esenciales para GTA 5",category:"SELECCIÓN · GTA V",video:"j_k2lIj25xc"}
+};
+function renderFavorites(){
+ favoritesCount.textContent=String(favorites.size);
+ favoritesEmpty.hidden=favorites.size>0;
+ favoritesList.replaceChildren();
+ for(const id of favorites){
+  const item=CONTENT[id];if(!item)continue;
+  const row=document.createElement("div");row.className="favorite-item";
+  const info=document.createElement("a");info.className="favorite-item-link";info.href="https://youtu.be/"+item.video;info.target="_blank";info.rel="noopener";
+  const image=document.createElement("img");image.src="https://i.ytimg.com/vi/"+item.video+"/hqdefault.jpg";image.alt="";image.loading="lazy";
+  const copy=document.createElement("span");copy.className="favorite-item-copy";
+  const category=document.createElement("small");category.textContent=item.category;
+  const title=document.createElement("strong");title.textContent=item.title;
+  const open=document.createElement("span");open.textContent="VER VÍDEO ↗";
+  copy.append(category,title,open);info.append(image,copy);
+  const remove=document.createElement("button");remove.type="button";remove.className="favorite-remove";remove.textContent="Quitar";remove.setAttribute("aria-label","Quitar "+item.title+" de favoritos");remove.addEventListener("click",()=>toggleFavorite(id));
+  row.append(info,remove);favoritesList.append(row);
+ }
+ document.querySelectorAll("[data-favorite]").forEach(button=>{
+  const saved=favorites.has(button.dataset.favorite);
+  button.classList.toggle("is-saved",saved);
+  button.innerHTML=saved?"✓ GUARDADO":"＋ GUARDAR";
+  button.setAttribute("aria-pressed",String(saved));
+  button.title=saved?"Quitar de favoritos":"Guardar en favoritos";
+ });
+}
+async function loadFavorites(){
+ if(!user){favorites.clear();renderFavorites();return;}
+ const {data,error}=await client.from("gabriplay_favorites").select("content_id").eq("user_id",user.id);
+ if(error){say("No se pudieron cargar tus favoritos. Comprueba la configuración de Supabase.",true);return;}
+ favorites=new Set((data||[]).map(item=>item.content_id).filter(id=>CONTENT[id]));
+ renderFavorites();
+}
+async function toggleFavorite(id){
+ if(!user){openModal();say("Inicia sesión para guardar contenido.",true);return;}
+ if(!CONTENT[id]||favoriteBusy.has(id))return;
+ favoriteBusy.add(id);renderFavorites();
+ try{
+  if(favorites.has(id)){
+   const {error}=await client.from("gabriplay_favorites").delete().eq("user_id",user.id).eq("content_id",id);
+   if(error)throw error;favorites.delete(id);
+  }else{
+   const {error}=await client.from("gabriplay_favorites").insert({user_id:user.id,content_id:id});
+   if(error)throw error;favorites.add(id);
+  }
+  renderFavorites();
+ }catch(error){say("No se pudo actualizar tu biblioteca. "+(error.message||""),true);}
+ finally{favoriteBusy.delete(id);renderFavorites();}
+}
+document.querySelectorAll("[data-favorite]").forEach(button=>button.addEventListener("click",()=>toggleFavorite(button.dataset.favorite)));
 function say(message,error=false){status.textContent=message;status.classList.toggle("error",error);}
 function setMode(next){mode=next;tabs.querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));usernameLabel.hidden=mode!=="signup";password.autocomplete=mode==="signup"?"new-password":"current-password";submit.textContent=mode==="signup"?"Crear cuenta":"Iniciar sesión";$("accountTitle").textContent=mode==="signup"?"Crea tu cuenta.":"Tu espacio en GabriPlay.";say("");}
-function paintSession(next){user=next;const active=!!user;form.hidden=active;tabs.hidden=active;logged.hidden=!active;accountButton.textContent=active?(user.user_metadata?.username||user.email.split("@")[0]):"Iniciar sesión";welcome.textContent=active?"Sesión iniciada como "+(user.user_metadata?.username||user.email):"";}
+function paintSession(next){const changed=user?.id!==next?.id;user=next;const active=!!user;form.hidden=active;tabs.hidden=active;logged.hidden=!active;accountButton.textContent=active?"Mi espacio":"Iniciar sesión";welcome.textContent=active?"Sesión iniciada como "+(user.user_metadata?.username||user.email):"";if(changed)loadFavorites();}
 function openModal(){modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");}
 function closeModal(){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.classList.remove("modal-open");}
 accountButton.addEventListener("click",openModal);$("closeAccount").addEventListener("click",closeModal);modal.querySelectorAll("[data-close-account]").forEach(el=>el.addEventListener("click",closeModal));document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
