@@ -1,653 +1,40 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#08080c">
-<meta name="description" content="GabriPlay: tutoriales, mods y contenido de GTA V. Explora los vídeos, novedades y la comunidad oficial del canal.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="GabriPlay">
-<meta property="og:title" content="GabriPlay — Gaming, tutoriales y comunidad">
-<meta property="og:description" content="Tutoriales, mods y contenido de GTA V. Explora los vídeos, novedades y la comunidad oficial de GabriPlay.">
-<meta property="og:url" content="https://gabriel10mp.github.io/GabriPlay-Web/">
-<meta property="og:image" content="https://gabriel10mp.github.io/GabriPlay-Web/favicon.svg">
-<meta name="twitter:card" content="summary">
-<link rel="canonical" href="https://gabriel10mp.github.io/GabriPlay-Web/">
-<title>GabriPlay — Tutoriales, mods y comunidad</title>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "GabriPlay",
-  "url": "https://gabriel10mp.github.io/GabriPlay-Web/",
-  "description": "Videojuegos, tutoriales y comunidad gamer."
-}
-</script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-:root{
- --bg:#08080c;
- --surface:#111118;
- --surface2:#181820;
- --white:#f6f6f8;
- --muted:#a2a2ad;
- --line:#292933;
- --purple:#c52b40;
- --rainbow:linear-gradient(90deg,#ff4141,#ff963b,#ffe34b,#5cda78,#45c3ff,#c52b40,#f15dbb);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:85px}
-body{background:var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button,input{font:inherit}
-button{cursor:pointer}
-img{display:block;max-width:100%}
-::selection{background:#c52b40;color:white}
-
-.rainbow{height:4px;background:var(--rainbow)}
-.container{width:min(1180px,calc(100% - 44px));margin:auto}
-.muted{color:var(--muted)}
-.small-label{font-size:10px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:#b9b9c5}
-.small-label:before{content:"";display:inline-block;width:25px;height:3px;background:var(--rainbow);vertical-align:middle;margin-right:10px}
-.gradient-text{background:var(--rainbow);background-clip:text;-webkit-background-clip:text;color:transparent}
-.section{padding:95px 0}
-.section-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:35px}
-.section-heading h2{font:900 clamp(40px,6vw,68px)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin-top:14px}
-.section-heading p{max-width:430px;color:var(--muted);font-size:13px;line-height:1.8;margin-top:13px}
-.section-number{font:800 12px "Barlow Condensed",sans-serif;color:#777;letter-spacing:2px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:white;color:#08080c;border:1px solid white;border-radius:8px;font-size:11px;font-weight:900;letter-spacing:.5px;transition:.25s}
-.btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px #fff2}
-.btn-outline{background:#ffffff0b;color:white;border-color:#ffffff30}
-.btn-outline:hover{background:#ffffff18}
-.pill{display:inline-block;padding:7px 10px;border:1px solid #ffffff25;border-radius:5px;color:#d0c0ff;background:#c52b4012;font-size:9px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.card-hover{transition:transform .25s,border-color .25s,box-shadow .25s}
-.card-hover:hover{transform:translateY(-5px);border-color:#626270;box-shadow:0 18px 40px #0008}
-
-/* NAV */
-.topbar{position:sticky;top:0;z-index:50;background:#08080ce8;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff12}
-.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:900;letter-spacing:-1px}
-.logo-symbol{width:42px;height:42px;border:1px solid #ffffff38;border-radius:10px;display:grid;place-items:center;position:relative;overflow:hidden;font:900 25px "Barlow Condensed",sans-serif;background:#15151c}
-.logo-symbol:after{content:"";height:4px;background:var(--rainbow);position:absolute;bottom:0;left:0;right:0}
-.nav-links{display:flex;gap:23px;align-items:center}
-.nav-links a{font-size:11px;font-weight:800;color:#bdbdc7;transition:.2s}
-.nav-links a:hover{color:white}
-.nav-right{display:flex;align-items:center;gap:10px}
-.nav-button{padding:11px 15px;border-radius:7px;background:white;color:#08080c;font-size:10px;font-weight:900}
-.menu-button{display:none;background:none;color:white;border:1px solid var(--line);border-radius:7px;padding:9px 12px}
-
-/* HERO */
-.hero{min-height:680px;position:relative;display:flex;align-items:center;overflow:hidden;background:#0b0b11}
-.hero-bg{position:absolute;inset:0;background:
-linear-gradient(90deg,#08080c 0%,#08080ce8 27%,#08080c60 72%,#08080ca8 100%),
-linear-gradient(0deg,#08080c 0%,transparent 50%),
-url("https://staticc.sportskeeda.com/editor/2020/09/f0e85-15993722712211-800.jpg") center 43%/cover;transform:scale(1.02)}
-.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 75% 40%,#c52b4017,transparent 40%)}
-.hero-content{position:relative;z-index:2;padding:95px 0 110px}
-.hero-overline{font-size:10px;letter-spacing:4px;font-weight:900;color:#c5c5cf;text-transform:uppercase}
-.hero h1{font:900 clamp(76px,12vw,145px)/.78 "Barlow Condensed",sans-serif;letter-spacing:-2px;text-transform:uppercase;margin:30px 0}
-.hero h1 span{display:block}
-.hero h1 .outline{-webkit-text-stroke:1px #ffffffa8;color:transparent}
-.hero-copy{max-width:510px;font-size:14px;line-height:1.9;color:#c3c3cc}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-.hero-bottom{display:flex;gap:25px;align-items:center;flex-wrap:wrap;margin-top:65px;color:#aaa;font-size:10px;font-weight:800;letter-spacing:1.5px}
-.status-dot{width:8px;height:8px;display:inline-block;border-radius:50%;background:#59df88;box-shadow:0 0 12px #59df88;margin-right:8px}
-.hero-scroll{position:absolute;right:35px;bottom:50px;writing-mode:vertical-rl;font-size:9px;letter-spacing:3px;color:#aaa}
-
-/* TICKER */
-.ticker{border-top:1px solid #ffffff16;border-bottom:1px solid #ffffff16;overflow:hidden;background:#101016}
-.ticker-track{display:flex;gap:35px;white-space:nowrap;padding:17px 0;animation:marquee 28s linear infinite;width:max-content}
-.ticker-track span{font:800 15px "Barlow Condensed",sans-serif;letter-spacing:2px;color:#c8c8d1}
-.ticker-track b{color:#c52b40}
-@keyframes marquee{to{transform:translateX(-50%)}}
-
-/* QUICK ACCESS */
-.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
-.quick-card{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:10px;transition:.2s}
-.quick-card:hover{background:#1c1c27;border-color:#777}
-.quick-icon{font-size:25px;margin-bottom:17px}
-.quick-card h3{font:800 21px "Barlow Condensed",sans-serif;text-transform:uppercase}
-.quick-card p{font-size:11px;color:var(--muted);line-height:1.6;margin-top:6px}
-
-/* VIDEOS */
-.video-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
-.search{flex:1;min-width:200px;background:#121219;border:1px solid var(--line);color:white;padding:13px 15px;border-radius:8px;outline:none;font-size:12px}
-.search:focus{border-color:var(--purple)}
-.filter{background:#121219;border:1px solid var(--line);color:#bbb;padding:12px 16px;border-radius:8px;font-size:10px;font-weight:900}
-.filter.active{background:#c52b4020;border-color:#c52b40;color:white}
-.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:19px}
-.video-thumb{aspect-ratio:16/9;position:relative;overflow:hidden;background:#1a1a24}
-.video-thumb img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.video-card:hover .video-thumb img{transform:scale(1.05)}
-.play-button{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#08080cdd;border:1px solid #ffffff80;font-size:17px}
-.video-info{padding:20px}
-.video-info h3{font-size:17px;line-height:1.4;margin:13px 0 8px}
-.video-info p{font-size:11px;color:var(--muted);line-height:1.7}
-.video-meta{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:10px;font-weight:900;color:#e7a8ad}
-.video-meta span:last-child{color:#999}
-.no-results{display:none;text-align:center;padding:35px;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}
-
-/* FEATURE GTA */
-.gta-feature{position:relative;min-height:420px;border-radius:16px;overflow:hidden;border:1px solid #ffffff20;background:#111}
-.gta-feature-bg{position:absolute;inset:0;background:
-linear-gradient(90deg,#08080cf5 0%,#08080cbd 45%,#08080c22 100%),
-url("https://i.ytimg.com/vi/pbcPa3jO1tA/maxresdefault.jpg") center/cover}
-.gta-feature-content{position:relative;padding:65px 55px;max-width:660px}
-.gta-feature h3{font:900 clamp(48px,7vw,82px)/.85 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:22px 0}
-.gta-feature p{font-size:13px;color:#c4c4ce;line-height:1.9;max-width:420px}
-.gta-feature .btn{margin-top:25px}
-
-/* GTA GALLERY */
-.gallery-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:190px 190px;gap:12px}
-.gallery-item{position:relative;border-radius:10px;overflow:hidden;background:#171720;cursor:pointer}
-.gallery-item:first-child{grid-row:span 2}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.gallery-item:hover img{transform:scale(1.07)}
-.gallery-caption{position:absolute;bottom:0;left:0;right:0;padding:30px 15px 14px;background:linear-gradient(transparent,#000c);font-size:10px;font-weight:900;letter-spacing:1px}
-.gallery-item .zoom{position:absolute;right:12px;top:12px;background:#08080cbb;border:1px solid #ffffff55;border-radius:50%;width:30px;height:30px;display:grid;place-items:center}
-
-/* ROBLOX LAB */
-.lab-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
-.lab-image{min-height:350px;position:relative;overflow:hidden;border-radius:14px;background:#171720}
-.lab-image img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.lab-image:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#08080ce8,transparent 70%)}
-.lab-image-text{position:absolute;z-index:2;bottom:27px;left:27px}
-.lab-image-text h3{font:900 43px "Barlow Condensed",sans-serif;text-transform:uppercase}
-.lab-image-text p{font-size:11px;color:#ddd;margin-top:6px}
-.lab-copy{padding:30px;border:1px solid var(--line);border-radius:14px;background:var(--surface);display:flex;flex-direction:column;justify-content:center}
-.lab-copy h3{font:900 37px "Barlow Condensed",sans-serif;text-transform:uppercase;margin:18px 0}
-.lab-copy p{font-size:12px;color:var(--muted);line-height:1.9}
-.lab-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:23px}
-.lab-tab{background:#1c1c25;color:#bbb;border:1px solid #383844;border-radius:6px;padding:10px 12px;font-size:10px;font-weight:900}
-.lab-tab.active{background:#c52b4020;color:#fff;border-color:#c52b40}
-.lab-panel{margin-top:16px;padding:16px;background:#0b0b11;border:1px solid #2b2934;border-radius:8px;min-height:85px}
-.lab-panel p{font-size:11px}
-.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px}
-.project-card{padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:11px}
-.project-card .project-icon{font-size:27px}
-.project-card h4{font:800 22px "Barlow Condensed",sans-serif;text-transform:uppercase;margin:13px 0 7px}
-.project-card p{font-size:11px;line-height:1.7;color:var(--muted)}
-.project-status{display:inline-block;margin-top:15px;font-size:9px;font-weight:900;letter-spacing:1px;color:#e7a8ad}
-
-/* MINECRAFT / OTHER GAMES */
-.world-feature{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.world-image{min-height:300px;border-radius:13px;overflow:hidden}
-.world-image img{width:100%;height:100%;object-fit:cover}
-.world-copy{padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:13px;display:flex;flex-direction:column;justify-content:center}
-.world-copy h3{font:900 48px "Barlow Condensed",sans-serif;text-transform:uppercase;margin:15px 0}
-.world-copy p{font-size:12px;color:var(--muted);line-height:1.9}
-.world-copy .pill{align-self:flex-start;margin-top:20px}
-.other-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.other-card{padding:22px;border:1px solid var(--line);background:var(--surface);border-radius:11px}
-.other-card strong{font:800 23px "Barlow Condensed",sans-serif;text-transform:uppercase}
-.other-card p{font-size:11px;color:var(--muted);line-height:1.7;margin-top:8px}
-
-/* INTERACTIVE ARCADE */
-.arcade{background:#101016;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.arcade-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.arcade-card{padding:27px;background:#171720;border:1px solid #30303c;border-radius:13px}
-.arcade-card h3{font:800 29px "Barlow Condensed",sans-serif;text-transform:uppercase;margin:12px 0}
-.arcade-card p{font-size:11px;line-height:1.8;color:var(--muted)}
-.arcade-button{margin-top:20px;border:0;border-radius:7px;padding:13px 17px;background:white;color:#08080c;font-size:10px;font-weight:900}
-.arcade-result{display:none;margin-top:16px;padding:15px;border-radius:8px;background:#c52b4018;border:1px solid #c52b4055;color:#eee;font-size:12px;line-height:1.8}
-.answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:17px}
-.answer-grid button{padding:12px 9px;background:#101016;color:#ddd;border:1px solid #343440;border-radius:7px;font-size:10px;font-weight:800}
-.answer-grid button:hover{border-color:#c52b40;background:#c52b4018}
-.meter{height:7px;background:#333;border-radius:20px;margin-top:13px;overflow:hidden}
-.meter-fill{height:100%;width:0;background:var(--rainbow);transition:width .5s}
-
-/* COMMUNITY / ROADMAP */
-.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.roadmap-item{padding:20px;border-top:2px solid #c52b40;background:var(--surface);border-radius:0 0 10px 10px}
-.roadmap-item span{font-size:9px;color:#e2a0a5;font-weight:900;letter-spacing:1.5px}
-.roadmap-item h4{font:800 22px "Barlow Condensed",sans-serif;text-transform:uppercase;margin:12px 0 6px}
-.roadmap-item p{font-size:10px;color:var(--muted);line-height:1.7}
-
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:25px;align-items:stretch}
-.about-mark{min-height:270px;border:1px solid var(--line);border-radius:13px;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#c52b4022,transparent 45%),#111118;position:relative;overflow:hidden}
-.about-mark:before{content:"";width:200px;height:200px;border:1px solid #ffffff22;border-radius:50%;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff04;position:absolute}
-.about-gp{font:900 110px "Barlow Condensed",sans-serif;letter-spacing:-8px;background:var(--rainbow);background-clip:text;color:transparent;position:relative}
-.about-copy{padding:28px;border:1px solid var(--line);border-radius:13px;background:var(--surface)}
-.about-copy h3{font:900 40px "Barlow Condensed",sans-serif;text-transform:uppercase;margin:14px 0}
-.about-copy p{font-size:12px;line-height:1.9;color:var(--muted);margin-bottom:12px}
-
-/* FAQ */
-.faq-list{display:grid;gap:9px}
-.faq-item{border:1px solid var(--line);background:var(--surface);border-radius:9px;overflow:hidden}
-.faq-question{width:100%;text-align:left;background:none;color:white;border:0;padding:18px 20px;display:flex;justify-content:space-between;gap:15px;font-size:12px;font-weight:800}
-.faq-answer{display:none;padding:0 20px 18px;color:var(--muted);font-size:11px;line-height:1.8}
-.faq-item.open .faq-answer{display:block}
-.faq-item.open .faq-question span:last-child{transform:rotate(45deg)}
-
-/* FOOTER */
-footer{border-top:1px solid var(--line);padding:38px 0}
-.footer-main{display:flex;justify-content:space-between;align-items:flex-start;gap:25px;flex-wrap:wrap}
-.footer-main p{font-size:10px;color:#858591;line-height:1.8;margin-top:13px}
-.footer-links{display:flex;gap:17px;flex-wrap:wrap}
-.footer-links a{font-size:10px;font-weight:800;color:#bbb}
-.footer-links a:hover{color:white}
-.footer-bottom{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;margin-top:30px;color:#777;font-size:9px}
-
-/* LIGHTBOX / TOAST / TOP */
-.lightbox{display:none;position:fixed;inset:0;z-index:100;background:#000e;align-items:center;justify-content:center;padding:25px}
-.lightbox.open{display:flex}
-.lightbox img{max-width:min(100%,1100px);max-height:85vh;object-fit:contain;border-radius:9px}
-.lightbox-close{position:absolute;right:25px;top:20px;border:1px solid #ffffff55;background:#111;color:white;border-radius:50%;width:40px;height:40px;font-size:20px}
-.toast{position:fixed;z-index:120;bottom:25px;left:50%;transform:translate(-50%,25px);opacity:0;pointer-events:none;background:white;color:#09090d;border-radius:8px;padding:13px 18px;font-size:11px;font-weight:900;transition:.3s;white-space:nowrap}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-.back-top{position:fixed;right:20px;bottom:20px;width:42px;height:42px;border:1px solid #ffffff35;background:#15151de8;color:white;border-radius:50%;z-index:40;display:none}
-.back-top.visible{display:block}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-@media(max-width:850px){
- .nav-links{display:none;position:absolute;top:74px;left:0;right:0;padding:22px;background:#101016;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
- .nav-links.open{display:flex}
- .menu-button{display:block}
- .nav-button{display:none}
- .quick-grid{grid-template-columns:repeat(2,1fr)}
- .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:180px 180px}
- .gallery-item:first-child{grid-row:auto;grid-column:span 2}
- .lab-hero,.world-feature,.about-grid{grid-template-columns:1fr}
- .project-grid,.other-grid{grid-template-columns:1fr 1fr}
- .roadmap{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
- .container{width:min(100% - 32px,1180px)}
- .section{padding:68px 0}
- .section-heading{align-items:flex-start;flex-direction:column}
- .hero{min-height:610px}
- .hero-content{padding:85px 0}
- .hero h1{font-size:82px}
- .hero-scroll{display:none}
- .video-grid,.arcade-grid{grid-template-columns:1fr}
- .gta-feature-content{padding:38px 25px}
- .gta-feature{min-height:390px}
- .gallery-grid{grid-template-rows:145px 145px}
- .project-grid,.other-grid{grid-template-columns:1fr}
- .roadmap{grid-template-columns:1fr 1fr}
- .world-image{min-height:220px}
- .world-copy h3{font-size:40px}
- .footer-main{flex-direction:column}
-}
-@media(prefers-reduced-motion:reduce){
- *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
-}
-
-/* GABRIPLAY COMMUNITY + ACCOUNT */
-.nav-account{display:inline-flex;align-items:center;gap:9px;padding:7px 12px 7px 8px;border:1px solid #ffffff45;border-radius:999px;background:#ffffff0b;color:white;font-size:10px;font-weight:900;letter-spacing:.5px;white-space:nowrap;min-height:40px}
-.nav-account:hover{background:#ffffff18}
-.admin-nav-button{border-color:#a52b3d!important;color:#ff9aa7!important;background:#35131b!important}.admin-nav-button:hover{background:#541b28!important}.admin-nav-button[hidden]{display:none!important}
-.nav-account-avatar{width:26px;height:26px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#25252e;border:1px solid #ffffff35;font:800 11px "Barlow Condensed",sans-serif;flex:none}
-.nav-account-avatar img,.gp-avatar-image{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
-.nav-account-avatar[hidden]{display:none}
-#navAccountLabel{display:block;max-width:135px;overflow:hidden;text-overflow:ellipsis}
-.community-intro{max-width:650px;color:var(--muted);font-size:13px;line-height:1.8;margin-top:12px}
-.community-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);gap:18px;align-items:start}
-.community-panel,.account-panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
-.community-panel h3,.account-panel h3{font:800 25px "Barlow Condensed",sans-serif;text-transform:uppercase;margin-bottom:8px}
-.community-note{color:var(--muted);font-size:11px;line-height:1.7;margin-bottom:18px}
-.gp-field{width:100%;background:#09090e;border:1px solid #33333e;border-radius:8px;color:white;padding:13px 14px;margin:0 0 11px;outline:none;font-size:12px}
-.gp-field:focus{border-color:#c52b40}
-textarea.gp-field{min-height:105px;resize:vertical}
-.gp-action{border:0;border-radius:8px;background:white;color:#09090d;padding:12px 16px;font-size:10px;font-weight:900;letter-spacing:.5px}
-.gp-action:disabled{opacity:.45;cursor:not-allowed}
-.gp-action.secondary{background:#ffffff10;color:white;border:1px solid #ffffff30}
-.gp-status{font-size:11px;color:var(--muted);line-height:1.6;margin-top:12px;min-height:18px}
-.gp-userline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:12px 14px;background:#ffffff08;border:1px solid var(--line);border-radius:9px;font-size:11px;color:#d5d5df}
-.gp-community-identity{display:flex;align-items:center;gap:10px;min-width:0}
-.gp-community-avatar{width:34px;height:34px;border-radius:50%;overflow:hidden;display:grid;place-items:center;flex:none;background:#25252e;border:1px solid #ffffff30;font:800 14px "Barlow Condensed",sans-serif;color:white}
-.gp-community-avatar[hidden]{display:none}
-.gp-account-identity{display:flex;align-items:center;gap:13px;padding:14px;background:#ffffff08;border:1px solid var(--line);border-radius:10px;margin-bottom:15px}
-.gp-account-avatar{width:54px;height:54px;border-radius:50%;overflow:hidden;display:grid;place-items:center;flex:none;background:#25252e;border:2px solid #ffffff35;font:900 22px "Barlow Condensed",sans-serif}
-.gp-account-identity strong{display:block;font-size:14px;overflow-wrap:anywhere}
-.gp-account-identity small{display:block;color:#bca6ff;font-size:10px;margin-top:4px}
-.gp-list{display:grid;gap:12px}
- .gp-admin-filters{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
- .gp-admin-filters button{border:1px solid #ffffff28;background:#ffffff08;color:#c9c9d3;border-radius:7px;padding:8px 10px;font-size:9px;font-weight:900;letter-spacing:.4px}
- .gp-admin-filters button.active{background:#fff;color:#09090d;border-color:#fff}
- .gp-admin-label{font-size:9px;color:#c52b40;font-weight:900;letter-spacing:1px;margin:0 0 9px}
-.gp-suggestion{padding:17px;background:#0c0c12;border:1px solid var(--line);border-radius:10px}
-.gp-suggestion-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px}
-.gp-suggestion h4{font-size:14px;margin-bottom:7px;overflow-wrap:anywhere}
-.gp-suggestion p{font-size:11px;color:#b8b8c3;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
-.gp-tag{font-size:9px;font-weight:900;letter-spacing:.8px;color:#cfc0ff;border:1px solid #c52b4045;padding:5px 8px;border-radius:20px;white-space:nowrap}
-.gp-tag.pending{color:#ffd98a;border-color:#ffd98a55}
-.gp-tag.rejected{color:#ff9b9b;border-color:#ff9b9b55}
-.gp-card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
-.gp-card-actions button{border:1px solid #ffffff2a;background:#ffffff0b;color:white;border-radius:7px;padding:8px 10px;font-size:10px;font-weight:800}
-.gp-card-actions button:hover{background:#ffffff18}
-.gp-empty{padding:25px 15px;text-align:center;color:var(--muted);font-size:12px;border:1px dashed #ffffff25;border-radius:10px}
-.gp-modal-backdrop{position:fixed;inset:0;z-index:200;background:#000d;display:none;align-items:center;justify-content:center;padding:18px;overflow-y:auto}
-.gp-modal-backdrop.open{display:flex}
-.gp-modal{position:relative;width:min(100%,470px);background:#101017;border:1px solid #ffffff28;border-radius:16px;padding:27px;box-shadow:0 25px 90px #000b;margin:auto}
-.gp-modal-close{position:absolute;right:15px;top:13px;background:#ffffff0b;border:1px solid #ffffff25;color:white;border-radius:50%;width:34px;height:34px;font-size:19px}
-.gp-modal-mark{font:900 13px "Barlow Condensed",sans-serif;letter-spacing:2px;color:#d8d8e0;margin-bottom:12px}
-.gp-modal h2{font:900 38px/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin-bottom:9px}
-.gp-modal-copy{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:19px}
-.gp-tabs{display:flex;gap:7px;margin-bottom:17px}
-.gp-tabs button{flex:1;padding:10px;border-radius:7px;border:1px solid #ffffff25;background:#ffffff08;color:#aaa;font-size:10px;font-weight:900}
-.gp-tabs button.active{background:white;color:#08080c;border-color:white}
-.gp-form-label{display:block;font-size:10px;font-weight:800;color:#c9c9d3;margin:0 0 7px}
-.gp-modal .gp-field{margin-bottom:13px}
-.gp-modal .gp-action{width:100%;margin-top:3px}
-.gp-legal{font-size:9px;color:#858591;line-height:1.6;margin-top:13px}
-.gp-profile-author{display:flex;align-items:center;gap:9px;margin:10px 0 12px;color:#bdbdc7;font-size:10px}
-.gp-profile-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:#ffffff12;border:1px solid #ffffff25;color:white;font:800 13px "Barlow Condensed",sans-serif;flex:none}
-.gp-profile-bio{color:#858591;font-size:10px;line-height:1.5;margin-top:3px}
-.gp-profile-author strong{color:#f1f1f5;font-size:11px}
-
-/* GabriPlay OWNER identity — shared across community surfaces */
-.gp-owner-name,.admin-owner-name{font-weight:950!important;background:linear-gradient(100deg,#fff 0%,#f3c2c8 25%,#fff 48%,#df5365 72%,#fff 100%);background-size:230% auto;background-clip:text;-webkit-background-clip:text;color:transparent!important;animation:gpOwnerShine 4.8s ease-in-out infinite}
-@keyframes gpOwnerShine{0%,100%{background-position:0% center}50%{background-position:100% center}}.gp-owner-name:after{content:"✓";display:inline-grid;place-items:center;width:14px;height:14px;margin-left:5px;vertical-align:middle;border-radius:50%;background:linear-gradient(145deg,#f2a0aa,#a91f35 65%,#5c0e1b);border:1px solid #ffd1d6;color:#fff;font:900 9px/1 Inter,Arial,sans-serif;box-shadow:0 0 0 2px #c52b4025,0 0 12px #c52b4060}
-.gp-owner-verified,.admin-owner-verified,.owner-verified{display:inline-grid;place-items:center;width:15px;height:15px;margin-left:5px;vertical-align:middle;border-radius:50%;background:linear-gradient(145deg,#f2a0aa,#a91f35 65%,#5c0e1b);border:1px solid #ffd1d6;color:#fff;font:900 9px/1 Inter,Arial,sans-serif;box-shadow:0 0 0 2px #c52b4025,0 0 12px #c52b4060}
-.gp-owner-frame,.admin-owner-frame,.owner-frame{border:2px solid #d94a5d!important;box-shadow:0 0 0 2px #c52b4030,0 0 17px #c52b4070, inset 0 0 0 1px #fff2!important}
-.gp-owner-role,.admin-owner-role,.owner-role{display:inline-flex;align-items:center;gap:4px;margin-left:6px;padding:3px 7px;border:1px solid #c94b5b;border-radius:4px;background:linear-gradient(110deg,#350b13,#9e1d30 58%,#4a0d19);color:#fff;font-size:8px;font-weight:950;letter-spacing:.8px;vertical-align:middle;box-shadow:0 3px 12px #a51f3228}
-@media(prefers-reduced-motion:reduce){.gp-owner-name,.admin-owner-name{animation:none}}
-.gp-creator-inline{display:inline-flex;vertical-align:middle;margin-left:7px;padding:3px 6px;border:1px solid #e34b58;border-radius:4px;background:linear-gradient(110deg,#54101b,#a51f32,#7a1424);color:#fff;font-size:8px;font-weight:900;letter-spacing:.55px}.gp-creator-name{background:linear-gradient(90deg,#fff,#ffb6bf,#fff,#ff6678,#fff);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:gpCreatorShine 4s linear infinite}@keyframes gpCreatorShine{to{background-position:220% center}}@media(prefers-reduced-motion:reduce){.gp-creator-name{animation:none}}
-.gp-name-crimson,.gp-name-ice,.gp-name-gold,.gp-name-sakura{background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:gpCreatorShine 3.2s linear infinite}.gp-name-crimson{background-image:linear-gradient(90deg,#fff,#ff697b,#fff)}.gp-name-ice{background-image:linear-gradient(90deg,#d7f6ff,#43b9f0,#fff)}.gp-name-gold{background-image:linear-gradient(90deg,#fff2b5,#d49b32,#fff0a3)}.gp-name-sakura{background-image:linear-gradient(90deg,#ffe1ed,#ef78aa,#fff)}.gp-frame-crimson{border:2px solid #c52b40!important;box-shadow:0 0 0 2px #c52b4040,0 0 15px #c52b4060}.gp-frame-onyx{border:2px solid #777680!important;box-shadow:inset 0 0 0 2px #17171c,0 0 0 2px #aaa9b640}@media(prefers-reduced-motion:reduce){.gp-name-crimson,.gp-name-ice,.gp-name-gold,.gp-name-sakura{animation:none}}
-#profileForm{margin-top:12px}
-#profileForm .gp-field{margin-bottom:10px}
-
-@media(max-width:850px){.community-grid{grid-template-columns:1fr}.nav-account{padding:9px 10px;font-size:9px}}
-@media(max-width:600px){.community-panel,.account-panel{padding:17px}.gp-modal{padding:23px 19px}}
-
-
-/* JAPANESE CRIMSON IDENTITY — GabriPlay */
-:root{--bg:#080809;--surface:#111114;--surface2:#19191d;--white:#f4f1ed;--muted:#aaa4a1;--line:#302326;--purple:#d52b40;--rainbow:linear-gradient(90deg,#6f101d,#c51f35,#f05a62,#8f1728)}
-::selection{background:#c51f35;color:#fff}
-.rainbow{height:3px;background:linear-gradient(90deg,#4b0c16,#b51f32,#e34a58,#4b0c16)}
-.small-label{color:#d9bfc0}
-.small-label:before{background:linear-gradient(90deg,#9e1b2d,#ef5963)}
-.gradient-text{background:linear-gradient(110deg,#fff 5%,#f08086 48%,#b51f32 100%);background-clip:text;-webkit-background-clip:text;color:transparent}
-.pill{color:#f0b9bd;background:#c51f3518;border-color:#9d2938}
-.btn:hover{box-shadow:0 12px 35px #c51f3530}
-.btn-outline:hover{border-color:#b52a3b;background:#b51f321c}
-.topbar{background:#080809ed;border-bottom-color:#6d1c292e}
-.logo-symbol{border-radius:4px;border-color:#8f2636;background:linear-gradient(145deg,#191114,#09090b);box-shadow:inset 0 0 18px #9d1c2b22}
-.logo-symbol:after{height:3px;background:linear-gradient(90deg,#70101d,#e13c4c,#70101d)}
-.logo{letter-spacing:.2px}
-.nav-links a{letter-spacing:.65px}
-.nav-links a:hover{color:#f06b75}
-.nav-button{background:#bd2639;color:#fff;border:1px solid #e45b66}
-.nav-button:hover{background:#df3548;box-shadow:0 8px 25px #bd263944}
-.hero{background:#090809}
-.hero-bg{background:linear-gradient(90deg,#080809 0%,#080809ee 25%,#08080975 65%,#080809bd 100%),linear-gradient(0deg,#080809 0%,transparent 55%),radial-gradient(circle at 77% 35%,#b51f32 0 11%,#741421 11.3% 12%,transparent 12.4%),linear-gradient(135deg,#160d10,#080809 60%)}
-.hero-bg:before{content:"";position:absolute;width:clamp(190px,28vw,390px);aspect-ratio:1;border-radius:50%;right:9%;top:9%;background:radial-gradient(circle at 38% 35%,#f06a70,#c52a3c 62%,#751523 100%);box-shadow:0 0 90px #c51f3544;opacity:.82}
-.hero-bg:after{content:"";position:absolute;right:4%;bottom:13%;width:min(44vw,560px);height:36%;opacity:.52;background:linear-gradient(#090809,#090809) 0 12%/100% 7px no-repeat,linear-gradient(#090809,#090809) 0 28%/100% 7px no-repeat,linear-gradient(#090809,#090809) 13% 0/10px 100% no-repeat,linear-gradient(#090809,#090809) 87% 0/10px 100% no-repeat,linear-gradient(#090809,#090809) 50% 28%/7px 72% no-repeat;filter:drop-shadow(0 0 8px #000)}
-.hero:after{background:linear-gradient(90deg,#08080925,transparent 45%),linear-gradient(0deg,#080809 0%,transparent 48%),radial-gradient(ellipse at 78% 38%,#b51f321c,transparent 42%)}
-.hero-overline{color:#e7bfc2}
-.hero h1{letter-spacing:-1px}
-.hero h1 .outline{-webkit-text-stroke:1px #e6bfc2}
-.hero-bottom{color:#b8a7a7}
-.status-dot{background:#d34a56;box-shadow:0 0 12px #d34a56}
-.ticker{background:#100d0f;border-color:#5d202a}
-.ticker-track b{color:#e34b58}
-.quick-card:hover{border-color:#9b3340;background:#1b1215}
-.filter.active,.lab-tab.active{background:#b51f3222;border-color:#c33245}
-.search:focus{border-color:#c33245}
-.video-meta{color:#e5a0a5}
-.gta-feature{border-color:#68232e}
-.lab-copy,.project-card,.other-card,.arcade-card,.roadmap-item,.about-copy,.faq-item{box-shadow:inset 0 1px #ffffff05}
-.lab-tab.active{color:#fff}
-.project-status{color:#e49a9f}
-.arcade{background:#100d0f;border-color:#4a2027}
-.arcade-result{background:#b51f321c;border-color:#b51f3255}
-.roadmap-item{border-top-color:#c32c40}
-.roadmap-item span{color:#e49ba2}
-.about-mark{background:radial-gradient(circle at 50% 45%,#b51f3228,transparent 45%),#111114}
-.about-gp{background:linear-gradient(110deg,#fff,#e34b58 55%,#861728);background-clip:text;-webkit-background-clip:text;color:transparent}
-.nav-account{border-color:#6f3038}
-.nav-account:hover{background:#b51f321a;border-color:#c33b4a}
-.nav-account-avatar{border-color:#87323c}
-.community-panel,.account-panel{border-color:#48232a}
-.back-top{border-color:#8b3944;background:#160e11}
-.toast{box-shadow:0 8px 30px #0008}
-.section{position:relative}
-.section-heading h2{letter-spacing:.2px}
-.section-heading .section-number{color:#c06a73}
-footer{border-color:#48232a}
-.footer-links a:hover{color:#ed6a74}
-@media(max-width:850px){.nav-links{background:#100d0f;border-color:#54222b}}
-@media(max-width:600px){.hero-bg:before{right:-3%;top:15%;width:230px;opacity:.6}.hero-bg:after{right:-8%;width:70%;opacity:.4}}
-
-:focus-visible{outline:2px solid #e34b58;outline-offset:3px}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-
-/* HOME REFRESH — minimalismo editorial */
-:root{--rainbow:linear-gradient(90deg,#f4f4f6 0%,#c9c9d1 55%,#c52b40 100%)}
-.section{padding:82px 0}
-.section-heading{margin-bottom:29px}
-.section-heading h2{letter-spacing:-.8px}
-.small-label{letter-spacing:2.2px;color:#a9a9b4}
-.topbar{background:#08080cf2;border-bottom-color:#ffffff18}
-.nav{height:70px}
-.logo-symbol{border-radius:9px;background:#101015}
-.hero{min-height:610px;background:#09090d}
-.hero-bg{background:linear-gradient(90deg,#08080cf7 0%,#08080ce8 38%,#08080c75 100%),linear-gradient(0deg,#08080c 0%,transparent 58%),url("https://staticc.sportskeeda.com/editor/2020/09/f0e85-15993722712211-800.jpg") center 43%/cover;transform:none}
-.hero:after{background:linear-gradient(115deg,transparent 45%,#c52b4010 100%)}
-.hero-content{padding:90px 0 85px}
-.hero-overline{letter-spacing:3px;color:#d0d0d7}
-.hero h1{font-size:clamp(66px,9.6vw,116px);line-height:.84;letter-spacing:-1.5px;margin:25px 0}
-.hero-copy{max-width:470px;font-size:13px;color:#c2c2cb}
-.hero-bottom{margin-top:48px;gap:20px}
-.btn{border-radius:6px;padding:13px 18px;letter-spacing:.7px}
-.btn-outline{border-color:#ffffff30;background:#ffffff08}
-.ticker{background:#0d0d12;border-color:#ffffff12}
-.ticker-track{padding:13px 0;animation-duration:42s}
-.ticker-track span{font-size:13px;color:#a9a9b3}
-.quick-grid{gap:12px}
-.quick-card{padding:22px;border-radius:9px;background:#101016;border-color:#24242d;min-height:142px}
-.quick-card:hover{background:#15151d;border-color:#555}
-.quick-icon{font-size:20px;margin-bottom:14px;color:#e5e5eb}
-.quick-card h3{font-size:20px;letter-spacing:.2px}
-.quick-card p{font-size:11px;color:#9696a2}
-.video-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.video-card{border-radius:10px;background:#101016;border-color:#24242d}
-.video-thumb{background:linear-gradient(135deg,#191920,#0d0d12);aspect-ratio:16/9}
-.video-thumb img{background:#17171f}
-.video-info{padding:17px}
-.video-info h3{font-size:15px;letter-spacing:-.2px}
-.video-info p{font-size:11px}
-.pill{border-color:#ffffff20;color:#e4b2b8;background:#c52b4010;letter-spacing:1px}
-.video-meta{color:#e1a0a8}
-.card-hover:hover{transform:translateY(-3px);box-shadow:0 12px 28px #0006}
-.gta-feature{border-radius:10px}
-.gallery-item{border-radius:8px}
-.lab-copy,.world-copy,.about-copy{border-radius:10px}
-.project-card,.other-card,.arcade-card{border-radius:9px}
-.roadmap-item{background:#101016}
-.gp-broadcast-feature{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:28px;padding:32px 34px;border:1px solid #34313a;border-radius:12px;background:linear-gradient(110deg,#15131a 0%,#101016 58%,#1a1014 100%);overflow:hidden}
-.gp-broadcast-feature:after{content:"";position:absolute;width:230px;height:230px;right:8%;top:-150px;border:1px solid #c52b403d;border-radius:50%;box-shadow:0 0 0 35px #c52b4009,0 0 0 70px #c52b4006;pointer-events:none}
-.gp-broadcast-copy{position:relative;z-index:1}
-.gp-broadcast-kicker{font-size:9px;font-weight:900;letter-spacing:2.5px;color:#e3a1a8;text-transform:uppercase}
-.gp-broadcast-feature h3{font:800 clamp(28px,4vw,43px)/1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:12px 0 9px}
-.gp-broadcast-feature p{max-width:570px;color:#a8a8b3;font-size:12px;line-height:1.8}
-.gp-broadcast-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:17px}
-.gp-broadcast-tags span{padding:6px 9px;border:1px solid #ffffff1c;border-radius:5px;color:#c7c7d0;font-size:9px;font-weight:800}
-.gp-broadcast-cta{position:relative;z-index:1;white-space:nowrap}
-.gp-broadcast-cta .btn{background:#c52b40;border-color:#c52b40;color:white}
-.thumb-fallback:before{content:"GABRIPLAY · VÍDEO";position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 75% 20%,#c52b4033,transparent 38%),linear-gradient(135deg,#20202a,#09090e);color:#eee;font:800 17px "Barlow Condensed",sans-serif;letter-spacing:2px}
-.thumb-fallback img{display:none}
-@media(max-width:850px){
- .video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .gp-broadcast-feature{grid-template-columns:1fr;gap:20px}
- .gp-broadcast-cta{justify-self:start}
-}
-@media(max-width:600px){
- .section{padding:64px 0}
- .hero{min-height:560px}
- .hero-content{padding:78px 0}
- .hero h1{font-size:clamp(60px,15vw,82px)}
- .hero-bottom{margin-top:38px;gap:12px;font-size:9px}
- .video-grid{grid-template-columns:1fr}
- .gp-broadcast-feature{padding:25px 22px}
-}
-
-
-/* HOMEPAGE HUB 2.0 */
-.gp-hub-section{padding-top:45px}
-.gp-hub-intro{display:grid;grid-template-columns:1fr auto;gap:25px;align-items:end;margin-bottom:26px}
-.gp-hub-intro p{max-width:490px;color:var(--muted);font-size:12px;line-height:1.85;margin-top:12px}
-.gp-hub-kicker{font-size:9px;letter-spacing:2.5px;font-weight:900;color:#e3a0a8;text-transform:uppercase}
-.gp-hub-title{font:900 clamp(42px,6vw,65px)/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;margin-top:12px}
-.gp-hub-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:13px}
-.gp-hub-card{position:relative;min-height:190px;padding:23px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,#191920,#101016);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s,border-color .25s,background .25s}
-.gp-hub-card:hover{transform:translateY(-4px);border-color:#9a4754;background:linear-gradient(145deg,#24191f,#111116)}
-.gp-hub-card.primary{grid-row:span 2;min-height:393px;background:radial-gradient(circle at 85% 12%,#c52b4030,transparent 38%),linear-gradient(145deg,#1d151a,#101016)}
-.gp-hub-card:after{content:"";position:absolute;width:170px;height:170px;border:1px solid #ffffff0d;border-radius:50%;right:-70px;bottom:-85px;box-shadow:0 0 0 25px #ffffff05,0 0 0 50px #ffffff03;pointer-events:none}
-.gp-hub-icon{font-size:25px;margin-bottom:17px}
-.gp-hub-card h3{font:900 27px/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;max-width:300px}
-.gp-hub-card p{font-size:11px;line-height:1.75;color:var(--muted);max-width:330px;margin-top:10px}
-.gp-hub-link{display:inline-flex;align-items:center;gap:9px;margin-top:20px;font-size:9px;font-weight:900;letter-spacing:1.3px;color:#f1b4bb}
-.gp-hub-card.primary h3{font-size:clamp(38px,5vw,58px);max-width:370px}
-.gp-hub-card.primary .gp-hub-icon{font-size:38px}
-.gp-hub-bottom{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:15px;padding:15px 18px;border:1px solid var(--line);border-radius:10px;background:#101016}
-.gp-hub-bottom span{font-size:10px;color:var(--muted);line-height:1.6}
-.gp-hub-bottom strong{color:#fff}
-.gp-hub-bottom a{white-space:nowrap;font-size:9px;font-weight:900;letter-spacing:1px;color:#f0a8b0}
-@media(max-width:850px){.gp-hub-grid{grid-template-columns:1fr 1fr}.gp-hub-card.primary{grid-row:auto;min-height:230px;grid-column:span 2}}
-@media(max-width:600px){.gp-hub-intro{grid-template-columns:1fr}.gp-hub-grid{grid-template-columns:1fr}.gp-hub-card.primary{grid-column:auto;min-height:250px}.gp-hub-card{min-height:165px}.gp-hub-bottom{align-items:flex-start;flex-direction:column}}
-
-/* GabriPlay: mantener la portada centrada en el contenido del canal */
-#roblox, #mundos, #arcade { display:none !important; }
-#explorar .quick-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
-#explorar .quick-card { min-height:190px; }
-@media(max-width:760px){#explorar .quick-grid{grid-template-columns:1fr;}}
-
-/* GABRIPLAY HOME — clean single-purpose layout */
-:root{--gp-red:#e32636;--gp-red-soft:rgba(227,38,54,.13);--gp-line:rgba(255,255,255,.09);--gp-muted:#a4a4ad}
-html{scroll-behavior:smooth;scroll-padding-top:92px}body{background:#080809;color:#f6f6f7}
-header{background:rgba(8,8,9,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--gp-line)}
-.nav{min-height:76px}.logo{font-weight:900;letter-spacing:-.04em}.logo-symbol{background:linear-gradient(135deg,#f13b4b,#8f101d);box-shadow:0 8px 28px rgba(227,38,54,.25);border-radius:12px}
-.nav-links{gap:24px}.nav-links a{font-size:11px;letter-spacing:.1em;color:#c4c4ca}.nav-links a:hover{color:#fff}
-.nav-button,.btn{border-radius:10px}.hero{min-height:620px;display:flex;align-items:center;border-bottom:1px solid var(--gp-line);overflow:hidden}.hero-bg{opacity:.42}
-.hero-content{max-width:1180px;padding-top:70px;padding-bottom:72px}.hero-overline,.small-label,.gp-broadcast-kicker{color:#ff6975;letter-spacing:.18em;font-weight:800}
-.hero h1{font-size:clamp(52px,9vw,112px);line-height:.94;letter-spacing:-.075em;max-width:900px}.hero-copy{max-width:590px;color:#c2c2c9;font-size:17px;line-height:1.75}
-.hero-actions{gap:12px;margin-top:28px}.btn{padding:15px 22px;font-weight:850}.btn-outline{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.035)}
-.hero-bottom{border-top:1px solid var(--gp-line);padding-top:22px;color:#a5a5ad}
-.ticker{background:#0d0d0f;border-bottom:1px solid var(--gp-line)}.ticker b{color:var(--gp-red)}
-.section{padding:92px 0}.container{max-width:1160px}.section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px}
-.section-heading h2{font-size:clamp(30px,5vw,54px);letter-spacing:-.055em}.section-heading p{color:var(--gp-muted);max-width:600px;line-height:1.7}
-.video-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 22px}.video-controls .search{flex:1;min-width:220px;background:#111114;border:1px solid var(--gp-line);border-radius:10px;padding:14px 16px;color:#fff}
-.filter{border:1px solid var(--gp-line);background:#111114;color:#c9c9cf;border-radius:9px;padding:12px 16px;font-size:11px;font-weight:850;letter-spacing:.08em}.filter.active{background:var(--gp-red-soft);border-color:rgba(227,38,54,.5);color:#fff}
-.video-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.video-card{background:#101013;border:1px solid var(--gp-line);border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s}.video-card:hover{transform:translateY(-5px);border-color:rgba(227,38,54,.55)}
-.video-thumb{aspect-ratio:16/9;background:#17171b}.video-thumb img{width:100%;height:100%;object-fit:cover}.video-info{padding:17px}.video-info h3{font-size:16px;line-height:1.4}.video-info p{color:var(--gp-muted);font-size:13px;line-height:1.6}
-.pill{border-radius:6px;background:var(--gp-red-soft);color:#ff8b94}
-.gp-video-surprise{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:17px 20px;margin:22px 0 26px;background:linear-gradient(110deg,rgba(227,38,54,.13),rgba(255,255,255,.025));border:1px solid rgba(227,38,54,.23);border-radius:13px}
-.gp-video-surprise>div:first-child{display:flex;flex-direction:column;gap:4px;flex:1}.gp-video-surprise-label{font-size:9px;color:#ff7b86;font-weight:900;letter-spacing:.16em}.gp-video-surprise strong{font-size:14px}
-.gp-video-surprise button{background:#e32636;color:white;border:0;border-radius:9px;padding:12px 16px;font-size:11px;font-weight:900;cursor:pointer}.gp-roulette-result{display:none;width:100%;font-size:13px;color:#eee}.gp-roulette-result.visible{display:block}.gp-roulette-result a{color:#ff7b86;font-weight:900;margin-left:8px}
-.gp-broadcast-feature{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:32px 36px;background:linear-gradient(110deg,#171014,#101013 65%);border:1px solid rgba(227,38,54,.25);border-radius:16px;text-decoration:none}
-.gp-broadcast-copy h3{font-size:clamp(25px,4vw,38px);letter-spacing:-.04em}.gp-broadcast-copy p{color:#b9b9c0;max-width:680px;line-height:1.7}
-.gp-broadcast-tags{display:flex;gap:8px;flex-wrap:wrap}.gp-broadcast-tags span{font-size:9px;color:#ff929b;border:1px solid rgba(227,38,54,.25);border-radius:5px;padding:6px 8px}
-.about-grid{align-items:center;gap:48px}.about-copy h3{font-size:clamp(28px,4vw,44px);letter-spacing:-.05em}.about-copy p{color:#b7b7bf;line-height:1.8}
-#comunidad{background:#0c0c0e;border-top:1px solid var(--gp-line);border-bottom:1px solid var(--gp-line)}.community-intro{max-width:650px}
-.gp-userline,.community-panel{background:#111114;border:1px solid var(--gp-line);border-radius:13px}.community-panel{padding:24px}.community-panel h3{font-size:15px;letter-spacing:.08em}
-.gp-field{background:#09090b;border:1px solid var(--gp-line);border-radius:9px;color:#fff}.gp-action{background:#e32636;border-radius:9px}
-footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{color:#aaaab2}.footer-links a:hover{color:#fff}.back-top{border-radius:10px;background:#e32636}
-.no-results[hidden],.video-card[hidden]{display:none!important}
-@media(max-width:900px){.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nav-links{gap:13px}}
-@media(max-width:650px){.nav{min-height:66px}.nav-links{display:none}.nav-links.open{display:flex}.hero{min-height:570px}.hero-content{padding-top:62px;padding-bottom:58px}.hero-bottom{gap:12px;flex-wrap:wrap}.section{padding:66px 0}.section-heading{align-items:flex-start;flex-direction:column}.video-grid{grid-template-columns:1fr}.gp-broadcast-feature{align-items:flex-start;flex-direction:column;padding:25px}.gp-broadcast-cta{width:100%}.gp-broadcast-cta .btn{display:inline-flex}.gp-video-surprise{align-items:flex-start;flex-direction:column}.gp-video-surprise button{width:100%}.about-grid{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090a0c">
+<meta name="description" content="GabriPlay: tutoriales, mods y contenido de videojuegos. Explora vídeos, novedades y participa en la comunidad.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GabriPlay"><meta property="og:title" content="GabriPlay — Web oficial"><meta property="og:description" content="Tutoriales, mods, vídeos y comunidad de GabriPlay."><meta property="og:url" content="https://gabriel10mp.github.io/GabriPlay-Web/">
+<link rel="canonical" href="https://gabriel10mp.github.io/GabriPlay-Web/"><link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>GabriPlay — Web oficial</title><style>
+:root{color-scheme:dark;--bg:#090a0c;--panel:#111317;--panel2:#171a20;--line:#292d34;--text:#f4f5f7;--muted:#9da3ad;--red:#d92f48;--red2:#ff5268;--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}img{display:block;max-width:100%}::selection{background:var(--red);color:#fff}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}.topline{height:3px;background:linear-gradient(90deg,#751827,var(--red),#ff8794)}.site-header{position:sticky;top:0;z-index:30;background:#090a0ceF;border-bottom:1px solid #ffffff12;backdrop-filter:blur(18px)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.7px;font-size:19px}.brand-mark{width:37px;height:37px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(145deg,#f34b61,#851b2d);font:900 16px "Barlow Condensed",sans-serif;box-shadow:0 8px 25px #d92f4830}.brand span:last-child span{color:#f05b70}.nav-links{display:flex;align-items:center;gap:27px;color:#b9bdc5;font-size:12px;font-weight:700}.nav-links a:hover{color:#fff}.nav-actions{display:flex;align-items:center;gap:10px}.account-button,.nav-cta,.menu-button{border:1px solid #ffffff24;background:#ffffff08;color:#fff;border-radius:9px;padding:11px 14px;font-size:11px;font-weight:800}.nav-cta{background:#f1f2f4;color:#101114;border-color:#f1f2f4}.account-button:hover,.nav-cta:hover{transform:translateY(-2px)}.menu-button{display:none}.hero{position:relative;overflow:hidden;padding:92px 0 78px;border-bottom:1px solid #ffffff12;background:radial-gradient(ellipse at 77% 36%,#b5223a22,transparent 36%),linear-gradient(115deg,#0b0c0f 0%,#0b0c0f 58%,#170d12 100%)}.hero:after{content:"";position:absolute;width:560px;height:560px;border:1px solid #ffffff0c;border-radius:50%;right:-100px;top:-160px;box-shadow:0 0 0 55px #ffffff04,0 0 0 110px #ffffff03;pointer-events:none}.hero-grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(90deg,transparent,#000 70%);opacity:.3}.hero-layout{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:65px}.eyebrow{display:flex;align-items:center;gap:10px;color:#f07888;font-size:10px;font-weight:900;letter-spacing:2.6px;text-transform:uppercase}.eyebrow:before{content:"";width:25px;height:2px;background:var(--red)}h1,h2,h3,p{margin-top:0}.hero h1{font:900 clamp(58px,8vw,100px)/.88 "Barlow Condensed",Impact,sans-serif;letter-spacing:-2px;text-transform:uppercase;margin:23px 0}.hero h1 span{color:#ed4b62}.hero-copy{max-width:530px;color:#b9bec7;font-size:15px;line-height:1.9}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:14px 19px;border-radius:8px;background:#f2f3f5;color:#111318;font-size:11px;font-weight:900;border:1px solid #f2f3f5;transition:.2s}.button:hover{transform:translateY(-3px)}.button.ghost{background:#ffffff08;color:#fff;border-color:#ffffff25}.hero-meta{display:flex;gap:24px;margin-top:38px;color:#8f96a1;font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}.hero-art{position:relative;min-height:380px;display:grid;place-items:center}.art-frame{position:absolute;width:min(100%,420px);aspect-ratio:1/1;border:1px solid #ffffff1c;border-radius:28px;transform:rotate(4deg);background:linear-gradient(145deg,#ffffff0c,#ffffff02);box-shadow:0 35px 90px #0008}.art-frame:before,.art-frame:after{content:"";position:absolute;border:1px solid #d92f4840;border-radius:50%;inset:12%}.art-frame:after{inset:24%;border-color:#ffffff18}.art-core{position:relative;z-index:2;width:210px;height:210px;border-radius:36px;display:grid;place-items:center;background:linear-gradient(145deg,#1e2027,#0d0e12);border:1px solid #ffffff28;box-shadow:0 25px 80px #000a;transform:rotate(-8deg)}.art-core strong{font:900 88px/.8 "Barlow Condensed",sans-serif;letter-spacing:-7px;color:#f4f4f6}.art-core strong span{color:var(--red)}.art-caption{position:absolute;bottom:7%;right:0;z-index:3;padding:13px 16px;border:1px solid #ffffff20;border-radius:10px;background:#111318eF;color:#d5d8de;font-size:10px;font-weight:800;letter-spacing:1.3px}.art-caption b{color:#f05a70}.ticker{border-bottom:1px solid #ffffff12;overflow:hidden;padding:15px 0;color:#9ea4ad;font-size:10px;font-weight:900;letter-spacing:2px;text-align:center}.ticker span{color:#e74b62;margin:0 12px}.section{padding:82px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:28px}.section-kicker{color:#ef7585;font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.section-head h2{font:900 clamp(38px,5vw,58px)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:10px 0 0}.section-head p{max-width:410px;color:var(--muted);font-size:13px;line-height:1.8;margin-bottom:2px}.feature-strip{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.feature-main,.feature-side{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,#191c22,#101216);min-height:260px;padding:30px}.feature-main:after{content:"GP";position:absolute;right:16px;bottom:-62px;font:900 250px/.9 "Barlow Condensed",sans-serif;color:#ffffff06;pointer-events:none}.feature-main>*{position:relative;z-index:1}.feature-main h3{font:900 38px/.98 "Barlow Condensed",sans-serif;text-transform:uppercase;max-width:470px;margin:17px 0 10px}.feature-main p,.feature-side p{max-width:470px;color:#aeb4be;font-size:13px;line-height:1.8}.feature-side{display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#281018,#131116)}.feature-side h3{font:900 32px/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:15px 0}.tag{display:inline-flex;padding:7px 9px;border-radius:5px;background:#d92f481c;color:#ff8b9a;font-size:9px;font-weight:900;letter-spacing:1.5px}.video-tools{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0 20px}.video-tools input{flex:1;min-width:220px;background:#12151a;border:1px solid var(--line);border-radius:8px;color:#fff;padding:12px 14px;outline:none}.video-tools input:focus{border-color:#c84a5d}.filter{border:1px solid var(--line);border-radius:8px;background:#111318;color:#aeb4be;padding:10px 13px;font-size:10px;font-weight:900}.filter.active{background:#e9eaed;color:#111318;border-color:#e9eaed}.video-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.video-card{display:block;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:#111318;transition:.22s}.video-card:hover{transform:translateY(-5px);border-color:#a84656;box-shadow:0 20px 40px #0005}.video-thumb{position:relative;aspect-ratio:16/9;background:#1b1e25;overflow:hidden}.video-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s}.video-card:hover .video-thumb img{transform:scale(1.04)}.play-button{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:43px;height:43px;border-radius:50%;display:grid;place-items:center;background:#08090bd9;color:#fff;border:1px solid #ffffff55;font-size:13px}.video-info{padding:16px}.video-info .pill{font-size:9px;letter-spacing:1px;color:#ef7182;font-weight:900}.video-info h3{font-size:14px;line-height:1.45;margin:9px 0 6px}.video-info p{color:#969da8;font-size:11px;line-height:1.6;margin:0}.no-results{color:var(--muted);padding:24px;text-align:center}.broadcast-card{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:34px;border-radius:16px;border:1px solid #59303a;background:radial-gradient(ellipse at 85% 30%,#d92f4828,transparent 40%),linear-gradient(120deg,#1a1116,#111318)}.broadcast-card h2{font:900 clamp(34px,5vw,54px)/.95 "Barlow Condensed",sans-serif;margin:12px 0}.broadcast-card p{max-width:570px;color:#b4b9c2;font-size:13px;line-height:1.8;margin-bottom:0}.community-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.community-panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px}.community-panel h3{font:800 25px "Barlow Condensed",sans-serif;text-transform:uppercase;margin-bottom:8px}.community-note{color:var(--muted);font-size:12px;line-height:1.7}.gp-userline{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:20px 0}.gp-community-identity{display:flex;align-items:center;gap:10px;color:#c4c8cf;font-size:12px}.gp-community-avatar,.nav-account-avatar,.gp-account-avatar{display:inline-grid;place-items:center;overflow:hidden;width:34px;height:34px;border-radius:50%;background:#242831;color:#fff;font-weight:900}.gp-community-avatar img,.nav-account-avatar img,.gp-account-avatar img{width:100%;height:100%;object-fit:cover}.gp-action{border:1px solid #ffffff25;background:#f0f1f3;color:#111318;border-radius:8px;padding:11px 14px;font-size:10px;font-weight:900}.gp-action.secondary{background:#ffffff08;color:#fff}.gp-list{display:grid;gap:10px;margin-top:15px}.gp-empty{padding:16px;border:1px dashed #353943;border-radius:9px;color:#89919d;font-size:12px}.gp-form-label{display:block;color:#aeb4be;font-size:9px;font-weight:900;letter-spacing:1.3px;margin:13px 0 7px}.gp-field{width:100%;padding:12px 13px;border-radius:8px;border:1px solid #303640;background:#0c0e12;color:#fff;outline:none}.gp-field:focus{border-color:#d04c60}.gp-status{min-height:18px;color:#aeb4be;font-size:11px}.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center}.about-stamp{min-height:240px;border-radius:16px;border:1px solid #ffffff18;background:linear-gradient(145deg,#1c2028,#101216);display:grid;place-items:center}.about-stamp strong{font:900 100px/.8 "Barlow Condensed",sans-serif;letter-spacing:-8px}.about-stamp strong span{color:var(--red)}.about-copy p{color:#aeb4be;font-size:14px;line-height:1.9}.about-points{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.about-points span{padding:8px 10px;border:1px solid var(--line);border-radius:6px;color:#c6cad1;font-size:9px;font-weight:900;letter-spacing:1px}.footer{border-top:1px solid #ffffff14;padding:34px 0;color:#8f96a1;font-size:10px}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}.footer-links{display:flex;gap:20px;flex-wrap:wrap;font-weight:800}.footer-links a:hover{color:#fff}.gp-modal-backdrop{position:fixed;inset:0;z-index:80;background:#000c;backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;overflow:auto}.gp-modal-backdrop.open{display:flex}.gp-modal{position:relative;width:min(470px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#12151a;border:1px solid #ffffff24;border-radius:17px;padding:30px;box-shadow:0 30px 100px #000b}.gp-modal-close{position:absolute;right:15px;top:13px;border:0;background:none;color:#c6cbd3;font-size:27px}.gp-auth-brand{display:flex;align-items:center;gap:8px;font-weight:900;margin-bottom:20px}.gp-auth-brand img{width:30px;height:30px}.gp-auth-brand small{display:block;color:#888f9a;font-size:8px;letter-spacing:1.5px}.gp-modal h2{font:900 34px "Barlow Condensed",sans-serif;text-transform:uppercase;margin-bottom:6px}.gp-modal-copy,.gp-legal{color:#a5acb6;font-size:12px;line-height:1.7}.gp-tabs{display:flex;gap:7px;margin:20px 0}.gp-tabs button{flex:1;border:1px solid var(--line);background:#0d0f13;color:#aab0ba;border-radius:7px;padding:11px;font-size:9px;font-weight:900}.gp-tabs button.active{background:#f1f2f4;color:#111318}.gp-modal .gp-action{width:100%;margin-top:14px}.gp-account-identity{display:flex;align-items:center;gap:12px;margin:18px 0}.gp-account-identity small{display:block;color:#9ba2ad}.gp-legal{border-top:1px solid #ffffff14;padding-top:15px;margin-top:22px}.back-top{position:fixed;right:22px;bottom:22px;z-index:20;width:42px;height:42px;border-radius:50%;border:1px solid #ffffff2b;background:#171a20;color:#fff;opacity:0;pointer-events:none;transition:.2s}.back-top.visible{opacity:1;pointer-events:auto}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;z-index:90;background:#f1f2f4;color:#111;padding:12px 18px;border-radius:8px;font-size:11px;font-weight:800;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}[hidden]{display:none!important}:focus-visible{outline:2px solid #ff7889;outline-offset:3px}
+@media(max-width:900px){.hero-layout{grid-template-columns:1fr .8fr;gap:25px}.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nav-links{gap:14px}.feature-strip{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.wrap{width:min(var(--max),calc(100% - 30px))}.nav{height:66px}.nav-links{display:none;position:absolute;top:66px;left:0;right:0;padding:18px 22px 22px;background:#0d0f13;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.nav-links.open{display:flex}.menu-button{display:block}.nav-cta{display:none}.hero{padding:65px 0 48px}.hero-layout{grid-template-columns:1fr}.hero-art{min-height:250px;max-width:420px;width:100%;margin:0 auto}.art-frame{width:260px}.art-core{width:145px;height:145px;border-radius:26px}.art-core strong{font-size:64px}.art-caption{right:4%;bottom:0}.hero h1{font-size:clamp(58px,16vw,82px)}.section{padding:62px 0}.section-head{display:block}.section-head p{margin-top:12px}.feature-strip,.community-layout,.about-grid{grid-template-columns:1fr}.broadcast-card{display:block;padding:25px}.broadcast-card .button{margin-top:22px}.video-grid{gap:10px}.video-info{padding:12px}.video-info h3{font-size:12px}.video-tools input{min-width:100%}.footer-inner{align-items:flex-start;flex-direction:column}.hero-meta{gap:13px;flex-wrap:wrap}}
+@media(max-width:420px){.video-grid{grid-template-columns:1fr}.video-thumb{aspect-ratio:16/8.8}.hero-actions .button{flex:1}.community-panel{padding:18px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
-<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
-<link rel="apple-touch-icon" href="favicon.svg?v=1">
-<link rel="stylesheet" href="gabriplay-polish.css?v=1">
 </head>
-
 <body>
-<div class="rainbow"></div>
-
-<header class="topbar gp-header">
- <nav class="nav container" aria-label="Navegación principal">
-  <a class="logo gp-brand" href="#inicio" aria-label="GabriPlay, inicio">
-   <img class="gp-brand-logo" src="favicon.svg" alt="Logo de GabriPlay"><span>Gabri<span>Play</span></span>
-  </a>
-  <div class="nav-links" id="navLinks">
-   <a href="#inicio">Inicio</a><a href="#videos">Vídeos</a><a href="broadcast.html">Novedades</a><a href="#comunidad">Comunidad</a><a href="#sobre">El canal</a>
-  </div>
-  <div class="nav-right">
-   <a class="nav-button admin-nav-button" id="adminPanelButton" href="admin.html" hidden>Administración</a>
-   <button class="nav-account" id="accountButton" type="button"><span class="nav-account-avatar" id="navAccountAvatar" hidden></span><span id="navAccountLabel">Iniciar sesión</span></button>
-   <a class="nav-button gp-youtube" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">YouTube <span aria-hidden="true">↗</span></a>
-   <button class="menu-button" id="menuButton" aria-label="Abrir menú" aria-expanded="false">☰</button>
-  </div>
- </nav>
-</header>
-
+<div class="topline"></div>
+<header class="site-header"><nav class="nav wrap" aria-label="Navegación principal">
+<a class="brand" href="#inicio" aria-label="GabriPlay inicio"><span class="brand-mark">GP</span><span>Gabri<span>Play</span></span></a>
+<div class="nav-links" id="navLinks"><a href="#inicio">Inicio</a><a href="#videos">Vídeos</a><a href="broadcast.html">Novedades</a><a href="#comunidad">Comunidad</a><a href="#sobre">El canal</a></div>
+<div class="nav-actions"><a class="nav-cta" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Ver YouTube ↗</a><button class="account-button" id="accountButton" type="button"><span class="nav-account-avatar" id="navAccountAvatar" hidden></span><span id="navAccountLabel">Iniciar sesión</span></button><a id="adminPanelButton" href="admin.html" hidden>Administración</a><button class="menu-button" id="menuButton" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button></div>
+</nav></header>
 <main>
-<!-- PORTADA -->
-<section class="gp-hero" id="inicio">
- <div class="gp-hero-grid" aria-hidden="true"></div>
- <div class="container gp-hero-inner">
-  <div class="gp-hero-copy">
-   <div class="gp-eyebrow"><i></i> WEB OFICIAL DEL CANAL</div>
-   <h1>EL UNIVERSO<br><span>GABRIPLAY.</span></h1>
-   <p>Tutoriales, mods y contenido de videojuegos. Encuentra guías, descubre novedades y forma parte de la comunidad.</p>
-   <div class="hero-actions"><a class="btn gp-primary" href="#videos">Explorar vídeos <span>↘</span></a><a class="btn btn-outline" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">Ver canal de YouTube ↗</a></div>
-   <div class="gp-hero-meta"><span>GTA V & GAMING</span><span>·</span><span>TUTORIALES Y MODS</span><span>·</span><span>COMUNIDAD</span></div>
-  </div>
-  <div class="gp-hero-art" aria-label="Identidad visual de GabriPlay"><div class="gp-art-orbit orbit-one"></div><div class="gp-art-orbit orbit-two"></div><div class="gp-art-mark"><img src="favicon.svg" alt="GabriPlay"></div><span class="gp-art-caption">PLAY BEYOND.</span><span class="gp-art-index">GP / 001</span></div>
- </div>
- <a class="gp-scroll-cue" href="#videos">DESCUBRIR <span>↓</span></a>
-</section>
-
-<div class="ticker gp-ticker">
- <div class="ticker-track">
-  <span>GABRIPLAY <b>✦</b> GTA V <b>✦</b> TUTORIALES <b>✦</b> MODS <b>✦</b> MENYOO <b>✦</b> OPENIV <b>✦</b> LSPDFR <b>✦</b></span>
-  <span>GABRIPLAY <b>✦</b> GTA V <b>✦</b> TUTORIALES <b>✦</b> MODS <b>✦</b> MENYOO <b>✦</b> OPENIV <b>✦</b> LSPDFR <b>✦</b></span>
- </div>
-</div>
-
-<!-- EXPLORAR -->
-
-
-<!-- CANAL DEL CREADOR: DESTACADO EN PORTADA -->
-<section class="section" id="canal-creador" style="padding-top:12px">
- <div class="container reveal">
-  <a class="gp-broadcast-feature" href="broadcast.html" aria-label="Entrar al Canal del Creador">
-   <div class="gp-broadcast-copy">
-    <div class="gp-broadcast-kicker">✦ Canal oficial del creador</div>
-    <h3>LO QUE PASA EN <span class="gradient-text">GABRIPLAY.</span></h3>
-    <p>Anuncios, novedades, adelantos y mensajes publicados directamente por el creador. Entra, descubre las últimas actualizaciones y deja tu reacción.</p>
-    <div class="gp-broadcast-tags"><span>ANUNCIOS</span><span>PRIMEROS ADELANTOS</span><span>REACCIONES</span></div>
-   </div>
-   <div class="gp-broadcast-cta"><span class="btn">ENTRAR AL CANAL ↗</span></div>
-  </a>
- </div>
-</section>
-
-
-<!-- VÍDEOS -->
-<section class="section" id="videos">
- <div class="container reveal">
-  <div class="section-heading">
-   <div>
-    <div class="small-label">Contenido del canal</div>
-    <h2>ÚLTIMOS <span class="gradient-text">VÍDEOS.</span></h2>
-    <p>Tutoriales y vídeos publicados en el canal. Busca por nombre o filtra por tema.</p>
-   </div>
-   <a class="btn btn-outline" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">VER TODO EL CANAL ↗</a>
-  </div>
-
-  <div class="video-controls">
-   <input class="search" id="videoSearch" placeholder="⌕  Buscar tutoriales o mods..." type="search" aria-label="Buscar vídeos">
-   <button class="filter active" data-filter="all" type="button">TODOS</button>
-   <button class="filter" data-filter="tutorial" type="button">TUTORIALES</button>
-   <button class="filter" data-filter="mods" type="button">MODS</button>
-  </div>
-  <div class="video-grid" id="videoGrid">
-   <a class="video-card card card-hover" data-category="tutorial" data-title="Cómo instalar Menyoo en GTA 5" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener">
+<section class="hero" id="inicio"><div class="hero-grid"></div><div class="wrap hero-layout">
+<div><div class="eyebrow">La web oficial de GabriPlay</div><h1>JUEGA.<br>DESCUBRE.<br><span>GABRIPLAY.</span></h1><p class="hero-copy">Tutoriales, mods y contenido de videojuegos. Encuentra guías útiles, descubre lo que se cuece en el canal y comparte tus ideas con la comunidad.</p><div class="hero-actions"><a class="button" href="#videos">Explorar vídeos <span>↘</span></a><a class="button ghost" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Ir al canal de YouTube ↗</a></div><div class="hero-meta"><span>Vídeos y tutoriales</span><span>Mods y guías</span><span>Comunidad</span></div></div>
+<div class="hero-art" aria-hidden="true"><div class="art-frame"></div><div class="art-core"><strong>G<span>P</span></strong></div><div class="art-caption">GABRIPLAY <b>·</b> WEB OFICIAL</div></div>
+</div></section>
+<div class="ticker">TUTORIALES <span>✦</span> MODS <span>✦</span> VIDEOJUEGOS <span>✦</span> COMUNIDAD <span>✦</span> GABRIPLAY</div>
+<section class="section"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Empieza por aquí</div><h2>TODO LO QUE BUSCAS.</h2></div><p>Una web para encontrar el contenido del canal sin perderte entre apartados innecesarios.</p></div>
+<div class="feature-strip"><a class="feature-main" href="#videos"><span class="tag">CONTENIDO</span><h3>Tutoriales claros. Mods. Nuevos descubrimientos.</h3><p>Accede a los vídeos destacados y encuentra rápidamente la guía que necesitas.</p><span class="button">Explorar vídeos ↗</span></a><a class="feature-side" href="broadcast.html"><div><span class="tag">CANAL DEL CREADOR</span><h3>Las novedades de GabriPlay, directamente aquí.</h3><p>Anuncios, adelantos y publicaciones del creador en un solo sitio.</p></div><span class="button ghost">Ver novedades ↗</span></a></div></div></section>
+<section class="section" id="videos" style="padding-top:20px"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Biblioteca del canal</div><h2>VÍDEOS DESTACADOS.</h2></div><p>Tutoriales y contenido publicado en YouTube. Busca por título o filtra por categoría.</p></div>
+<div class="video-tools"><input id="videoSearch" type="search" placeholder="Buscar vídeos o tutoriales..." aria-label="Buscar vídeos"><button class="filter active" data-filter="all" type="button">Todos</button><button class="filter" data-filter="tutorial" type="button">Tutoriales</button><button class="filter" data-filter="mods" type="button">Mods</button><a class="button ghost" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Ver canal ↗</a></div>
+<div class="video-grid" id="videoGrid"><a class="video-card card card-hover" data-category="tutorial" data-title="Cómo instalar Menyoo en GTA 5" href="https://youtu.be/p2j1OEbqp9o" target="_blank" rel="noopener">
     <div class="video-thumb">
      <img src="https://i.ytimg.com/vi/p2j1OEbqp9o/maxresdefault.jpg" alt="Miniatura del tutorial Menyoo" onerror="this.src='https://i.ytimg.com/vi/p2j1OEbqp9o/hqdefault.jpg'">
      <span class="play-button">▶</span>
@@ -659,8 +46,7 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
      <div class="video-meta"><span>VER VÍDEO ↗</span><span>GABRIPLAY</span></div>
     </div>
    </a>
-
-   <a class="video-card card card-hover" data-category="tutorial" data-title="Cómo instalar OpenIV en GTA 5" href="https://youtu.be/NcGygok41Lk" target="_blank" rel="noopener">
+<a class="video-card card card-hover" data-category="tutorial" data-title="Cómo instalar OpenIV en GTA 5" href="https://youtu.be/NcGygok41Lk" target="_blank" rel="noopener">
     <div class="video-thumb">
      <img src="https://i.ytimg.com/vi/NcGygok41Lk/maxresdefault.jpg" alt="Miniatura del tutorial OpenIV" onerror="this.src='https://i.ytimg.com/vi/NcGygok41Lk/hqdefault.jpg'">
      <span class="play-button">▶</span>
@@ -672,8 +58,7 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
      <div class="video-meta"><span>VER VÍDEO ↗</span><span>GABRIPLAY</span></div>
     </div>
    </a>
-
-   <a class="video-card card card-hover" data-category="mods" data-title="Cómo instalar coches Add-On en GTA 5" href="https://youtu.be/pbcPa3jO1tA" target="_blank" rel="noopener">
+<a class="video-card card card-hover" data-category="mods" data-title="Cómo instalar coches Add-On en GTA 5" href="https://youtu.be/pbcPa3jO1tA" target="_blank" rel="noopener">
     <div class="video-thumb">
      <img src="https://i.ytimg.com/vi/pbcPa3jO1tA/maxresdefault.jpg" alt="Miniatura del tutorial de coches Add-On" onerror="this.src='https://i.ytimg.com/vi/pbcPa3jO1tA/hqdefault.jpg'">
      <span class="play-button">▶</span>
@@ -685,8 +70,7 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
      <div class="video-meta"><span>VER VÍDEO ↗</span><span>GABRIPLAY</span></div>
     </div>
    </a>
-
-   <a class="video-card card card-hover" data-category="mods" data-title="TOP 4 mods esenciales para GTA 5" href="https://youtu.be/j_k2lIj25xc" target="_blank" rel="noopener">
+<a class="video-card card card-hover" data-category="mods" data-title="TOP 4 mods esenciales para GTA 5" href="https://youtu.be/j_k2lIj25xc" target="_blank" rel="noopener">
     <div class="video-thumb">
      <img src="https://i.ytimg.com/vi/j_k2lIj25xc/maxresdefault.jpg" alt="Miniatura del top de mods" onerror="this.src='https://i.ytimg.com/vi/j_k2lIj25xc/hqdefault.jpg'">
      <span class="play-button">▶</span>
@@ -697,119 +81,17 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
      <p>Cuatro modificaciones que merece la pena conocer.</p>
      <div class="video-meta"><span>VER VÍDEO ↗</span><span>GABRIPLAY</span></div>
     </div>
-   </a>
-  </div>
-  <div class="no-results" id="noResults">No hay vídeos que coincidan con tu búsqueda.</div>
- </div>
-</section>
-
-<!-- GTA V -->
-
-
-<!-- GALERÍA -->
-
-
-<!-- ROBLOX STUDIO -->
-
-
-<!-- MINECRAFT -->
-
-
-<!-- ARCADE -->
-
-
-<!-- ROADMAP -->
-
-
-<!-- SOBRE -->
-<section class="section" id="sobre">
- <div class="container reveal">
-  <div class="about-grid">
-   <div class="about-mark"><div class="about-gp">GP</div></div>
-   <div class="about-copy">
-    <div class="small-label">Sobre el canal</div>
-    <h3>TUTORIALES, MODS Y <span class="gradient-text">GTA V.</span></h3>
-    <p>GabriPlay es un canal de videojuegos centrado en tutoriales, modificaciones y contenido gaming. Aquí puedes encontrar guías para instalar herramientas, añadir vehículos y personalizar GTA V.</p>
-    <p>La web acompaña al canal: reúne sus vídeos, publica novedades y permite que la comunidad proponga qué contenido le gustaría ver.</p>
-    <a class="btn" href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">VISITAR GABRIPLAY EN YOUTUBE ↗</a>
-   </div>
-  </div>
- </div>
-</section>
-
-<!-- FAQ -->
-
-
-
-<!-- COMUNIDAD GABRIPLAY -->
-<section class="section" id="comunidad">
- <div class="container reveal">
-  <div class="section-heading">
-   <div>
-    <div class="small-label">La comunidad de GabriPlay</div>
-    <h2>UNA IDEA. <span class="gradient-text">UN UNIVERSO.</span></h2>
-    <p class="community-intro">Comparte propuestas para futuros vídeos y mejoras de la web. Las ideas se revisan antes de aparecer públicamente.</p>
-   </div>
-   <span class="section-number">08 / COMUNIDAD</span>
-  </div>
-  <div class="gp-userline">
-   <div class="gp-community-identity"><span class="gp-community-avatar" id="communityAvatar" hidden></span><span id="communityUser">Estás explorando como visitante.</span></div>
-   <button class="gp-action secondary" id="communityAccountAction" type="button">INICIAR SESIÓN</button>
-  </div>
-  <div class="community-grid">
-   <div class="community-panel">
-    <h3>IDEAS DE LA COMUNIDAD</h3>
-    <p class="community-note">Las sugerencias aprobadas se mostrarán aquí. Para votar necesitas iniciar sesión.</p>
-    <div id="adminSuggestionTools" hidden><div class="gp-admin-label">PANEL DE MODERACIÓN</div><div class="gp-admin-filters" id="adminSuggestionFilters"><button type="button" data-suggestion-filter="all" class="active">TODAS</button><button type="button" data-suggestion-filter="pending">PENDIENTES</button><button type="button" data-suggestion-filter="approved">APROBADAS</button><button type="button" data-suggestion-filter="rejected">RECHAZADAS</button><button type="button" data-suggestion-filter="completed">COMPLETADAS</button></div></div>
-     <div class="gp-list" id="suggestionList"><div class="gp-empty">Cargando sugerencias…</div></div>
-   </div>
-   <div class="community-panel">
-    <h3>PROPÓN ALGO</h3>
-    <p class="community-note">¿Qué tutorial, juego o mejora te gustaría ver en GabriPlay?</p>
-    <form id="suggestionForm">
-     <label class="gp-form-label" for="suggestionTitle">TÍTULO</label>
-     <input class="gp-field" id="suggestionTitle" maxlength="80" placeholder="Ej. Un nuevo tutorial de GTA V" required>
-     <label class="gp-form-label" for="suggestionDescription">CUÉNTANOS TU IDEA</label>
-     <textarea class="gp-field" id="suggestionDescription" maxlength="700" placeholder="Describe brevemente tu propuesta…" required></textarea>
-     <button class="gp-action" id="suggestionSubmit" type="submit">ENVIAR SUGERENCIA</button>
-     <p class="gp-status" id="suggestionStatus" aria-live="polite">Inicia sesión para enviar una propuesta.</p>
-    </form>
-   </div>
-  </div>
- </div>
-</section>
-
+   </a></div><p class="no-results" id="noResults" hidden>No hay vídeos que coincidan con tu búsqueda.</p></div></section>
+<section class="section" style="padding-top:15px"><div class="wrap"><a class="broadcast-card" href="broadcast.html"><div><div class="section-kicker">Canal oficial del creador</div><h2>LO QUE PASA EN GABRIPLAY.</h2><p>Anuncios, novedades, adelantos y mensajes publicados directamente por el creador. Entra para estar al día.</p></div><span class="button">Entrar al canal ↗</span></a></div></section>
+<section class="section" id="comunidad"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Comunidad GabriPlay</div><h2>PARTICIPA.</h2></div><p>Comparte ideas para próximos vídeos y ayuda a decidir qué contenido merece llegar al canal.</p></div>
+<div class="gp-userline"><div class="gp-community-identity"><span class="gp-community-avatar" id="communityAvatar" hidden></span><span id="communityUser">Estás explorando como visitante.</span></div><button class="gp-action secondary" id="communityAccountAction" type="button">Iniciar sesión</button></div>
+<div class="community-layout"><div class="community-panel"><h3>Ideas de la comunidad</h3><p class="community-note">Las sugerencias aprobadas aparecerán aquí. Para votar necesitas iniciar sesión.</p><div id="adminSuggestionTools" hidden><div id="adminSuggestionFilters"></div></div><div class="gp-list" id="suggestionList"><div class="gp-empty">Cargando sugerencias…</div></div></div>
+<div class="community-panel"><h3>Propón una idea</h3><p class="community-note">¿Qué tutorial, mod o mejora te gustaría ver en GabriPlay?</p><form id="suggestionForm"><label class="gp-form-label" for="suggestionTitle">Título de la propuesta</label><input class="gp-field" id="suggestionTitle" maxlength="80" placeholder="Ej. Un nuevo tutorial" required><label class="gp-form-label" for="suggestionDescription">Cuéntanos más</label><textarea class="gp-field" id="suggestionDescription" rows="4" maxlength="500" placeholder="Describe brevemente tu idea..."></textarea><button class="gp-action" id="suggestionSubmit" type="submit">Enviar propuesta →</button><p class="gp-status" id="suggestionStatus" aria-live="polite">Inicia sesión para enviar una propuesta.</p></form></div></div>
+</div></section>
+<section class="section" id="sobre"><div class="wrap about-grid"><div class="about-stamp"><strong>G<span>P</span></strong></div><div class="about-copy"><div class="section-kicker">Sobre el canal</div><h2 style="font:900 clamp(38px,5vw,58px)/.95 'Barlow Condensed',sans-serif;margin:12px 0 18px">ESTO ES GABRIPLAY.</h2><p>GabriPlay es un espacio dedicado a los videojuegos, los tutoriales y los mods. La idea de esta web es reunir el contenido del canal, compartir novedades y dar voz a quienes forman parte de la comunidad.</p><div class="about-points"><span>TUTORIALES</span><span>MODS</span><span>VIDEOJUEGOS</span><span>COMUNIDAD</span></div><div style="margin-top:24px"><a class="button" href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">Visitar el canal ↗</a></div></div></div></section>
 </main>
-
-<footer>
- <div class="container">
-  <div class="footer-main">
-   <div>
-    <a class="logo" href="#inicio"><span class="logo-symbol">GP</span><span>GabriPlay</span></a>
-    <p>PLAY BEYOND. GABRIPLAY.<br>Tutoriales, mods y contenido de GTA V.</p>
-   </div>
-   <div class="footer-links">
-    <a href="https://youtube.com/@gabriplay10" target="_blank" rel="noopener">YOUTUBE ↗</a>
-    <a href="broadcast.html">CANAL DEL CREADOR</a>
-    <a href="#videos">VÍDEOS</a>
-    <a href="#inicio">VOLVER ARRIBA ↑</a>
-   </div>
-  </div>
-  <div class="footer-bottom">
-   <span>© <span id="year"></span> GABRIPLAY. TODOS LOS DERECHOS RESERVADOS.</span>
-   <span>TUTORIALES · MODS · GTA V</span>
-  </div>
- </div>
- <div class="rainbow" style="margin-top:30px"></div>
-</footer>
-
-<div class="lightbox" id="lightbox">
- <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
- <img id="lightboxImage" src="" alt="Imagen ampliada">
-</div>
-<div class="toast" id="toast"></div>
-
-<!-- MODAL DE CUENTA -->
+<footer class="footer"><div class="wrap footer-inner"><div><a class="brand" href="#inicio"><span class="brand-mark logo-symbol">GP</span><span>Gabri<span>Play</span></span></a><p style="margin:12px 0 0">Web oficial de GabriPlay · Tutoriales, mods y videojuegos.</p></div><div class="footer-links"><a href="broadcast.html">Novedades</a><a href="#videos">Vídeos</a><a href="#comunidad">Comunidad</a><a href="https://www.youtube.com/@GabriPlay10" target="_blank" rel="noopener">YouTube ↗</a></div><div>© <span id="year"></span> GabriPlay</div></div></footer>
+<div class="lightbox" id="lightbox" hidden><button id="lightboxClose" type="button">×</button><img id="lightboxImage" alt="Imagen ampliada"></div><div class="toast" id="toast"></div>
 <div class="gp-modal-backdrop" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
  <div class="gp-modal">
   <button class="gp-modal-close" id="closeAccountModal" type="button" aria-label="Cerrar">×</button>
@@ -854,8 +136,8 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
  </div>
 </div>
 
-<button class="back-top" id="backTop" aria-label="Volver arriba">↑</button>
 
+<button class="back-top" id="backTop" type="button" aria-label="Volver arriba">↑</button>
 <script>
 (() => {
  "use strict";
@@ -884,7 +166,6 @@ const lightbox=$("lightbox"),lightboxImage=$("lightboxImage"),lightboxClose=$("l
  if("IntersectionObserver"in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target);}}),{threshold:.08});document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));}else document.querySelectorAll(".reveal").forEach(el=>el.classList.add("visible"));
 })();
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (() => {
@@ -1222,8 +503,6 @@ const lightbox=$("lightbox"),lightboxImage=$("lightboxImage"),lightboxClose=$("l
  });
 })();
 </script>
-
-
 <script>
 (() => {
   const versionUrl = new URL("version.json", location.href);
@@ -1291,6 +570,4 @@ const lightbox=$("lightbox"),lightboxImage=$("lightboxImage"),lightboxClose=$("l
  });
 })();
 </script>
-
-</body>
-</html>
+</body></html>
