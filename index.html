@@ -345,6 +345,14 @@ textarea.gp-field{min-height:105px;resize:vertical}
 .gp-profile-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:#ffffff12;border:1px solid #ffffff25;color:white;font:800 13px "Barlow Condensed",sans-serif;flex:none}
 .gp-profile-bio{color:#858591;font-size:10px;line-height:1.5;margin-top:3px}
 .gp-profile-author strong{color:#f1f1f5;font-size:11px}
+
+/* GabriPlay OWNER identity — shared across community surfaces */
+.gp-owner-name,.admin-owner-name{font-weight:950!important;background:linear-gradient(100deg,#fff 0%,#f3c2c8 25%,#fff 48%,#df5365 72%,#fff 100%);background-size:230% auto;background-clip:text;-webkit-background-clip:text;color:transparent!important;animation:gpOwnerShine 4.8s ease-in-out infinite}
+@keyframes gpOwnerShine{0%,100%{background-position:0% center}50%{background-position:100% center}}
+.gp-owner-verified,.admin-owner-verified,.owner-verified{display:inline-grid;place-items:center;width:15px;height:15px;margin-left:5px;vertical-align:middle;border-radius:50%;background:linear-gradient(145deg,#f2a0aa,#a91f35 65%,#5c0e1b);border:1px solid #ffd1d6;color:#fff;font:900 9px/1 Inter,Arial,sans-serif;box-shadow:0 0 0 2px #c52b4025,0 0 12px #c52b4060}
+.gp-owner-frame,.admin-owner-frame,.owner-frame{border:2px solid #d94a5d!important;box-shadow:0 0 0 2px #c52b4030,0 0 17px #c52b4070, inset 0 0 0 1px #fff2!important}
+.gp-owner-role,.admin-owner-role,.owner-role{display:inline-flex;align-items:center;gap:4px;margin-left:6px;padding:3px 7px;border:1px solid #c94b5b;border-radius:4px;background:linear-gradient(110deg,#350b13,#9e1d30 58%,#4a0d19);color:#fff;font-size:8px;font-weight:950;letter-spacing:.8px;vertical-align:middle;box-shadow:0 3px 12px #a51f3228}
+@media(prefers-reduced-motion:reduce){.gp-owner-name,.admin-owner-name{animation:none}}
 .gp-creator-inline{display:inline-flex;vertical-align:middle;margin-left:7px;padding:3px 6px;border:1px solid #e34b58;border-radius:4px;background:linear-gradient(110deg,#54101b,#a51f32,#7a1424);color:#fff;font-size:8px;font-weight:900;letter-spacing:.55px}.gp-creator-name{background:linear-gradient(90deg,#fff,#ffb6bf,#fff,#ff6678,#fff);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:gpCreatorShine 4s linear infinite}@keyframes gpCreatorShine{to{background-position:220% center}}@media(prefers-reduced-motion:reduce){.gp-creator-name{animation:none}}
 .gp-name-crimson,.gp-name-ice,.gp-name-gold,.gp-name-sakura{background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:gpCreatorShine 3.2s linear infinite}.gp-name-crimson{background-image:linear-gradient(90deg,#fff,#ff697b,#fff)}.gp-name-ice{background-image:linear-gradient(90deg,#d7f6ff,#43b9f0,#fff)}.gp-name-gold{background-image:linear-gradient(90deg,#fff2b5,#d49b32,#fff0a3)}.gp-name-sakura{background-image:linear-gradient(90deg,#ffe1ed,#ef78aa,#fff)}.gp-frame-crimson{border:2px solid #c52b40!important;box-shadow:0 0 0 2px #c52b4040,0 0 15px #c52b4060}.gp-frame-onyx{border:2px solid #777680!important;box-shadow:inset 0 0 0 2px #17171c,0 0 0 2px #aaa9b640}@media(prefers-reduced-motion:reduce){.gp-name-crimson,.gp-name-ice,.gp-name-gold,.gp-name-sakura{animation:none}}
 #profileForm{margin-top:12px}
@@ -985,14 +993,17 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
   const avatar=ownProfile?.avatar_url||metadata.avatar_url||"";
   const cosmetics=ownProfile?.equippedCosmetics||[];
   renderAvatar($("navAccountAvatar"),avatar,name,cosmetics);
+  $("navAccountAvatar").classList.toggle("gp-owner-frame",username==="gabri10");
   $("navAccountAvatar").hidden=!currentUser;
   $("navAccountLabel").textContent=currentUser?name:"MI CUENTA";
   renderAvatar($("communityAvatar"),avatar,name,cosmetics);
+  $("communityAvatar").classList.toggle("gp-owner-frame",username==="gabri10");
   $("communityAvatar").hidden=!currentUser;
   renderAvatar($("accountProfileAvatar"),avatar,name,cosmetics);
+  $("accountProfileAvatar").classList.toggle("gp-owner-frame",username==="gabri10");
   const nameClass=cosmetics.find(code=>["name_crimson","name_ice","name_gold","name_sakura"].includes(code));
-  const identityName=$("accountIdentityName");identityName.textContent=name;identityName.classList.remove("gp-name-crimson","gp-name-ice","gp-name-gold","gp-name-sakura");if(nameClass)identityName.classList.add("gp-"+nameClass.replace("name_","name-"));
-  const navLabel=$("navAccountLabel");navLabel.classList.remove("gp-name-crimson","gp-name-ice","gp-name-gold","gp-name-sakura");if(currentUser&&nameClass)navLabel.classList.add("gp-"+nameClass.replace("name_","name-"));
+  const identityName=$("accountIdentityName");identityName.textContent=name;identityName.classList.remove("gp-name-crimson","gp-name-ice","gp-name-gold","gp-name-sakura","gp-owner-name");if(username==="gabri10")identityName.classList.add("gp-owner-name");else if(nameClass)identityName.classList.add("gp-"+nameClass.replace("name_","name-"));
+  const navLabel=$("navAccountLabel");navLabel.classList.remove("gp-name-crimson","gp-name-ice","gp-name-gold","gp-name-sakura","gp-owner-name");if(currentUser&&username==="gabri10")navLabel.classList.add("gp-owner-name");else if(currentUser&&nameClass)navLabel.classList.add("gp-"+nameClass.replace("name_","name-"));
   $("accountIdentityHandle").textContent="@"+username;
  }
  function openAccount() {
@@ -1135,7 +1146,7 @@ footer{background:#070708;border-top:1px solid var(--gp-line)}.footer-links a{co
     renderAvatar(avatar,profile?.avatar_url,authorName,profile?.equippedCosmetics||[]);
     const authorInfo=document.createElement("div");
     const profileLink=document.createElement("a"); profileLink.href=profile?.username?"usuario.html?u="+encodeURIComponent(profile.username):"#"; profileLink.style.color="inherit"; profileLink.style.textDecoration="none";
-    const strong=document.createElement("strong"); strong.textContent=authorName; if(profile?.username==="gabri10")strong.classList.add("gp-creator-name"); const nameEffect=(profile?.equippedCosmetics||[]).find(code=>["name_crimson","name_ice","name_gold","name_sakura"].includes(code));if(nameEffect)strong.classList.add("gp-"+nameEffect.replace("name_","name-")); profileLink.appendChild(strong); if(profile?.username==="gabri10"){const creator=document.createElement("span");creator.className="gp-creator-inline";creator.textContent="✦ CREADOR";profileLink.appendChild(creator);}
+    const strong=document.createElement("strong"); strong.textContent=authorName; const isOwner=profile?.username==="gabri10"; if(isOwner)strong.classList.add("gp-owner-name"); const nameEffect=(profile?.equippedCosmetics||[]).find(code=>["name_crimson","name_ice","name_gold","name_sakura"].includes(code));if(nameEffect&&!isOwner)strong.classList.add("gp-"+nameEffect.replace("name_","name-")); profileLink.appendChild(strong); if(isOwner){const verified=document.createElement("span");verified.className="gp-owner-verified";verified.textContent="✓";verified.title="Cuenta verificada · Propietario de GabriPlay";profileLink.appendChild(verified);const owner=document.createElement("span");owner.className="gp-owner-role";owner.textContent="♛ OWNER";profileLink.appendChild(owner);}else if(profile?.username==="gabri10"){const creator=document.createElement("span");creator.className="gp-creator-inline";creator.textContent="✦ CREADOR";profileLink.appendChild(creator);}
     const handle=document.createElement("div"); handle.textContent=profile?.username?"@"+profile.username:"Comunidad";
     profileLink.appendChild(handle); authorInfo.appendChild(profileLink);
     if(profile?.bio){const bio=document.createElement("div");bio.className="gp-profile-bio";bio.textContent=profile.bio;authorInfo.appendChild(bio);}
