@@ -155,3 +155,48 @@
 .toolkit-footer a{display:flex;align-items:center;gap:14px;color:#e9e8e4;font-size:8px;font-weight:900;letter-spacing:1px}
 @media(max-width:900px){.toolkit-grid{grid-template-columns:1fr;gap:14px}.toolkit-card-main{min-height:250px}.toolkit-side{display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:0}.toolkit-side .toolkit-card{border-top:1px solid #ffffff20}.toolkit-card-main h3{margin-top:25px}}
 @media(max-width:650px){.toolkit-section{padding:57px 0 63px}.toolkit-heading{gap:12px}.toolkit-heading-note{display:none}.toolkit-intro{margin:-8px 0 22px;font-size:11px}.toolkit-grid{gap:12px}.toolkit-card-main{min-height:0;padding:20px}.toolkit-card-main h3{margin-top:24px;font-size:35px}.toolkit-side{display:flex;gap:0}.toolkit-side .toolkit-card{padding:18px 0}.toolkit-card h3{margin-top:17px;font-size:27px}.toolkit-warning{align-items:flex-start;padding:12px}.toolkit-footer{align-items:flex-start;flex-direction:column;gap:10px}}
+
+
+/* Base de mods: listado compacto con enlaces oficiales visibles */
+.toolkit-section{padding:66px 0 72px}
+.toolkit-intro{max-width:690px;margin:-10px 0 24px}
+.toolkit-list{display:flex;flex-direction:column;border-top:1px solid #ffffff25}
+.toolkit-entry{display:grid;grid-template-columns:104px minmax(0,1fr) 164px;align-items:center;gap:24px;padding:19px 20px;border:1px solid #ffffff16;border-top:0;background:#111315;transition:background .2s,border-color .2s}
+.toolkit-entry:hover{background:#151719;border-color:#ffffff30}
+.toolkit-entry-featured{background:linear-gradient(100deg,#191719,#111315 48%);border-left:2px solid var(--red)}
+.toolkit-identity{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-height:76px;border-right:1px solid #ffffff16}
+.toolkit-monogram{display:flex;align-items:baseline;color:#f1f0ed;font:900 31px/.9 "Barlow Condensed",sans-serif;letter-spacing:-1.5px}
+.toolkit-monogram span{color:var(--red-soft);font-size:20px}
+.toolkit-monogram-openiv{font-size:37px;letter-spacing:-3px}
+.toolkit-monogram-gta{font-size:38px;font-style:italic;color:#e6e7e2}
+.toolkit-identity small{color:#727975;text-align:center;font-size:6px;font-weight:900;line-height:1.4;letter-spacing:1.1px}
+.toolkit-entry-copy{min-width:0}
+.toolkit-entry-copy .toolkit-card-top{justify-content:flex-start;gap:14px}
+.toolkit-entry-copy h3{margin:7px 0 5px;font:800 25px/.98 "Barlow Condensed",Impact,sans-serif;text-transform:uppercase}
+.toolkit-entry-copy p{max-width:680px;margin:0;color:#a1a6a2;font-size:10px;line-height:1.7}
+.toolkit-entry-copy p code{padding:2px 5px;border:1px solid #ffffff1a;background:#090a0b;color:#e8a0a6;font-size:9px}
+.toolkit-status{color:#e88b94;font-size:7px;font-weight:900;letter-spacing:.8px}
+.toolkit-download{position:relative;display:flex;flex-direction:column;justify-content:center;gap:5px;min-height:57px;padding:10px 34px 10px 13px;border:1px solid #ffffff2a;background:#0b0d0e;transition:border-color .2s,background .2s}
+.toolkit-download:hover{border-color:#b95460;background:#1b1315}
+.toolkit-download small{color:#858b87;font-size:6px;font-weight:900;letter-spacing:1.1px}
+.toolkit-download strong{color:#f0efec;font-size:9px;letter-spacing:.8px}
+.toolkit-download>span{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--red-soft);font-size:17px}
+.toolkit-warning{margin-top:15px}
+.toolkit-footer{margin-top:18px}
+@media(max-width:700px){
+ .toolkit-section{padding:55px 0 60px}
+ .toolkit-intro{margin:-7px 0 19px;font-size:11px}
+ .toolkit-entry{grid-template-columns:62px minmax(0,1fr);gap:12px;padding:15px 12px}
+ .toolkit-identity{min-height:72px}
+ .toolkit-monogram{font-size:27px}
+ .toolkit-monogram span{font-size:17px}
+ .toolkit-monogram-openiv,.toolkit-monogram-gta{font-size:32px}
+ .toolkit-entry-copy .toolkit-card-top{flex-wrap:wrap;gap:5px 9px}
+ .toolkit-entry-copy h3{font-size:23px;margin-top:6px}
+ .toolkit-entry-copy p{font-size:10px}
+ .toolkit-download{grid-column:2;min-height:43px;margin-top:1px;padding:8px 32px 8px 11px}
+ .toolkit-download small{font-size:6px}
+ .toolkit-download strong{font-size:8px}
+ .toolkit-warning{align-items:flex-start}
+ .toolkit-footer{align-items:flex-start;flex-direction:column;gap:10px}
+}
