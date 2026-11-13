@@ -176,21 +176,7 @@
   </section>
 </div>
 <div class="modal" id="accountModal" aria-hidden="true"><div class="modal-backdrop" data-close-account></div><section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="modal-close" type="button" id="closeAccount" aria-label="Cerrar">×</button><div class="modal-kicker">GABRIPLAY / CUENTA</div><h2 id="accountTitle">Tu espacio en GabriPlay.</h2><p class="modal-intro">Inicia sesión o crea una cuenta para acceder a tu perfil.</p><div id="accountTabs" class="account-tabs"><button type="button" class="active" data-mode="login">Iniciar sesión</button><button type="button" data-mode="signup">Crear cuenta</button></div><form id="accountForm"><label class="form-label" id="usernameLabel" hidden>Nombre de usuario<input id="accountUsername" type="text" autocomplete="username" minlength="3" maxlength="20" placeholder="TuUsuario"></label><label class="form-label">Correo electrónico<input id="accountEmail" type="email" autocomplete="email" required placeholder="correo@ejemplo.com"></label><label class="form-label">Contraseña<input id="accountPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo 8 caracteres"></label><button class="button account-submit" id="accountSubmit" type="submit">Iniciar sesión</button></form><div class="account-status" id="accountStatus" role="status" aria-live="polite"></div><div class="account-logged" id="accountLogged" hidden><p id="accountWelcome"></p>
-<section class="private-share" id="privateShare" hidden aria-labelledby="privateShareTitle">
- <div class="private-share-kicker">GABRIPLAY / ESPACIO PRIVADO</div>
- <h3 id="privateShareTitle">Compartir una imagen</h3>
- <p>Sube una captura o miniatura. El archivo no será público y el enlace que generemos caducará en una hora.</p>
- <label class="private-file-label" for="privateImage">Selecciona una imagen (JPG, PNG o WEBP · máximo 8 MB)</label>
- <input id="privateImage" type="file" accept="image/jpeg,image/png,image/webp">
- <button class="button private-upload-button" id="privateUploadButton" type="button" disabled>SUBIR IMAGEN</button>
- <div class="private-share-status" id="privateShareStatus" role="status" aria-live="polite"></div>
- <div class="private-share-result" id="privateShareResult" hidden>
-  <img id="privatePreview" alt="Vista previa de la imagen subida">
-  <label class="private-file-label" for="privateSignedUrl">ENLACE PRIVADO · VÁLIDO 1 HORA</label>
-  <input id="privateSignedUrl" type="text" readonly>
-  <button class="button private-copy-button" id="privateCopyButton" type="button">COPIAR ENLACE</button>
- </div>
-</section><section class="favorites-panel" aria-labelledby="favoritesTitle"><div class="favorites-heading"><div><span class="modal-kicker">TU BIBLIOTECA</span><h3 id="favoritesTitle">Mis favoritos</h3></div><span class="favorites-count" id="favoritesCount">0</span></div><p class="favorites-empty" id="favoritesEmpty">Todavía no has guardado ningún vídeo. Explora el contenido y pulsa «Guardar» para añadirlo aquí.</p><div class="favorites-list" id="favoritesList"></div></section><button class="button ghost account-submit" id="signOutButton" type="button">Cerrar sesión</button></div><p class="account-footnote">No compartas tu contraseña con nadie.</p></section></div>
+<section class="favorites-panel" aria-labelledby="favoritesTitle"><div class="favorites-heading"><div><span class="modal-kicker">TU BIBLIOTECA</span><h3 id="favoritesTitle">Mis favoritos</h3></div><span class="favorites-count" id="favoritesCount">0</span></div><p class="favorites-empty" id="favoritesEmpty">Todavía no has guardado ningún vídeo. Explora el contenido y pulsa «Guardar» para añadirlo aquí.</p><div class="favorites-list" id="favoritesList"></div></section><button class="button ghost account-submit" id="signOutButton" type="button">Cerrar sesión</button></div><p class="account-footnote">No compartas tu contraseña con nadie.</p></section></div>
 <script>
 const menuButton=document.getElementById("menuToggle"),nav=document.getElementById("navLinks");
 menuButton.addEventListener("click",()=>{const opened=nav.classList.toggle("open");menuButton.setAttribute("aria-expanded",String(opened));});
@@ -283,40 +269,6 @@ const CONTENT={
  "addon-cars":{title:"Instalar coches Add-On",category:"MODS · GTA V",video:"pbcPa3jO1tA"},
  "essential-mods":{title:"4 mods esenciales para GTA 5",category:"SELECCIÓN · GTA V",video:"j_k2lIj25xc"}
 };
-const privateShare=$("privateShare"),privateImage=$("privateImage"),privateUploadButton=$("privateUploadButton"),privateShareStatus=$("privateShareStatus"),privateShareResult=$("privateShareResult"),privatePreview=$("privatePreview"),privateSignedUrl=$("privateSignedUrl"),privateCopyButton=$("privateCopyButton");
-function privateSay(message,error=false){privateShareStatus.textContent=message;privateShareStatus.classList.toggle("error",error);}
-async function refreshAdminAccess(){
- if(!user){isAdmin=false;privateShare.hidden=true;return;}
- const {data,error}=await client.from("gabriplay_admins").select("user_id").eq("user_id",user.id).maybeSingle();
- isAdmin=!error&&!!data;
- privateShare.hidden=!isAdmin;
- if(!isAdmin)privateShareResult.hidden=true;
-}
-privateImage?.addEventListener("change",()=>{const file=privateImage.files?.[0];privateUploadButton.disabled=!file;privateShareResult.hidden=true;privateSay(file?file.name+" seleccionado.":"");});
-privateUploadButton?.addEventListener("click",async()=>{
- const file=privateImage.files?.[0];
- if(!user||!isAdmin||!file)return;
- const allowed={"image/jpeg":"jpg","image/png":"png","image/webp":"webp"};
- if(!allowed[file.type]){privateSay("Formato no permitido. Usa JPG, PNG o WEBP.",true);return;}
- if(file.size>8*1024*1024){privateSay("La imagen supera el límite de 8 MB.",true);return;}
- privateUploadButton.disabled=true;privateSay("Subiendo imagen…");
- try{
-  const path=user.id+"/"+crypto.randomUUID()+"."+allowed[file.type];
-  const {error:uploadError}=await client.storage.from("gabriplay-shares").upload(path,file,{contentType:file.type,cacheControl:"3600",upsert:false});
-  if(uploadError)throw uploadError;
-  const {data:signed,error:signedError}=await client.storage.from("gabriplay-shares").createSignedUrl(path,3600);
-  if(signedError)throw signedError;
-  privateSignedUrl.value=signed.signedUrl;
-  privatePreview.src=signed.signedUrl;
-  privateShareResult.hidden=false;
-  privateSay("Imagen subida. El enlace privado caduca en una hora.");
- }catch(error){privateSay("No se pudo subir la imagen: "+(error.message||"Error desconocido"),true);}
- finally{privateUploadButton.disabled=!privateImage.files?.length;}
-});
-privateCopyButton?.addEventListener("click",async()=>{
- try{await navigator.clipboard.writeText(privateSignedUrl.value);privateSay("Enlace copiado. Pégalo aquí en el chat para que pueda ver la miniatura.");}
- catch(_error){privateSignedUrl.focus();privateSignedUrl.select();privateSay("Selecciona y copia el enlace manualmente.");}
-});
 function renderFavorites(){
  favoritesCount.textContent=String(favorites.size);
  favoritesEmpty.hidden=favorites.size>0;
@@ -368,7 +320,7 @@ async function toggleFavorite(id){
 document.querySelectorAll("[data-favorite]").forEach(button=>button.addEventListener("click",()=>toggleFavorite(button.dataset.favorite)));
 function say(message,error=false){status.textContent=message;status.classList.toggle("error",error);}
 function setMode(next){mode=next;tabs.querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));usernameLabel.hidden=mode!=="signup";password.autocomplete=mode==="signup"?"new-password":"current-password";submit.textContent=mode==="signup"?"Crear cuenta":"Iniciar sesión";$("accountTitle").textContent=mode==="signup"?"Crea tu cuenta.":"Tu espacio en GabriPlay.";say("");}
-function paintSession(next){const changed=user?.id!==next?.id;user=next;const active=!!user;form.hidden=active;tabs.hidden=active;logged.hidden=!active;accountButton.textContent=active?"Mi espacio":"Iniciar sesión";welcome.textContent=active?"Sesión iniciada como "+(user.user_metadata?.username||user.email):"";if(changed){refreshAdminAccess();loadFavorites();}}
+function paintSession(next){const changed=user?.id!==next?.id;user=next;const active=!!user;form.hidden=active;tabs.hidden=active;logged.hidden=!active;accountButton.textContent=active?"Mi espacio":"Iniciar sesión";welcome.textContent=active?"Sesión iniciada como "+(user.user_metadata?.username||user.email):"";if(changed){loadFavorites();}}
 function openModal(){modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");}
 function closeModal(){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.classList.remove("modal-open");}
 accountButton.addEventListener("click",openModal);$("closeAccount").addEventListener("click",closeModal);modal.querySelectorAll("[data-close-account]").forEach(el=>el.addEventListener("click",closeModal));document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
@@ -376,7 +328,7 @@ tabs.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>setMod
 if(!window.supabase?.createClient){accountButton.disabled=true;accountButton.textContent="Cuenta no disponible";return;}
 client=window.supabase.createClient(URL,KEY);
 client.auth.getSession().then(({data,error})=>{if(error)say(error.message,true);paintSession(data?.session?.user||null);});
-client.auth.onAuthStateChange((_event,session)=>{const nextUser=session?.user||null;const changed=user?.id!==nextUser?.id;user=nextUser;const active=!!user;form.hidden=active;tabs.hidden=active;logged.hidden=!active;accountButton.textContent=active?"Mi espacio":"Iniciar sesión";welcome.textContent=active?"Sesión iniciada como "+(user.user_metadata?.username||user.email):"";if(changed)window.setTimeout(()=>{refreshAdminAccess();loadFavorites();},0);});
+client.auth.onAuthStateChange((_event,session)=>{const nextUser=session?.user||null;const changed=user?.id!==nextUser?.id;user=nextUser;const active=!!user;form.hidden=active;tabs.hidden=active;logged.hidden=!active;accountButton.textContent=active?"Mi espacio":"Iniciar sesión";welcome.textContent=active?"Sesión iniciada como "+(user.user_metadata?.username||user.email):"";if(changed)window.setTimeout(()=>{loadFavorites();},0);});
 form.addEventListener("submit",async e=>{e.preventDefault();submit.disabled=true;say("Un momento…");
 try{if(mode==="signup"){const handle=username.value.trim();if(!/^[a-zA-Z0-9_]{3,20}$/.test(handle))throw new Error("El nombre debe tener entre 3 y 20 caracteres: letras, números o _.");const {data,error}=await client.auth.signUp({email:email.value.trim(),password:password.value,options:{data:{username:handle,display_name:handle},emailRedirectTo:"https://gabriel10mp.github.io/GabriPlay-Web/"}});if(error)throw error;if(data.session)paintSession(data.session.user);say("Cuenta creada. Si se solicita, confirma tu correo para iniciar sesión.");}else{const {data,error}=await client.auth.signInWithPassword({email:email.value.trim(),password:password.value});if(error)throw error;paintSession(data.user);say("Sesión iniciada correctamente.");}}catch(err){say(err.message||"No se pudo completar la operación.",true);}finally{submit.disabled=false;}});
 signout.addEventListener("click",async()=>{signout.disabled=true;const {error}=await client.auth.signOut();signout.disabled=false;if(error){say(error.message,true);return;}paintSession(null);setMode("login");say("Has cerrado sesión.");});
